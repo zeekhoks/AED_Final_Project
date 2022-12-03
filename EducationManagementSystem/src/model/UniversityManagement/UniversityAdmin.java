@@ -12,4 +12,6 @@ import model.UniversityManagement.Person;
 public class UniversityAdmin extends Person {
 //    create objects like system admin
     
+    
+    
 }

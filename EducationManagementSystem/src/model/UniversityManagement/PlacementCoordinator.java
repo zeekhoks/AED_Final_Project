@@ -14,5 +14,23 @@ public class PlacementCoordinator {
     
     private String placementCordID;
     private Date startDate;
+
+    public String getPlacementCordID() {
+        return placementCordID;
+    }
+
+    public void setPlacementCordID(String placementCordID) {
+        this.placementCordID = placementCordID;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    
+    
     
 }

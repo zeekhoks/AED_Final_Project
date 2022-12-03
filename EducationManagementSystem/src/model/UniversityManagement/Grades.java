@@ -15,5 +15,31 @@ public class Grades {
     private String grades;
     
 //    add method to calculate grades for transcript
+
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
+    public String getProfessorID() {
+        return professorID;
+    }
+
+    public void setProfessorID(String professorID) {
+        this.professorID = professorID;
+    }
+
+    public String getGrades() {
+        return grades;
+    }
+
+    public void setGrades(String grades) {
+        this.grades = grades;
+    }
+    
+    
     
 }

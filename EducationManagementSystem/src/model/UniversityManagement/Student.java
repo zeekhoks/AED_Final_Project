@@ -17,6 +17,48 @@ public class Student extends Person{
     private Degree studentDegree;
     private String graduationYear;
     private int currentSemester;
+
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
+    public String getInstituteCode() {
+        return instituteCode;
+    }
+
+    public void setInstituteCode(String instituteCode) {
+        this.instituteCode = instituteCode;
+    }
+
+    public Degree getStudentDegree() {
+        return studentDegree;
+    }
+
+    public void setStudentDegree(Degree studentDegree) {
+        this.studentDegree = studentDegree;
+    }
+
+    public String getGraduationYear() {
+        return graduationYear;
+    }
+
+    public void setGraduationYear(String graduationYear) {
+        this.graduationYear = graduationYear;
+    }
+
+    public int getCurrentSemester() {
+        return currentSemester;
+    }
+
+    public void setCurrentSemester(int currentSemester) {
+        this.currentSemester = currentSemester;
+    }
+    
+    
     
     
     

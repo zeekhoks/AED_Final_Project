@@ -10,4 +10,34 @@ package model.UniversityManagement;
  */
 public class Placement {
     
+    private String studentInterest;
+    private String jobName;
+    private String jobDescription;
+
+    public String getStudentInterest() {
+        return studentInterest;
+    }
+
+    public void setStudentInterest(String studentInterest) {
+        this.studentInterest = studentInterest;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public String getJobDescription() {
+        return jobDescription;
+    }
+
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
+    
+    
+    
 }

@@ -12,5 +12,23 @@ public class Degree {
     
     private String degreeLevel;
     private String major;
+
+    public String getDegreeLevel() {
+        return degreeLevel;
+    }
+
+    public void setDegreeLevel(String degreeLevel) {
+        this.degreeLevel = degreeLevel;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+    
+    
     
 }
