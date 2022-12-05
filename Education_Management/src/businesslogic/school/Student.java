@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
-package model.school;
+package businesslogic.school;
 
-import model.Community;
-import model.Person;
+import businesslogic.Community;
+import businesslogic.Person;
 
 /**
  *

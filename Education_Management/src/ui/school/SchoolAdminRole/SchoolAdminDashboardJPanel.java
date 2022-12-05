@@ -21,9 +21,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     
     public SchoolAdminDashboardJPanel() {
         initComponents();
+        setSize(1060, 770);
         workAreaPanel.setVisible(true);
-        StudentPanel.setVisible(false);
-        
+        studentPanel.setVisible(false);    
     }
 
     /**
@@ -42,20 +42,20 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        StudentPanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        studentPanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         navigateBackPanel = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         studentWorkAreaPanel = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
 
-        controlPanel.setBackground(new java.awt.Color(255, 255, 204));
+        controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jButton1.setText("Manage Employees");
 
@@ -72,6 +72,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton5.setText("Manage Meal Supply");
 
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -83,13 +91,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(248, 248, 248)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -99,53 +108,38 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addContainerGap(390, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addComponent(btnLogOut)
+                .addGap(126, 126, 126))
         );
 
         jSplitPane2.setLeftComponent(controlPanel);
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        workAreaPanel.setBackground(new java.awt.Color(204, 255, 255));
-
-        jLabel1.setText("main work area panel");
+        workAreaPanel.setBackground(new java.awt.Color(255, 255, 255));
+        workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("school details");
+        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
 
-        javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
-        workAreaPanel.setLayout(workAreaPanelLayout);
-        workAreaPanelLayout.setHorizontalGroup(
-            workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(workAreaPanelLayout.createSequentialGroup()
-                .addGroup(workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(workAreaPanelLayout.createSequentialGroup()
-                        .addGap(385, 385, 385)
-                        .addComponent(jLabel1))
-                    .addGroup(workAreaPanelLayout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(jLabel2)))
-                .addContainerGap(369, Short.MAX_VALUE))
-        );
-        workAreaPanelLayout.setVerticalGroup(
-            workAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(workAreaPanelLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addContainerGap(468, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
+        workAreaPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 840));
 
         jLayeredPane1.add(workAreaPanel, "card2");
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        navigateBackPanel.setBackground(new java.awt.Color(255, 204, 204));
+        navigateBackPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton6.setText("Back");
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton7.setText("Log Out");
 
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Manage Student");
 
         javax.swing.GroupLayout navigateBackPanelLayout = new javax.swing.GroupLayout(navigateBackPanel);
@@ -155,9 +149,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(314, 314, 314)
+                .addGap(236, 236, 236)
                 .addComponent(jButton7)
                 .addGap(48, 48, 48))
         );
@@ -174,43 +168,35 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jSplitPane1.setTopComponent(navigateBackPanel);
 
-        studentWorkAreaPanel.setBackground(new java.awt.Color(204, 204, 255));
-
-        jLabel4.setText("Student details");
+        studentWorkAreaPanel.setBackground(new java.awt.Color(37, 150, 190));
 
         javax.swing.GroupLayout studentWorkAreaPanelLayout = new javax.swing.GroupLayout(studentWorkAreaPanel);
         studentWorkAreaPanel.setLayout(studentWorkAreaPanelLayout);
         studentWorkAreaPanelLayout.setHorizontalGroup(
             studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
-                .addGap(426, 426, 426)
-                .addComponent(jLabel4)
-                .addContainerGap(384, Short.MAX_VALUE))
+            .addGap(0, 898, Short.MAX_VALUE)
         );
         studentWorkAreaPanelLayout.setVerticalGroup(
             studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(jLabel4)
-                .addContainerGap(467, Short.MAX_VALUE))
+            .addGap(0, 777, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(studentWorkAreaPanel);
 
-        javax.swing.GroupLayout StudentPanelLayout = new javax.swing.GroupLayout(StudentPanel);
-        StudentPanel.setLayout(StudentPanelLayout);
-        StudentPanelLayout.setHorizontalGroup(
-            StudentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, StudentPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
+        studentPanel.setLayout(studentPanelLayout);
+        studentPanelLayout.setHorizontalGroup(
+            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        StudentPanelLayout.setVerticalGroup(
-            StudentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+        studentPanelLayout.setVerticalGroup(
+            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jLayeredPane1.add(StudentPanel, "card3");
+        jLayeredPane1.add(studentPanel, "card3");
 
         jSplitPane2.setRightComponent(jLayeredPane1);
 
@@ -227,23 +213,27 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
+            .addGap(0, 846, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)))
+                    .addComponent(jSplitPane2)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         workAreaPanel.setVisible(false);
-        StudentPanel.setVisible(true);
+        studentPanel.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel StudentPanel;
+    private javax.swing.JButton btnLogOut;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -252,7 +242,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -260,6 +249,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel navigateBackPanel;
+    private javax.swing.JPanel studentPanel;
     private javax.swing.JPanel studentWorkAreaPanel;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
