@@ -43,7 +43,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Container class="javax.swing.JPanel" name="leftPane">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
               <JSplitPaneConstraints position="left"/>
@@ -58,6 +58,9 @@
                           <Component id="btnManageFaculty" min="-2" pref="111" max="-2" attributes="0"/>
                           <Component id="btnManageStudents" min="-2" pref="111" max="-2" attributes="0"/>
                           <Component id="btnManageMealOrders" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="btnReports" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="btnRoomAvailability" min="-2" pref="111" max="-2" attributes="0"/>
+                          <Component id="btnLogout" min="-2" pref="111" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -66,13 +69,19 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                       <Component id="btnManageFaculty" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnManageStudents" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnManageMealOrders" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace pref="566" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnReports" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnRoomAvailability" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnLogout" min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace pref="407" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -80,7 +89,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnManageFaculty">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manage Faculty"/>
+                <Property name="text" type="java.lang.String" value="Faculty"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnManageStudents">
@@ -93,9 +102,24 @@
                 <Property name="text" type="java.lang.String" value="Meals"/>
               </Properties>
             </Component>
+            <Component class="javax.swing.JButton" name="btnReports">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reports"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRoomAvailability">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Dorms"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnLogout">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Logout"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="rightPane">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
               <JSplitPaneConstraints position="right"/>
