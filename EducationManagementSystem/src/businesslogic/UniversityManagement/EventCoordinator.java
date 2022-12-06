@@ -1,0 +1,57 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package businesslogic.UniversityManagement;
+import businesslogic.Community;
+import businesslogic.Person;
+import java.util.Date;
+
+/**
+ *
+ * @author zainabkhokawala
+ */
+public class EventCoordinator extends Person {
+    
+    private String eventCordID;
+    private Date startDate;
+    
+   public EventCoordinator(String personFirstName, String personLastName, String personGender, 
+            String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
+            Community community, String userPassword, UserRole userRole, String eventCordID, Date startDate) {
+            
+        this.setPersonFirstName(personFirstName);
+        this.setPersonLastName(personLastName);
+        this.setPersonGender(personGender);
+        this.setPersonId(personId);
+        this.setDateOfBirth(dateOfBirth);
+        this.setPersonPhoneNumber(personPhoneNumber);
+        this.setPersonEmailAddress(personEmailAddress);
+        this.setCommunity(community);
+        this.setUserPassword(userPassword);
+        this.setUserRole(userRole.EVENT_COORDINATOR);
+        this.setEventCordID(eventCordID);
+        this.setStartDate(startDate);
+        }
+
+    public String getEventCordID() {
+        return eventCordID;
+    }
+
+    public void setEventCordID(String eventCordID) {
+        this.eventCordID = eventCordID;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+    
+    
+            
+    
+    
+}

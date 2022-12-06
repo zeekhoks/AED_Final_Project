@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/File.java to edit this template
  */
 package businesslogic;
-
 import java.util.ArrayList;
 
 /**
@@ -11,19 +10,23 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class PersonDirectory {
-    private static ArrayList<Person> personDirectory;
+    private ArrayList<Person> personDirectory;
     
     public PersonDirectory(){
-        personDirectory = new ArrayList<Person>();
+        this.personDirectory = new ArrayList<>();
     }
 
-    public static ArrayList<Person> getPersonDirectory() {
+    public ArrayList<Person> getPersonDirectory() {
         return personDirectory;
     }
 
-    public static void setPersonDirectory(ArrayList<Person> personDirectory) {
-        PersonDirectory.personDirectory = personDirectory;
+    public void setPersonDirectory(ArrayList<Person> personDirectory) {
+        this.personDirectory = personDirectory;
     }
+
+
+    
+    
     
     
 }

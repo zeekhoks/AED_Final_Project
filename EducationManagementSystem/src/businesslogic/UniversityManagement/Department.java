@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model.UniversityManagement;
-import model.UniversityManagement.Course;
-import model.UniversityManagement.Professor;
-import model.UniversityManagement.Student;
-import model.UniversityManagement.Grades;
+package businesslogic.UniversityManagement;
+import businesslogic.UniversityManagement.Professor;
+import businesslogic.UniversityManagement.Course;
+import businesslogic.UniversityManagement.Student;
+
+
 
 /**
  *
