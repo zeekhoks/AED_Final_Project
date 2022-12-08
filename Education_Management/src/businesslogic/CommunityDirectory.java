@@ -4,6 +4,7 @@
  */
 package businesslogic;
 
+import businesslogic.school.Student;
 import java.util.ArrayList;
 
 /**
@@ -35,5 +36,21 @@ public class CommunityDirectory {
         return c;
     }
     
+    public Community addCommunity(String com, City city) {
+        Community c = new Community();
+        c.setCity(city);
+        c.setCommunity(com);
+        communityDirectory.add(c);
+        return c;
+    }
+    
+    public static Community getCommunityByName(String community) {
+        for(Community c : communityDirectory) {
+            if(c.getCommunity().equals(community)){
+                return c;
+            }
+        }
+        return null;
+    }
 }
 

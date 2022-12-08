@@ -11,108 +11,126 @@ package businesslogic;
  * @author drashtibhingradiya
  */
 public class Person {
-    public String firstName;
-    public String lastName;
-    public int personID;
-    public String email;
-    public String password;
-    public String role;
-    public String dob;
-    public long mobileNo;
-    public String gender;
-    public Community community;
-
-    public Person(String firstName, String lastName, int personID, String email, String password, String role, String dob, long mobileNo, String gender, Community community) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.personID = personID;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.dob = dob;
-        this.mobileNo = mobileNo;
-        this.gender = gender;
-        this.community = community;
+    public enum UserRole{
+        UNIVERSITY_ADMIN,
+        STUDENT,
+        PROFESSOR,
+        PLACEMENT_COORDINATOR,
+        EVENT_COORDINATOR,
+        ACCOUNTS_ADMIN,
+        DEPARTMENT_ADMIN,
+        PARENT,
+        SYSTEM_ADMIN,
+        SCHOOL_ADMIN,
+        SCHOOL_TEACHER
     }
     
-    public String getFirstName() {
-        return firstName;
+    public String personFirstName;
+    private String personLastName;
+    private String personGender;
+    private String personId;
+    private String dateOfBirth;
+    private long personPhoneNumber;
+    private String personEmailAddress;
+    private Community community;
+    private String userPassword;
+    private UserRole userRole;
+
+    public Person(String personFirstName, String personLastName, String personGender, String personId, String dateOfBirth, 
+            long personPhoneNumber, String personEmailAddress, Community community, String userPassword, UserRole userRole) {
+        this.personFirstName = personFirstName;
+        this.personLastName = personLastName;
+        this.personGender = personGender;
+        this.personId = personId;
+        this.dateOfBirth = dateOfBirth;
+        this.personPhoneNumber = personPhoneNumber;
+        this.personEmailAddress = personEmailAddress;
+        this.community = community;
+        this.userPassword = userPassword;
+        this.userRole = userRole;
+    }
+    
+    
+
+   public String getPersonGender() {
+        return personGender;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+   public void setPersonGender(String personGender) {
+        this.personGender = personGender;
     }
 
-    public String getLastName() {
-        return lastName;
+   public String getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+   public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
-    public int getPersonID() {
-        return personID;
+
+
+   public long getPersonPhoneNumber() {
+        return personPhoneNumber;
     }
 
-    public void setPersonID(int personID) {
-        this.personID = personID;
+   public void setPersonPhoneNumber(long personPhoneNumber) {
+        this.personPhoneNumber = personPhoneNumber;
     }
 
-    public String getEmail() {
-        return email;
+   public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+   public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
-    public String getPassword() {
-        return password;
+   public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+   public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
-    public String getRole() {
-        return role;
+   public String getPersonEmailAddress() {
+        return personEmailAddress;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+   public void setPersonEmailAddress(String personEmailAddress) {
+        this.personEmailAddress = personEmailAddress;
     }
 
-    public String getDob() {
-        return dob;
+   public String getPersonFirstName() {
+        return personFirstName;
     }
 
-    public void setDob(String dob) {
-        this.dob = dob;
+   public void setPersonFirstName(String personFirstName) {
+        this.personFirstName = personFirstName;
     }
 
-    public long getMobileNo() {
-        return mobileNo;
+   public String getPersonLastName() {
+        return personLastName;
     }
 
-    public void setMobileNo(long mobileNo) {
-        this.mobileNo = mobileNo;
+   public void setPersonLastName(String personLastName) {
+        this.personLastName = personLastName;
     }
 
-    public String getGender() {
-        return gender;
+   public String getPersonId() {
+        return personId;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+   public void setPersonId(String personId) {
+        this.personId = personId;
     }
 
-    public Community getCommunity() {
+   public Community getCommunity() {
         return community;
     }
 
-    public void setCommunity(Community community) {
+   public void setCommunity(Community community) {
         this.community = community;
     }
-    
 }

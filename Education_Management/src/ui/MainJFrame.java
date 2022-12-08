@@ -4,13 +4,21 @@
  */
 package ui;
 
+import businesslogic.Community;
+import businesslogic.DB4OUtil.DB4OUtil;
+import businesslogic.EcoSystem;
+import businesslogic.Person;
+import businesslogic.Person.UserRole;
+import businesslogic.PersonDirectory;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
+import ui.systemAdmin.SystemAdminDashboardJPanel;
 
 /**
  *
@@ -18,15 +26,26 @@ import ui.school.StudentRole.StudentDashboardJPanel;
  */
 public class MainJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainJFrame
-     */
     private static final Logger logger = Logger.getLogger(MainJFrame.class.getName());
+    private EcoSystem ecoSystem;
+    PersonDirectory personDirectory;
+    Community communityDirectory;
+    private DB4OUtil db4OUtil = DB4OUtil.getInstance();
     
     public MainJFrame() {
         initComponents();
-//        MainFrame.getContentPane().setSize(new Dimension(100, 200));
         setSize(1060, 770);
+        ecoSystem = db4OUtil.retrieveSystem();
+//        personDirectory = new PersonDirectory();
+        
+//        personDirectory.addPerson(new Person(null,null,null, null,
+//                null,1234567890,"systemAdmin@gmail.com",null,
+//                "1234", UserRole.SYSTEM_ADMIN));
+//        
+//        personDirectory.addPerson(new Person(null,null,null, null,
+//                null,1234567890,"schoolAdmin@gmail.com",null,
+//                "1234", UserRole.SCHOOL_ADMIN));
+        
     }
 
     /**
@@ -115,19 +134,77 @@ public class MainJFrame extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         logger.log(Level.INFO, "Login Button pressed");
-        JPanel StudentDashboardJPanel = new StudentDashboardJPanel();
-        //        changePanel(schoolAdminDashboard);
-        mainWorkArea.add("StudentDashboardJPanel",StudentDashboardJPanel);
-        CardLayout cd = (CardLayout) mainWorkArea.getLayout();
-        cd.next(mainWorkArea);
+        
+        String userName = txtUsername.getText();
+        char[] passwordChars = txtPassword.getPassword();
+        String password = String.valueOf(passwordChars);
+        
+        if(userName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username cannot be Empty");
+            return;
+        }else{
+            if(password.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Password cannot be Empty");
+                return;
+            }
+        }
+//        
+//        if(personDirectory.authenticateAdmin(userName, password)){
+//            JOptionPane.showMessageDialog(this, "Login Successfull!");
+//            txtUsername.setText("");
+//            txtPassword.setText("");
+//            String role = personDirectory.getPersonRole(userName);
+//            switch(role){
+//                case "SYSTEM_ADMIN":
+//                    JPanel SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel();
+//                    mainWorkArea.add("SystemAdminDashboardJPanel",SystemAdminDashboardJPanel);
+//                    CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
+//                    cd1.next(mainWorkArea);
+//                    break;
+//                    
+//                case "SCHOOL_ADMIN":
+//                    JPanel SchoolAdminDashboardJPanel = new SchoolAdminDashboardJPanel();
+//                    mainWorkArea.add("SchoolAdminDashboardJPanel",SchoolAdminDashboardJPanel);
+//                    CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
+//                    cd2.next(mainWorkArea);
+//                    break;
+//            }
+//        }
+        
+        
+        
+        if(!ecoSystem.getPersonDirectory().getPersonDirectory().isEmpty()){
+            if(ecoSystem.getPersonDirectory().authenticateAdmin(userName, password)){
+                String role = ecoSystem.getPersonDirectory().getPersonRole(userName);
+                switch(role){
+                    case "SYSTEM_ADMIN":
+                        clearLoginPanel();
+                        JPanel SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel();
+                        mainWorkArea.add("SystemAdminDashboardJPanel",SystemAdminDashboardJPanel);
+                        CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
+                        cd1.next(mainWorkArea);
+                        break;
+
+                    case "SCHOOL_ADMIN":
+                        clearLoginPanel();
+                        JPanel SchoolAdminDashboardJPanel = new SchoolAdminDashboardJPanel(ecoSystem);
+                        mainWorkArea.add("SchoolAdminDashboardJPanel",SchoolAdminDashboardJPanel);
+                        CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
+                        cd2.next(mainWorkArea);
+                        break;
+                }
+            }
+        }
+        
+        
     }//GEN-LAST:event_btnLoginActionPerformed
     
-    public void changePanel(JPanel panel) {
-        removeAll();
-        add(panel);
-        revalidate();
-        repaint();
-    }
+//    public void changePanel(JPanel panel) {
+//        removeAll();
+//        add(panel);
+//        revalidate();
+//        repaint();
+//    }
     
     /**
      * @param args the command line arguments
@@ -174,4 +251,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void clearLoginPanel() {
+        txtUsername.setText("");
+        txtPassword.setText("");
+    }
 }

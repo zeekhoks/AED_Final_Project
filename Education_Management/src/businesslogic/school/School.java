@@ -10,17 +10,17 @@ import businesslogic.Community;
  * @author drashtibhingradiya
  */
 public class School {
-    private int schoolID;
+    private String schoolID;
     private String schoolName;
-    private int schoolcode;
+    private String schoolCode;
     private Community community;
     private long mobileNo;
 
-    public int getSchoolID() {
+    public String getSchoolID() {
         return schoolID;
     }
 
-    public void setSchoolID(int schoolID) {
+    public void setSchoolID(String schoolID) {
         this.schoolID = schoolID;
     }
 
@@ -32,12 +32,12 @@ public class School {
         this.schoolName = schoolName;
     }
 
-    public int getSchoolcode() {
-        return schoolcode;
+    public String getSchoolcode() {
+        return schoolCode;
     }
 
-    public void setSchoolcode(int schoolcode) {
-        this.schoolcode = schoolcode;
+    public void setSchoolcode(String schoolcode) {
+        this.schoolCode = schoolcode;
     }
 
     public Community getCommunity() {

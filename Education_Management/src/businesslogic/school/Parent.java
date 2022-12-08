@@ -12,18 +12,22 @@ import businesslogic.Person;
  * @author drashtibhingradiya
  */
 public class Parent extends Person{
-    private int studentID;
+    private String studentID;
 
-    public Parent(String firstName, String lastName, int personID, String email, String password, String role, String dob, long mobileNo, String gender, Community community, int studentID) {
-        super(firstName, lastName, personID, email, password, role, dob, mobileNo, gender, community);
+    public Parent(String firstName, String lastName, String gender, String personID, 
+            String dob, long mobileNo, String email, Community community, 
+            String password, UserRole role, String studentID) {
+        super(firstName, lastName, gender, 
+                personID, dob, (long) mobileNo, email, 
+                community, password, role.PARENT);
         this.studentID = studentID;
     }
 
-    public int getStudentID() {
+    public String getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(int studentID) {
+    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
    

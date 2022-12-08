@@ -1,0 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package businesslogic.school;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author drashtibhingradiya
+ */
+public class SubjectDirectory {
+    private static ArrayList<Subject> subjectDirectory;
+    
+    public SubjectDirectory() {
+        subjectDirectory = new ArrayList<Subject>();
+    }
+
+    public static ArrayList<Subject> getSubjectDirectory() {
+        return subjectDirectory;
+    }
+
+    public static void setSubjectDirectory(ArrayList<Subject> subjectDirectory) {
+        SubjectDirectory.subjectDirectory = subjectDirectory;
+    }
+    
+    
+}

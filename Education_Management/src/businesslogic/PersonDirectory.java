@@ -25,5 +25,24 @@ public class PersonDirectory {
         PersonDirectory.personDirectory = personDirectory;
     }
     
+    public static void addPerson(Person p) {
+        personDirectory.add(p);
+    }
+    
+    public boolean authenticateAdmin(String username, String password) {
+        Person user = personDirectory.stream().filter(l -> l.getPersonEmailAddress().equals(username) && l.getUserPassword().equals(password)).findFirst().orElse(null);
+        boolean found = user == null ? false : true;
+        return found;
+    }
+    
+    public String getPersonRole(String username) {
+        for(Person p : personDirectory){
+            if(p.getPersonEmailAddress().equals(username)){
+                return p.getUserRole().toString();
+            }
+        }
+        return null;
+    }
+    
     
 }

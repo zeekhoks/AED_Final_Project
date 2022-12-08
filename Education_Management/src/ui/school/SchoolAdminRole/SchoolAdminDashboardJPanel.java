@@ -4,9 +4,30 @@
  */
 package ui.school.SchoolAdminRole;
 
+import businesslogic.City;
+import businesslogic.Community;
+import businesslogic.EcoSystem;
+import businesslogic.Person.UserRole;
+import businesslogic.helper.ValidateInputs;
+import businesslogic.school.Student;
+import businesslogic.school.Teacher;
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.io.File;
+import java.lang.System.Logger;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,13 +38,45 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DashboardJPanel
      */
+    private EcoSystem ecoSystem;
+    private ImageIcon iconPic;
+    private String photoPath = "/icons/default.jpg";
+    private static int studentCounter = 0;
+    private static int teacherCounter = 0;
    
     
-    public SchoolAdminDashboardJPanel() {
+    public SchoolAdminDashboardJPanel(EcoSystem ecoSystem) {
         initComponents();
         setSize(1060, 770);
+        
+        this.ecoSystem = ecoSystem;
         workAreaPanel.setVisible(true);
-        studentPanel.setVisible(false);    
+        studentsPanel.setVisible(false);
+        employeesPanel.setVisible(false);
+        subjectsPanel.setVisible(false);
+        mealSupplyPanel.setVisible(false);
+        libraryPanel.setVisible(false);
+        btnLogOut.setVisible(true);
+        
+        populateStudentsTable();
+        clearStudentForm();
+        setDefaultPhoto();
+        
+        txtStudentID.setEditable(false);
+//        txtSchoolCode.setEditable(false);
+        // set School Code here
+    }
+    
+    private void setDefaultPhoto() {
+        
+        setPhoto("/icons/default.jpg");
+    }
+    
+    private void setPhoto(String imagePath) {
+        ImageIcon photo = new ImageIcon(imagePath);
+        Image photoResized = photo.getImage().getScaledInstance(134,138,4); //lblpicpreview.getSize().width, lblpicpreview.getSize().height,4);
+        lblpicpreview.setIcon(new ImageIcon(photoResized));
+        
     }
 
     /**
@@ -47,17 +100,131 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         workAreaPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        studentPanel = new javax.swing.JPanel();
+        studentsPanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         navigateBackPanel = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         studentWorkAreaPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStudent = new javax.swing.JTable();
+        btnViewStudent = new javax.swing.JButton();
+        btnUpdateStudent = new javax.swing.JButton();
+        btnDeleteStudent = new javax.swing.JButton();
+        btnAddStudent = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        dateDOB = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        lblpicpreview = new javax.swing.JLabel();
+        btnattachpic = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        txtStudentID = new javax.swing.JTextField();
+        dropDownGender = new javax.swing.JComboBox<>();
+        txtPhoneNo = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        txtSchoolCode = new javax.swing.JTextField();
+        dropDownExtraCurricular = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        dropDownStandard = new javax.swing.JComboBox<>();
+        txtCity = new javax.swing.JTextField();
+        txtCommunity = new javax.swing.JTextField();
+        btnClearStudentForm = new javax.swing.JButton();
+        employeesPanel = new javax.swing.JPanel();
+        jSplitPane3 = new javax.swing.JSplitPane();
+        navigateBackPanel1 = new javax.swing.JPanel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        employeeWorkAreaPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblTeacher = new javax.swing.JTable();
+        btnViewEmployee = new javax.swing.JButton();
+        btnUpdateStudent1 = new javax.swing.JButton();
+        btnDeleteStudent1 = new javax.swing.JButton();
+        btnAddStudent1 = new javax.swing.JButton();
+        txtTeacherEmail = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        dateTeacherDOB = new com.toedter.calendar.JDateChooser();
+        jLabel24 = new javax.swing.JLabel();
+        txtTeacherPhone = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        dropDownTeacherCity = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        dropDownTeacherCommunity = new javax.swing.JComboBox<>();
+        jLabel27 = new javax.swing.JLabel();
+        txtTeacherPassword = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        txtTeacherSchoolCode = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        txtTeacherLastName = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        txtTeacherFirstName = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        dateTeacherDOJ = new com.toedter.calendar.JDateChooser();
+        jLabel34 = new javax.swing.JLabel();
+        txtTeacherRole = new javax.swing.JTextField();
+        dropDownTeacherGender = new javax.swing.JComboBox<>();
+        btnClearEmployeeForm = new javax.swing.JButton();
+        subjectsPanel = new javax.swing.JPanel();
+        jSplitPane4 = new javax.swing.JSplitPane();
+        navigateBackPanel2 = new javax.swing.JPanel();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        studentWorkAreaPanel2 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblSubjects = new javax.swing.JTable();
+        btnAddStudent2 = new javax.swing.JButton();
+        btnAddStudent3 = new javax.swing.JButton();
+        btnAddStudent4 = new javax.swing.JButton();
+        btnAddStudent5 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        txtSubjectID = new javax.swing.JTextField();
+        txtSubjectName = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        dropDownSubjectStandard = new javax.swing.JComboBox<>();
+        jLabel36 = new javax.swing.JLabel();
+        dropDownSubjectTeacher = new javax.swing.JComboBox<>();
+        jButton16 = new javax.swing.JButton();
+        libraryPanel = new javax.swing.JPanel();
+        jSplitPane5 = new javax.swing.JSplitPane();
+        navigateBackPanel3 = new javax.swing.JPanel();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        studentWorkAreaPanel3 = new javax.swing.JPanel();
+        mealSupplyPanel = new javax.swing.JPanel();
+        jSplitPane6 = new javax.swing.JSplitPane();
+        navigateBackPanel4 = new javax.swing.JPanel();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        studentWorkAreaPanel4 = new javax.swing.JPanel();
 
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
         jButton1.setText("Manage Employees");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Manage Students");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -67,10 +234,25 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Manage Subjects");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Manage Library");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Manage Meal Supply");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogOut.setText("Log Out");
@@ -108,9 +290,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
-                .addGap(126, 126, 126))
+                .addGap(158, 158, 158))
         );
 
         jSplitPane2.setLeftComponent(controlPanel);
@@ -133,6 +315,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         navigateBackPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton6.setText("Back");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton7.setText("Log Out");
@@ -142,6 +329,296 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Manage Student");
 
+        studentWorkAreaPanel.setBackground(new java.awt.Color(37, 150, 190));
+
+        tblStudent.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "First Name", "Last Name", "Standard", "Email", "Extra-Curricular"
+            }
+        ));
+        jScrollPane1.setViewportView(tblStudent);
+
+        btnViewStudent.setText("View Student");
+        btnViewStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewStudentActionPerformed(evt);
+            }
+        });
+
+        btnUpdateStudent.setText("Update Student");
+        btnUpdateStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStudentActionPerformed(evt);
+            }
+        });
+
+        btnDeleteStudent.setText("Delete Student");
+        btnDeleteStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudentActionPerformed(evt);
+            }
+        });
+
+        btnAddStudent.setText("Add Student");
+        btnAddStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudentActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("First Name:");
+
+        jLabel9.setText("Last Name:");
+
+        jLabel10.setText("Gender:");
+
+        jLabel11.setText("Student ID:");
+
+        jLabel12.setText("DOB:");
+
+        jLabel13.setText("Phone No:");
+
+        jLabel14.setText("City:");
+
+        jLabel15.setText("Community:");
+
+        jLabel16.setText("Password:");
+
+        jLabel17.setText("Standard:");
+
+        jLabel18.setText("School Code:");
+
+        lblpicpreview.setBackground(new java.awt.Color(204, 204, 204));
+        lblpicpreview.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnattachpic.setText("Attach Pic");
+        btnattachpic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnattachpicActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Extra-Curricular:");
+
+        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFirstNameActionPerformed(evt);
+            }
+        });
+
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLastNameActionPerformed(evt);
+            }
+        });
+
+        txtStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentIDActionPerformed(evt);
+            }
+        });
+
+        dropDownGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        dropDownGender.setSelectedIndex(-1);
+        dropDownGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownGenderActionPerformed(evt);
+            }
+        });
+
+        txtPhoneNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNoActionPerformed(evt);
+            }
+        });
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
+        txtSchoolCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSchoolCodeActionPerformed(evt);
+            }
+        });
+
+        dropDownExtraCurricular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dance", "Sports", "Music", "Theatre" }));
+        dropDownExtraCurricular.setSelectedIndex(-1);
+
+        jLabel21.setText("Email:");
+
+        dropDownStandard.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        dropDownStandard.setSelectedIndex(-1);
+
+        btnClearStudentForm.setText("Clear Form");
+        btnClearStudentForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearStudentFormActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout studentWorkAreaPanelLayout = new javax.swing.GroupLayout(studentWorkAreaPanel);
+        studentWorkAreaPanel.setLayout(studentWorkAreaPanelLayout);
+        studentWorkAreaPanelLayout.setHorizontalGroup(
+            studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                .addComponent(btnViewStudent)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdateStudent)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteStudent)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddStudent))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanelLayout.createSequentialGroup()
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtFirstName))
+                                    .addComponent(jLabel13)
+                                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                                    .addComponent(jLabel11)
+                                                    .addGap(18, 18, 18))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanelLayout.createSequentialGroup()
+                                                    .addComponent(jLabel10)
+                                                    .addGap(36, 36, 36)))
+                                            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                                .addComponent(jLabel12)
+                                                .addGap(51, 51, 51))
+                                            .addComponent(jLabel14))
+                                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(dropDownGender, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtStudentID)
+                                            .addComponent(dateDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtPhoneNo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtCity)))
+                                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                        .addComponent(jLabel15)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCommunity)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnattachpic)
+                                    .addComponent(jLabel19)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jLabel18))
+                                .addGap(38, 38, 38)
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblpicpreview, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                    .addComponent(dropDownExtraCurricular, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtSchoolCode))
+                                .addGap(141, 141, 141)))
+                        .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel17))
+                        .addGap(22, 22, 22)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword)
+                            .addComponent(dropDownStandard, 0, 156, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnClearStudentForm)
+                        .addGap(265, 265, 265))))
+        );
+        studentWorkAreaPanelLayout.setVerticalGroup(
+            studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewStudent)
+                    .addComponent(btnUpdateStudent)
+                    .addComponent(btnDeleteStudent)
+                    .addComponent(btnAddStudent))
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
+                                    .addComponent(dropDownGender, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(15, 15, 15)
+                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel11)
+                                            .addComponent(txtStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel12))
+                                    .addComponent(dateDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                                    .addComponent(btnattachpic)
+                                    .addGap(113, 113, 113))
+                                .addComponent(lblpicpreview, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(txtPhoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19)
+                            .addComponent(dropDownExtraCurricular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel21)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15)
+                            .addComponent(txtSchoolCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18)
+                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClearStudentForm)
+                        .addGap(8, 8, 8)))
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(dropDownStandard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(174, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout navigateBackPanelLayout = new javax.swing.GroupLayout(navigateBackPanel);
         navigateBackPanel.setLayout(navigateBackPanelLayout);
         navigateBackPanelLayout.setHorizontalGroup(
@@ -149,11 +626,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(236, 236, 236)
                 .addComponent(jButton7)
                 .addGap(48, 48, 48))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigateBackPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(studentWorkAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         navigateBackPanelLayout.setVerticalGroup(
             navigateBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,40 +643,658 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(jButton6)
                     .addComponent(jButton7)
                     .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(studentWorkAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jSplitPane1.setTopComponent(navigateBackPanel);
 
-        studentWorkAreaPanel.setBackground(new java.awt.Color(37, 150, 190));
-
-        javax.swing.GroupLayout studentWorkAreaPanelLayout = new javax.swing.GroupLayout(studentWorkAreaPanel);
-        studentWorkAreaPanel.setLayout(studentWorkAreaPanelLayout);
-        studentWorkAreaPanelLayout.setHorizontalGroup(
-            studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
-        );
-        studentWorkAreaPanelLayout.setVerticalGroup(
-            studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
-        );
-
-        jSplitPane1.setRightComponent(studentWorkAreaPanel);
-
-        javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
-        studentPanel.setLayout(studentPanelLayout);
-        studentPanelLayout.setHorizontalGroup(
-            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout studentsPanelLayout = new javax.swing.GroupLayout(studentsPanel);
+        studentsPanel.setLayout(studentsPanelLayout);
+        studentsPanelLayout.setHorizontalGroup(
+            studentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentsPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        studentPanelLayout.setVerticalGroup(
-            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        studentsPanelLayout.setVerticalGroup(
+            studentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        jLayeredPane1.add(studentPanel, "card3");
+        jLayeredPane1.add(studentsPanel, "card3");
+
+        jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanel1.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButton8.setText("Back");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jButton9.setText("Log Out");
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Manage Employees");
+
+        employeeWorkAreaPanel.setBackground(new java.awt.Color(37, 150, 190));
+
+        tblTeacher.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "First Name", "Last Name", "Date of Joining", "Email ID"
+            }
+        ));
+        jScrollPane2.setViewportView(tblTeacher);
+
+        btnViewEmployee.setText("View Employee");
+        btnViewEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewEmployeeActionPerformed(evt);
+            }
+        });
+
+        btnUpdateStudent1.setText("Update Employee");
+
+        btnDeleteStudent1.setText("Delete Employee");
+
+        btnAddStudent1.setText("Add Employee");
+        btnAddStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudent1ActionPerformed(evt);
+            }
+        });
+
+        txtTeacherEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeacherEmailActionPerformed(evt);
+            }
+        });
+
+        jLabel23.setText("DOB:");
+
+        jLabel24.setText("Phone No:");
+
+        txtTeacherPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeacherPhoneActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("City:");
+
+        dropDownTeacherCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownTeacherCityActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("Community:");
+
+        dropDownTeacherCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownTeacherCommunityActionPerformed(evt);
+            }
+        });
+
+        jLabel27.setText("Password:");
+
+        txtTeacherPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeacherPasswordActionPerformed(evt);
+            }
+        });
+
+        jLabel28.setText("School Code:");
+
+        txtTeacherSchoolCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeacherSchoolCodeActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setText("Email:");
+
+        jLabel30.setText("Join Date:");
+
+        jLabel31.setText("First Name:");
+
+        jLabel32.setText("Gender:");
+
+        jLabel33.setText("Last Name:");
+
+        jLabel34.setText("Role:");
+
+        txtTeacherRole.setText("Teacher");
+
+        dropDownTeacherGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        dropDownTeacherGender.setSelectedIndex(-1);
+        dropDownTeacherGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownTeacherGenderActionPerformed(evt);
+            }
+        });
+
+        btnClearEmployeeForm.setText("Clear Form");
+        btnClearEmployeeForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearEmployeeFormActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout employeeWorkAreaPanelLayout = new javax.swing.GroupLayout(employeeWorkAreaPanel);
+        employeeWorkAreaPanel.setLayout(employeeWorkAreaPanelLayout);
+        employeeWorkAreaPanelLayout.setHorizontalGroup(
+            employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel24)
+                                        .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                            .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel23)
+                                                .addComponent(jLabel29))
+                                            .addGap(57, 57, 57)
+                                            .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(dateTeacherDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                                .addComponent(txtTeacherEmail)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeWorkAreaPanelLayout.createSequentialGroup()
+                                            .addComponent(jLabel30)
+                                            .addGap(34, 34, 34)
+                                            .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtTeacherPhone)
+                                                .addComponent(dateTeacherDOJ, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
+                                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel31)
+                                            .addComponent(jLabel33))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtTeacherLastName)
+                                            .addComponent(txtTeacherFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel25)
+                                            .addComponent(jLabel26)
+                                            .addComponent(jLabel27)
+                                            .addComponent(jLabel28)
+                                            .addComponent(jLabel32))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtTeacherPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dropDownTeacherCommunity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dropDownTeacherCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(txtTeacherRole)
+                                                    .addComponent(txtTeacherSchoolCode, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
+                                            .addComponent(dropDownTeacherGender, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel34))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(btnViewEmployee)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdateStudent1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteStudent1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddStudent1))
+                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(btnClearEmployeeForm)))
+                .addGap(91, 172, Short.MAX_VALUE))
+        );
+        employeeWorkAreaPanelLayout.setVerticalGroup(
+            employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewEmployee)
+                    .addComponent(btnUpdateStudent1)
+                    .addComponent(btnDeleteStudent1)
+                    .addComponent(btnAddStudent1))
+                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel31)
+                            .addComponent(txtTeacherFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel32)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dropDownTeacherGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(txtTeacherSchoolCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTeacherLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel25)
+                            .addComponent(dropDownTeacherCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtTeacherEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel29))
+                                .addGap(18, 18, 18)
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(dateTeacherDOB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel24)
+                                    .addComponent(txtTeacherPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(dropDownTeacherCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel26))
+                                .addGap(18, 18, 18)
+                                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel27)
+                                    .addComponent(txtTeacherPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(18, 18, 18)
+                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addComponent(dateTeacherDOJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel34)
+                        .addComponent(txtTeacherRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 35, 35)
+                .addComponent(btnClearEmployeeForm)
+                .addContainerGap(257, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout navigateBackPanel1Layout = new javax.swing.GroupLayout(navigateBackPanel1);
+        navigateBackPanel1.setLayout(navigateBackPanel1Layout);
+        navigateBackPanel1Layout.setHorizontalGroup(
+            navigateBackPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(224, 224, 224)
+                .addComponent(jButton9)
+                .addGap(60, 60, 60))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navigateBackPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(employeeWorkAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        navigateBackPanel1Layout.setVerticalGroup(
+            navigateBackPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addComponent(employeeWorkAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSplitPane3.setTopComponent(navigateBackPanel1);
+
+        javax.swing.GroupLayout employeesPanelLayout = new javax.swing.GroupLayout(employeesPanel);
+        employeesPanel.setLayout(employeesPanelLayout);
+        employeesPanelLayout.setHorizontalGroup(
+            employeesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeesPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        employeesPanelLayout.setVerticalGroup(
+            employeesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jLayeredPane1.add(employeesPanel, "card4");
+
+        jSplitPane4.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanel2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButton10.setText("Back");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jButton11.setText("Log Out");
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Manage Subjects");
+
+        javax.swing.GroupLayout navigateBackPanel2Layout = new javax.swing.GroupLayout(navigateBackPanel2);
+        navigateBackPanel2.setLayout(navigateBackPanel2Layout);
+        navigateBackPanel2Layout.setHorizontalGroup(
+            navigateBackPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jButton10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(236, 236, 236)
+                .addComponent(jButton11)
+                .addGap(48, 48, 48))
+        );
+        navigateBackPanel2Layout.setVerticalGroup(
+            navigateBackPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel2Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton10)
+                    .addComponent(jButton11)
+                    .addComponent(jLabel6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSplitPane4.setTopComponent(navigateBackPanel2);
+
+        studentWorkAreaPanel2.setBackground(new java.awt.Color(37, 150, 190));
+
+        tblSubjects.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Subject ID", "Name", "Teacher", "Standard"
+            }
+        ));
+        jScrollPane3.setViewportView(tblSubjects);
+
+        btnAddStudent2.setText("View Subject");
+
+        btnAddStudent3.setText("Add Subject");
+
+        btnAddStudent4.setText("Delete Subject");
+
+        btnAddStudent5.setText("Update Subject");
+
+        jLabel20.setText("Subject ID:");
+
+        jLabel22.setText("Subject Name:");
+
+        jLabel35.setText("Standard:");
+
+        dropDownSubjectStandard.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        dropDownSubjectStandard.setSelectedIndex(-1);
+
+        jLabel36.setText("Teacher:");
+
+        jButton16.setText("Clear Form");
+
+        javax.swing.GroupLayout studentWorkAreaPanel2Layout = new javax.swing.GroupLayout(studentWorkAreaPanel2);
+        studentWorkAreaPanel2.setLayout(studentWorkAreaPanel2Layout);
+        studentWorkAreaPanel2Layout.setHorizontalGroup(
+            studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane3)
+                            .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel22)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel35)
+                                            .addComponent(jLabel36))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtSubjectID)
+                                            .addComponent(txtSubjectName)
+                                            .addComponent(dropDownSubjectStandard, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(dropDownSubjectTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                                        .addComponent(btnAddStudent2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAddStudent5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAddStudent4)))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddStudent3))))
+                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                        .addGap(345, 345, 345)
+                        .addComponent(jButton16)))
+                .addContainerGap(245, Short.MAX_VALUE))
+        );
+        studentWorkAreaPanel2Layout.setVerticalGroup(
+            studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddStudent2)
+                    .addComponent(btnAddStudent5)
+                    .addComponent(btnAddStudent4)
+                    .addComponent(btnAddStudent3))
+                .addGap(47, 47, 47)
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel20)
+                    .addComponent(txtSubjectID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(txtSubjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(dropDownSubjectStandard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36)
+                    .addComponent(dropDownSubjectTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton16)
+                .addContainerGap(336, Short.MAX_VALUE))
+        );
+
+        jSplitPane4.setRightComponent(studentWorkAreaPanel2);
+
+        javax.swing.GroupLayout subjectsPanelLayout = new javax.swing.GroupLayout(subjectsPanel);
+        subjectsPanel.setLayout(subjectsPanelLayout);
+        subjectsPanelLayout.setHorizontalGroup(
+            subjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, subjectsPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSplitPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        subjectsPanelLayout.setVerticalGroup(
+            subjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jLayeredPane1.add(subjectsPanel, "card5");
+
+        jSplitPane5.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanel3.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButton12.setText("Back");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jButton13.setText("Log Out");
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Manage Library");
+
+        javax.swing.GroupLayout navigateBackPanel3Layout = new javax.swing.GroupLayout(navigateBackPanel3);
+        navigateBackPanel3.setLayout(navigateBackPanel3Layout);
+        navigateBackPanel3Layout.setHorizontalGroup(
+            navigateBackPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel3Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jButton12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(236, 236, 236)
+                .addComponent(jButton13)
+                .addGap(48, 48, 48))
+        );
+        navigateBackPanel3Layout.setVerticalGroup(
+            navigateBackPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel3Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton12)
+                    .addComponent(jButton13)
+                    .addComponent(jLabel7))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSplitPane5.setTopComponent(navigateBackPanel3);
+
+        studentWorkAreaPanel3.setBackground(new java.awt.Color(37, 150, 190));
+
+        javax.swing.GroupLayout studentWorkAreaPanel3Layout = new javax.swing.GroupLayout(studentWorkAreaPanel3);
+        studentWorkAreaPanel3.setLayout(studentWorkAreaPanel3Layout);
+        studentWorkAreaPanel3Layout.setHorizontalGroup(
+            studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 898, Short.MAX_VALUE)
+        );
+        studentWorkAreaPanel3Layout.setVerticalGroup(
+            studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 821, Short.MAX_VALUE)
+        );
+
+        jSplitPane5.setRightComponent(studentWorkAreaPanel3);
+
+        javax.swing.GroupLayout libraryPanelLayout = new javax.swing.GroupLayout(libraryPanel);
+        libraryPanel.setLayout(libraryPanelLayout);
+        libraryPanelLayout.setHorizontalGroup(
+            libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, libraryPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSplitPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        libraryPanelLayout.setVerticalGroup(
+            libraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jLayeredPane1.add(libraryPanel, "card6");
+
+        jSplitPane6.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanel4.setBackground(new java.awt.Color(0, 0, 0));
+
+        jButton14.setText("Back");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jButton15.setText("Log Out");
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Manage Meal Supply");
+
+        javax.swing.GroupLayout navigateBackPanel4Layout = new javax.swing.GroupLayout(navigateBackPanel4);
+        navigateBackPanel4.setLayout(navigateBackPanel4Layout);
+        navigateBackPanel4Layout.setHorizontalGroup(
+            navigateBackPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel4Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jButton14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(236, 236, 236)
+                .addComponent(jButton15)
+                .addGap(48, 48, 48))
+        );
+        navigateBackPanel4Layout.setVerticalGroup(
+            navigateBackPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel4Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton14)
+                    .addComponent(jButton15)
+                    .addComponent(jLabel8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSplitPane6.setTopComponent(navigateBackPanel4);
+
+        studentWorkAreaPanel4.setBackground(new java.awt.Color(37, 150, 190));
+
+        javax.swing.GroupLayout studentWorkAreaPanel4Layout = new javax.swing.GroupLayout(studentWorkAreaPanel4);
+        studentWorkAreaPanel4.setLayout(studentWorkAreaPanel4Layout);
+        studentWorkAreaPanel4Layout.setHorizontalGroup(
+            studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 898, Short.MAX_VALUE)
+        );
+        studentWorkAreaPanel4Layout.setVerticalGroup(
+            studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 821, Short.MAX_VALUE)
+        );
+
+        jSplitPane6.setRightComponent(studentWorkAreaPanel4);
+
+        javax.swing.GroupLayout mealSupplyPanelLayout = new javax.swing.GroupLayout(mealSupplyPanel);
+        mealSupplyPanel.setLayout(mealSupplyPanelLayout);
+        mealSupplyPanelLayout.setHorizontalGroup(
+            mealSupplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mealSupplyPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSplitPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        mealSupplyPanelLayout.setVerticalGroup(
+            mealSupplyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jLayeredPane1.add(mealSupplyPanel, "card7");
 
         jSplitPane2.setRightComponent(jLayeredPane1);
 
@@ -213,7 +1311,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 846, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
@@ -221,36 +1319,693 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean isDigit(String s) {
+        char[] chArr = s.toCharArray();
+        for(char c: chArr) {
+            if(!Character.isDigit(c))
+                return false;
+        }
+        return true;
+    }
+    private boolean isLetter(String text) {
+        char[] chArr = text.toCharArray();
+        for(char c: chArr) {
+            if(!Character.isLetter(c))
+                return false;
+        }
+        return true;
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         workAreaPanel.setVisible(false);
-        studentPanel.setVisible(true);
+        studentsPanel.setVisible(true);
+        employeesPanel.setVisible(false);
+        subjectsPanel.setVisible(false);
+        mealSupplyPanel.setVisible(false);
+        libraryPanel.setVisible(false);
+        btnLogOut.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        workAreaPanel.setVisible(false);
+        studentsPanel.setVisible(false);
+        employeesPanel.setVisible(true);
+        subjectsPanel.setVisible(false);
+        mealSupplyPanel.setVisible(false);
+        libraryPanel.setVisible(false);
+        btnLogOut.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        workAreaPanel.setVisible(false);
+        studentsPanel.setVisible(false);
+        employeesPanel.setVisible(false);
+        subjectsPanel.setVisible(true);
+        mealSupplyPanel.setVisible(false);
+        libraryPanel.setVisible(false);
+        btnLogOut.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        workAreaPanel.setVisible(false);
+        studentsPanel.setVisible(false);
+        employeesPanel.setVisible(false);
+        subjectsPanel.setVisible(false);
+        mealSupplyPanel.setVisible(false);
+        libraryPanel.setVisible(true);
+        btnLogOut.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        workAreaPanel.setVisible(false);
+        studentsPanel.setVisible(false);
+        employeesPanel.setVisible(false);
+        subjectsPanel.setVisible(false);
+        mealSupplyPanel.setVisible(true);
+        libraryPanel.setVisible(false);
+        btnLogOut.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void btnattachpicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnattachpicActionPerformed
+        JFileChooser image = new JFileChooser();
+        FileNameExtensionFilter nameFilter = new FileNameExtensionFilter("jpeg", "jpg", "png");
+        image.addChoosableFileFilter(nameFilter);
+        int dlgBox = image.showOpenDialog(null);
+
+        if(dlgBox == JFileChooser.APPROVE_OPTION){
+            File f = image.getSelectedFile();
+            this.photoPath = f.getAbsolutePath();
+            ImageIcon icon = new ImageIcon(photoPath);
+            this.iconPic = icon;
+        }
+
+        if(iconPic !=null){
+            Image resizedImage = iconPic.getImage().getScaledInstance(lblpicpreview.getWidth(), lblpicpreview.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon resizedIconPic = new ImageIcon(resizedImage);
+            lblpicpreview.setIcon(resizedIconPic);
+            JOptionPane.showMessageDialog(this, "Image Successfully Uploaded");
+        }
+    }//GEN-LAST:event_btnattachpicActionPerformed
+
+    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameActionPerformed
+
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
+
+    private void txtStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIDActionPerformed
+
+    private void dropDownGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownGenderActionPerformed
+
+    private void txtPhoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNoActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtSchoolCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSchoolCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSchoolCodeActionPerformed
+
+    private void btnViewStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewStudentActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblStudent.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        Student s = (Student)model.getValueAt(selectedRowIndex, 0);
+        txtFirstName.setText(s.getPersonFirstName());
+        txtLastName.setText(s.getPersonLastName());
+        dropDownGender.setSelectedItem(s.getPersonGender());
+        txtStudentID.setText(s.getPersonId());
+        Date studentDOB;
+        try {
+            studentDOB = new SimpleDateFormat("yyyy-MM-dd").parse(s.getDateOfBirth());
+            dateDOB.setDate(studentDOB);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(SchoolAdminDashboardJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtPhoneNo.setText(String.valueOf(s.getPersonPhoneNumber()));
+        txtCity.setText(String.valueOf(s.getCommunity().getCity().getCity()));
+        txtCommunity.setText(String.valueOf(s.getCommunity().getCommunity()));
+        txtPassword.setText(s.getUserPassword());
+        dropDownStandard.setSelectedItem(String.valueOf(s.getStandard()));
+        txtSchoolCode.setText(s.getSchoolCode());
+        dropDownExtraCurricular.setSelectedItem(s.getExtraCurricular());
+        txtEmail.setText(s.getPersonEmailAddress());
+        String photoPath = s.getPhoto();
+        if(photoPath == null){
+            photoPath = "/icons/default.jpg";
+        }
+//        lblpicpreview.setIcon(setPhoto(photoPath));
+
+        ImageIcon icon = new ImageIcon(photoPath);
+        // Resize image to fit jLabel
+        Image image = icon.getImage().getScaledInstance(134,138,4);
+        // Set jLabel icon property to image
+        lblpicpreview.setIcon(new ImageIcon(image));
+    }//GEN-LAST:event_btnViewStudentActionPerformed
+
+    private void btnViewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEmployeeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewEmployeeActionPerformed
+
+    private void txtTeacherEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTeacherEmailActionPerformed
+
+    private void txtTeacherPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTeacherPhoneActionPerformed
+
+    private void dropDownTeacherCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTeacherCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownTeacherCityActionPerformed
+
+    private void dropDownTeacherCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTeacherCommunityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownTeacherCommunityActionPerformed
+
+    private void txtTeacherPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTeacherPasswordActionPerformed
+
+    private void txtTeacherSchoolCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherSchoolCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTeacherSchoolCodeActionPerformed
+
+    private void dropDownTeacherGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTeacherGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownTeacherGenderActionPerformed
+
+    private void btnUpdateStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudentActionPerformed
+        // TODO add your handling code here:
+        if(isStudentDataEnteredValid()){
+            if(!isNotEmptyFieldCheck(txtFirstName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtLastName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Last Name field empty!");
+                return;
+            }
+//            if(!isNotEmptyFieldCheck(txtStudentID)) {
+//                JOptionPane.showMessageDialog(this,"Please do not leave Student ID field empty!");
+//                return;
+//            }
+            if(!isNotEmptyFieldCheck(txtPhoneNo)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Phone No. field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtPassword)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Password field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtSchoolCode)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave School Code field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtEmail)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Email field empty!");
+                return;
+            }
+            
+//            txtPassword.setEditable(false);
+            txtStudentID.setEditable(false);
+            txtSchoolCode.setEditable(false);
+            
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String gender = dropDownGender.getSelectedItem().toString();
+            String studentID = txtStudentID.getText();
+            Date Datedob = dateDOB.getDate();
+            String dob = DateFormat.getDateInstance().format(Datedob);
+//            Date Datedob = dateDOB.getDate();
+//            String dob = String.format("%1$td-%1$tm-%1$tY", Datedob);
+            Long phoneNo = Long.parseLong(txtPhoneNo.getText());
+            String city = String.valueOf(txtCity.getText());
+            String community = txtCommunity.getText().toString();
+            String password = txtPassword.getText();
+            String extraCurricular = dropDownExtraCurricular.getSelectedItem().toString();
+            String email = txtEmail.getText();
+            int standard = Integer.parseInt(dropDownStandard.getSelectedItem().toString());
+            String photo = photoPath;
+            
+            Student s = ecoSystem.getStudentDirectory().getStudentByID(studentID);
+            
+            s.setPersonFirstName(firstName);
+            s.setPersonLastName(lastName);
+            s.setPersonGender(gender);
+            s.setDateOfBirth(dob);
+            s.setPersonPhoneNumber(phoneNo);
+            if(!s.getCommunity().getCommunity().equals(community)){
+                Community c = ecoSystem.getCommunityDirectory().addNewCommunity();
+                c.setCommunity(community);
+                c.setCity(new City(city));
+                s.setCommunity(c);
+            }
+            s.setUserPassword(password);
+            s.setExtraCurricular(extraCurricular);
+            s.setPersonEmailAddress(email);
+            s.setPhoto(photo);
+            s.setStandard(standard);
+            JOptionPane.showMessageDialog(this, "Student Record Updated.");
+      
+        } else{
+            JOptionPane.showMessageDialog(this, "Error updating Student. Please check DataTypes");
+        }
+        clearStudentForm();
+    }//GEN-LAST:event_btnUpdateStudentActionPerformed
+
+    private void btnAddStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudentActionPerformed
+        // TODO add your handling code here:
+        if(isStudentDataEnteredValid()){
+            if(!isNotEmptyFieldCheck(txtFirstName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtLastName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Last Name field empty!");
+                return;
+            }
+//            if(!isNotEmptyFieldCheck(txtStudentID)) {
+//                JOptionPane.showMessageDialog(this,"Please do not leave Student ID field empty!");
+//                return;
+//            }
+            if(!isNotEmptyFieldCheck(txtPhoneNo)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Phone No. field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtPassword)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Password field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtSchoolCode)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave School Code field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtEmail)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Email field empty!");
+                return;
+            }
+            
+//            txtPassword.setEditable(false);
+            txtStudentID.setEditable(false);
+//            txtSchoolCode.setEditable(false);
+            String schoolCode = txtSchoolCode.getText();
+            String studentID = txtSchoolCode.getText()+(String.valueOf(studentCounter));
+            studentCounter++;
+            String firstName = txtFirstName.getText();
+            String lastName = txtLastName.getText();
+            String gender = dropDownGender.getSelectedItem().toString();
+//            String studentID = txtStudentID.getText();
+            Date Datedob = dateDOB.getDate();
+//            System.out.println("Datedob: "+Datedob);
+//            String dob = String.format("%1$td-%1$tm-%1$tY", Datedob);
+//            System.out.println("dob: "+dob);
+            String dob = DateFormat.getDateInstance().format(Datedob);
+            System.out.println("dob: "+dob);
+            Long phoneNo = Long.parseLong(txtPhoneNo.getText());
+            String city = String.valueOf(txtCity.getText());
+            String community = txtCommunity.getText().toString();
+            String password = txtPassword.getText();
+            String extraCurricular = dropDownExtraCurricular.getSelectedItem().toString();
+            int standard = Integer.parseInt(dropDownStandard.getSelectedItem().toString());
+            String email = txtEmail.getText();
+            String photo = photoPath;
+            Community com;
+            if(!ecoSystem.getCommunityDirectory().getCommunityDirectory().equals(community)){
+                com = ecoSystem.getCommunityDirectory().addNewCommunity();
+                com.setCommunity(community);
+                com.setCity(new City(city));
+//                s.setCommunity(c);
+            } else{
+                com = ecoSystem.getCommunityDirectory().getCommunityByName(community);
+            }
+
+            Student s = ecoSystem.getStudentDirectory().addNewStudent(new Student(firstName, lastName,
+                  gender ,studentID, dob, phoneNo, email, com, password, UserRole.STUDENT, 
+                    schoolCode, extraCurricular, standard, photo));
+           
+            JOptionPane.showMessageDialog(this, "Student Record Added.");
+            populateStudentsTable();
+            clearStudentForm();
+      
+        } else{
+            JOptionPane.showMessageDialog(this, "Error Adding Student. Please check DataTypes");
+        }
+        
+        
+    }//GEN-LAST:event_btnAddStudentActionPerformed
+
+    private void btnDeleteStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudentActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblStudent.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        Student s = (Student)model.getValueAt(selectedRowIndex, 0);
+        
+        ecoSystem.getStudentDirectory().deleteStudent(s);
+        JOptionPane.showMessageDialog(this, "Student record deleted!");
+        populateStudentsTable();
+        clearStudentForm();
+    }//GEN-LAST:event_btnDeleteStudentActionPerformed
+
+    private void btnClearStudentFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearStudentFormActionPerformed
+        // TODO add your handling code here:
+        clearStudentForm();
+    }//GEN-LAST:event_btnClearStudentFormActionPerformed
+
+    private void btnAddStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudent1ActionPerformed
+        // TODO add your handling code here:
+        // ADD EMPLOYEE BUTTON
+        if(isEmployeeDataEnteredValid()) {
+            if(!isNotEmptyFieldCheck(txtTeacherFirstName)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtTeacherLastName)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtTeacherPhone)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtTeacherEmail)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            
+            String schoolCode = txtTeacherSchoolCode.getText();
+            String teacherID = txtTeacherSchoolCode.getText()+(String.valueOf(teacherCounter));
+            teacherCounter++;
+            String firstName = txtTeacherFirstName.getText();
+            String lastName = txtTeacherLastName.getText();
+            String gender = dropDownTeacherGender.getSelectedItem().toString();
+            String city = dropDownTeacherCity.getSelectedItem().toString();
+            String community = dropDownTeacherCommunity.getSelectedItem().toString();
+            Date Datedob = dateTeacherDOB.getDate();
+            Date Datedoj = dateTeacherDOJ.getDate();
+            String dob = DateFormat.getDateInstance().format(Datedob);
+            String doj = DateFormat.getDateInstance().format(Datedoj);
+            String email = txtTeacherEmail.getText();
+            Long phoneNo = Long.parseLong(txtTeacherPhone.getText());
+            String password = txtTeacherPassword.getText();
+            Community com;
+            if(!ecoSystem.getCommunityDirectory().getCommunityDirectory().equals(community)){
+                com = ecoSystem.getCommunityDirectory().addNewCommunity();
+                com.setCommunity(community);
+                com.setCity(new City(city));
+//                s.setCommunity(c);
+            } else{
+                com = ecoSystem.getCommunityDirectory().getCommunityByName(community);
+            }
+            
+            Teacher t = ecoSystem.getTeacherDirectory().addNewTeacher(new Teacher(firstName, lastName, 
+                    gender, teacherID, dob, phoneNo, email, 
+                    com, password, UserRole.SCHOOL_TEACHER, schoolCode, doj));
+            
+            JOptionPane.showMessageDialog(this, "Teacher Record Added.");
+            populateTeacherTable();
+            clearEmployeeForm();
+            
+        } else{
+            JOptionPane.showMessageDialog(this, "Error Adding Teacher. Please check DataTypes");
+        }
+       
+    }//GEN-LAST:event_btnAddStudent1ActionPerformed
+
+    private void btnClearEmployeeFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearEmployeeFormActionPerformed
+        // TODO add your handling code here:
+        clearEmployeeForm();
+    }//GEN-LAST:event_btnClearEmployeeFormActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddStudent;
+    private javax.swing.JButton btnAddStudent1;
+    private javax.swing.JButton btnAddStudent2;
+    private javax.swing.JButton btnAddStudent3;
+    private javax.swing.JButton btnAddStudent4;
+    private javax.swing.JButton btnAddStudent5;
+    private javax.swing.JButton btnClearEmployeeForm;
+    private javax.swing.JButton btnClearStudentForm;
+    private javax.swing.JButton btnDeleteStudent;
+    private javax.swing.JButton btnDeleteStudent1;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnUpdateStudent;
+    private javax.swing.JButton btnUpdateStudent1;
+    private javax.swing.JButton btnViewEmployee;
+    private javax.swing.JButton btnViewStudent;
+    private javax.swing.JButton btnattachpic;
     private javax.swing.JPanel controlPanel;
+    private com.toedter.calendar.JDateChooser dateDOB;
+    private com.toedter.calendar.JDateChooser dateTeacherDOB;
+    private com.toedter.calendar.JDateChooser dateTeacherDOJ;
+    private javax.swing.JComboBox<String> dropDownExtraCurricular;
+    private javax.swing.JComboBox<String> dropDownGender;
+    private javax.swing.JComboBox<String> dropDownStandard;
+    private javax.swing.JComboBox<String> dropDownSubjectStandard;
+    private javax.swing.JComboBox<String> dropDownSubjectTeacher;
+    private javax.swing.JComboBox<String> dropDownTeacherCity;
+    private javax.swing.JComboBox<String> dropDownTeacherCommunity;
+    private javax.swing.JComboBox<String> dropDownTeacherGender;
+    private javax.swing.JPanel employeeWorkAreaPanel;
+    private javax.swing.JPanel employeesPanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JSplitPane jSplitPane4;
+    private javax.swing.JSplitPane jSplitPane5;
+    private javax.swing.JSplitPane jSplitPane6;
+    private javax.swing.JLabel lblpicpreview;
+    private javax.swing.JPanel libraryPanel;
+    private javax.swing.JPanel mealSupplyPanel;
     private javax.swing.JPanel navigateBackPanel;
-    private javax.swing.JPanel studentPanel;
+    private javax.swing.JPanel navigateBackPanel1;
+    private javax.swing.JPanel navigateBackPanel2;
+    private javax.swing.JPanel navigateBackPanel3;
+    private javax.swing.JPanel navigateBackPanel4;
     private javax.swing.JPanel studentWorkAreaPanel;
+    private javax.swing.JPanel studentWorkAreaPanel2;
+    private javax.swing.JPanel studentWorkAreaPanel3;
+    private javax.swing.JPanel studentWorkAreaPanel4;
+    private javax.swing.JPanel studentsPanel;
+    private javax.swing.JPanel subjectsPanel;
+    private javax.swing.JTable tblStudent;
+    private javax.swing.JTable tblSubjects;
+    private javax.swing.JTable tblTeacher;
+    private javax.swing.JTextField txtCity;
+    private javax.swing.JTextField txtCommunity;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtPhoneNo;
+    private javax.swing.JTextField txtSchoolCode;
+    private javax.swing.JTextField txtStudentID;
+    private javax.swing.JTextField txtSubjectID;
+    private javax.swing.JTextField txtSubjectName;
+    private javax.swing.JTextField txtTeacherEmail;
+    private javax.swing.JTextField txtTeacherFirstName;
+    private javax.swing.JTextField txtTeacherLastName;
+    private javax.swing.JTextField txtTeacherPassword;
+    private javax.swing.JTextField txtTeacherPhone;
+    private javax.swing.JTextField txtTeacherRole;
+    private javax.swing.JTextField txtTeacherSchoolCode;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void switchToWorkAreaPanel() {
+        workAreaPanel.setVisible(true);
+        studentsPanel.setVisible(false);
+        employeesPanel.setVisible(false);
+        subjectsPanel.setVisible(false);
+        mealSupplyPanel.setVisible(false);
+        libraryPanel.setVisible(false);
+        btnLogOut.setVisible(true);
+    }
+
+    private void populateStudentsTable() {
+        DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
+        model.setRowCount(0);
+        
+        for(Student s : ecoSystem.getStudentDirectory().getStudentDirectory()) {
+            Object[] row = new Object[5];
+            row[0] = s;
+            row[1] = s.getPersonLastName();
+            row[2] = s.getStandard();
+            row[3] = s.getPersonEmailAddress();
+            row[4] = s.getExtraCurricular();
+            model.addRow(row);
+        }
+    }
+
+    private boolean isStudentDataEnteredValid() {
+        if(ValidateInputs.isNameValid(txtFirstName.getText()) && ValidateInputs.isNameValid(txtLastName.getText()) &&
+                ValidateInputs.isEmailValid(txtEmail.getText()) && ValidateInputs.isPasswordValid(txtPassword.getText()) &&
+                ValidateInputs.isPhoneNumberValid(txtPhoneNo.getText())
+            ) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isNotEmptyFieldCheck(JTextField txtField) {
+        if(!txtField.getText().equals("")){
+            return true;
+        }
+        return false;
+    }
+
+    private void clearStudentForm() {
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        dropDownGender.setSelectedIndex(-1);
+        dateDOB.setDate(null);
+        txtStudentID.setText("");
+        txtPhoneNo.setText("");
+        txtCommunity.setText("");
+        txtCity.setText("");
+        txtPassword.setText("");
+        dropDownStandard.setSelectedIndex(-1);
+        txtSchoolCode.setText("");
+        dropDownExtraCurricular.setSelectedIndex(-1);
+        txtEmail.setText("");
+    }
+
+    private void clearEmployeeForm() {
+        txtTeacherFirstName.setText("");
+        txtTeacherLastName.setText("");
+        txtTeacherEmail.setText("");
+        txtTeacherPhone.setText("");
+        dateTeacherDOB.setDate(null);
+        dateTeacherDOJ.setDate(null);
+        dropDownGender.setSelectedIndex(-1);
+        dropDownTeacherCity.setSelectedIndex(-1);
+        dropDownTeacherCommunity.setSelectedIndex(-1);
+        txtTeacherPassword.setText("");
+        txtTeacherSchoolCode.setText("");
+        txtTeacherRole.setText("");
+    }
+
+    private boolean isEmployeeDataEnteredValid() {
+        if(ValidateInputs.isNameValid(txtTeacherFirstName.getText()) && ValidateInputs.isNameValid(txtTeacherLastName.getText()) &&
+                ValidateInputs.isEmailValid(txtTeacherEmail.getText()) && ValidateInputs.isPasswordValid(txtTeacherPassword.getText()) &&
+                ValidateInputs.isPhoneNumberValid(txtTeacherPhone.getText())
+            ) {
+            return true;
+        }
+        return false;
+    }
+
+    private void populateTeacherTable() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

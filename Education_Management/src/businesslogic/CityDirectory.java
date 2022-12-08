@@ -29,4 +29,5 @@ public class CityDirectory {
     public static void addCity(City city) {
         cityDirectory.add(city);
     }
+
 }
