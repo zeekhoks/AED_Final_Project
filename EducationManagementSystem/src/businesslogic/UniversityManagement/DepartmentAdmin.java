@@ -15,10 +15,11 @@ public class DepartmentAdmin extends Person {
     
     private String deptAdminID;
     private Date startDate;
+    private String instituteCode;
     
     public DepartmentAdmin(String personFirstName, String personLastName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, String deptAdminID, Date startDate) {
+            Community community, String userPassword, String deptAdminID, Date startDate, String instituteCode) {
             
         this.setPersonFirstName(personFirstName);
         this.setPersonLastName(personLastName);
@@ -32,6 +33,7 @@ public class DepartmentAdmin extends Person {
         this.setUserRole(UserRole.DEPARTMENT_ADMIN);
         this.setDeptAdminID(deptAdminID);
         this.setStartDate(startDate);
+        this.setInstituteCode(instituteCode);
         }
 
     public String getDeptAdminID() {
@@ -48,6 +50,14 @@ public class DepartmentAdmin extends Person {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public String getInstituteCode() {
+        return instituteCode;
+    }
+
+    public void setInstituteCode(String instituteCode) {
+        this.instituteCode = instituteCode;
     }
     
     

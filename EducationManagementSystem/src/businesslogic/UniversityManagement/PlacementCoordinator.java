@@ -15,10 +15,12 @@ public class PlacementCoordinator extends Person{
     
     private String placementCordID;
     private Date startDate;
+    private String instituteCode;
     
          public PlacementCoordinator(String personFirstName, String personLastName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, UserRole userRole, String placementCordID, Date startDate) {
+            Community community, String userPassword, UserRole userRole, String placementCordID, Date startDate, 
+            String institueCode) {
             
         this.setPersonFirstName(personFirstName);
         this.setPersonLastName(personLastName);
@@ -32,6 +34,7 @@ public class PlacementCoordinator extends Person{
         this.setUserRole(userRole.PLACEMENT_COORDINATOR);
         this.setPlacementCordID(placementCordID);
         this.setStartDate(startDate);
+        this.setInstituteCode(instituteCode);
         }
 
     public String getPlacementCordID() {
@@ -48,6 +51,14 @@ public class PlacementCoordinator extends Person{
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public String getInstituteCode() {
+        return instituteCode;
+    }
+
+    public void setInstituteCode(String instituteCode) {
+        this.instituteCode = instituteCode;
     }
     
     

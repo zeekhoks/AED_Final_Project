@@ -15,10 +15,11 @@ public class AccountsAdmin extends Person{
     
     private String accountsAdminID;
     private Date startDate;
+    private String instituteCode;
     
     public AccountsAdmin(String personFirstName, String personLastName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword,  String accountsAdminID, Date startDate) {
+            Community community, String userPassword,  String accountsAdminID, Date startDate, String instituteCode) {
             
         this.setPersonFirstName(personFirstName);
         this.setPersonLastName(personLastName);
@@ -32,6 +33,7 @@ public class AccountsAdmin extends Person{
         this.setUserRole(UserRole.ACCOUNTS_ADMIN);
         this.setAccountsAdminID(accountsAdminID);
         this.setStartDate(startDate);
+        this.setInstituteCode(instituteCode);
         }
     
 
@@ -50,6 +52,15 @@ public class AccountsAdmin extends Person{
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
+
+    public String getInstituteCode() {
+        return instituteCode;
+    }
+
+    public void setInstituteCode(String instituteCode) {
+        this.instituteCode = instituteCode;
+    }
+    
     
     
     

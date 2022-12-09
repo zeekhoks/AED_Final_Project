@@ -15,10 +15,11 @@ public class EventCoordinator extends Person {
     
     private String eventCordID;
     private Date startDate;
+    private String instituteCode;
     
    public EventCoordinator(String personFirstName, String personLastName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, UserRole userRole, String eventCordID, Date startDate) {
+            Community community, String userPassword, UserRole userRole, String eventCordID, Date startDate, String instituteCode) {
             
         this.setPersonFirstName(personFirstName);
         this.setPersonLastName(personLastName);
@@ -32,6 +33,7 @@ public class EventCoordinator extends Person {
         this.setUserRole(userRole.EVENT_COORDINATOR);
         this.setEventCordID(eventCordID);
         this.setStartDate(startDate);
+        this.setInstituteCode(instituteCode);
         }
 
     public String getEventCordID() {
@@ -48,6 +50,14 @@ public class EventCoordinator extends Person {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public String getInstituteCode() {
+        return instituteCode;
+    }
+
+    public void setInstituteCode(String instituteCode) {
+        this.instituteCode = instituteCode;
     }
     
     

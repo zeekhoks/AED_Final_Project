@@ -1,20 +1,30 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui.UniversityManagement;
 
+import ui.school.SchoolAdminRole.*;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+
 /**
  *
- * @author zainabkhokawala
+ * @author drashtibhingradiya
  */
-public class UniversityAdminDashboard extends javax.swing.JFrame {
+public class UniversityAdminDashboard extends javax.swing.JPanel {
 
     /**
-     * Creates new form UniversityAdminDashboard
+     * Creates new form DashboardJPanel
      */
+   
+    
     public UniversityAdminDashboard() {
         initComponents();
+        setSize(1060, 770);
+        workAreaPanel.setVisible(true);
+        studentPanel.setVisible(false);    
     }
 
     /**
@@ -26,116 +36,918 @@ public class UniversityAdminDashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel1 = new javax.swing.JPanel();
-        btnManageFaculty = new javax.swing.JButton();
-        btnManageStudents = new javax.swing.JButton();
-        btnManageMealOrders = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        DashboardPanel = new javax.swing.JSplitPane();
+        leftPane = new javax.swing.JPanel();
+        btnFaculty = new javax.swing.JButton();
+        btnStudents = new javax.swing.JButton();
+        btnMealOrders = new javax.swing.JButton();
+        btnReports = new javax.swing.JButton();
+        btnDormitories = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        rightPane = new javax.swing.JLayeredPane();
+        workAreaPanel = new javax.swing.JPanel();
+        workAreaPane = new javax.swing.JLabel();
+        studentPanel = new javax.swing.JPanel();
+        studentSplitPane = new javax.swing.JSplitPane();
+        navigateBackPanel = new javax.swing.JPanel();
+        btnBack = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        lblManageStudents = new javax.swing.JLabel();
+        studentWorkAreaPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblStudents = new javax.swing.JTable();
+        txtFirstName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        txtEmailAddress = new javax.swing.JTextField();
+        txtSSN = new javax.swing.JTextField();
+        lblFirstName = new javax.swing.JLabel();
+        lblLastName = new javax.swing.JLabel();
+        lblEmailAddress = new javax.swing.JLabel();
+        lblGender = new javax.swing.JLabel();
+        btnMale = new javax.swing.JRadioButton();
+        btnFemale = new javax.swing.JRadioButton();
+        btnNonBinary = new javax.swing.JRadioButton();
+        lblSSN = new javax.swing.JLabel();
+        txtPhoneNumber = new javax.swing.JTextField();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        lblDateofBirth = new javax.swing.JLabel();
+        lblDateofBirth1 = new javax.swing.JLabel();
+        txtStudentID = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        lblPassword = new javax.swing.JLabel();
+        lblStudentID = new javax.swing.JLabel();
+        txtInstituteCode = new javax.swing.JTextField();
+        lblStudentID1 = new javax.swing.JLabel();
+        txtStudentDegree = new javax.swing.JTextField();
+        lblStudentID2 = new javax.swing.JLabel();
+        txtPhoto = new javax.swing.JTextField();
+        lblCurrentSemester = new javax.swing.JLabel();
+        lblGraduationYear = new javax.swing.JLabel();
+        lblPhoto = new javax.swing.JLabel();
+        comboSemester = new javax.swing.JComboBox<>();
+        btnCreate = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        yearChooser = new com.toedter.calendar.JYearChooser();
+        facultyPanel = new javax.swing.JPanel();
+        facultySplitPane = new javax.swing.JSplitPane();
+        navigateBackPanelFaculty = new javax.swing.JPanel();
+        btnBackFaculty = new javax.swing.JButton();
+        btnLogoutFaculty = new javax.swing.JButton();
+        lblManageFaculty = new javax.swing.JLabel();
+        professorWorkAreaPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblStudents1 = new javax.swing.JTable();
+        txtFirstNameProf = new javax.swing.JTextField();
+        txtLastNameProf = new javax.swing.JTextField();
+        txtEmailAddressProf = new javax.swing.JTextField();
+        txtSSNProf = new javax.swing.JTextField();
+        lblFirstNameProf = new javax.swing.JLabel();
+        lblLastNameProf = new javax.swing.JLabel();
+        lblEmailAddressProf = new javax.swing.JLabel();
+        lblGender1 = new javax.swing.JLabel();
+        btnMale1 = new javax.swing.JRadioButton();
+        btnFemale1 = new javax.swing.JRadioButton();
+        btnNonBinary1 = new javax.swing.JRadioButton();
+        lblSSNProf = new javax.swing.JLabel();
+        txtPhoneNumberProf = new javax.swing.JTextField();
+        dateOfBirthProf = new com.toedter.calendar.JDateChooser();
+        lblDobProf = new javax.swing.JLabel();
+        lblPhoneNumberProf = new javax.swing.JLabel();
+        txtProfessorID = new javax.swing.JTextField();
+        PasswordProfessor = new javax.swing.JPasswordField();
+        lblPasswordProfessor = new javax.swing.JLabel();
+        lblProfessorID = new javax.swing.JLabel();
+        txtInstituteCodeProf = new javax.swing.JTextField();
+        lblInstituteCodeProf = new javax.swing.JLabel();
+        txtProfessorPhoto = new javax.swing.JTextField();
+        lblPhotoProfessor = new javax.swing.JLabel();
+        btnCreateProf = new javax.swing.JButton();
+        btnViewProf = new javax.swing.JButton();
+        btnUpdateProf = new javax.swing.JButton();
+        btnDeleteProf = new javax.swing.JButton();
+        startDateChooser = new com.toedter.calendar.JDateChooser();
+        lblProfessorStartDate = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1000, 900));
-        setMinimumSize(new java.awt.Dimension(1000, 900));
+        leftPane.setBackground(new java.awt.Color(0, 153, 153));
 
-        btnManageFaculty.setText("Manage Faculty");
+        btnFaculty.setText("Manage Faculty");
 
-        btnManageStudents.setText("Students");
+        btnStudents.setText("Manage Students");
+        btnStudents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentsActionPerformed(evt);
+            }
+        });
 
-        btnManageMealOrders.setText("Meals");
+        btnMealOrders.setText("Meal Orders");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageFaculty, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageMealOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+        btnReports.setText("View Reports");
+
+        btnDormitories.setText("Manage Dormitories");
+
+        btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout leftPaneLayout = new javax.swing.GroupLayout(leftPane);
+        leftPane.setLayout(leftPaneLayout);
+        leftPaneLayout.setHorizontalGroup(
+            leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDormitories, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMealOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnFaculty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(197, 197, 197)
-                .addComponent(btnManageFaculty, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnManageStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+        leftPaneLayout.setVerticalGroup(
+            leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftPaneLayout.createSequentialGroup()
+                .addGap(248, 248, 248)
+                .addComponent(btnFaculty)
                 .addGap(18, 18, 18)
-                .addComponent(btnManageMealOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(566, Short.MAX_VALUE))
+                .addComponent(btnStudents)
+                .addGap(18, 18, 18)
+                .addComponent(btnMealOrders)
+                .addGap(18, 18, 18)
+                .addComponent(btnReports)
+                .addGap(18, 18, 18)
+                .addComponent(btnDormitories)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addComponent(btnLogOut)
+                .addGap(126, 126, 126))
         );
 
-        jSplitPane1.setLeftComponent(jPanel1);
+        DashboardPanel.setLeftComponent(leftPane);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 912, Short.MAX_VALUE)
+        rightPane.setLayout(new java.awt.CardLayout());
+
+        workAreaPanel.setBackground(new java.awt.Color(255, 255, 255));
+        workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        workAreaPane.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
+        workAreaPanel.add(workAreaPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 840));
+
+        rightPane.add(workAreaPanel, "card2");
+
+        studentSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanel.setBackground(new java.awt.Color(0, 0, 0));
+
+        btnBack.setText("Back");
+
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        btnLogout.setText("Log Out");
+
+        lblManageStudents.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblManageStudents.setForeground(new java.awt.Color(255, 255, 255));
+        lblManageStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblManageStudents.setText("Manage Student");
+
+        javax.swing.GroupLayout navigateBackPanelLayout = new javax.swing.GroupLayout(navigateBackPanel);
+        navigateBackPanel.setLayout(navigateBackPanelLayout);
+        navigateBackPanelLayout.setHorizontalGroup(
+            navigateBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 279, Short.MAX_VALUE)
+                .addComponent(lblManageStudents)
+                .addGap(236, 236, 236)
+                .addComponent(btnLogout)
+                .addGap(48, 48, 48))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+        navigateBackPanelLayout.setVerticalGroup(
+            navigateBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnLogout)
+                    .addComponent(lblManageStudents))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setRightComponent(jPanel2);
+        studentSplitPane.setTopComponent(navigateBackPanel);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        studentWorkAreaPanel.setBackground(new java.awt.Color(37, 150, 190));
+
+        tblStudents.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "First Name", "Email Address", "Gender", "Phone Number", "Student ID", "Institute Code", "Student Degree", "Current Semester", "Graduation Year"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblStudents);
+
+        lblFirstName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblFirstName.setText("First Name");
+
+        lblLastName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblLastName.setText("Last Name");
+
+        lblEmailAddress.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblEmailAddress.setText("Email Address");
+
+        lblGender.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblGender.setText("Gender");
+
+        btnMale.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnMale.setText("Male");
+
+        btnFemale.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnFemale.setText("Female");
+
+        btnNonBinary.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnNonBinary.setText("Non Binary");
+
+        lblSSN.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblSSN.setText("SSN");
+
+        txtPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNumberActionPerformed(evt);
+            }
+        });
+
+        lblDateofBirth.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblDateofBirth.setText("Date of Birth");
+
+        lblDateofBirth1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblDateofBirth1.setText("Phone Number");
+
+        txtStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentIDActionPerformed(evt);
+            }
+        });
+
+        jPasswordField1.setText("jPasswordField1");
+
+        lblPassword.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPassword.setText("Password");
+
+        lblStudentID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblStudentID.setText("Student ID");
+
+        txtInstituteCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInstituteCodeActionPerformed(evt);
+            }
+        });
+
+        lblStudentID1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblStudentID1.setText("Institute Code");
+
+        txtStudentDegree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentDegreeActionPerformed(evt);
+            }
+        });
+
+        lblStudentID2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblStudentID2.setText("Student Degree");
+
+        txtPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhotoActionPerformed(evt);
+            }
+        });
+
+        lblCurrentSemester.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCurrentSemester.setText("Current Semester");
+
+        lblGraduationYear.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblGraduationYear.setText("Graduation Year");
+
+        lblPhoto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPhoto.setText("Student Photo");
+
+        comboSemester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Semester", "Fall 2022", "Winter 2022", "Spring 2023", "Summer 2023", "Fall 2023", "Winter 2023", "Spring 2024", "Summer 2024", "Fall 2024", "Winter 2024", " " }));
+
+        btnCreate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnCreate.setText("CREATE");
+
+        btnView.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnView.setText("VIEW");
+
+        btnUpdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnUpdate.setText("UPDATE");
+
+        btnDelete.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnDelete.setText("DELETE");
+
+        javax.swing.GroupLayout studentWorkAreaPanelLayout = new javax.swing.GroupLayout(studentWorkAreaPanel);
+        studentWorkAreaPanel.setLayout(studentWorkAreaPanelLayout);
+        studentWorkAreaPanelLayout.setHorizontalGroup(
+            studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblGraduationYear, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDateofBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtSSN, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtEmailAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtFirstName)
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addComponent(btnMale)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFemale)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNonBinary))
+                    .addComponent(dateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(yearChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDateofBirth1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblStudentID1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStudentID2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCurrentSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtStudentID, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(jPasswordField1)
+                    .addComponent(txtInstituteCode, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtStudentDegree, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(comboSemester, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
+            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
+        );
+        studentWorkAreaPanelLayout.setVerticalGroup(
+            studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFirstName)
+                    .addComponent(lblDateofBirth1)
+                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastName)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmailAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailAddress)
+                    .addComponent(txtStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStudentID))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGender)
+                    .addComponent(btnMale)
+                    .addComponent(btnFemale)
+                    .addComponent(btnNonBinary)
+                    .addComponent(txtInstituteCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStudentID1))
+                .addGap(21, 21, 21)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSSN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSSN)
+                    .addComponent(txtStudentDegree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStudentID2))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDateofBirth)
+                    .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCurrentSemester)
+                        .addComponent(comboSemester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblGraduationYear)
+                        .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPhoto)))
+                    .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
+                        .addComponent(yearChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
+        );
+
+        studentSplitPane.setRightComponent(studentWorkAreaPanel);
+
+        javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
+        studentPanel.setLayout(studentPanelLayout);
+        studentPanelLayout.setHorizontalGroup(
+            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(studentSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        studentPanelLayout.setVerticalGroup(
+            studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(studentSplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        rightPane.add(studentPanel, "card3");
+
+        facultySplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanelFaculty.setBackground(new java.awt.Color(0, 0, 0));
+
+        btnBackFaculty.setText("Back");
+
+        btnLogoutFaculty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        btnLogoutFaculty.setText("Log Out");
+
+        lblManageFaculty.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblManageFaculty.setForeground(new java.awt.Color(255, 255, 255));
+        lblManageFaculty.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblManageFaculty.setText("Manage Faculty");
+
+        javax.swing.GroupLayout navigateBackPanelFacultyLayout = new javax.swing.GroupLayout(navigateBackPanelFaculty);
+        navigateBackPanelFaculty.setLayout(navigateBackPanelFacultyLayout);
+        navigateBackPanelFacultyLayout.setHorizontalGroup(
+            navigateBackPanelFacultyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanelFacultyLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnBackFaculty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                .addComponent(lblManageFaculty)
+                .addGap(236, 236, 236)
+                .addComponent(btnLogoutFaculty)
+                .addGap(48, 48, 48))
+        );
+        navigateBackPanelFacultyLayout.setVerticalGroup(
+            navigateBackPanelFacultyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanelFacultyLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanelFacultyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBackFaculty)
+                    .addComponent(btnLogoutFaculty)
+                    .addComponent(lblManageFaculty))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        facultySplitPane.setTopComponent(navigateBackPanelFaculty);
+
+        professorWorkAreaPanel.setBackground(new java.awt.Color(37, 150, 190));
+
+        tblStudents1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "First Name", "Email Address", "Gender", "Phone Number", "Professor ID", "Institute Code", "Start Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblStudents1);
+
+        lblFirstNameProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblFirstNameProf.setText("First Name");
+
+        lblLastNameProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblLastNameProf.setText("Last Name");
+
+        lblEmailAddressProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblEmailAddressProf.setText("Email Address");
+
+        lblGender1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblGender1.setText("Gender");
+
+        btnMale1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnMale1.setText("Male");
+
+        btnFemale1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnFemale1.setText("Female");
+
+        btnNonBinary1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnNonBinary1.setText("Non Binary");
+
+        lblSSNProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblSSNProf.setText("SSN");
+
+        txtPhoneNumberProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNumberProfActionPerformed(evt);
+            }
+        });
+
+        lblDobProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblDobProf.setText("Date of Birth");
+
+        lblPhoneNumberProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPhoneNumberProf.setText("Phone Number");
+
+        txtProfessorID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProfessorIDActionPerformed(evt);
+            }
+        });
+
+        PasswordProfessor.setText("jPasswordField1");
+
+        lblPasswordProfessor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPasswordProfessor.setText("Password");
+
+        lblProfessorID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblProfessorID.setText("Professor ID");
+
+        txtInstituteCodeProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInstituteCodeProfActionPerformed(evt);
+            }
+        });
+
+        lblInstituteCodeProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblInstituteCodeProf.setText("Institute Code");
+
+        txtProfessorPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProfessorPhotoActionPerformed(evt);
+            }
+        });
+
+        lblPhotoProfessor.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblPhotoProfessor.setText("Professor Photo");
+
+        btnCreateProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnCreateProf.setText("CREATE");
+
+        btnViewProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnViewProf.setText("VIEW");
+
+        btnUpdateProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnUpdateProf.setText("UPDATE");
+
+        btnDeleteProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnDeleteProf.setText("DELETE");
+
+        lblProfessorStartDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblProfessorStartDate.setText("Start Date");
+
+        javax.swing.GroupLayout professorWorkAreaPanelLayout = new javax.swing.GroupLayout(professorWorkAreaPanel);
+        professorWorkAreaPanel.setLayout(professorWorkAreaPanelLayout);
+        professorWorkAreaPanelLayout.setHorizontalGroup(
+            professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 877, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
+            .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblFirstNameProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastNameProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailAddressProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGender1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSSNProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDobProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtSSNProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtEmailAddressProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtLastNameProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtFirstNameProf)
+                    .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                        .addComponent(btnMale1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnFemale1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNonBinary1))
+                    .addComponent(dateOfBirthProf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPasswordProfessor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPhoneNumberProf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))
+                    .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblProfessorID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblInstituteCodeProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPhotoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblProfessorStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtPhoneNumberProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtProfessorID, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(PasswordProfessor)
+                    .addComponent(txtInstituteCodeProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtProfessorPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(startDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
+            .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCreateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnViewProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        professorWorkAreaPanelLayout.setVerticalGroup(
+            professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtFirstNameProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblFirstNameProf)
+                    .addComponent(lblPhoneNumberProf)
+                    .addComponent(txtPhoneNumberProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLastNameProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLastNameProf)
+                    .addComponent(PasswordProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPasswordProfessor))
+                .addGap(18, 18, 18)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmailAddressProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailAddressProf)
+                    .addComponent(txtProfessorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProfessorID))
+                .addGap(18, 18, 18)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblGender1)
+                        .addComponent(btnMale1)
+                        .addComponent(btnFemale1)
+                        .addComponent(btnNonBinary1)
+                        .addComponent(lblProfessorStartDate))
+                    .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSSNProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSSNProf)
+                    .addComponent(txtInstituteCodeProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblInstituteCodeProf))
+                .addGap(18, 18, 18)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateOfBirthProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDobProf)
+                    .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtProfessorPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPhotoProfessor)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewProf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCreateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeleteProf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36))
+        );
+
+        facultySplitPane.setRightComponent(professorWorkAreaPanel);
+
+        javax.swing.GroupLayout facultyPanelLayout = new javax.swing.GroupLayout(facultyPanel);
+        facultyPanel.setLayout(facultyPanelLayout);
+        facultyPanelLayout.setHorizontalGroup(
+            facultyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, facultyPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(facultySplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        facultyPanelLayout.setVerticalGroup(
+            facultyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(facultySplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        rightPane.add(facultyPanel, "card3");
+
+        DashboardPanel.setRightComponent(rightPane);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(DashboardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1049, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DashboardPanel))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UniversityAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UniversityAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UniversityAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UniversityAdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void btnStudentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentsActionPerformed
+        // TODO add your handling code here:
+        workAreaPanel.setVisible(false);
+        studentPanel.setVisible(true);
+    }//GEN-LAST:event_btnStudentsActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UniversityAdminDashboard().setVisible(true);
-            }
-        });
-    }
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNumberActionPerformed
+
+    private void txtStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIDActionPerformed
+
+    private void txtInstituteCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInstituteCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInstituteCodeActionPerformed
+
+    private void txtStudentDegreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentDegreeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentDegreeActionPerformed
+
+    private void txtPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhotoActionPerformed
+
+    private void txtPhoneNumberProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberProfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNumberProfActionPerformed
+
+    private void txtProfessorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfessorIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProfessorIDActionPerformed
+
+    private void txtInstituteCodeProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInstituteCodeProfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInstituteCodeProfActionPerformed
+
+    private void txtProfessorPhotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfessorPhotoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProfessorPhotoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnManageFaculty;
-    private javax.swing.JButton btnManageMealOrders;
-    private javax.swing.JButton btnManageStudents;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane DashboardPanel;
+    private javax.swing.JPasswordField PasswordProfessor;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBackFaculty;
+    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnCreateProf;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDeleteProf;
+    private javax.swing.JButton btnDormitories;
+    private javax.swing.JButton btnFaculty;
+    private javax.swing.JRadioButton btnFemale;
+    private javax.swing.JRadioButton btnFemale1;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnLogoutFaculty;
+    private javax.swing.JRadioButton btnMale;
+    private javax.swing.JRadioButton btnMale1;
+    private javax.swing.JButton btnMealOrders;
+    private javax.swing.JRadioButton btnNonBinary;
+    private javax.swing.JRadioButton btnNonBinary1;
+    private javax.swing.JButton btnReports;
+    private javax.swing.JButton btnStudents;
+    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnUpdateProf;
+    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnViewProf;
+    private javax.swing.JComboBox<String> comboSemester;
+    private com.toedter.calendar.JDateChooser dateChooser;
+    private com.toedter.calendar.JDateChooser dateOfBirthProf;
+    private javax.swing.JPanel facultyPanel;
+    private javax.swing.JSplitPane facultySplitPane;
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCurrentSemester;
+    private javax.swing.JLabel lblDateofBirth;
+    private javax.swing.JLabel lblDateofBirth1;
+    private javax.swing.JLabel lblDobProf;
+    private javax.swing.JLabel lblEmailAddress;
+    private javax.swing.JLabel lblEmailAddressProf;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblFirstNameProf;
+    private javax.swing.JLabel lblGender;
+    private javax.swing.JLabel lblGender1;
+    private javax.swing.JLabel lblGraduationYear;
+    private javax.swing.JLabel lblInstituteCodeProf;
+    private javax.swing.JLabel lblLastName;
+    private javax.swing.JLabel lblLastNameProf;
+    private javax.swing.JLabel lblManageFaculty;
+    private javax.swing.JLabel lblManageStudents;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblPasswordProfessor;
+    private javax.swing.JLabel lblPhoneNumberProf;
+    private javax.swing.JLabel lblPhoto;
+    private javax.swing.JLabel lblPhotoProfessor;
+    private javax.swing.JLabel lblProfessorID;
+    private javax.swing.JLabel lblProfessorStartDate;
+    private javax.swing.JLabel lblSSN;
+    private javax.swing.JLabel lblSSNProf;
+    private javax.swing.JLabel lblStudentID;
+    private javax.swing.JLabel lblStudentID1;
+    private javax.swing.JLabel lblStudentID2;
+    private javax.swing.JPanel leftPane;
+    private javax.swing.JPanel navigateBackPanel;
+    private javax.swing.JPanel navigateBackPanelFaculty;
+    private javax.swing.JPanel professorWorkAreaPanel;
+    private javax.swing.JLayeredPane rightPane;
+    private com.toedter.calendar.JDateChooser startDateChooser;
+    private javax.swing.JPanel studentPanel;
+    private javax.swing.JSplitPane studentSplitPane;
+    private javax.swing.JPanel studentWorkAreaPanel;
+    private javax.swing.JTable tblStudents;
+    private javax.swing.JTable tblStudents1;
+    private javax.swing.JTextField txtEmailAddress;
+    private javax.swing.JTextField txtEmailAddressProf;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtFirstNameProf;
+    private javax.swing.JTextField txtInstituteCode;
+    private javax.swing.JTextField txtInstituteCodeProf;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtLastNameProf;
+    private javax.swing.JTextField txtPhoneNumber;
+    private javax.swing.JTextField txtPhoneNumberProf;
+    private javax.swing.JTextField txtPhoto;
+    private javax.swing.JTextField txtProfessorID;
+    private javax.swing.JTextField txtProfessorPhoto;
+    private javax.swing.JTextField txtSSN;
+    private javax.swing.JTextField txtSSNProf;
+    private javax.swing.JTextField txtStudentDegree;
+    private javax.swing.JTextField txtStudentID;
+    private javax.swing.JLabel workAreaPane;
+    private javax.swing.JPanel workAreaPanel;
+    private com.toedter.calendar.JYearChooser yearChooser;
     // End of variables declaration//GEN-END:variables
 }

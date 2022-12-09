@@ -8,12 +8,12 @@ package ui.UniversityManagement;
  *
  * @author zainabkhokawala
  */
-public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
+public class AccountsAdminDashboard extends javax.swing.JPanel {
 
     /**
-     * Creates new form PlacementCoordinatorDashboard
+     * Creates new form AccountsAdminDashboard
      */
-    public PlacementCoordinatorDashboard() {
+    public AccountsAdminDashboard() {
         initComponents();
     }
 
