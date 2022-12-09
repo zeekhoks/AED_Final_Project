@@ -371,6 +371,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton9.setText("Log Out");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -527,6 +532,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 
         btnLogOut3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogOut3.setText("Log Out");
+        btnLogOut3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOut3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navigateBackPanel3Layout = new javax.swing.GroupLayout(navigateBackPanel3);
         navigateBackPanel3.setLayout(navigateBackPanel3Layout);
@@ -600,6 +610,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 
         btnLogOut4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogOut4.setText("Log Out");
+        btnLogOut4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOut4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navigateBackPanel4Layout = new javax.swing.GroupLayout(navigateBackPanel4);
         navigateBackPanel4.setLayout(navigateBackPanel4Layout);
@@ -727,14 +742,17 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
+        switchToMainFrame();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnLogOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut1ActionPerformed
         // TODO add your handling code here:
+        switchToMainFrame();
     }//GEN-LAST:event_btnLogOut1ActionPerformed
 
     private void btnLogOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut2ActionPerformed
         // TODO add your handling code here:
+        switchToMainFrame();
     }//GEN-LAST:event_btnLogOut2ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -773,6 +791,21 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
     private void txtStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStudentIDActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void btnLogOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut3ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_btnLogOut3ActionPerformed
+
+    private void btnLogOut4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOut4ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_btnLogOut4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -862,5 +895,10 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 //        jLayeredPane1.revalidate() ;
 //        jLayeredPane1.repaint ();
 //        btnLogOut.setVisible(true);
+    }
+    
+    private void switchToMainFrame() {
+        MainJFrame mainFrame = new MainJFrame();
+        mainFrame.setVisible(true);
     }
 }

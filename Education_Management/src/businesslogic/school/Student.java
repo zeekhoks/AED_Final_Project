@@ -6,6 +6,9 @@ package businesslogic.school;
 
 import businesslogic.Community;
 import businesslogic.Person;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.List;
 
 /**
  *
@@ -42,19 +45,27 @@ public class Student extends Person{
     private String extraCurricular;
     private int standard;
     private String photo;
+    private StudentGrades studentGrades = new StudentGrades();
 
     public Student(String firstName, String lastName, String gender, String personID, 
-            String dob, long mobileNo, String email, Community community, 
-            String password, UserRole role, 
-            String schoolCode, String extraCurricular, int standard, String photo) {
+            String dob, long mobileNo, String email, Community community, String password, UserRole role, 
+            String schoolCode, String extraCurricular, int standard, String photo, ArrayList<Subject> subjects) {
         super(firstName, lastName, gender, 
                 personID, dob, (long) mobileNo, email, 
-                community, password, role.STUDENT);
+                community, password, role.STUDENT );
         this.schoolCode = schoolCode;
         this.extraCurricular = extraCurricular;
         this.standard = standard;
         this.photo = photo;
+        AssignSubjects(subjects);
     }
+    
+    private void AssignSubjects(ArrayList<Subject> subjects) {
+        for(Subject s: subjects) {
+            studentGrades.setSubjects(s.getSubjectID());
+        }
+    }
+    
     
  
     public String getExtraCurricular() {
@@ -93,4 +104,20 @@ public class Student extends Person{
     public String toString(){
         return personFirstName;
     }
+    
+    public void addSubject(int subjectId) {
+        studentGrades.grades.put(subjectId, Double.NaN);
+    }
+    
+    public void addGrades(int subjectId, double grade) {
+        studentGrades.grades.put(subjectId, grade);
+    }
+    
+    public Hashtable<Integer,Double> getGrades() {
+        return studentGrades.grades;
+    }
+    
+    public boolean isSubjectAssigned(int subjectID) {
+        return studentGrades.isSubjectAssigned(subjectID);
+    } 
 }

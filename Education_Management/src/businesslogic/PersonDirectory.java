@@ -29,10 +29,19 @@ public class PersonDirectory {
         personDirectory.add(p);
     }
     
-    public boolean authenticateAdmin(String username, String password) {
-        Person user = personDirectory.stream().filter(l -> l.getPersonEmailAddress().equals(username) && l.getUserPassword().equals(password)).findFirst().orElse(null);
-        boolean found = user == null ? false : true;
-        return found;
+    public Person authenticateAdmin(String username, String password) {
+//        Person user = personDirectory.stream().filter(l -> l.getPersonEmailAddress().equals(username) && l.getUserPassword().equals(password)).findFirst().orElse(null);
+//        boolean found = user == null ? false : true;
+//        return found;
+//        
+        if(!getPersonDirectory().isEmpty()) {
+            for(Person p : personDirectory) {
+                if(p.getPersonEmailAddress().equals(username) && p.getUserPassword().equals(password)) {
+                    return p;
+                }
+            }
+        }
+        return null;
     }
     
     public String getPersonRole(String username) {

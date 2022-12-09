@@ -4,6 +4,7 @@
  */
 package businesslogic.school;
 
+import businesslogic.Person;
 import java.util.ArrayList;
 
 /**
@@ -41,6 +42,13 @@ public class TeacherDirectory {
     
     public void deleteTeacher(Teacher s) {
         teacherDirectory.remove(s);
+    }
+
+    public Person authenticateTeacher(String userName, String password) {
+        Teacher user = teacherDirectory.stream().filter(
+                l -> l.getPersonEmailAddress().equals(userName) && 
+                    l.getUserPassword().equals(password)).findFirst().orElse(null);
+        return user;    
     }
     
 }

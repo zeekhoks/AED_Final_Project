@@ -7,9 +7,13 @@ package ui.school.SchoolAdminRole;
 import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
+import businesslogic.Person;
 import businesslogic.Person.UserRole;
 import businesslogic.helper.ValidateInputs;
+import businesslogic.school.Library;
+import businesslogic.school.SchoolAdmin;
 import businesslogic.school.Student;
+import businesslogic.school.Subject;
 import businesslogic.school.Teacher;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -18,10 +22,14 @@ import java.lang.System.Logger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import static java.util.Locale.filter;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -41,17 +49,20 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
      * Creates new form DashboardJPanel
      */
     private EcoSystem ecoSystem;
+    private SchoolAdmin userLogged;
     private ImageIcon iconPic;
     private String photoPath = "/icons/default.jpg";
-    private static int studentCounter = 0;
-    private static int teacherCounter = 0;
-   
+    private static int studentCounter = 01;
+    private static int teacherCounter = 01;
+    private static int subjectCounter = 01;
     
-    public SchoolAdminDashboardJPanel(EcoSystem ecoSystem) {
+    public SchoolAdminDashboardJPanel(EcoSystem ecoSystem, SchoolAdmin userLogged) {
         initComponents();
         setSize(1060, 770);
         
         this.ecoSystem = ecoSystem;
+        this.userLogged = userLogged;
+        
         workAreaPanel.setVisible(true);
         studentsPanel.setVisible(false);
         employeesPanel.setVisible(false);
@@ -66,9 +77,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         setDefaultPhoto();
         
         txtStudentID.setEditable(false);
-        txtTeacherID.setEditable(false);
-//        txtSchoolCode.setEditable(false);
+        txtTeacherID.setEditable(false);     
+        txtSchoolCode.setEditable(false);
+        txtSchoolCode.setText(userLogged.getSchoolCode());
         // set School Code here
+        
+        for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
+            dropDownSubjectTeacher.addItem(t.getPersonFirstName());
+        }
     }
     
     private void setDefaultPhoto() {
@@ -234,6 +250,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jLabel43 = new javax.swing.JLabel();
         dropDownBookStudentID = new javax.swing.JComboBox<>();
         jButton20 = new javax.swing.JButton();
+        jLabel44 = new javax.swing.JLabel();
+        txtLibrarySchoolCode = new javax.swing.JTextField();
         mealSupplyPanel = new javax.swing.JPanel();
         jSplitPane6 = new javax.swing.JSplitPane();
         navigateBackPanel4 = new javax.swing.JPanel();
@@ -1041,6 +1059,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton11.setText("Log Out");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -1091,6 +1114,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         btnAddStudent2.setText("View Subject");
 
         btnAddStudent3.setText("Add Subject");
+        btnAddStudent3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudent3ActionPerformed(evt);
+            }
+        });
 
         btnAddStudent4.setText("Delete Subject");
 
@@ -1106,6 +1134,12 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         dropDownSubjectStandard.setSelectedIndex(-1);
 
         jLabel36.setText("Teacher:");
+
+        dropDownSubjectTeacher.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                dropDownSubjectTeacherItemStateChanged(evt);
+            }
+        });
 
         jButton16.setText("Clear Form");
 
@@ -1208,6 +1242,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton13.setText("Log Out");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -1263,10 +1302,25 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         btnLibrarySearch.setText("Search");
 
         jButton17.setText("Issue Book");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("View Book");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setText("Delete Book");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jLabel40.setText("ID:");
 
@@ -1287,6 +1341,13 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         });
 
         jButton20.setText("Add Book");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
+
+        jLabel44.setText("School Code:");
 
         javax.swing.GroupLayout studentWorkAreaPanel3Layout = new javax.swing.GroupLayout(studentWorkAreaPanel3);
         studentWorkAreaPanel3.setLayout(studentWorkAreaPanel3Layout);
@@ -1294,23 +1355,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
                 .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jLabel38)
-                        .addGap(18, 18, 18)
-                        .addComponent(dropDownLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(txtLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(btnLibrarySearch))
-                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(jLabel43)
-                        .addGap(18, 18, 18)
-                        .addComponent(dropDownBookStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
                         .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
@@ -1334,7 +1378,30 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                             .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton19)
                                 .addGap(28, 28, 28)
-                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel38)
+                                .addGap(18, 18, 18)
+                                .addComponent(dropDownLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnLibrarySearch))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtLibrarySchoolCode))
+                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel43)
+                                .addGap(18, 18, 18)
+                                .addComponent(dropDownBookStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
         studentWorkAreaPanel3Layout.setVerticalGroup(
@@ -1370,7 +1437,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43)
                     .addComponent(dropDownBookStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(362, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel44)
+                    .addComponent(txtLibrarySchoolCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
 
         jSplitPane5.setRightComponent(studentWorkAreaPanel3);
@@ -1403,6 +1474,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton15.setText("Log Out");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -1884,11 +1960,16 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 com = ecoSystem.getCommunityDirectory().getCommunityByName(community);
             }
 
+            ArrayList<Subject> standardSub = (ArrayList<Subject>) ecoSystem.getSubjectDirectory().getSubjectDirectory().stream()
+                    .filter(customer -> customer.getStandard() == standard)
+                    .collect(Collectors.toList());
+            
             Student s = ecoSystem.getStudentDirectory().addNewStudent(new Student(firstName, lastName,
                   gender ,studentID, dob, phoneNo, email, com, password, UserRole.STUDENT, 
-                    schoolCode, extraCurricular, standard, photo));
+                    schoolCode, extraCurricular, standard, photo,standardSub));
            
             JOptionPane.showMessageDialog(this, "Student Record Added.");
+            System.out.println(s.getGrades());
             populateStudentsTable();
             clearStudentForm();
       
@@ -2079,6 +2160,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        switchToMainFrame();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void dropDownBookStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownBookStudentIDActionPerformed
@@ -2089,6 +2171,68 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         switchToMainFrame();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        // view library
+        int selectedRowIndex = tblLibrary.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblLibrary.getModel();
+        Library l = (Library)model.getValueAt(selectedRowIndex, 0);
+        
+        
+        
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        // delete book
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void dropDownSubjectTeacherItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_dropDownSubjectTeacherItemStateChanged
+
+    }//GEN-LAST:event_dropDownSubjectTeacherItemStateChanged
+
+    private void btnAddStudent3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudent3ActionPerformed
+        // TODO add your handling code here:
+        // ADD SUBJECT
+        txtSubjectID.setEditable(false);
+        int subjectID = subjectCounter;
+        subjectCounter++;
+        String subjectName = txtSubjectName.getText();
+        int std = (int) dropDownSubjectStandard.getSelectedItem();
+        String teacher = dropDownSubjectTeacher.getSelectedItem().toString();
+        
+        Subject s = ecoSystem.getSubjectDirectory().addNewSubject(new Subject(subjectID, subjectName, std, teacher));
+        JOptionPane.showMessageDialog(this, "Subject Record Added.");
+    }//GEN-LAST:event_btnAddStudent3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2182,6 +2326,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2223,6 +2368,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtLibrarySchoolCode;
     private javax.swing.JTextField txtLibrarySearch;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPhoneNo;
@@ -2258,13 +2404,15 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(Student s : ecoSystem.getStudentDirectory().getStudentDirectory()) {
-            Object[] row = new Object[5];
-            row[0] = s;
-            row[1] = s.getPersonLastName();
-            row[2] = s.getStandard();
-            row[3] = s.getPersonEmailAddress();
-            row[4] = s.getExtraCurricular();
-            model.addRow(row);
+            if(s.getSchoolCode().equals(userLogged.getSchoolCode())) {
+                Object[] row = new Object[5];
+                row[0] = s;
+                row[1] = s.getPersonLastName();
+                row[2] = s.getStandard();
+                row[3] = s.getPersonEmailAddress();
+                row[4] = s.getExtraCurricular();
+                model.addRow(row);
+            }
         }
     }
 
@@ -2331,17 +2479,47 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
-            Object[] row = new Object[4];
-            row[0] = t;
-            row[1] = t.getPersonLastName();
-            row[2] = t.getDateOfJoining();
-            row[3] = t.getPersonEmailAddress();    
-            model.addRow(row);
+            if(t.getSchoolCode().equals(userLogged.getSchoolCode())) {
+                Object[] row = new Object[4];
+                row[0] = t;
+                row[1] = t.getPersonLastName();
+                row[2] = t.getDateOfJoining();
+                row[3] = t.getPersonEmailAddress();    
+                model.addRow(row);
+            }
         }
     }
 
     private void switchToMainFrame() {
-        MainJFrame mainFrame = new MainJFrame();
+        this.setVisible(false);
+//        MainJFrame mainFrame = new MainJFrame();
+//        mainFrame.setVisible(true);
+
+        MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
+        mainFrame.removeSchoolAdminDashboardJPanel();
         mainFrame.setVisible(true);
     }
+    
+    private void populateLibraryTable() {
+        DefaultTableModel model = (DefaultTableModel) tblLibrary.getModel();
+        model.setRowCount(0);
+        
+        for(Library l : ecoSystem.getLibraryDirectory().getLibraryDirectory()) {
+            if(l.getSchoolCode().equals(userLogged.getSchoolCode())) {
+                Object[] row = new Object[3];
+                row[0] = l;
+                row[1] = l.getBookName();
+                row[2] = l.isIsIssued();
+                model.addRow(row);
+            }
+        }
+    }
+    
+    private void clearLibraryForm() {
+        txtBookID.setText("");
+        txtBookName.setText("");
+        dropDownBookIssue.setSelectedIndex(-1);
+        dropDownBookStudentID.setSelectedIndex(-1);
+    }
+    
 }

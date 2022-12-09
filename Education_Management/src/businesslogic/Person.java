@@ -49,8 +49,6 @@ public class Person {
         this.userPassword = userPassword;
         this.userRole = userRole;
     }
-    
-    
 
    public String getPersonGender() {
         return personGender;

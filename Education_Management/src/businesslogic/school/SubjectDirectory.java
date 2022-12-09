@@ -24,6 +24,27 @@ public class SubjectDirectory {
     public static void setSubjectDirectory(ArrayList<Subject> subjectDirectory) {
         SubjectDirectory.subjectDirectory = subjectDirectory;
     }
+
+    public Subject addNewSubject(Subject subject) {
+        subjectDirectory.add(subject);
+        return subject;
+    }
     
+    public int getSubjectIDByName(String subjectName) {
+        for(Subject s : subjectDirectory) {
+            if(s.getSubjectName().equals(subjectName)) {
+                return s.getSubjectID();
+            }
+        }
+        return 0;
+    }
     
+    public String getSubjectNameByID(int id) {
+        for(Subject s : subjectDirectory) {
+            if(s.getSubjectID() == id) {
+                return s.getSubjectName();
+            }
+        }
+        return null;
+    }
 }

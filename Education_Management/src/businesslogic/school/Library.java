@@ -13,6 +13,16 @@ public class Library {
     private String bookName;
     private boolean isIssued;
     private String studentID;
+    private String schoolCode;
+
+    public String getSchoolCode() {
+        return schoolCode;
+    }
+
+    public void setSchoolCode(String schoolCode) {
+        this.schoolCode = schoolCode;
+    }
+    
 
     public int getBookID() {
         return bookID;

@@ -10,11 +10,14 @@ import businesslogic.EcoSystem;
 import businesslogic.Person;
 import businesslogic.helper.ValidateInputs;
 import businesslogic.school.School;
+import businesslogic.school.SchoolAdmin;
 import businesslogic.school.Student;
 import businesslogic.school.Teacher;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import ui.MainJFrame;
 
 /**
  *
@@ -26,12 +29,14 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
      * Creates new form systemAdminDashboardJPanel
      */
     private EcoSystem ecoSystem;
+    private Person userLogged;
     private static int schoolCounter = 01;
     
-    public SystemAdminDashboardJPanel(EcoSystem ecoSystem) {
+    public SystemAdminDashboardJPanel(EcoSystem ecoSystem, Person userLogged) {
         initComponents();
         setSize(1060, 770);
         this.ecoSystem = ecoSystem;
+        this.userLogged = userLogged;
         
         WorkAreaPanel.setVisible(true);
         SchoolPanel.setVisible(false);
@@ -195,6 +200,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton6.setText("Log Out");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -350,12 +360,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                                         .addComponent(txtSchoolPhone)
                                         .addComponent(txtSchoolCity)
                                         .addComponent(txtSchoolCommunity)
-                                        .addComponent(txtSchoolName)))))))
+                                        .addComponent(txtSchoolName))))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(401, 401, 401)
+                        .addComponent(jButton12)))
                 .addContainerGap(217, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton12)
-                .addGap(362, 362, 362))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,9 +405,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txtSchoolAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(33, 33, 33)
                 .addComponent(jButton12)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel2);
@@ -496,7 +505,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             String schoolAdminPassword = txtSchoolAdminPassword.getText();
             
             School s = ecoSystem.getSchoolDirectory().getSchoolByCode(schoolCode);
-            Person p = ecoSystem.getPersonDirectory().getPersonByEmail(schoolAdminEmail);
+            SchoolAdmin p = ecoSystem.getSchoolAdminDirectory().getSchoolAdminByEmail(schoolAdminEmail);
             if(p.getUserRole().equals("SCHOOL_ADMIN")) {             
                 s.setSchoolName(schoolName);
                 s.setPhoneNo(Long.parseLong(schoolPhone));
@@ -643,9 +652,8 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             School s = ecoSystem.getSchoolDirectory().addNewSchool(new School( schoolName, schoolCode, com, 
                     schoolPhone, schoolAdminEmail, schoolAdminPassword));
             
-            ecoSystem.getPersonDirectory().addNewPerson(new Person(null,null,null, null,
-                null,1234567890,schoolAdminEmail,null,
-                schoolAdminPassword, Person.UserRole.SYSTEM_ADMIN));
+            ecoSystem.getSchoolAdminDirectory().getSchoolAdminDirectory().add(new SchoolAdmin(null,null,null, null,
+                null,1234567890,schoolAdminEmail,null,schoolAdminPassword, Person.UserRole.SCHOOL_ADMIN, schoolCode));
             
             JOptionPane.showMessageDialog(this, "School Record Added.");
             populateSchoolTable();
@@ -658,7 +666,13 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
+        switchToMainFrame();
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -751,5 +765,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             return true;
         }
         return false;
+    }
+    
+    private void switchToMainFrame() {
+        MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
+        mainFrame.removeSystemAdminDashboardJPanel();
+        mainFrame.setVisible(true);
     }
 }

@@ -12,8 +12,10 @@ import businesslogic.EcoSystem;
 import businesslogic.Person;
 import businesslogic.Person.UserRole;
 import businesslogic.PersonDirectory;
+import businesslogic.school.SchoolAdmin;
 import businesslogic.school.SchoolDirectory;
 import businesslogic.school.StudentDirectory;
+import businesslogic.school.Teacher;
 import businesslogic.school.TeacherDirectory;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -23,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
+import ui.school.TeacherRole.TeacherDashboardJPanel;
 import ui.systemAdmin.SystemAdminDashboardJPanel;
 
 /**
@@ -39,6 +42,9 @@ public class MainJFrame extends javax.swing.JFrame {
     SchoolDirectory schoolDirectory;
     StudentDirectory studentDirectory;
     TeacherDirectory teacherDirectory;
+    JPanel SchoolAdminDashboardJPanel;
+    JPanel SystemAdminDashboardJPanel;
+    JPanel TeacherDashboardJPanel;
     
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
     
@@ -194,55 +200,63 @@ public class MainJFrame extends javax.swing.JFrame {
                 return;
             }
         }
-//        
-//        if(personDirectory.authenticateAdmin(userName, password)){
-//            JOptionPane.showMessageDialog(this, "Login Successfull!");
-//            txtUsername.setText("");
-//            txtPassword.setText("");
-//            String role = personDirectory.getPersonRole(userName);
-//            switch(role){
-//                case "SYSTEM_ADMIN":
-//                    JPanel SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel();
-//                    mainWorkArea.add("SystemAdminDashboardJPanel",SystemAdminDashboardJPanel);
-//                    CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
-//                    cd1.next(mainWorkArea);
-//                    break;
-//                    
-//                case "SCHOOL_ADMIN":
-//                    JPanel SchoolAdminDashboardJPanel = new SchoolAdminDashboardJPanel();
-//                    mainWorkArea.add("SchoolAdminDashboardJPanel",SchoolAdminDashboardJPanel);
-//                    CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
-//                    cd2.next(mainWorkArea);
-//                    break;
-//            }
-//        }
+        Person userLogged = null;
         
-        
+        logger.log(Level.INFO, "Checking credentials in Person Directory");
         
         if(!ecoSystem.getPersonDirectory().getPersonDirectory().isEmpty()){
-            if(ecoSystem.getPersonDirectory().authenticateAdmin(userName, password)){
+            userLogged = ecoSystem.getPersonDirectory().authenticateAdmin(userName, password);
+            if(userLogged != null){
                 String role = ecoSystem.getPersonDirectory().getPersonRole(userName);
                 switch(role){
                     case "SYSTEM_ADMIN":
                         clearLoginPanel();
-                        JPanel SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel(ecoSystem);
-                        mainWorkArea.add("SystemAdminDashboardJPanel",SystemAdminDashboardJPanel);
+                        SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel(ecoSystem, userLogged);
+                        mainWorkArea.add("SyslogintemAdminDashboardJPanel",SystemAdminDashboardJPanel);
                         CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
                         cd1.next(mainWorkArea);
                         break;
-
-                    case "SCHOOL_ADMIN":
-                        clearLoginPanel();
-                        JPanel SchoolAdminDashboardJPanel = new SchoolAdminDashboardJPanel(ecoSystem);
-                        mainWorkArea.add("SchoolAdminDashboardJPanel",SchoolAdminDashboardJPanel);
-                        CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
-                        cd2.next(mainWorkArea);
-                        break;
+                }
+            } 
+        } 
+        
+        logger.log(Level.INFO, "Checking credentials in School Admin Directory");
+        
+        if(userLogged == null) {
+            if(!ecoSystem.getSchoolAdminDirectory().getSchoolAdminDirectory().isEmpty()) {
+                userLogged = ecoSystem.getSchoolAdminDirectory().authenticateAdmin(userName, password);
+//                logger.log(Level.INFO,userLogged.getPersonEmailAddress());
+                if(userLogged != null) {
+                    clearLoginPanel();
+//                    logger.log(Level.INFO, "in if");
+                    SchoolAdminDashboardJPanel = new SchoolAdminDashboardJPanel(ecoSystem, (SchoolAdmin)userLogged);
+                    mainWorkArea.add("SchoolAdminDashboardJPanel",SchoolAdminDashboardJPanel);
+                    CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
+                    cd2.next(mainWorkArea);
+                    return;
+                }
+            }
+        } 
+        
+        logger.log(Level.INFO, "Checking credentials in Teacher Directory");
+        
+        if(userLogged == null) {
+            if(!ecoSystem.getTeacherDirectory().getTeacherDirectory().isEmpty()) {
+                userLogged = ecoSystem.getTeacherDirectory().authenticateTeacher(userName, password);
+                if(userLogged != null) {
+                    clearLoginPanel();
+                    TeacherDashboardJPanel = new TeacherDashboardJPanel(ecoSystem, (Teacher)userLogged);
+                    mainWorkArea.add("TeacherDashboardJPanel", TeacherDashboardJPanel);
+                    CardLayout cd3 = (CardLayout) mainWorkArea.getLayout();
+                    cd3.next(mainWorkArea);
+                    return;
                 }
             }
         }
-        
-        
+               
+        else {
+            JOptionPane.showMessageDialog(this, "Please recheck your credentials");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
     
 //    public void changePanel(JPanel panel) {
@@ -287,6 +301,14 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void removeSchoolAdminDashboardJPanel() {
+        mainWorkArea.remove(SchoolAdminDashboardJPanel);
+    }
+    
+    public void removeSystemAdminDashboardJPanel() {
+        mainWorkArea.remove(SystemAdminDashboardJPanel);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
@@ -304,6 +326,10 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     public void loadDefaultState() {
-//        mainWorkArea.setVisible(true);
+
+    }
+
+    public void removeTeacherDashboardJPanel() {
+        mainWorkArea.remove(TeacherDashboardJPanel);
     }
 }

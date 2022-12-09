@@ -34,6 +34,15 @@ public class StudentDirectory {
         return null;
     }
     
+    public static Student getStudentByName(String name) {
+        for(Student s : studentDirectory) {
+            if(s.getPersonFirstName().equals(name)){
+                return s;
+            }
+        }
+        return null;
+    }
+    
     public static Student addNewStudent(Student s){
         studentDirectory.add(s);
         return s;

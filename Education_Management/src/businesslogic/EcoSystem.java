@@ -5,9 +5,12 @@
 package businesslogic;
 
 import businesslogic.DB4OUtil.DB4OUtil;
+import businesslogic.school.LibraryBookDirectory;
 import businesslogic.school.ParentDirectory;
+import businesslogic.school.SchoolAdminDirectory;
 import businesslogic.school.SchoolDirectory;
 import businesslogic.school.StudentDirectory;
+import businesslogic.school.SubjectDirectory;
 import businesslogic.school.TeacherDirectory;
 
 /**
@@ -17,13 +20,25 @@ import businesslogic.school.TeacherDirectory;
 public class EcoSystem {
     
     private static EcoSystem ecoSystem;
+    
     private CityDirectory cityDirectory = new CityDirectory();
     private CommunityDirectory communityDirectory = new CommunityDirectory();
     private PersonDirectory personDirectory = new PersonDirectory();
     private SchoolDirectory schoolDirectory = new SchoolDirectory();
+    private SchoolAdminDirectory schoolAdminDirectory = new SchoolAdminDirectory();
+    private SubjectDirectory subjectDirectory = new SubjectDirectory();
+
+    public SubjectDirectory getSubjectDirectory() {
+        return subjectDirectory;
+    }
+
+    public void setSubjectDirectory(SubjectDirectory subjectDirectory) {
+        this.subjectDirectory = subjectDirectory;
+    }
     private StudentDirectory studentDirectory = new StudentDirectory();
     private ParentDirectory parentDirectory = new ParentDirectory();
     private TeacherDirectory teacherDirectory = new TeacherDirectory();
+    private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
     
     private EcoSystem() {
         
@@ -99,6 +114,27 @@ public class EcoSystem {
     public void setTeacherDirectory(TeacherDirectory teacherDirectory) {
         this.teacherDirectory = teacherDirectory;
     }
+   
+    public LibraryBookDirectory getLibraryDirectory() {
+        return libraryDirectory;
+    }
+
+    public void setLibraryDirectory(LibraryBookDirectory libraryDirectory) {
+        this.libraryDirectory = libraryDirectory;
+    }
+
+    public SchoolAdminDirectory getSchoolAdminDirectory() {
+        return schoolAdminDirectory;
+    }
+
+    public void setSchoolAdminDirectory(SchoolAdminDirectory schoolAdminDirectory) {
+        this.schoolAdminDirectory = schoolAdminDirectory;
+    }
+    
+
+}
+
+    
 //    
     
             
@@ -136,4 +172,3 @@ public class EcoSystem {
 //        System.out.println("in sop  "+dB4OUtil.retrieveSystem().getTmp());
 //    }
 
-}

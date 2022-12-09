@@ -2,8 +2,12 @@ package businesslogic;
 
 
 import businesslogic.EcoSystem;
+import businesslogic.school.SchoolAdmin;
 import businesslogic.school.Student;
+import businesslogic.school.Subject;
 import businesslogic.school.Teacher;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -28,17 +32,41 @@ public class ConfigureASystem {
         ecoSystem.getPersonDirectory().getPersonDirectory().add(new Person(null,null,null, null,
                 null,1234567890,"systemAdmin@gmail.com",c,
                 "1234", Person.UserRole.SYSTEM_ADMIN));
+    // School Admin
+        ecoSystem.getSchoolAdminDirectory().getSchoolAdminDirectory().add(new SchoolAdmin(null,null,null, null,
+                null,1234567890,"schoolAdmin@gmail.com",c,"1234", Person.UserRole.SCHOOL_ADMIN, "s01"));
         
-        ecoSystem.getPersonDirectory().getPersonDirectory().add(new Person(null,null,null, null,
-                null,1234567890,"schoolAdmin@gmail.com",c,
-                "1234", Person.UserRole.SCHOOL_ADMIN));
-        
+    // teacher
         ecoSystem.getTeacherDirectory().getTeacherDirectory().add(new Teacher("John", "Due", "Male", 
-                "school0101", "1980-02-02", 1234567890, "John@gmail.com", c, "1234", Person.UserRole.SCHOOL_TEACHER, "school01", "2010-09-09"));
+                "school0101", "1980-02-02", 1234567890, "John@gmail.com", c, 
+                "1234", Person.UserRole.SCHOOL_TEACHER, "s01", "2010-09-09"));
         
-        ecoSystem.getStudentDirectory().getStudentDirectory().add(new Student("Yesha", "Patel", "Female", "s01", 
+        ecoSystem.getTeacherDirectory().getTeacherDirectory().add(new Teacher("Eric", "Rah", "Male", 
+                "school0101", "1980-02-02", 1234567890, "Eric@gmail.com", c, 
+                "1234", Person.UserRole.SCHOOL_TEACHER, "s01", "2010-09-09"));
+        
+        ecoSystem.getTeacherDirectory().getTeacherDirectory().add(new Teacher("Dough", "Gori", "Male", 
+                "school0101", "1980-02-02", 1234567890, "Dough@gmail.com", c, 
+                "1234", Person.UserRole.SCHOOL_TEACHER, "s01", "2010-09-09"));
+        
+    // subject
+        ecoSystem.getSubjectDirectory().getSubjectDirectory().add(new Subject(100, "Science", 1, "Eric"));
+        ecoSystem.getSubjectDirectory().getSubjectDirectory().add(new Subject(101, "English", 1, "John"));
+        ecoSystem.getSubjectDirectory().getSubjectDirectory().add(new Subject(102, "Maths", 1, "Eric"));
+    
+    // student
+        ArrayList<Subject> standardSub = (ArrayList<Subject>) ecoSystem.getSubjectDirectory().getSubjectDirectory().stream()
+                    .filter(customer -> customer.getStandard() == 1)
+                    .collect(Collectors.toList());
+        ecoSystem.getStudentDirectory().getStudentDirectory().add(new Student("Yesha", "Patel", "Female", "s0101", 
                 "2000-01-01", 1234567890, "yesha@gmail.com", c, "1234", Person.UserRole.STUDENT, 
-                "school01", "Music", 8, "/icons/default.jpg"));
+                "s01", "Dance", 1, "/icons/default.jpg", standardSub));
+        
+        ecoSystem.getStudentDirectory().getStudentDirectory().add(new Student("Yuve", "Su", "Male", "s0102", 
+                "2000-04-03", 1234567890, "yuve@gmail.com", c, "1234", Person.UserRole.STUDENT, 
+                "s01", "Music", 1, "/icons/default.jpg", standardSub));
+        
+        
         
         return ecoSystem;
     }

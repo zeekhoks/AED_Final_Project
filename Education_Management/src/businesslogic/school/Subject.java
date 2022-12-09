@@ -4,21 +4,30 @@
  */
 package businesslogic.school;
 
+import java.util.List;
+
 /**
  *
  * @author drashtibhingradiya
  */
 public class Subject {
-    private String subjectID;
+    private int subjectID;
     private String subjectName;
-    private String standard;
+    private int standard;
     private String teacherName;
 
-    public String getSubjectID() {
+    public Subject(int subjectID, String subjectName, int standard, String teacherName) {
+        this.subjectID = subjectID;
+        this.subjectName = subjectName;
+        this.standard = standard;
+        this.teacherName = teacherName;
+    }
+
+    public int getSubjectID() {
         return subjectID;
     }
 
-    public void setSubjectID(String subjectID) {
+    public void setSubjectID(int subjectID) {
         this.subjectID = subjectID;
     }
 
@@ -30,11 +39,11 @@ public class Subject {
         this.subjectName = subjectName;
     }
 
-    public String getStandard() {
+    public int getStandard() {
         return standard;
     }
 
-    public void setStandard(String standard) {
+    public void setStandard(int standard) {
         this.standard = standard;
     }
 
