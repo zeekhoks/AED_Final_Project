@@ -1250,6 +1250,11 @@ public class StudentDashboard extends javax.swing.JPanel {
         formattedTime1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
         formattedTime1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         formattedTime1.setText("HH:MM AM/PM Format");
+        formattedTime1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formattedTime1ActionPerformed(evt);
+            }
+        });
 
         lblEventAttendance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblEventAttendance.setText("Event Attendance");
@@ -1472,6 +1477,10 @@ public class StudentDashboard extends javax.swing.JPanel {
     private void btnUpdateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEventActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateEventActionPerformed
+
+    private void formattedTime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTime1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTime1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
