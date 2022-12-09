@@ -112,8 +112,10 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         formattedTime = new javax.swing.JFormattedTextField();
         comboPlacementCoordinator = new javax.swing.JComboBox<>();
         lblCity = new javax.swing.JLabel();
-        comboJobs = new javax.swing.JComboBox<>();
+        comboStudentInterest = new javax.swing.JComboBox<>();
         lblRolePreference = new javax.swing.JLabel();
+        lblJobs = new javax.swing.JLabel();
+        comboJobs = new javax.swing.JComboBox<>();
 
         leftPane.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -603,10 +605,15 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         lblCity.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblCity.setText("City for Job");
 
-        comboJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Coordinator" }));
+        comboStudentInterest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Role", "Data Management", "Software Development" }));
 
         lblRolePreference.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblRolePreference.setText("Role Preference");
+
+        lblJobs.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblJobs.setText("Available Jobs");
+
+        comboJobs.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Job", "Data Scientist", "Data Analyst", "Software Developer", "Software Engineer", "Full Stack Developer" }));
 
         javax.swing.GroupLayout studentWorkAreaPanel2Layout = new javax.swing.GroupLayout(studentWorkAreaPanel2);
         studentWorkAreaPanel2.setLayout(studentWorkAreaPanel2Layout);
@@ -643,13 +650,20 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                                 .addGap(18, 18, Short.MAX_VALUE)
                                 .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
-                                .addComponent(lblRolePreference, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                .addGap(69, 69, 69)
-                                .addComponent(comboJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
                                 .addComponent(lblAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(dateChooserAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(dateChooserAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblRolePreference, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                                        .addGap(69, 69, 69))
+                                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(comboStudentInterest, 0, 240, Short.MAX_VALUE)
+                                    .addComponent(comboJobs, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(230, 230, 230))))
             .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
@@ -705,9 +719,13 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                     .addComponent(lblCity))
                 .addGap(18, 18, 18)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboJobs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboStudentInterest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRolePreference))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblJobs)
+                    .addComponent(comboJobs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnViewAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -816,6 +834,7 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboPlacementCoordinator;
     private javax.swing.JComboBox<String> comboSemester;
     private javax.swing.JComboBox<String> comboSemester2;
+    private javax.swing.JComboBox<String> comboStudentInterest;
     private com.toedter.calendar.JDateChooser dateChooser;
     private com.toedter.calendar.JDateChooser dateChooserAppointment;
     private javax.swing.JFormattedTextField formattedTime;
@@ -833,6 +852,7 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblGender;
     private javax.swing.JLabel lblGraduationYear;
+    private javax.swing.JLabel lblJobs;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblManageProfile;
     private javax.swing.JLabel lblPassword;

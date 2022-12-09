@@ -1385,82 +1385,90 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="lblPlacementCoordinator" min="-2" pref="196" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                  <Component id="comboPlacementCoordinator" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="lblStudentName" min="-2" pref="186" max="-2" attributes="0"/>
-                                                      <Component id="lblStudentLastName" min="-2" pref="186" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="txtStudentNameAppointment" min="-2" pref="240" max="-2" attributes="0"/>
-                                                      <Component id="txtStudentLastNameAppointment" min="-2" pref="240" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblCity" min="-2" pref="184" max="-2" attributes="0"/>
+                                              <Component id="lblAppointmentTime" min="-2" pref="184" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                  <Component id="txtCity" min="-2" pref="243" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lblStudentName" min="-2" pref="186" max="-2" attributes="0"/>
+                                                              <Component id="lblStudentLastName" min="-2" pref="186" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="txtStudentLastNameAppointment" min="-2" pref="240" max="-2" attributes="0"/>
+                                                              <Component id="txtStudentNameAppointment" min="-2" pref="240" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lblAppointmentDate" alignment="0" min="-2" pref="184" max="-2" attributes="0"/>
+                                                              <Component id="lblPlacementCoordinator" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="25" max="32767" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                              <Component id="comboPlacementCoordinator" pref="243" max="32767" attributes="0"/>
+                                                              <Component id="dateChooserAppointment" max="32767" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
+                                                      <Component id="formattedTime" alignment="1" min="-2" pref="243" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="formattedTime" min="-2" pref="240" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lblJobs" min="-2" pref="196" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                      <Component id="lblAppointmentTime" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="lblCity" alignment="1" pref="184" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace type="separate" max="32767" attributes="0"/>
-                                                  <Component id="txtCity" min="-2" pref="240" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
                                                   <Component id="lblRolePreference" pref="152" max="32767" attributes="0"/>
                                                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="comboJobs" min="-2" pref="240" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="lblAppointmentDate" min="-2" pref="184" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="dateChooserAppointment" min="-2" pref="240" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="comboJobs" pref="243" max="32767" attributes="0"/>
+                                              <Component id="txtJobAssigned" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                                  <Component id="lblCurrentSemester2" min="-2" pref="153" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="comboSemester2" min="-2" pref="240" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblStudentID7" min="-2" pref="138" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtStudentDegreeAppointment" min="-2" pref="240" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="bntCreateAppointment" min="-2" pref="221" max="-2" attributes="0"/>
-                                      <Component id="btnUpdateAppointment" min="-2" pref="221" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                          <Component id="lblCurrentSemester2" min="-2" pref="153" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="comboSemester2" min="-2" pref="240" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblStudentID7" min="-2" pref="138" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="txtStudentDegreeAppointment" min="-2" pref="240" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+                                          <Component id="btnUpdateAppointment" min="-2" pref="210" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnDeleteAppointment" min="-2" pref="203" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
+                                          <Component id="bntCreateAppointment" min="-2" pref="210" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btnViewAppointment" min="-2" pref="203" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnViewAppointment" min="-2" pref="221" max="-2" attributes="0"/>
-                                      <Component id="btnDeleteAppointment" min="-2" pref="221" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1511,17 +1519,22 @@
                                       <Component id="comboJobs" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblRolePreference" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnViewAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="lblJobs" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtJobAssigned" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="bntCreateAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="btnViewAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnUpdateAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                       <Component id="btnDeleteAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                  <EmptySpace pref="85" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1718,7 +1731,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="CREATE"/>
+                            <Property name="text" type="java.lang.String" value="SAVE"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtCity">
@@ -1785,8 +1798,10 @@
                         <Component class="javax.swing.JComboBox" name="comboJobs">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="1">
-                                <StringItem index="0" value="Select Coordinator"/>
+                              <StringArray count="3">
+                                <StringItem index="0" value="Select Interest"/>
+                                <StringItem index="1" value="Data Management"/>
+                                <StringItem index="2" value="Software Development"/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -1799,8 +1814,24 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Role Preference"/>
+                            <Property name="text" type="java.lang.String" value="Student Interst"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblJobs">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Arial" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Job Assigned"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtJobAssigned">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtJobAssignedActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

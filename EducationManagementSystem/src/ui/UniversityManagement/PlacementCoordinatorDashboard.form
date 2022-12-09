@@ -860,15 +860,26 @@
                                                   <EmptySpace type="separate" max="32767" attributes="0"/>
                                                   <Component id="txtCity" min="-2" pref="240" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="lblRolePreference" pref="152" max="32767" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                                  <Component id="comboJobs" min="-2" pref="240" max="-2" attributes="0"/>
-                                              </Group>
                                               <Group type="102" attributes="0">
                                                   <Component id="lblAppointmentDate" min="-2" pref="184" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Component id="dateChooserAppointment" min="-2" pref="240" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" attributes="0">
+                                                          <Component id="lblRolePreference" pref="152" max="32767" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="lblJobs" min="-2" pref="196" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="comboStudentInterest" pref="240" max="32767" attributes="0"/>
+                                                      <Component id="comboJobs" max="32767" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
@@ -939,10 +950,15 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="comboJobs" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboStudentInterest" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblRolePreference" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="106" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblJobs" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboJobs" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="64" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnViewAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                       <Component id="btnUpdateAppointment" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -1189,11 +1205,13 @@
                             <Property name="text" type="java.lang.String" value="City for Job"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JComboBox" name="comboJobs">
+                        <Component class="javax.swing.JComboBox" name="comboStudentInterest">
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="1">
-                                <StringItem index="0" value="Select Coordinator"/>
+                              <StringArray count="3">
+                                <StringItem index="0" value="Select Role"/>
+                                <StringItem index="1" value="Data Management"/>
+                                <StringItem index="2" value="Software Development"/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -1208,6 +1226,31 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Role Preference"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblJobs">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Arial" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Available Jobs"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="comboJobs">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="6">
+                                <StringItem index="0" value="Select Job"/>
+                                <StringItem index="1" value="Data Scientist"/>
+                                <StringItem index="2" value="Data Analyst"/>
+                                <StringItem index="3" value="Software Developer"/>
+                                <StringItem index="4" value="Software Engineer"/>
+                                <StringItem index="5" value="Full Stack Developer"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
                         </Component>
                       </SubComponents>
                     </Container>
