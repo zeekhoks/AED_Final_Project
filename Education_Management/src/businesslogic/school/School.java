@@ -10,19 +10,31 @@ import businesslogic.Community;
  * @author drashtibhingradiya
  */
 public class School {
-    private String schoolID;
+//    private String schoolID;
     private String schoolName;
     private String schoolCode;
     private Community community;
-    private long mobileNo;
+    private long phoneNo;
+    private String schoolAdminEmail;
+    private String schoolAdminPassword;
 
-    public String getSchoolID() {
-        return schoolID;
+    public School(String schoolName, String schoolCode, Community community, long mobileNo, String schoolAdminEmail, String schoolAdminPassword) {
+//        this.schoolID = schoolID;
+        this.schoolName = schoolName;
+        this.schoolCode = schoolCode;
+        this.community = community;
+        this.phoneNo = mobileNo;
+        this.schoolAdminEmail = schoolAdminEmail;
+        this.schoolAdminPassword = schoolAdminPassword;
     }
-
-    public void setSchoolID(String schoolID) {
-        this.schoolID = schoolID;
-    }
+    
+//    public String getSchoolID() {
+//        return schoolID;
+//    }
+//
+//    public void setSchoolID(String schoolID) {
+//        this.schoolID = schoolID;
+//    }
 
     public String getSchoolName() {
         return schoolName;
@@ -32,11 +44,11 @@ public class School {
         this.schoolName = schoolName;
     }
 
-    public String getSchoolcode() {
+    public String getSchoolCode() {
         return schoolCode;
     }
 
-    public void setSchoolcode(String schoolcode) {
+    public void setSchoolCode(String schoolcode) {
         this.schoolCode = schoolcode;
     }
 
@@ -48,12 +60,33 @@ public class School {
         this.community = community;
     }
 
-    public long getMobileNo() {
-        return mobileNo;
+    public long getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setMobileNo(long mobileNo) {
-        this.mobileNo = mobileNo;
+    public void setPhoneNo(long mobileNo) {
+        this.phoneNo = mobileNo;
+    }
+
+    public String getSchoolAdminEmail() {
+        return schoolAdminEmail;
+    }
+
+    public void setSchoolAdminEmail(String schoolAdminEmail) {
+        this.schoolAdminEmail = schoolAdminEmail;
+    }
+
+    public String getSchoolAdminPassword() {
+        return schoolAdminPassword;
+    }
+
+    public void setSchoolAdminPassword(String schoolAdminPassword) {
+        this.schoolAdminPassword = schoolAdminPassword;
+    }
+    
+    @Override
+    public String toString(){
+        return schoolCode;
     }
     
 }

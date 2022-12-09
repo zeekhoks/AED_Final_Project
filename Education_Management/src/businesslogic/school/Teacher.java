@@ -24,6 +24,26 @@ public class Teacher extends Person {
         this.schoolCode = schoolCode;
         this.dateOfJoining = dateOfJoining;
     }
+
+    public String getSchoolCode() {
+        return schoolCode;
+    }
+
+    public void setSchoolCode(String schoolCode) {
+        this.schoolCode = schoolCode;
+    }
+
+    public String getDateOfJoining() {
+        return dateOfJoining;
+    }
+
+    public void setDateOfJoining(String dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
+    }
     
+    @Override
+    public String toString(){
+        return personFirstName;
+    }
     
 }

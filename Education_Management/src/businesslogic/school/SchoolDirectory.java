@@ -25,5 +25,23 @@ public class SchoolDirectory {
     public static void setSchoolDirectory(ArrayList<School> schoolDirectory) {
         SchoolDirectory.schoolDirectory = schoolDirectory;
     }
+
+    public School getSchoolByCode(String schoolCode) {
+        for(School s : schoolDirectory) {
+            if(s.getSchoolCode().equals(schoolCode)){
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public void deleteSchool(School s) {
+        schoolDirectory.remove(s);
+    }
+    
+    public static School addNewSchool(School s){
+        schoolDirectory.add(s);
+        return s;
+    }
     
 }

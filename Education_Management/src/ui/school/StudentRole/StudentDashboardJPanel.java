@@ -47,9 +47,6 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        workAreaPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         subjectsPanel = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         navigateBackPanel = new javax.swing.JPanel();
@@ -57,6 +54,33 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         btnLogOut1 = new javax.swing.JButton();
         subjectsWorkArea = new javax.swing.JPanel();
+        workAreaPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        dropDownStandard = new javax.swing.JComboBox<>();
+        txtStudentID = new javax.swing.JTextField();
+        dropDownGender = new javax.swing.JComboBox<>();
+        txtCity = new javax.swing.JTextField();
+        txtCommunity = new javax.swing.JTextField();
+        txtPhoneNo = new javax.swing.JTextField();
+        dateDOB = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        txtExtraCurricular = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtSchoolCode = new javax.swing.JTextField();
         gradesPanel = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
         navigateBackPanel1 = new javax.swing.JPanel();
@@ -163,27 +187,14 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addGap(292, 292, 292)
+                .addGap(228, 228, 228)
                 .addComponent(btnLogOut)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(436, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(controlPanel);
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
-
-        workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setText("My Profile");
-        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 100, 30));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
-        workAreaPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 750));
-
-        jLayeredPane1.add(workAreaPanel, "card2");
 
         jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
@@ -216,11 +227,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanelLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 319, Short.MAX_VALUE)
+                .addGap(274, 274, 274)
                 .addComponent(jLabel3)
-                .addGap(312, 312, 312)
-                .addComponent(btnLogOut1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
+                .addGap(200, 200, 200)
+                .addComponent(btnLogOut1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(329, Short.MAX_VALUE))
         );
         navigateBackPanelLayout.setVerticalGroup(
             navigateBackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,15 +248,99 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 
         subjectsWorkArea.setBackground(new java.awt.Color(37, 150, 190));
 
+        workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setText("My Profile");
+        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 40, 100, 30));
+
+        jLabel8.setText("photo");
+        workAreaPanel.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 140, 150));
+
+        jLabel9.setText("Phone No:");
+        workAreaPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, -1, -1));
+
+        jLabel10.setText("First Name:");
+        workAreaPanel.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
+        workAreaPanel.add(txtFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, 140, -1));
+        workAreaPanel.add(txtLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 140, -1));
+
+        dropDownStandard.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        dropDownStandard.setSelectedIndex(-1);
+        workAreaPanel.add(dropDownStandard, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 140, -1));
+
+        txtStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentIDActionPerformed(evt);
+            }
+        });
+        workAreaPanel.add(txtStudentID, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 140, -1));
+
+        dropDownGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        dropDownGender.setSelectedIndex(-1);
+        dropDownGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownGenderActionPerformed(evt);
+            }
+        });
+        workAreaPanel.add(dropDownGender, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 140, -1));
+        workAreaPanel.add(txtCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, 140, -1));
+        workAreaPanel.add(txtCommunity, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 390, 140, -1));
+
+        txtPhoneNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneNoActionPerformed(evt);
+            }
+        });
+        workAreaPanel.add(txtPhoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 140, -1));
+        workAreaPanel.add(dateDOB, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 140, -1));
+
+        jLabel14.setText("City:");
+        workAreaPanel.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, -1, -1));
+
+        jLabel15.setText("Community:");
+        workAreaPanel.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, -1, 20));
+
+        jLabel19.setText("Last Name:");
+        workAreaPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
+
+        jLabel20.setText("ID:");
+        workAreaPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, -1));
+
+        jLabel21.setText("Standard:");
+        workAreaPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, -1, -1));
+
+        jLabel22.setText("Gender:");
+        workAreaPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 270, -1, -1));
+
+        jLabel23.setText("DOB:");
+        workAreaPanel.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, -1, -1));
+
+        jLabel1.setText("Email:");
+        workAreaPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 470, -1, -1));
+        workAreaPanel.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 470, 140, -1));
+
+        jLabel11.setText("Extra Curricular:");
+        workAreaPanel.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 510, -1, -1));
+        workAreaPanel.add(txtExtraCurricular, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 140, -1));
+
+        jLabel12.setText("School Code:");
+        workAreaPanel.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 550, -1, -1));
+        workAreaPanel.add(txtSchoolCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 550, 140, -1));
+
         javax.swing.GroupLayout subjectsWorkAreaLayout = new javax.swing.GroupLayout(subjectsWorkArea);
         subjectsWorkArea.setLayout(subjectsWorkAreaLayout);
         subjectsWorkAreaLayout.setHorizontalGroup(
             subjectsWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGroup(subjectsWorkAreaLayout.createSequentialGroup()
+                .addComponent(workAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         subjectsWorkAreaLayout.setVerticalGroup(
             subjectsWorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGroup(subjectsWorkAreaLayout.createSequentialGroup()
+                .addComponent(workAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(subjectsWorkArea);
@@ -258,7 +353,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         );
         subjectsPanelLayout.setVerticalGroup(
             subjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jSplitPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLayeredPane1.add(subjectsPanel, "card3");
@@ -289,7 +384,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 468, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(314, 314, 314)
                 .addComponent(jButton9)
@@ -314,11 +409,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         subjectsWorkArea1.setLayout(subjectsWorkArea1Layout);
         subjectsWorkArea1Layout.setHorizontalGroup(
             subjectsWorkArea1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
         subjectsWorkArea1Layout.setVerticalGroup(
             subjectsWorkArea1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 1001, Short.MAX_VALUE)
         );
 
         jSplitPane3.setRightComponent(subjectsWorkArea1);
@@ -331,7 +426,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         );
         gradesPanelLayout.setVerticalGroup(
             gradesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLayeredPane1.add(gradesPanel, "card4");
@@ -367,7 +462,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanel2Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 467, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(323, 323, 323)
                 .addComponent(btnLogOut2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -392,11 +487,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         subjectsWorkArea2.setLayout(subjectsWorkArea2Layout);
         subjectsWorkArea2Layout.setHorizontalGroup(
             subjectsWorkArea2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
         subjectsWorkArea2Layout.setVerticalGroup(
             subjectsWorkArea2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 1001, Short.MAX_VALUE)
         );
 
         jSplitPane4.setRightComponent(subjectsWorkArea2);
@@ -409,7 +504,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         );
         booksIssuedPanelLayout.setVerticalGroup(
             booksIssuedPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLayeredPane1.add(booksIssuedPanel, "card5");
@@ -440,7 +535,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanel3Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 409, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addGap(216, 216, 216)
                 .addComponent(btnLogOut3)
@@ -465,11 +560,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         subjectsWorkArea3.setLayout(subjectsWorkArea3Layout);
         subjectsWorkArea3Layout.setHorizontalGroup(
             subjectsWorkArea3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
         subjectsWorkArea3Layout.setVerticalGroup(
             subjectsWorkArea3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 1001, Short.MAX_VALUE)
         );
 
         jSplitPane5.setRightComponent(subjectsWorkArea3);
@@ -482,7 +577,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         );
         appointmentPanelLayout.setVerticalGroup(
             appointmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jSplitPane5, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLayeredPane1.add(appointmentPanel, "card6");
@@ -513,7 +608,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 483, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(306, 306, 306)
                 .addComponent(btnLogOut4)
@@ -538,11 +633,11 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         subjectsWorkArea4.setLayout(subjectsWorkArea4Layout);
         subjectsWorkArea4Layout.setHorizontalGroup(
             subjectsWorkArea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
         subjectsWorkArea4Layout.setVerticalGroup(
             subjectsWorkArea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
+            .addGap(0, 1001, Short.MAX_VALUE)
         );
 
         jSplitPane6.setRightComponent(subjectsWorkArea4);
@@ -555,7 +650,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         );
         mealPlanPanelLayout.setVerticalGroup(
             mealPlanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jSplitPane6, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLayeredPane1.add(mealPlanPanel, "card7");
@@ -570,7 +665,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -667,6 +762,18 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         switchToWorkAreaPanel();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void txtPhoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneNoActionPerformed
+
+    private void dropDownGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownGenderActionPerformed
+
+    private void txtStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIDActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel appointmentPanel;
@@ -677,6 +784,9 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnLogOut3;
     private javax.swing.JButton btnLogOut4;
     private javax.swing.JPanel controlPanel;
+    private com.toedter.calendar.JDateChooser dateDOB;
+    private javax.swing.JComboBox<String> dropDownGender;
+    private javax.swing.JComboBox<String> dropDownStandard;
     private javax.swing.JPanel gradesPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -690,12 +800,24 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
@@ -715,6 +837,15 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel subjectsWorkArea2;
     private javax.swing.JPanel subjectsWorkArea3;
     private javax.swing.JPanel subjectsWorkArea4;
+    private javax.swing.JTextField txtCity;
+    private javax.swing.JTextField txtCommunity;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtExtraCurricular;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtPhoneNo;
+    private javax.swing.JTextField txtSchoolCode;
+    private javax.swing.JTextField txtStudentID;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
 

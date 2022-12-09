@@ -4,12 +4,17 @@
  */
 package ui;
 
-import businesslogic.Community;
+import businesslogic.City;
+import businesslogic.CityDirectory;
+import businesslogic.CommunityDirectory;
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.Person;
 import businesslogic.Person.UserRole;
 import businesslogic.PersonDirectory;
+import businesslogic.school.SchoolDirectory;
+import businesslogic.school.StudentDirectory;
+import businesslogic.school.TeacherDirectory;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.logging.Level;
@@ -29,13 +34,54 @@ public class MainJFrame extends javax.swing.JFrame {
     private static final Logger logger = Logger.getLogger(MainJFrame.class.getName());
     private EcoSystem ecoSystem;
     PersonDirectory personDirectory;
-    Community communityDirectory;
+    CityDirectory cityDirectory;
+    CommunityDirectory communityDirectory;
+    SchoolDirectory schoolDirectory;
+    StudentDirectory studentDirectory;
+    TeacherDirectory teacherDirectory;
+    
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
     
     public MainJFrame() {
         initComponents();
         setSize(1060, 770);
         ecoSystem = db4OUtil.retrieveSystem();
+        if(ecoSystem.getCityDirectory() != null) {
+            this.cityDirectory = ecoSystem.getCityDirectory();
+        } else {
+            this.cityDirectory = new CityDirectory();
+        }
+        
+        if(ecoSystem.getCommunityDirectory() != null) {
+            this.communityDirectory = ecoSystem.getCommunityDirectory();
+        } else{
+            this.communityDirectory = new CommunityDirectory();
+        }
+        if(ecoSystem.getPersonDirectory() != null) {
+            this.personDirectory = ecoSystem.getPersonDirectory();
+        } else {
+            this.personDirectory = new PersonDirectory();
+        }
+        
+        if(ecoSystem.getSchoolDirectory() != null) {
+            this.schoolDirectory = ecoSystem.getSchoolDirectory();
+        } else {
+            this.schoolDirectory = new SchoolDirectory();
+        }
+        
+        if(ecoSystem.getStudentDirectory() != null) {
+            this.studentDirectory = ecoSystem.getStudentDirectory();
+        } else {
+            this.studentDirectory = new StudentDirectory();
+        }
+        
+        if(ecoSystem.getTeacherDirectory() != null) {
+            this.teacherDirectory = ecoSystem.getTeacherDirectory();
+        } else {
+            this.teacherDirectory = new TeacherDirectory();
+        }
+        
+        
 //        personDirectory = new PersonDirectory();
         
 //        personDirectory.addPerson(new Person(null,null,null, null,
@@ -179,7 +225,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 switch(role){
                     case "SYSTEM_ADMIN":
                         clearLoginPanel();
-                        JPanel SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel();
+                        JPanel SystemAdminDashboardJPanel = new SystemAdminDashboardJPanel(ecoSystem);
                         mainWorkArea.add("SystemAdminDashboardJPanel",SystemAdminDashboardJPanel);
                         CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
                         cd1.next(mainWorkArea);
@@ -255,5 +301,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private void clearLoginPanel() {
         txtUsername.setText("");
         txtPassword.setText("");
+    }
+
+    public void loadDefaultState() {
+//        mainWorkArea.setVisible(true);
     }
 }

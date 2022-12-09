@@ -43,6 +43,23 @@ public class PersonDirectory {
         }
         return null;
     }
+
+    public Person getPersonByEmail(String schoolAdminEmail) {
+       for(Person p : personDirectory) {
+           if(p.getPersonEmailAddress().equals(schoolAdminEmail)){
+               return p;
+           }
+       }
+       return null;
+    }
+
+    public void deletePerson(Person p) {
+        personDirectory.remove(p);
+    }
+
+    public void addNewPerson(Person person) {
+        personDirectory.add(person);
+    }
     
     
 }

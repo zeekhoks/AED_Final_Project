@@ -26,8 +26,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import ui.MainJFrame;
 
 /**
  *
@@ -58,11 +60,13 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         libraryPanel.setVisible(false);
         btnLogOut.setVisible(true);
         
+        populateTeacherTable();
         populateStudentsTable();
         clearStudentForm();
         setDefaultPhoto();
         
         txtStudentID.setEditable(false);
+        txtTeacherID.setEditable(false);
 //        txtSchoolCode.setEditable(false);
         // set School Code here
     }
@@ -88,6 +92,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel39 = new javax.swing.JLabel();
         jSplitPane2 = new javax.swing.JSplitPane();
         controlPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -161,9 +166,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         txtTeacherPhone = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        dropDownTeacherCity = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
-        dropDownTeacherCommunity = new javax.swing.JComboBox<>();
         jLabel27 = new javax.swing.JLabel();
         txtTeacherPassword = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
@@ -180,6 +183,10 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         txtTeacherRole = new javax.swing.JTextField();
         dropDownTeacherGender = new javax.swing.JComboBox<>();
         btnClearEmployeeForm = new javax.swing.JButton();
+        txtTeacherCity = new javax.swing.JTextField();
+        txtTeacherCommunity = new javax.swing.JTextField();
+        txtTeacherID = new javax.swing.JTextField();
+        jLabel37 = new javax.swing.JLabel();
         subjectsPanel = new javax.swing.JPanel();
         jSplitPane4 = new javax.swing.JSplitPane();
         navigateBackPanel2 = new javax.swing.JPanel();
@@ -209,6 +216,24 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jButton13 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         studentWorkAreaPanel3 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblLibrary = new javax.swing.JTable();
+        jLabel38 = new javax.swing.JLabel();
+        dropDownLibrarySearch = new javax.swing.JComboBox<>();
+        txtLibrarySearch = new javax.swing.JTextField();
+        btnLibrarySearch = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
+        jButton19 = new javax.swing.JButton();
+        jLabel40 = new javax.swing.JLabel();
+        txtBookID = new javax.swing.JTextField();
+        jLabel41 = new javax.swing.JLabel();
+        txtBookName = new javax.swing.JTextField();
+        jLabel42 = new javax.swing.JLabel();
+        dropDownBookIssue = new javax.swing.JComboBox<>();
+        jLabel43 = new javax.swing.JLabel();
+        dropDownBookStudentID = new javax.swing.JComboBox<>();
+        jButton20 = new javax.swing.JButton();
         mealSupplyPanel = new javax.swing.JPanel();
         jSplitPane6 = new javax.swing.JSplitPane();
         navigateBackPanel4 = new javax.swing.JPanel();
@@ -216,6 +241,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jButton15 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         studentWorkAreaPanel4 = new javax.swing.JPanel();
+
+        jLabel39.setText("jLabel39");
 
         controlPanel.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -290,9 +317,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton4)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE)
+                .addGap(196, 196, 196)
                 .addComponent(btnLogOut)
-                .addGap(158, 158, 158))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         jSplitPane2.setLeftComponent(controlPanel);
@@ -323,6 +350,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton7.setText("Log Out");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -504,9 +536,10 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                                                     .addComponent(jLabel10)
                                                     .addGap(36, 36, 36)))
                                             .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addGap(51, 51, 51))
-                                            .addComponent(jLabel14))
+                                                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel12)
+                                                    .addComponent(jLabel14))
+                                                .addGap(51, 51, 51)))
                                         .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(studentWorkAreaPanelLayout.createSequentialGroup()
                                                 .addGap(2, 2, 2)
@@ -643,7 +676,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(jButton6)
                     .addComponent(jButton7)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(studentWorkAreaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -659,7 +692,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
         studentsPanelLayout.setVerticalGroup(
             studentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(studentsPanelLayout.createSequentialGroup()
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(studentsPanel, "card3");
@@ -677,6 +712,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jButton9.setText("Log Out");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -706,8 +746,18 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         });
 
         btnUpdateStudent1.setText("Update Employee");
+        btnUpdateStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateStudent1ActionPerformed(evt);
+            }
+        });
 
         btnDeleteStudent1.setText("Delete Employee");
+        btnDeleteStudent1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteStudent1ActionPerformed(evt);
+            }
+        });
 
         btnAddStudent1.setText("Add Employee");
         btnAddStudent1.addActionListener(new java.awt.event.ActionListener() {
@@ -734,19 +784,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         jLabel25.setText("City:");
 
-        dropDownTeacherCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropDownTeacherCityActionPerformed(evt);
-            }
-        });
-
         jLabel26.setText("Community:");
-
-        dropDownTeacherCommunity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropDownTeacherCommunityActionPerformed(evt);
-            }
-        });
 
         jLabel27.setText("Password:");
 
@@ -793,6 +831,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel37.setText("ID:");
+
         javax.swing.GroupLayout employeeWorkAreaPanelLayout = new javax.swing.GroupLayout(employeeWorkAreaPanel);
         employeeWorkAreaPanel.setLayout(employeeWorkAreaPanelLayout);
         employeeWorkAreaPanelLayout.setHorizontalGroup(
@@ -816,9 +856,12 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                                                 .addComponent(dateTeacherDOB, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                                                 .addComponent(txtTeacherEmail)))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, employeeWorkAreaPanelLayout.createSequentialGroup()
-                                            .addComponent(jLabel30)
+                                            .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel30)
+                                                .addComponent(jLabel37))
                                             .addGap(34, 34, 34)
                                             .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtTeacherID)
                                                 .addComponent(txtTeacherPhone)
                                                 .addComponent(dateTeacherDOJ, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))))
                                     .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
@@ -840,15 +883,15 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                                             .addComponent(jLabel32))
                                         .addGap(18, 18, 18)
                                         .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtTeacherPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dropDownTeacherCommunity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(dropDownTeacherCity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
                                                 .addGap(2, 2, 2)
                                                 .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(txtTeacherRole)
                                                     .addComponent(txtTeacherSchoolCode, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
-                                            .addComponent(dropDownTeacherGender, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(dropDownTeacherGender, 0, 158, Short.MAX_VALUE)
+                                            .addComponent(txtTeacherCity)
+                                            .addComponent(txtTeacherPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                            .addComponent(txtTeacherCommunity)))
                                     .addComponent(jLabel34))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
@@ -861,7 +904,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnAddStudent1))
                     .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
-                        .addGap(345, 345, 345)
+                        .addGap(350, 350, 350)
                         .addComponent(btnClearEmployeeForm)))
                 .addGap(91, 172, Short.MAX_VALUE))
         );
@@ -898,7 +941,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                             .addComponent(txtTeacherLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel33)
                             .addComponent(jLabel25)
-                            .addComponent(dropDownTeacherCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTeacherCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
@@ -915,8 +958,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                                     .addComponent(txtTeacherPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(employeeWorkAreaPanelLayout.createSequentialGroup()
                                 .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(dropDownTeacherCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel26))
+                                    .addComponent(jLabel26)
+                                    .addComponent(txtTeacherCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel27)
@@ -928,9 +971,13 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel34)
                         .addComponent(txtTeacherRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
+                .addGroup(employeeWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTeacherID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel37))
+                .addGap(18, 18, 18)
                 .addComponent(btnClearEmployeeForm)
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(233, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout navigateBackPanel1Layout = new javax.swing.GroupLayout(navigateBackPanel1);
@@ -974,7 +1021,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
         employeesPanelLayout.setVerticalGroup(
             employeesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(employeesPanelLayout.createSequentialGroup()
+                .addComponent(jSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 851, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(employeesPanel, "card4");
@@ -1126,7 +1175,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(dropDownSubjectTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton16)
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
 
         jSplitPane4.setRightComponent(studentWorkAreaPanel2);
@@ -1193,15 +1242,135 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         studentWorkAreaPanel3.setBackground(new java.awt.Color(37, 150, 190));
 
+        tblLibrary.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Book ID", "Book Name", "Is Issued"
+            }
+        ));
+        jScrollPane4.setViewportView(tblLibrary);
+
+        jLabel38.setText("Search By:");
+
+        dropDownLibrarySearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Name" }));
+        dropDownLibrarySearch.setSelectedIndex(-1);
+
+        btnLibrarySearch.setText("Search");
+
+        jButton17.setText("Issue Book");
+
+        jButton18.setText("View Book");
+
+        jButton19.setText("Delete Book");
+
+        jLabel40.setText("ID:");
+
+        jLabel41.setText("Name:");
+
+        jLabel42.setText("Issue:");
+
+        dropDownBookIssue.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        dropDownBookIssue.setSelectedIndex(-1);
+        dropDownBookIssue.setToolTipText("");
+
+        jLabel43.setText("Student ID:");
+
+        dropDownBookStudentID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropDownBookStudentIDActionPerformed(evt);
+            }
+        });
+
+        jButton20.setText("Add Book");
+
         javax.swing.GroupLayout studentWorkAreaPanel3Layout = new javax.swing.GroupLayout(studentWorkAreaPanel3);
         studentWorkAreaPanel3.setLayout(studentWorkAreaPanel3Layout);
         studentWorkAreaPanel3Layout.setHorizontalGroup(
             studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabel38)
+                        .addGap(18, 18, 18)
+                        .addComponent(dropDownLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(txtLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(btnLibrarySearch))
+                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(jLabel43)
+                        .addGap(18, 18, 18)
+                        .addComponent(dropDownBookStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                                .addGap(313, 313, 313)
+                                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel41)
+                                    .addComponent(jLabel42)
+                                    .addComponent(jLabel40))
+                                .addGap(45, 45, 45))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton18)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton17)
+                                .addGap(26, 26, 26)))
+                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(dropDownBookIssue, 0, 124, Short.MAX_VALUE)
+                                .addComponent(txtBookName)
+                                .addComponent(txtBookID))
+                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                                .addComponent(jButton19)
+                                .addGap(28, 28, 28)
+                                .addComponent(jButton20, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(257, Short.MAX_VALUE))
         );
         studentWorkAreaPanel3Layout.setVerticalGroup(
             studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 821, Short.MAX_VALUE)
+            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(dropDownLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLibrarySearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLibrarySearch))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton17)
+                    .addComponent(jButton18)
+                    .addComponent(jButton19)
+                    .addComponent(jButton20))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel40)
+                    .addComponent(txtBookID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel41)
+                    .addComponent(txtBookName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42)
+                    .addComponent(dropDownBookIssue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel43)
+                    .addComponent(dropDownBookStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(362, Short.MAX_VALUE))
         );
 
         jSplitPane5.setRightComponent(studentWorkAreaPanel3);
@@ -1276,7 +1445,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
         studentWorkAreaPanel4Layout.setVerticalGroup(
             studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 821, Short.MAX_VALUE)
+            .addGap(0, 788, Short.MAX_VALUE)
         );
 
         jSplitPane6.setRightComponent(studentWorkAreaPanel4);
@@ -1311,7 +1480,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addGap(0, 857, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
@@ -1349,6 +1518,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
+//        this.dispose();
+        switchToMainFrame();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1513,6 +1684,39 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void btnViewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEmployeeActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex = tblTeacher.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        Teacher t = (Teacher)model.getValueAt(selectedRowIndex, 0);
+        txtTeacherFirstName.setText(t.getPersonFirstName());
+        txtTeacherLastName.setText(t.getPersonLastName());
+        dropDownTeacherGender.setSelectedItem(t.getPersonGender());
+        txtTeacherID.setText(t.getPersonId());
+        txtTeacherEmail.setText(t.getPersonEmailAddress());
+        Date teacherDOB;
+        try {
+            teacherDOB = new SimpleDateFormat("yyyy-MM-dd").parse(t.getDateOfBirth());
+            dateTeacherDOB.setDate(teacherDOB);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(SchoolAdminDashboardJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Date teacherDOJ;
+        try {
+            teacherDOJ = new SimpleDateFormat("yyyy-MM-dd").parse(t.getDateOfJoining());
+            dateTeacherDOJ.setDate(teacherDOJ);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(SchoolAdminDashboardJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtTeacherPhone.setText(String.valueOf(t.getPersonPhoneNumber()));
+        txtTeacherCity.setText(String.valueOf(t.getCommunity().getCity().getCity()));
+        txtTeacherCommunity.setText(String.valueOf(t.getCommunity().getCommunity()));
+        txtTeacherPassword.setText(t.getUserPassword());
+        txtTeacherSchoolCode.setText(t.getSchoolCode());
+        
     }//GEN-LAST:event_btnViewEmployeeActionPerformed
 
     private void txtTeacherEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherEmailActionPerformed
@@ -1522,14 +1726,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private void txtTeacherPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherPhoneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTeacherPhoneActionPerformed
-
-    private void dropDownTeacherCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTeacherCityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dropDownTeacherCityActionPerformed
-
-    private void dropDownTeacherCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownTeacherCommunityActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dropDownTeacherCommunityActionPerformed
 
     private void txtTeacherPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeacherPasswordActionPerformed
         // TODO add your handling code here:
@@ -1745,15 +1941,15 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                  JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
                 return;
             }
-            
+            txtTeacherID.setEditable(false);
             String schoolCode = txtTeacherSchoolCode.getText();
             String teacherID = txtTeacherSchoolCode.getText()+(String.valueOf(teacherCounter));
             teacherCounter++;
             String firstName = txtTeacherFirstName.getText();
             String lastName = txtTeacherLastName.getText();
             String gender = dropDownTeacherGender.getSelectedItem().toString();
-            String city = dropDownTeacherCity.getSelectedItem().toString();
-            String community = dropDownTeacherCommunity.getSelectedItem().toString();
+            String city = txtTeacherCity.getText();
+            String community = txtTeacherCommunity.getText();
             Date Datedob = dateTeacherDOB.getDate();
             Date Datedoj = dateTeacherDOJ.getDate();
             String dob = DateFormat.getDateInstance().format(Datedob);
@@ -1790,6 +1986,110 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         clearEmployeeForm();
     }//GEN-LAST:event_btnClearEmployeeFormActionPerformed
 
+    private void btnUpdateStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateStudent1ActionPerformed
+        // TODO add your handling code here:
+        // UPDATE EMPLOYEE
+        if(isEmployeeDataEnteredValid()) {
+            if(!isNotEmptyFieldCheck(txtTeacherFirstName)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtTeacherLastName)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtTeacherPhone)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            if(!isNotEmptyFieldCheck(txtTeacherEmail)) {
+                 JOptionPane.showMessageDialog(this,"Please do not leave First Name field empty!");
+                return;
+            }
+            txtTeacherID.setEditable(false);
+            txtTeacherSchoolCode.setEditable(false);
+            
+            String teacherID = txtTeacherID.getText();
+            String schoolCode = txtTeacherSchoolCode.getText();
+            String firstName = txtTeacherFirstName.getText();
+            String lastName = txtTeacherLastName.getText();
+            String gender = dropDownTeacherGender.getSelectedItem().toString();
+            String city = txtTeacherCity.getText();
+            String community = txtTeacherCommunity.getText();
+            Date Datedob = dateTeacherDOB.getDate();
+            Date Datedoj = dateTeacherDOJ.getDate();
+            String dob = DateFormat.getDateInstance().format(Datedob);
+            String doj = DateFormat.getDateInstance().format(Datedoj);
+            String email = txtTeacherEmail.getText();
+            Long phoneNo = Long.parseLong(txtTeacherPhone.getText());
+            String password = txtTeacherPassword.getText();
+            
+            Teacher t = ecoSystem.getTeacherDirectory().getTeacherByID(teacherID);
+            Community com;
+//            if(!ecoSystem.getCommunityDirectory().getCommunityDirectory().equals(community)){
+//                com = ecoSystem.getCommunityDirectory().addNewCommunity();
+//                com.setCommunity(community);
+//                com.setCity(new City(city));
+////                s.setCommunity(c);
+//            } else{
+//                com = ecoSystem.getCommunityDirectory().getCommunityByName(community);
+//            }
+            t.setPersonFirstName(firstName);
+            t.setPersonLastName(lastName);
+            t.setPersonGender(gender);
+            t.setDateOfBirth(dob);
+            t.setPersonPhoneNumber(phoneNo);
+            if(!t.getCommunity().getCommunity().equals(community)){
+                Community c = ecoSystem.getCommunityDirectory().addNewCommunity();
+                c.setCommunity(community);
+                c.setCity(new City(city));
+                t.setCommunity(c);
+            }
+            t.setUserPassword(password);           
+            t.setPersonEmailAddress(email);
+            t.setPersonId(teacherID);
+            t.setDateOfJoining(doj);
+            t.setSchoolCode(schoolCode);
+            
+            JOptionPane.showMessageDialog(this, "Teacher Record Updated.");
+            clearEmployeeForm();
+      
+        } else {
+            JOptionPane.showMessageDialog(this, "Error Updating Teacher. Please check DataTypes");
+        }
+        
+    }//GEN-LAST:event_btnUpdateStudent1ActionPerformed
+
+    private void btnDeleteStudent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteStudent1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblTeacher.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        Teacher t = (Teacher)model.getValueAt(selectedRowIndex, 0);
+        
+        ecoSystem.getTeacherDirectory().deleteTeacher(t);
+        JOptionPane.showMessageDialog(this, "Teacher record deleted!");
+        populateTeacherTable();
+        clearEmployeeForm();
+    }//GEN-LAST:event_btnDeleteStudent1ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void dropDownBookStudentIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropDownBookStudentIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dropDownBookStudentIDActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddStudent;
@@ -1802,6 +2102,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnClearStudentForm;
     private javax.swing.JButton btnDeleteStudent;
     private javax.swing.JButton btnDeleteStudent1;
+    private javax.swing.JButton btnLibrarySearch;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnUpdateStudent;
     private javax.swing.JButton btnUpdateStudent1;
@@ -1812,13 +2113,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateDOB;
     private com.toedter.calendar.JDateChooser dateTeacherDOB;
     private com.toedter.calendar.JDateChooser dateTeacherDOJ;
+    private javax.swing.JComboBox<String> dropDownBookIssue;
+    private javax.swing.JComboBox<String> dropDownBookStudentID;
     private javax.swing.JComboBox<String> dropDownExtraCurricular;
     private javax.swing.JComboBox<String> dropDownGender;
+    private javax.swing.JComboBox<String> dropDownLibrarySearch;
     private javax.swing.JComboBox<String> dropDownStandard;
     private javax.swing.JComboBox<String> dropDownSubjectStandard;
     private javax.swing.JComboBox<String> dropDownSubjectTeacher;
-    private javax.swing.JComboBox<String> dropDownTeacherCity;
-    private javax.swing.JComboBox<String> dropDownTeacherCommunity;
     private javax.swing.JComboBox<String> dropDownTeacherGender;
     private javax.swing.JPanel employeeWorkAreaPanel;
     private javax.swing.JPanel employeesPanel;
@@ -1830,7 +2132,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1868,7 +2174,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1878,6 +2191,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
@@ -1898,22 +2212,29 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel studentWorkAreaPanel4;
     private javax.swing.JPanel studentsPanel;
     private javax.swing.JPanel subjectsPanel;
+    private javax.swing.JTable tblLibrary;
     private javax.swing.JTable tblStudent;
     private javax.swing.JTable tblSubjects;
     private javax.swing.JTable tblTeacher;
+    private javax.swing.JTextField txtBookID;
+    private javax.swing.JTextField txtBookName;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCommunity;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
     private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtLibrarySearch;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtPhoneNo;
     private javax.swing.JTextField txtSchoolCode;
     private javax.swing.JTextField txtStudentID;
     private javax.swing.JTextField txtSubjectID;
     private javax.swing.JTextField txtSubjectName;
+    private javax.swing.JTextField txtTeacherCity;
+    private javax.swing.JTextField txtTeacherCommunity;
     private javax.swing.JTextField txtTeacherEmail;
     private javax.swing.JTextField txtTeacherFirstName;
+    private javax.swing.JTextField txtTeacherID;
     private javax.swing.JTextField txtTeacherLastName;
     private javax.swing.JTextField txtTeacherPassword;
     private javax.swing.JTextField txtTeacherPhone;
@@ -1988,8 +2309,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         dateTeacherDOB.setDate(null);
         dateTeacherDOJ.setDate(null);
         dropDownGender.setSelectedIndex(-1);
-        dropDownTeacherCity.setSelectedIndex(-1);
-        dropDownTeacherCommunity.setSelectedIndex(-1);
+        txtTeacherCity.setText("");
+        txtTeacherCommunity.setText("");
         txtTeacherPassword.setText("");
         txtTeacherSchoolCode.setText("");
         txtTeacherRole.setText("");
@@ -2006,6 +2327,21 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     }
 
     private void populateTeacherTable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
+        model.setRowCount(0);
+        
+        for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
+            Object[] row = new Object[4];
+            row[0] = t;
+            row[1] = t.getPersonLastName();
+            row[2] = t.getDateOfJoining();
+            row[3] = t.getPersonEmailAddress();    
+            model.addRow(row);
+        }
+    }
+
+    private void switchToMainFrame() {
+        MainJFrame mainFrame = new MainJFrame();
+        mainFrame.setVisible(true);
     }
 }
