@@ -17,13 +17,12 @@ public class PlacementCoordinator extends Person{
     private Date startDate;
     private String instituteCode;
     
-         public PlacementCoordinator(String personFirstName, String personLastName, String personGender, 
+         public PlacementCoordinator(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
             Community community, String userPassword, UserRole userRole, String placementCordID, Date startDate, 
             String institueCode) {
             
-        this.setPersonFirstName(personFirstName);
-        this.setPersonLastName(personLastName);
+        this.setPersonName(personName);
         this.setPersonGender(personGender);
         this.setPersonId(personId);
         this.setDateOfBirth(dateOfBirth);

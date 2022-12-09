@@ -15,12 +15,11 @@ public class Professor extends Person {
     private String professorID;
     private Date startDate;
     private String instituteCode;
-        public Professor(String personFirstName, String personLastName, String personGender, 
+        public Professor(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
             Community community, String userPassword, UserRole userRole, String sprofessorID, Date startDate, String instituteCode) {
             
-        this.setPersonFirstName(personFirstName);
-        this.setPersonLastName(personLastName);
+        this.setPersonName(personName);
         this.setPersonGender(personGender);
         this.setPersonId(personId);
         this.setDateOfBirth(dateOfBirth);

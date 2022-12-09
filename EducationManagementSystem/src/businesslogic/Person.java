@@ -21,8 +21,7 @@ public class Person {
         DEPARTMENT_ADMIN
     }
     
-    private String personFirstName;
-    private String personLastName;
+    private String personName;
     private String personGender;
     private String personId;
     private Date dateOfBirth;
@@ -86,20 +85,12 @@ public class Person {
         this.personEmailAddress = personEmailAddress;
     }
 
-    public String getPersonFirstName() {
-        return personFirstName;
+    public String getPersonName() {
+        return personName;
     }
 
-    public void setPersonFirstName(String personFirstName) {
-        this.personFirstName = personFirstName;
-    }
-
-    public String getPersonLastName() {
-        return personLastName;
-    }
-
-    public void setPersonLastName(String personLastName) {
-        this.personLastName = personLastName;
+    public void setPersonName(String personName) {
+        this.personName = personName;
     }
 
     public String getPersonId() {

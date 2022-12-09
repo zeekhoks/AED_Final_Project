@@ -21,13 +21,12 @@ public class Student extends Person{
     private String photo;
     
     
-    public Student(String personFirstName, String personLastName, String personGender, 
+    public Student(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
             Community community, String userPassword, String studentID, String instituteCode,
             Degree studentDegree, String graduationYear,  String currentSemester, String photo) {
             
-        this.setPersonFirstName(personFirstName);
-        this.setPersonLastName(personLastName);
+        this.setPersonName(personName);
         this.setPersonGender(personGender);
         this.setPersonId(personId);
         this.setDateOfBirth(dateOfBirth);

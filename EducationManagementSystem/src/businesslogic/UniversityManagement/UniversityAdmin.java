@@ -23,12 +23,11 @@ public class UniversityAdmin extends Person {
     public static PersonDirectory personDirectoryRef = new PersonDirectory();
     public static CommunityDirectory communityDirectoryRef = new CommunityDirectory();
         
-    public UniversityAdmin(String personFirstName, String personLastName, String personGender, 
+    public UniversityAdmin(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
             Community community, String userPassword) {
             
-        this.setPersonFirstName(personFirstName);
-        this.setPersonLastName(personLastName);
+        this.setPersonName(personName);
         this.setPersonGender(personGender);
         this.setPersonId(personId);
         this.setDateOfBirth(dateOfBirth);
@@ -44,12 +43,12 @@ public class UniversityAdmin extends Person {
         
         
         
-        personDirectoryRef.getPersonDirectory().add(new UniversityAdmin("Zainab", "Khokawala",
+        personDirectoryRef.getPersonDirectory().add(new UniversityAdmin("Zainab",
                 "Female", "123456", new Date (1997, 07,26), 12345677L, 
                 "zk@gmail.com",
                 new Community("Park Drive", new City("Boston")), "zk123"));
              
-        personDirectoryRef.getPersonDirectory().add(new Student("Hinal", "Patel", "Female", 
+        personDirectoryRef.getPersonDirectory().add(new Student("Hinal", "Female", 
         "123457", new Date (1997, 11,21), 12345687L, "hp@gmail.com", new Community("Westland Avenue", 
                 new City("Boston")), "hp123", "12", "U12345", new Degree("Graduate","Information Systems"), 
                 "2024", "Fall 2022", "photo"));

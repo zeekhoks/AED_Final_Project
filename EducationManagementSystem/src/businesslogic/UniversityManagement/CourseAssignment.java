@@ -8,13 +8,20 @@ package businesslogic.UniversityManagement;
  *
  * @author zainabkhokawala
  */
-public class Grades {
+public class CourseAssignment {
     
     private String studentID;
     private String professorID;
-    private String grades;
+    private int courseID;
+    private float grade;
+
+    public CourseAssignment(String studentID, String professorID, int courseID, float grade) {
+        this.studentID = studentID;
+        this.professorID = professorID;
+        this.courseID = courseID;
+        this.grade = grade;
+    }
     
-//    add method to calculate grades for transcript
 
     public String getStudentID() {
         return studentID;
@@ -32,13 +39,22 @@ public class Grades {
         this.professorID = professorID;
     }
 
-    public String getGrades() {
-        return grades;
+    public int getCourseID() {
+        return courseID;
     }
 
-    public void setGrades(String grades) {
-        this.grades = grades;
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
     }
+
+    public float getGrade() {
+        return grade;
+    }
+
+    public void setGrade(float grade) {
+        this.grade = grade;
+    }
+    
     
     
     

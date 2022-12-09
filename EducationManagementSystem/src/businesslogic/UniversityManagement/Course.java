@@ -16,6 +16,8 @@ public class Course {
     private String professorID;
     private int creditHours;
     private String courseDescription;
+    private int courseCapacity;
+    private String semester;
 
     public int getCourseID() {
         return courseID;
@@ -55,6 +57,22 @@ public class Course {
 
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
+    }
+
+    public int getCourseCapacity() {
+        return courseCapacity;
+    }
+
+    public void setCourseCapacity(int courseCapacity) {
+        this.courseCapacity = courseCapacity;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
     }
     
     

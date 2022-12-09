@@ -4,11 +4,14 @@
  */
 package ui;
 
+import businesslogic.Person;
+import businesslogic.UniversityManagement.UniversityAdmin;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
+import ui.UniversityManagement.UniversityAdminDashboard;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
 
@@ -64,6 +67,12 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblUsername.setText("Username: ");
 
+        txtUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsernameActionPerformed(evt);
+            }
+        });
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,13 +123,38 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        logger.log(Level.INFO, "Login Button pressed");
-        JPanel StudentDashboardJPanel = new StudentDashboardJPanel();
-        //        changePanel(schoolAdminDashboard);
-        mainWorkArea.add("StudentDashboardJPanel",StudentDashboardJPanel);
-        CardLayout cd = (CardLayout) mainWorkArea.getLayout();
-        cd.next(mainWorkArea);
+//        logger.log(Level.INFO, "Login Button pressed");
+//        JPanel StudentDashboardPanel = new StudentDashboardJPanel();
+//        mainWorkArea.add("StudentDashboardJPanel",StudentDashboardPanel);
+//        CardLayout cd = (CardLayout) mainWorkArea.getLayout();
+//        cd.next(mainWorkArea);
+        String userName = txtUsername.getText();
+        String userPassword = String.valueOf(txtPassword.getPassword());
+        
+        Person person = null;
+        
+        for(Person p: UniversityAdmin.personDirectoryRef.getPersonDirectory()){
+            if(p.getPersonEmailAddress().equals(userName)&&p.getUserPassword().equals(userPassword))
+                person = p;
+        }
+        
+        if(person!=null){
+            
+            switch(person.getUserRole()){
+                case UNIVERSITY_ADMIN:
+                    JPanel UniversityAdminDashboard = new UniversityAdminDashboard();
+                    mainWorkArea.add("UniversityAdminDashboard", UniversityAdminDashboard);
+                    CardLayout cd = (CardLayout) mainWorkArea.getLayout();
+                    cd.next(mainWorkArea);
+                    
+            }
+        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
     
     public void changePanel(JPanel panel) {
         removeAll();
