@@ -13,6 +13,11 @@ public class Degree {
     private String degreeLevel;
     private String major;
 
+    public Degree(String degreeLevel, String major) {
+        this.degreeLevel = degreeLevel;
+        this.major = major;
+    }
+
     public String getDegreeLevel() {
         return degreeLevel;
     }

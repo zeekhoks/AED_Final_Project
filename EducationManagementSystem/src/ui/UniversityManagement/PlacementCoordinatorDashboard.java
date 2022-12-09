@@ -39,12 +39,8 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         DashboardPanel = new javax.swing.JSplitPane();
         leftPane = new javax.swing.JPanel();
         btnProfile = new javax.swing.JButton();
-        btnTranscript = new javax.swing.JButton();
-        btnMealPlan = new javax.swing.JButton();
         btnAppointment = new javax.swing.JButton();
-        btnDorm = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
-        btnEvent = new javax.swing.JButton();
         rightPane = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
         workAreaPane = new javax.swing.JLabel();
@@ -89,42 +85,6 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         btnView = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         yearChooser = new com.toedter.calendar.JYearChooser();
-        transcriptPanel = new javax.swing.JPanel();
-        studentSplitPane1 = new javax.swing.JSplitPane();
-        navigateBackPanel1 = new javax.swing.JPanel();
-        btnBackTranscript = new javax.swing.JButton();
-        btnLogoutTranscript = new javax.swing.JButton();
-        lblTranscriptPanel = new javax.swing.JLabel();
-        studentWorkAreaPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblTranscripts = new javax.swing.JTable();
-        txtFirstName1 = new javax.swing.JTextField();
-        txtCourse2Name = new javax.swing.JTextField();
-        txtCourse3Name = new javax.swing.JTextField();
-        lblCourse1 = new javax.swing.JLabel();
-        lblCourse2 = new javax.swing.JLabel();
-        lblCourse3 = new javax.swing.JLabel();
-        txtGrade1 = new javax.swing.JTextField();
-        lblGrade1 = new javax.swing.JLabel();
-        txtGrade3 = new javax.swing.JTextField();
-        lblGrade2 = new javax.swing.JLabel();
-        lblGrade3 = new javax.swing.JLabel();
-        txtInstituteCode1 = new javax.swing.JTextField();
-        lblStudentID4 = new javax.swing.JLabel();
-        txtStudentDegree1 = new javax.swing.JTextField();
-        lblStudentID5 = new javax.swing.JLabel();
-        txtStudentIDTranscript = new javax.swing.JTextField();
-        lblCurrentSemester1 = new javax.swing.JLabel();
-        lblGraduationYear1 = new javax.swing.JLabel();
-        lblStudentIDTranscript = new javax.swing.JLabel();
-        comboSemester1 = new javax.swing.JComboBox<>();
-        btnView1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
-        yearChooser1 = new com.toedter.calendar.JYearChooser();
-        txtGrade2 = new javax.swing.JTextField();
-        lblStudentNameTranscript = new javax.swing.JLabel();
-        txtStudentNameTranscript = new javax.swing.JTextField();
-        btnTranscriptRequest = new javax.swing.JButton();
         appointmentPanel = new javax.swing.JPanel();
         studentSplitPane2 = new javax.swing.JSplitPane();
         navigateBackPanel2 = new javax.swing.JPanel();
@@ -146,9 +106,7 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         lblAppointmentTime = new javax.swing.JLabel();
         comboSemester2 = new javax.swing.JComboBox<>();
         btnViewAppointment = new javax.swing.JButton();
-        bntCreateAppointment = new javax.swing.JButton();
         txtCity = new javax.swing.JTextField();
-        btnDeleteAppointment = new javax.swing.JButton();
         btnUpdateAppointment = new javax.swing.JButton();
         dateChooserAppointment = new com.toedter.calendar.JDateChooser();
         formattedTime = new javax.swing.JFormattedTextField();
@@ -156,49 +114,12 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         lblCity = new javax.swing.JLabel();
         comboJobs = new javax.swing.JComboBox<>();
         lblRolePreference = new javax.swing.JLabel();
-        eventPanel = new javax.swing.JPanel();
-        studentSplitPane3 = new javax.swing.JSplitPane();
-        navigateBackPanel3 = new javax.swing.JPanel();
-        btnBackTranscript2 = new javax.swing.JButton();
-        btnLogoutTranscript2 = new javax.swing.JButton();
-        lblTranscriptPanel2 = new javax.swing.JLabel();
-        studentWorkAreaPanel3 = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblTranscripts2 = new javax.swing.JTable();
-        txtEventDescription = new javax.swing.JTextField();
-        lblEventName = new javax.swing.JLabel();
-        lblEventDescription = new javax.swing.JLabel();
-        lblEventGuest = new javax.swing.JLabel();
-        lblAppointmentDate1 = new javax.swing.JLabel();
-        txtEventName = new javax.swing.JTextField();
-        lblCurrentSemesterEvent = new javax.swing.JLabel();
-        lblAppointmentTime1 = new javax.swing.JLabel();
-        comboSemesterEvent = new javax.swing.JComboBox<>();
-        btnViewEvent = new javax.swing.JButton();
-        txtCity1 = new javax.swing.JTextField();
-        btnUpdateEvent = new javax.swing.JButton();
-        dateChooserAppointment1 = new com.toedter.calendar.JDateChooser();
-        formattedTime1 = new javax.swing.JFormattedTextField();
-        lblEventAttendance = new javax.swing.JLabel();
-        btnYes = new javax.swing.JRadioButton();
-        btnNo = new javax.swing.JRadioButton();
 
         leftPane.setBackground(new java.awt.Color(0, 153, 153));
 
         btnProfile.setText("Manage Profile");
 
-        btnTranscript.setText("Transcripts");
-        btnTranscript.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTranscriptActionPerformed(evt);
-            }
-        });
-
-        btnMealPlan.setText("Meal Plan");
-
-        btnAppointment.setText("Coordinator Appointment");
-
-        btnDorm.setText("Dormitory");
+        btnAppointment.setText("Manage Appointments");
 
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogOut.setText("Log Out");
@@ -208,8 +129,6 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
             }
         });
 
-        btnEvent.setText("Events of the Year");
-
         javax.swing.GroupLayout leftPaneLayout = new javax.swing.GroupLayout(leftPane);
         leftPane.setLayout(leftPaneLayout);
         leftPaneLayout.setHorizontalGroup(
@@ -217,13 +136,9 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
             .addGroup(leftPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDorm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMealPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTranscript, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPaneLayout.setVerticalGroup(
@@ -232,16 +147,8 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                 .addGap(248, 248, 248)
                 .addComponent(btnProfile)
                 .addGap(18, 18, 18)
-                .addComponent(btnTranscript)
-                .addGap(18, 18, 18)
-                .addComponent(btnMealPlan)
-                .addGap(18, 18, 18)
                 .addComponent(btnAppointment)
-                .addGap(18, 18, 18)
-                .addComponent(btnDorm)
-                .addGap(18, 18, 18)
-                .addComponent(btnEvent)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 246, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, Short.MAX_VALUE)
                 .addComponent(btnLogOut)
                 .addGap(126, 126, 126))
         );
@@ -559,291 +466,6 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
 
         rightPane.add(profilePanel, "card3");
 
-        studentSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-
-        navigateBackPanel1.setBackground(new java.awt.Color(0, 0, 0));
-
-        btnBackTranscript.setText("Back");
-
-        btnLogoutTranscript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
-        btnLogoutTranscript.setText("Log Out");
-
-        lblTranscriptPanel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblTranscriptPanel.setForeground(new java.awt.Color(255, 255, 255));
-        lblTranscriptPanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTranscriptPanel.setText("Manage Transcripts");
-
-        javax.swing.GroupLayout navigateBackPanel1Layout = new javax.swing.GroupLayout(navigateBackPanel1);
-        navigateBackPanel1.setLayout(navigateBackPanel1Layout);
-        navigateBackPanel1Layout.setHorizontalGroup(
-            navigateBackPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigateBackPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(btnBackTranscript)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 248, Short.MAX_VALUE)
-                .addComponent(lblTranscriptPanel)
-                .addGap(236, 236, 236)
-                .addComponent(btnLogoutTranscript)
-                .addGap(48, 48, 48))
-        );
-        navigateBackPanel1Layout.setVerticalGroup(
-            navigateBackPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigateBackPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(navigateBackPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBackTranscript)
-                    .addComponent(btnLogoutTranscript)
-                    .addComponent(lblTranscriptPanel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        studentSplitPane1.setTopComponent(navigateBackPanel1);
-
-        studentWorkAreaPanel1.setBackground(new java.awt.Color(37, 150, 190));
-
-        tblTranscripts.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Semester", "Student Name", "Graduation Year", "Course 1", "Grade 1", "Course 2", "Grade 2", "Course 3", "Grade 3", "Current Semester"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(tblTranscripts);
-        if (tblTranscripts.getColumnModel().getColumnCount() > 0) {
-            tblTranscripts.getColumnModel().getColumn(7).setHeaderValue("City for Job");
-            tblTranscripts.getColumnModel().getColumn(8).setHeaderValue("Role Preference");
-            tblTranscripts.getColumnModel().getColumn(9).setHeaderValue("Current Semester");
-        }
-
-        lblCourse1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCourse1.setText("Course 1 Name");
-
-        lblCourse2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCourse2.setText("Course 2 Name");
-
-        lblCourse3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCourse3.setText("Course 3 Name");
-
-        txtGrade1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGrade1ActionPerformed(evt);
-            }
-        });
-
-        lblGrade1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblGrade1.setText("Grade");
-
-        txtGrade3.setEditable(false);
-        txtGrade3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGrade3ActionPerformed(evt);
-            }
-        });
-
-        lblGrade2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblGrade2.setText("Grade ");
-
-        lblGrade3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblGrade3.setText("Grade");
-
-        txtInstituteCode1.setEditable(false);
-        txtInstituteCode1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInstituteCode1ActionPerformed(evt);
-            }
-        });
-
-        lblStudentID4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblStudentID4.setText("Institute Code");
-
-        txtStudentDegree1.setEditable(false);
-        txtStudentDegree1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentDegree1ActionPerformed(evt);
-            }
-        });
-
-        lblStudentID5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblStudentID5.setText("Student Degree");
-
-        txtStudentIDTranscript.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentIDTranscriptActionPerformed(evt);
-            }
-        });
-
-        lblCurrentSemester1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCurrentSemester1.setText("Current Semester");
-
-        lblGraduationYear1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblGraduationYear1.setText("Graduation Year");
-
-        lblStudentIDTranscript.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblStudentIDTranscript.setText("Student ID");
-
-        comboSemester1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Semester", "Fall 2022", "Winter 2022", "Spring 2023", "Summer 2023", "Fall 2023", "Winter 2023", "Spring 2024", "Summer 2024", "Fall 2024", "Winter 2024", " " }));
-
-        btnView1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnView1.setText("VIEW");
-
-        btnUpdate1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnUpdate1.setText("UPDATE");
-
-        txtGrade2.setEditable(false);
-        txtGrade2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGrade2ActionPerformed(evt);
-            }
-        });
-
-        lblStudentNameTranscript.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblStudentNameTranscript.setText("Student Name");
-
-        txtStudentNameTranscript.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentNameTranscriptActionPerformed(evt);
-            }
-        });
-
-        btnTranscriptRequest.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnTranscriptRequest.setText("REQUEST TRANSCRIPTS");
-
-        javax.swing.GroupLayout studentWorkAreaPanel1Layout = new javax.swing.GroupLayout(studentWorkAreaPanel1);
-        studentWorkAreaPanel1.setLayout(studentWorkAreaPanel1Layout);
-        studentWorkAreaPanel1Layout.setHorizontalGroup(
-            studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
-            .addGroup(studentWorkAreaPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblGraduationYear1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCourse1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCourse2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCourse3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblStudentNameTranscript, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCurrentSemester1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(studentWorkAreaPanel1Layout.createSequentialGroup()
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCourse3Name, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtCourse2Name, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtFirstName1)
-                            .addComponent(yearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtStudentNameTranscript, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblStudentID4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGrade3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStudentIDTranscript, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGrade1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGrade2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtGrade1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtGrade3, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtInstituteCode1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtStudentIDTranscript, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(txtGrade2, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
-                        .addGap(62, 62, 62))
-                    .addGroup(studentWorkAreaPanel1Layout.createSequentialGroup()
-                        .addComponent(comboSemester1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblStudentID5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtStudentDegree1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(62, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTranscriptRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        studentWorkAreaPanel1Layout.setVerticalGroup(
-            studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(studentWorkAreaPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(studentWorkAreaPanel1Layout.createSequentialGroup()
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCurrentSemester1)
-                            .addComponent(comboSemester1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStudentID5)
-                            .addComponent(txtStudentDegree1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtFirstName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCourse1)
-                            .addComponent(lblGrade1)
-                            .addComponent(txtGrade1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCourse2Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCourse2)
-                            .addComponent(lblGrade2)
-                            .addComponent(txtGrade2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCourse3Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCourse3)
-                            .addComponent(txtGrade3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGrade3))
-                        .addGap(18, 18, 18)
-                        .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtInstituteCode1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblStudentID4))
-                            .addComponent(lblGraduationYear1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(yearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStudentIDTranscript)
-                    .addComponent(txtStudentIDTranscript, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStudentNameTranscript)
-                    .addComponent(txtStudentNameTranscript, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addGroup(studentWorkAreaPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnView1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTranscriptRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
-        );
-
-        studentSplitPane1.setRightComponent(studentWorkAreaPanel1);
-
-        javax.swing.GroupLayout transcriptPanelLayout = new javax.swing.GroupLayout(transcriptPanel);
-        transcriptPanel.setLayout(transcriptPanelLayout);
-        transcriptPanelLayout.setHorizontalGroup(
-            transcriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transcriptPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(studentSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        transcriptPanelLayout.setVerticalGroup(
-            transcriptPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(studentSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-
-        rightPane.add(transcriptPanel, "card3");
-
         studentSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         navigateBackPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -957,21 +579,10 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         btnViewAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnViewAppointment.setText("VIEW");
 
-        bntCreateAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        bntCreateAppointment.setText("CREATE");
-
         txtCity.setEditable(false);
         txtCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCityActionPerformed(evt);
-            }
-        });
-
-        btnDeleteAppointment.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnDeleteAppointment.setText("DELETE");
-        btnDeleteAppointment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteAppointmentActionPerformed(evt);
             }
         });
 
@@ -1050,16 +661,12 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtStudentDegreeAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bntCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnViewAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnViewAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(197, 197, 197))
+                .addComponent(btnUpdateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(233, 233, 233))
         );
         studentWorkAreaPanel2Layout.setVerticalGroup(
             studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1100,15 +707,11 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboJobs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRolePreference))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnViewAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntCreateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                    .addComponent(btnUpdateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(85, 85, 85))
         );
 
         studentSplitPane2.setRightComponent(studentWorkAreaPanel2);
@@ -1128,239 +731,6 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
 
         rightPane.add(appointmentPanel, "card3");
 
-        studentSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
-
-        navigateBackPanel3.setBackground(new java.awt.Color(0, 0, 0));
-
-        btnBackTranscript2.setText("Back");
-
-        btnLogoutTranscript2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
-        btnLogoutTranscript2.setText("Log Out");
-
-        lblTranscriptPanel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblTranscriptPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        lblTranscriptPanel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTranscriptPanel2.setText("Manage Event Attendance");
-
-        javax.swing.GroupLayout navigateBackPanel3Layout = new javax.swing.GroupLayout(navigateBackPanel3);
-        navigateBackPanel3.setLayout(navigateBackPanel3Layout);
-        navigateBackPanel3Layout.setHorizontalGroup(
-            navigateBackPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigateBackPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(btnBackTranscript2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(lblTranscriptPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127)
-                .addComponent(btnLogoutTranscript2)
-                .addGap(48, 48, 48))
-        );
-        navigateBackPanel3Layout.setVerticalGroup(
-            navigateBackPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navigateBackPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(navigateBackPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBackTranscript2)
-                    .addComponent(btnLogoutTranscript2)
-                    .addComponent(lblTranscriptPanel2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        studentSplitPane3.setTopComponent(navigateBackPanel3);
-
-        studentWorkAreaPanel3.setBackground(new java.awt.Color(37, 150, 190));
-
-        tblTranscripts2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Semester", "Event Name", "Event Description", "Event Speaker", "Event Date", "Event Time", "Event Attendance"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(tblTranscripts2);
-
-        txtEventDescription.setEditable(false);
-        txtEventDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtEventDescription.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEventDescriptionActionPerformed(evt);
-            }
-        });
-
-        lblEventName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEventName.setText("Event Name");
-
-        lblEventDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEventDescription.setText("Event Description");
-
-        lblEventGuest.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEventGuest.setText("Event Guest");
-
-        lblAppointmentDate1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblAppointmentDate1.setText("Event Date");
-
-        txtEventName.setEditable(false);
-        txtEventName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtEventName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEventNameActionPerformed(evt);
-            }
-        });
-
-        lblCurrentSemesterEvent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblCurrentSemesterEvent.setText("Current Semester");
-
-        lblAppointmentTime1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblAppointmentTime1.setText("Event Time");
-
-        comboSemesterEvent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        comboSemesterEvent.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Semester", "Fall 2022", "Winter 2022", "Spring 2023", "Summer 2023", "Fall 2023", "Winter 2023", "Spring 2024", "Summer 2024", "Fall 2024", "Winter 2024", " " }));
-
-        btnViewEvent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnViewEvent.setText("VIEW");
-
-        txtCity1.setEditable(false);
-        txtCity1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        txtCity1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCity1ActionPerformed(evt);
-            }
-        });
-
-        btnUpdateEvent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnUpdateEvent.setText("UPDATE");
-        btnUpdateEvent.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateEventActionPerformed(evt);
-            }
-        });
-
-        formattedTime1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
-        formattedTime1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        formattedTime1.setText("HH:MM AM/PM Format");
-        formattedTime1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formattedTime1ActionPerformed(evt);
-            }
-        });
-
-        lblEventAttendance.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblEventAttendance.setText("Event Attendance");
-
-        btnYes.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnYes.setText("Yes");
-
-        btnNo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnNo.setText("No");
-
-        javax.swing.GroupLayout studentWorkAreaPanel3Layout = new javax.swing.GroupLayout(studentWorkAreaPanel3);
-        studentWorkAreaPanel3.setLayout(studentWorkAreaPanel3Layout);
-        studentWorkAreaPanel3Layout.setHorizontalGroup(
-            studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4)
-            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                .addGap(207, 207, 207)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAppointmentTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAppointmentDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEventGuest, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblEventDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCurrentSemesterEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(dateChooserAppointment1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(formattedTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCity1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEventDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboSemesterEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                                .addComponent(btnYes, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnNo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(213, 213, 213))
-                    .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                        .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEventAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                                .addComponent(btnViewEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        studentWorkAreaPanel3Layout.setVerticalGroup(
-            studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(studentWorkAreaPanel3Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboSemesterEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCurrentSemesterEvent))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEventName)
-                    .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEventDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEventDescription))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEventGuest)
-                    .addComponent(txtCity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(dateChooserAppointment1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAppointmentDate1))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formattedTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAppointmentTime1))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEventAttendance)
-                    .addComponent(btnYes)
-                    .addComponent(btnNo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(studentWorkAreaPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(78, 78, 78))
-        );
-
-        studentSplitPane3.setRightComponent(studentWorkAreaPanel3);
-
-        javax.swing.GroupLayout eventPanelLayout = new javax.swing.GroupLayout(eventPanel);
-        eventPanel.setLayout(eventPanelLayout);
-        eventPanelLayout.setHorizontalGroup(
-            eventPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eventPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(studentSplitPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        eventPanelLayout.setVerticalGroup(
-            eventPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(studentSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-
-        rightPane.add(eventPanel, "card3");
-
         DashboardPanel.setRightComponent(rightPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1379,16 +749,6 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                 .addComponent(DashboardPanel))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranscriptActionPerformed
-        // TODO add your handling code here:
-        workAreaPanel.setVisible(false);
-        profilePanel.setVisible(true);
-    }//GEN-LAST:event_btnTranscriptActionPerformed
-
-    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
         // TODO add your handling code here:
@@ -1410,34 +770,6 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPhotoActionPerformed
 
-    private void txtGrade1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrade1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGrade1ActionPerformed
-
-    private void txtGrade3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrade3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGrade3ActionPerformed
-
-    private void txtInstituteCode1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInstituteCode1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInstituteCode1ActionPerformed
-
-    private void txtStudentDegree1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentDegree1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentDegree1ActionPerformed
-
-    private void txtStudentIDTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDTranscriptActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentIDTranscriptActionPerformed
-
-    private void txtGrade2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrade2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGrade2ActionPerformed
-
-    private void txtStudentNameTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameTranscriptActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentNameTranscriptActionPerformed
-
     private void txtStudentLastNameAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentLastNameAppointmentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStudentLastNameAppointmentActionPerformed
@@ -1454,112 +786,53 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCityActionPerformed
 
-    private void btnDeleteAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAppointmentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteAppointmentActionPerformed
-
     private void btnUpdateAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateAppointmentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateAppointmentActionPerformed
 
-    private void txtEventDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEventDescriptionActionPerformed
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEventDescriptionActionPerformed
-
-    private void txtEventNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEventNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEventNameActionPerformed
-
-    private void txtCity1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCity1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCity1ActionPerformed
-
-    private void btnUpdateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEventActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateEventActionPerformed
-
-    private void formattedTime1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTime1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formattedTime1ActionPerformed
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane DashboardPanel;
     private javax.swing.JPanel appointmentPanel;
-    private javax.swing.JButton bntCreateAppointment;
     private javax.swing.JButton btnAppointment;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnBackTranscript;
     private javax.swing.JButton btnBackTranscript1;
-    private javax.swing.JButton btnBackTranscript2;
-    private javax.swing.JButton btnDeleteAppointment;
-    private javax.swing.JButton btnDorm;
-    private javax.swing.JButton btnEvent;
     private javax.swing.JRadioButton btnFemale;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnLogoutTranscript;
     private javax.swing.JButton btnLogoutTranscript1;
-    private javax.swing.JButton btnLogoutTranscript2;
     private javax.swing.JRadioButton btnMale;
-    private javax.swing.JButton btnMealPlan;
-    private javax.swing.JRadioButton btnNo;
     private javax.swing.JRadioButton btnNonBinary;
     private javax.swing.JButton btnProfile;
-    private javax.swing.JButton btnTranscript;
-    private javax.swing.JButton btnTranscriptRequest;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JButton btnUpdateAppointment;
-    private javax.swing.JButton btnUpdateEvent;
     private javax.swing.JButton btnView;
-    private javax.swing.JButton btnView1;
     private javax.swing.JButton btnViewAppointment;
-    private javax.swing.JButton btnViewEvent;
-    private javax.swing.JRadioButton btnYes;
     private javax.swing.JComboBox<String> comboJobs;
     private javax.swing.JComboBox<String> comboPlacementCoordinator;
     private javax.swing.JComboBox<String> comboSemester;
-    private javax.swing.JComboBox<String> comboSemester1;
     private javax.swing.JComboBox<String> comboSemester2;
-    private javax.swing.JComboBox<String> comboSemesterEvent;
     private com.toedter.calendar.JDateChooser dateChooser;
     private com.toedter.calendar.JDateChooser dateChooserAppointment;
-    private com.toedter.calendar.JDateChooser dateChooserAppointment1;
-    private javax.swing.JPanel eventPanel;
     private javax.swing.JFormattedTextField formattedTime;
-    private javax.swing.JFormattedTextField formattedTime1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblAppointmentDate;
-    private javax.swing.JLabel lblAppointmentDate1;
     private javax.swing.JLabel lblAppointmentTime;
-    private javax.swing.JLabel lblAppointmentTime1;
     private javax.swing.JLabel lblCity;
-    private javax.swing.JLabel lblCourse1;
-    private javax.swing.JLabel lblCourse2;
-    private javax.swing.JLabel lblCourse3;
     private javax.swing.JLabel lblCurrentSemester;
-    private javax.swing.JLabel lblCurrentSemester1;
     private javax.swing.JLabel lblCurrentSemester2;
-    private javax.swing.JLabel lblCurrentSemesterEvent;
     private javax.swing.JLabel lblDateofBirth;
     private javax.swing.JLabel lblDateofBirth1;
     private javax.swing.JLabel lblEmailAddress;
-    private javax.swing.JLabel lblEventAttendance;
-    private javax.swing.JLabel lblEventDescription;
-    private javax.swing.JLabel lblEventGuest;
-    private javax.swing.JLabel lblEventName;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblGender;
-    private javax.swing.JLabel lblGrade1;
-    private javax.swing.JLabel lblGrade2;
-    private javax.swing.JLabel lblGrade3;
     private javax.swing.JLabel lblGraduationYear;
-    private javax.swing.JLabel lblGraduationYear1;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblManageProfile;
     private javax.swing.JLabel lblPassword;
@@ -1570,65 +843,36 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblStudentID;
     private javax.swing.JLabel lblStudentID1;
     private javax.swing.JLabel lblStudentID2;
-    private javax.swing.JLabel lblStudentID4;
-    private javax.swing.JLabel lblStudentID5;
     private javax.swing.JLabel lblStudentID7;
-    private javax.swing.JLabel lblStudentIDTranscript;
     private javax.swing.JLabel lblStudentLastName;
     private javax.swing.JLabel lblStudentName;
-    private javax.swing.JLabel lblStudentNameTranscript;
-    private javax.swing.JLabel lblTranscriptPanel;
     private javax.swing.JLabel lblTranscriptPanel1;
-    private javax.swing.JLabel lblTranscriptPanel2;
     private javax.swing.JPanel leftPane;
     private javax.swing.JPanel navigateBackPanel;
-    private javax.swing.JPanel navigateBackPanel1;
     private javax.swing.JPanel navigateBackPanel2;
-    private javax.swing.JPanel navigateBackPanel3;
     private javax.swing.JPanel profilePanel;
     private javax.swing.JLayeredPane rightPane;
     private javax.swing.JSplitPane studentSplitPane;
-    private javax.swing.JSplitPane studentSplitPane1;
     private javax.swing.JSplitPane studentSplitPane2;
-    private javax.swing.JSplitPane studentSplitPane3;
     private javax.swing.JPanel studentWorkAreaPanel;
-    private javax.swing.JPanel studentWorkAreaPanel1;
     private javax.swing.JPanel studentWorkAreaPanel2;
-    private javax.swing.JPanel studentWorkAreaPanel3;
     private javax.swing.JTable tblStudents;
-    private javax.swing.JTable tblTranscripts;
     private javax.swing.JTable tblTranscripts1;
-    private javax.swing.JTable tblTranscripts2;
-    private javax.swing.JPanel transcriptPanel;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtCity1;
-    private javax.swing.JTextField txtCourse2Name;
-    private javax.swing.JTextField txtCourse3Name;
     private javax.swing.JTextField txtEmailAddress;
-    private javax.swing.JTextField txtEventDescription;
-    private javax.swing.JTextField txtEventName;
     private javax.swing.JTextField txtFirstName;
-    private javax.swing.JTextField txtFirstName1;
-    private javax.swing.JTextField txtGrade1;
-    private javax.swing.JTextField txtGrade2;
-    private javax.swing.JTextField txtGrade3;
     private javax.swing.JTextField txtInstituteCode;
-    private javax.swing.JTextField txtInstituteCode1;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtPhoto;
     private javax.swing.JTextField txtSSN;
     private javax.swing.JTextField txtStudentDegree;
-    private javax.swing.JTextField txtStudentDegree1;
     private javax.swing.JTextField txtStudentDegreeAppointment;
     private javax.swing.JTextField txtStudentID;
-    private javax.swing.JTextField txtStudentIDTranscript;
     private javax.swing.JTextField txtStudentLastNameAppointment;
     private javax.swing.JTextField txtStudentNameAppointment;
-    private javax.swing.JTextField txtStudentNameTranscript;
     private javax.swing.JLabel workAreaPane;
     private javax.swing.JPanel workAreaPanel;
     private com.toedter.calendar.JYearChooser yearChooser;
-    private com.toedter.calendar.JYearChooser yearChooser1;
     // End of variables declaration//GEN-END:variables
 }

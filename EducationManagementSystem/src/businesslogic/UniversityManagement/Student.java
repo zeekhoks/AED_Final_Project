@@ -17,14 +17,14 @@ public class Student extends Person{
     private String instituteCode;
     private Degree studentDegree;
     private String graduationYear;
-    private int currentSemester;
+    private String currentSemester;
     private String photo;
     
     
     public Student(String personFirstName, String personLastName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, UserRole userRole, String studentID, String instituteCode,
-            Degree studentDegree, String graduationYear, int currentSemester, String photo) {
+            Community community, String userPassword, String studentID, String instituteCode,
+            Degree studentDegree, String graduationYear,  String currentSemester, String photo) {
             
         this.setPersonFirstName(personFirstName);
         this.setPersonLastName(personLastName);
@@ -35,7 +35,7 @@ public class Student extends Person{
         this.setPersonEmailAddress(personEmailAddress);
         this.setCommunity(community);
         this.setUserPassword(userPassword);
-        this.setUserRole(userRole);
+        this.setUserRole(UserRole.STUDENT);
         this.setStudentID(studentID);
         this.setInstituteCode(instituteCode);
         this.setStudentDegree(studentDegree);
@@ -78,11 +78,11 @@ public class Student extends Person{
         this.graduationYear = graduationYear;
     }
 
-    public int getCurrentSemester() {
+    public String getCurrentSemester() {
         return currentSemester;
     }
 
-    public void setCurrentSemester(int currentSemester) {
+    public void setCurrentSemester(String currentSemester) {
         this.currentSemester = currentSemester;
     }
 

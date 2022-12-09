@@ -823,32 +823,32 @@
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="lblAppointmentTime1" min="-2" pref="184" max="-2" attributes="0"/>
-                                              <Component id="lblAppointmentDate1" min="-2" pref="184" max="-2" attributes="0"/>
-                                              <Component id="lblEventGuest" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
-                                              <Component id="lblEventName" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
-                                              <Component id="lblEventDescription" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
-                                              <Component id="lblCurrentSemesterEvent" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="42" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="dateChooserAppointment1" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="formattedTime1" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="txtCity1" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="txtEventDescription" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="txtEventName" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="comboSemesterEvent" min="-2" pref="240" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="lblAppointmentTime1" min="-2" pref="184" max="-2" attributes="0"/>
+                                                      <Component id="lblAppointmentDate1" min="-2" pref="184" max="-2" attributes="0"/>
+                                                      <Component id="lblEventGuest" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
+                                                      <Component id="lblEventName" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <Component id="lblEventDescription" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <Component id="lblCurrentSemesterEvent" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace pref="42" max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="dateChooserAppointment1" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="formattedTime1" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="txtEventGuest" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="txtEventDescription" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="txtEventName" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="comboSemesterEvent" min="-2" pref="240" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="btnYes" min="-2" pref="84" max="-2" attributes="0"/>
+                                                  <Component id="lblEventAttendance" min="-2" pref="184" max="-2" attributes="0"/>
                                                   <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="btnNo" min="-2" pref="84" max="-2" attributes="0"/>
+                                                  <Component id="txtNumberofStudents" min="-2" pref="240" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="lblEventAttendance" min="-2" pref="184" max="-2" attributes="0"/>
-                                          <EmptySpace pref="507" max="32767" attributes="0"/>
+                                          <EmptySpace min="213" pref="213" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -884,7 +884,7 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblEventGuest" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCity1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtEventGuest" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -897,12 +897,11 @@
                                       <Component id="lblAppointmentTime1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblEventAttendance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnYes" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btnNo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblEventAttendance" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtNumberofStudents" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                                  <EmptySpace pref="41" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnViewEvent" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                       <Component id="btnCreateEvent" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -1088,7 +1087,7 @@
                             <Property name="text" type="java.lang.String" value="VIEW"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtCity1">
+                        <Component class="javax.swing.JTextField" name="txtEventGuest">
                           <Properties>
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1096,7 +1095,7 @@
                             </Property>
                           </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCity1ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEventGuestActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnUpdateEvent">
@@ -1132,22 +1131,6 @@
                             <Property name="text" type="java.lang.String" value="Event Attendance"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JRadioButton" name="btnYes">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Yes"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JRadioButton" name="btnNo">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="No"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JButton" name="btnCreateEvent">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1163,6 +1146,17 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="DELETE"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtNumberofStudents">
+                          <Properties>
+                            <Property name="editable" type="boolean" value="false"/>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Arial" size="18" style="0"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumberofStudentsActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
