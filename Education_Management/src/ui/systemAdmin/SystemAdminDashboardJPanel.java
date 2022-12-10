@@ -8,6 +8,9 @@ import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
 import businesslogic.Person;
+import businesslogic.PersonU;
+import businesslogic.UniversityManagement.University;
+import businesslogic.UniversityManagement.UniversityAdmin;
 import businesslogic.helper.ValidateInputs;
 import businesslogic.school.School;
 import businesslogic.school.SchoolAdmin;
@@ -31,6 +34,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private Person userLogged;
     private static int schoolCounter = 01;
+    private static int universityCounter = 01;
     
     public SystemAdminDashboardJPanel(EcoSystem ecoSystem, Person userLogged) {
         initComponents();
@@ -47,7 +51,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         populateSchoolTable();
         clearSchoolForm();
         
+        populateUniversityTable();
+        clearUniversityForm();
+        
         txtSchoolCode.setEditable(false);
+        txtUniversityCode.setEditable(false);
     }
 
     /**
@@ -99,11 +107,36 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         txtSchoolAdminPassword = new javax.swing.JTextField();
         jButton12 = new javax.swing.JButton();
         UniversityPanel = new javax.swing.JPanel();
+        jSplitPane3 = new javax.swing.JSplitPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblUniversity = new javax.swing.JTable();
+        btnViewUniversity = new javax.swing.JButton();
+        btnUpdateUniversity = new javax.swing.JButton();
+        btnDeleteUniversity = new javax.swing.JButton();
+        btnAddUniversity = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtUniversityCode = new javax.swing.JTextField();
+        txtUniversityName = new javax.swing.JTextField();
+        txtUniversityCommunity = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        txtUniversityCity = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        txtUniversityAdminEmail = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtUniversityAdminPassword = new javax.swing.JTextField();
+        btnUniversityClearSelection = new javax.swing.JButton();
         DormitoryPanel = new javax.swing.JPanel();
 
         jButton7.setText("jButton7");
 
-        controlPanel.setBackground(new java.awt.Color(255, 102, 102));
+        controlPanel.setBackground(new java.awt.Color(255, 153, 153));
 
         jButton1.setText("Manage Schools");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +146,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setText("Manage University");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Manage Dormitory");
 
@@ -213,9 +251,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 363, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(242, 242, 242)
+                .addGap(281, 281, 281)
                 .addComponent(jButton6)
                 .addGap(18, 18, 18))
         );
@@ -254,6 +292,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblSchool);
+        if (tblSchool.getColumnModel().getColumnCount() > 0) {
+            tblSchool.getColumnModel().getColumn(2).setHeaderValue("Phone No.");
+        }
 
         jButton8.setText("View School");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -316,6 +357,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         jLabel9.setText("Set Admin Password:");
 
         jButton12.setText("Clear Selection");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -425,15 +471,226 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
         jLayeredPane1.add(SchoolPanel, "card3");
 
+        jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("MANAGE UNIVERSITIES");
+
+        jButton13.setText("Back");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jButton14.setText("Log Out");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jButton13)
+                .addGap(282, 282, 282)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addComponent(jButton14)
+                .addGap(18, 18, 18))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton14)
+                    .addComponent(jButton13))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jSplitPane3.setTopComponent(jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
+
+        tblUniversity.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "University ID", "University Name", "Community", "City"
+            }
+        ));
+        jScrollPane2.setViewportView(tblUniversity);
+
+        btnViewUniversity.setText("View University");
+        btnViewUniversity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewUniversityActionPerformed(evt);
+            }
+        });
+
+        btnUpdateUniversity.setText("Update University");
+        btnUpdateUniversity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateUniversityActionPerformed(evt);
+            }
+        });
+
+        btnDeleteUniversity.setText("Delete University");
+        btnDeleteUniversity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteUniversityActionPerformed(evt);
+            }
+        });
+
+        btnAddUniversity.setText("Add University");
+        btnAddUniversity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddUniversityActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("University ID:");
+
+        jLabel12.setText("University Name:");
+
+        jLabel13.setText("Community:");
+
+        txtUniversityCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUniversityCodeActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("City:");
+
+        txtUniversityCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUniversityCityActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Set Admin Email:");
+
+        jLabel17.setText("Set Admin Password:");
+
+        btnUniversityClearSelection.setText("Clear Selection");
+        btnUniversityClearSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUniversityClearSelectionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(btnViewUniversity)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUpdateUniversity)
+                                    .addComponent(jLabel11))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteUniversity)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddUniversity))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtUniversityCode, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel17)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtUniversityAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel14)
+                                            .addComponent(jLabel16))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtUniversityAdminEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                            .addComponent(txtUniversityCity)
+                                            .addComponent(txtUniversityCommunity)
+                                            .addComponent(txtUniversityName)))))))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(412, 412, 412)
+                        .addComponent(btnUniversityClearSelection))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(181, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewUniversity)
+                    .addComponent(btnUpdateUniversity)
+                    .addComponent(btnDeleteUniversity)
+                    .addComponent(btnAddUniversity))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtUniversityCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtUniversityName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtUniversityCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtUniversityCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtUniversityAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(txtUniversityAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnUniversityClearSelection)
+                .addContainerGap(202, Short.MAX_VALUE))
+        );
+
+        jSplitPane3.setRightComponent(jPanel4);
+
         javax.swing.GroupLayout UniversityPanelLayout = new javax.swing.GroupLayout(UniversityPanel);
         UniversityPanel.setLayout(UniversityPanelLayout);
         UniversityPanelLayout.setHorizontalGroup(
             UniversityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 982, Short.MAX_VALUE)
+            .addComponent(jSplitPane3)
         );
         UniversityPanelLayout.setVerticalGroup(
             UniversityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jLayeredPane1.add(UniversityPanel, "card4");
@@ -518,8 +775,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     com.setCity(new City(schoolCity));
                     s.setCommunity(com);
                 }
-                JOptionPane.showMessageDialog(this, "Teacher Record Updated.");
+                JOptionPane.showMessageDialog(this, "School Record Updated.");
                 clearSchoolForm();
+                populateSchoolTable();
             
             } else {
                 JOptionPane.showMessageDialog(this,"No such School Admin Exists!");
@@ -582,6 +840,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        // delete school
         int selectedRowIndex = tblSchool.getSelectedRow();
         if(selectedRowIndex < 0){
             JOptionPane.showMessageDialog(this, "Please select a row to View!");
@@ -610,6 +869,10 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 //            }
             if(!isNoEmptyFieldCheck(txtSchoolName)) {
                 JOptionPane.showMessageDialog(this,"Please do not leave School Name field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtSchoolPhone)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Phone no. field empty!");
                 return;
             }
             if(!isNoEmptyFieldCheck(txtSchoolCommunity)) {
@@ -674,18 +937,231 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         switchToMainFrame();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();        
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void txtUniversityCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUniversityCityActionPerformed
+
+    private void txtUniversityCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUniversityCodeActionPerformed
+
+    private void btnAddUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUniversityActionPerformed
+        // TODO add your handling code here:
+        // ADD University
+        
+        if(isUniversityDataEnteredValid()){
+            if(!isNoEmptyFieldCheck(txtUniversityName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave University Name field empty!");
+                return;
+            }           
+            if(!isNoEmptyFieldCheck(txtUniversityCommunity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Community field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityCity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave City field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityAdminEmail)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave University Admin Email field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityAdminPassword)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave University Admin Password field empty!");
+                return;
+            }
+            
+            txtUniversityCode.setEditable(false);
+            String universityCode = "uni"+universityCounter;
+            universityCounter++;
+            String universityName = txtUniversityName.getText();
+            String universityCommunity = txtUniversityCommunity.getText();
+            String universityCity = txtUniversityCity.getText();
+            String universityAdminEmail = txtUniversityAdminEmail.getText();
+            String universityAdminPassword = txtUniversityAdminPassword.getText();
+            
+            Community com;
+            if(!ecoSystem.getCommunityDirectory().getCommunityDirectory().equals(universityCommunity)){
+                com = ecoSystem.getCommunityDirectory().addNewCommunity();
+                com.setCommunity(universityCommunity);
+                com.setCity(new City(universityCity));
+//                s.setCommunity(c);
+            } else{
+                com = ecoSystem.getCommunityDirectory().getCommunityByName(universityCommunity);
+            }
+            
+            University u = ecoSystem.getUniversityDirectory().addNewUniversity(new University( universityName, universityCode, com, 
+                    universityAdminEmail, universityAdminPassword));
+            
+            ecoSystem.getUniversityAdminDirectory().getUniversityAdminDirectory().add(new UniversityAdmin(null, null, null, null, 1234567890,
+               universityAdminEmail, com, universityAdminPassword));
+            
+            JOptionPane.showMessageDialog(this, "University Record Added.");
+            populateUniversityTable();
+            clearUniversityForm();
+            
+            
+        } else{
+            JOptionPane.showMessageDialog(this, "Error Adding University. Please check DataTypes");
+        }
+    }//GEN-LAST:event_btnAddUniversityActionPerformed
+
+    private void btnDeleteUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUniversityActionPerformed
+        // TODO add your handling code here:
+        // delete university
+        int selectedRowIndex = tblUniversity.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblUniversity.getModel();
+        University s = (University)model.getValueAt(selectedRowIndex, 0);
+        PersonU p = ecoSystem.getPersonUDirectory().getPersonByEmail(s.getUniversityAdminEmail());
+        
+        ecoSystem.getUniversityDirectory().deleteUniversity(s);
+        ecoSystem.getPersonUDirectory().deletePerson(p);
+        
+        JOptionPane.showMessageDialog(this, "University record deleted!");
+        populateUniversityTable();
+        clearUniversityForm();
+    }//GEN-LAST:event_btnDeleteUniversityActionPerformed
+
+    private void btnUpdateUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUniversityActionPerformed
+        // TODO add your handling code here:
+        // UPDATE UNIVERSITY
+        if(isUniversityDataEnteredValid()) {
+            if(!isNoEmptyFieldCheck(txtUniversityCode)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave University Code Name field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave University Name field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityCommunity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Community field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityCity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave City field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityAdminEmail)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave University Admin Email field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtUniversityAdminPassword)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave School Admin Password field empty!");
+                return;
+            }
+            
+            txtUniversityCode.setEditable(false);
+            txtUniversityAdminEmail.setEditable(false);
+            String universityCode = txtUniversityCode.getText();
+            String universityName = txtUniversityName.getText();
+            String universityCommunity = txtUniversityCommunity.getText();
+            String universityCity = txtUniversityCity.getText();
+            String universityAdminEmail = txtUniversityAdminEmail.getText();
+            String universityAdminPassword = txtUniversityAdminPassword.getText();
+            
+            University u = ecoSystem.getUniversityDirectory().getUniversityByCode(universityCode);
+            UniversityAdmin p = ecoSystem.getUniversityAdminDirectory().getUniversityAdminByEmail(universityAdminEmail);
+            if(p.getUserRole().equals("UNIVERSITY_ADMIN")) {             
+                u.setUniversityName(universityName);
+                u.setUniversityAdminEmail(universityAdminEmail);
+                u.setUniversityAdminPassword(universityAdminPassword);
+                Community com;
+                if(!u.getCommunity().getCommunity().equals(universityCommunity)){
+                    com = ecoSystem.getCommunityDirectory().addNewCommunity();
+                    com.setCommunity(universityCommunity);
+                    com.setCity(new City(universityCity));
+                    u.setCommunity(com);
+                }
+                JOptionPane.showMessageDialog(this, "University Record Updated.");
+                clearSchoolForm();
+                populateUniversityTable();
+            
+            } else {
+                JOptionPane.showMessageDialog(this,"No such University Admin Exists!");
+                return;
+            }
+            
+            }  else {
+            JOptionPane.showMessageDialog(this, "Error Updating University. Please check DataTypes");
+        }
+            
+            
+    }//GEN-LAST:event_btnUpdateUniversityActionPerformed
+
+    private void btnViewUniversityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewUniversityActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblUniversity.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblUniversity.getModel();
+        University u = (University)model.getValueAt(selectedRowIndex, 0);
+        
+        txtUniversityCode.setText(u.getUniversityID());
+        txtUniversityName.setText(u.getUniversityName());
+        txtUniversityCommunity.setText(u.getCommunity().getCommunity());
+        txtUniversityCity.setText(u.getCommunity().getCity().getCity());
+        txtUniversityAdminEmail.setText(u.getUniversityAdminEmail());
+        txtUniversityAdminPassword.setText(u.getUniversityAdminPassword());
+    }//GEN-LAST:event_btnViewUniversityActionPerformed
+
+    private void btnUniversityClearSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUniversityClearSelectionActionPerformed
+        // TODO add your handling code here:
+        clearUniversityForm();
+    }//GEN-LAST:event_btnUniversityClearSelectionActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        clearSchoolForm();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        // manage university button
+        WorkAreaPanel.setVisible(false);
+        SchoolPanel.setVisible(false);
+        UniversityPanel.setVisible(true);
+        DormitoryPanel.setVisible(false);
+        btnLogOut.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DormitoryPanel;
     private javax.swing.JPanel SchoolPanel;
     private javax.swing.JPanel UniversityPanel;
     private javax.swing.JPanel WorkAreaPanel;
+    private javax.swing.JButton btnAddUniversity;
+    private javax.swing.JButton btnDeleteUniversity;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnUniversityClearSelection;
+    private javax.swing.JButton btnUpdateUniversity;
+    private javax.swing.JButton btnViewUniversity;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -695,6 +1171,13 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -706,10 +1189,15 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTable tblSchool;
+    private javax.swing.JTable tblUniversity;
     private javax.swing.JTextField txtSchoolAdminEmail;
     private javax.swing.JTextField txtSchoolAdminPassword;
     private javax.swing.JTextField txtSchoolCity;
@@ -717,6 +1205,12 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtSchoolCommunity;
     private javax.swing.JTextField txtSchoolName;
     private javax.swing.JTextField txtSchoolPhone;
+    private javax.swing.JTextField txtUniversityAdminEmail;
+    private javax.swing.JTextField txtUniversityAdminPassword;
+    private javax.swing.JTextField txtUniversityCity;
+    private javax.swing.JTextField txtUniversityCode;
+    private javax.swing.JTextField txtUniversityCommunity;
+    private javax.swing.JTextField txtUniversityName;
     // End of variables declaration//GEN-END:variables
 
     private void switchToWorkAreaPanel() {
@@ -751,10 +1245,25 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-
+    
+    private void populateUniversityTable() {
+        DefaultTableModel model = (DefaultTableModel) tblUniversity.getModel();
+        model.setRowCount(0);
+        // add row code
+        for(University u : ecoSystem.getUniversityDirectory().getUniversityDirectory()) {
+            Object[] row = new Object[4];
+            row[0] = u;
+            row[1] = u.getUniversityName();
+            row[2] = u.getCommunity().getCommunity();
+            row[3] = u.getCommunity().getCity().getCity();
+            model.addRow(row);
+        }
+    }
+    
     private boolean isSchoolDataEnteredValid() {
         if(ValidateInputs.isNameValid(txtSchoolName.getText()) && ValidateInputs.isEmailValid(txtSchoolAdminEmail.getText()) 
-                && ValidateInputs.isPasswordValid(txtSchoolAdminPassword.getText())) {
+                && ValidateInputs.isPasswordValid(txtSchoolAdminPassword.getText()) 
+                && ValidateInputs.isPhoneNumberValid(txtSchoolPhone.getText())) {
             return true;
         }
         return false;
@@ -772,4 +1281,25 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         mainFrame.removeSystemAdminDashboardJPanel();
         mainFrame.setVisible(true);
     }
+
+    private void clearUniversityForm() {
+        txtUniversityCode.setText("");
+        txtUniversityName.setText("");
+        txtUniversityCity.setText("");
+        txtUniversityCommunity.setText("");
+        txtUniversityAdminEmail.setText("");
+        txtUniversityAdminPassword.setText("");
+    }
+
+    private boolean isUniversityDataEnteredValid() {
+        if(ValidateInputs.isNameValid(txtUniversityName.getText()) && ValidateInputs.isEmailValid(txtUniversityAdminEmail.getText()) 
+                && ValidateInputs.isPasswordValid(txtUniversityAdminPassword.getText()) 
+            ) {
+            return true;
+        }
+        return false;
+
+    }
+
+   
 }

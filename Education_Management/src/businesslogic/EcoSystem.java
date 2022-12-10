@@ -5,6 +5,8 @@
 package businesslogic;
 
 import businesslogic.DB4OUtil.DB4OUtil;
+import businesslogic.UniversityManagement.UniversityAdminDirectory;
+import businesslogic.UniversityManagement.UniversityDirectory;
 import businesslogic.school.BookAppointmentDirectory;
 import businesslogic.school.LibraryBookDirectory;
 import businesslogic.school.ParentDirectory;
@@ -29,7 +31,22 @@ public class EcoSystem {
     private SchoolAdminDirectory schoolAdminDirectory = new SchoolAdminDirectory();
     private SubjectDirectory subjectDirectory = new SubjectDirectory();
     private BookAppointmentDirectory bookAppointmentDirectory = new BookAppointmentDirectory();
+    
+    private PersonUDirectory personUDirectory = new PersonUDirectory();
+    private UniversityDirectory universityDirectory = new UniversityDirectory();
+    private UniversityAdminDirectory universityAdminDirectory = new UniversityAdminDirectory();
 
+    private EcoSystem() {
+        
+    }
+
+    public static EcoSystem getInstance() {
+        if(ecoSystem==null){
+            ecoSystem = new EcoSystem();
+        }
+        return ecoSystem;
+    }
+    
     public SubjectDirectory getSubjectDirectory() {
         return subjectDirectory;
     }
@@ -50,17 +67,6 @@ public class EcoSystem {
     private TeacherDirectory teacherDirectory = new TeacherDirectory();
     private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
     
-    private EcoSystem() {
-        
-    }
-
-    public static EcoSystem getInstance() {
-        if(ecoSystem==null){
-            ecoSystem = new EcoSystem();
-        }
-        return ecoSystem;
-    }
-
     public static EcoSystem getEcoSystem() {
         return ecoSystem;
     }
@@ -139,6 +145,30 @@ public class EcoSystem {
 
     public void setSchoolAdminDirectory(SchoolAdminDirectory schoolAdminDirectory) {
         this.schoolAdminDirectory = schoolAdminDirectory;
+    }
+
+    public UniversityDirectory getUniversityDirectory() {
+        return universityDirectory;
+    }
+
+    public void setUniversityDirectory(UniversityDirectory universityDirectory) {
+        this.universityDirectory = universityDirectory;
+    }
+
+    public UniversityAdminDirectory getUniversityAdminDirectory() {
+        return universityAdminDirectory;
+    }
+
+    public void setUniversityAdminDirectory(UniversityAdminDirectory universityAdminDirectory) {
+        this.universityAdminDirectory = universityAdminDirectory;
+    }
+
+    public PersonUDirectory getPersonUDirectory() {
+        return personUDirectory;
+    }
+
+    public void setPersonUDirectory(PersonUDirectory personUDirectory) {
+        this.personUDirectory = personUDirectory;
     }
     
 

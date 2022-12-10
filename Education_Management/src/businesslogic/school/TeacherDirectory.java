@@ -68,5 +68,14 @@ public class TeacherDirectory {
         }
         return null;
     }
+
+    public Teacher getTeacherByName(String teacherName) {
+        for(Teacher t : teacherDirectory) {
+            if(t.getPersonFirstName().equals(teacherName)) {
+                return t;
+            }
+        }
+        return null;
+    }
     
 }

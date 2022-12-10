@@ -12,10 +12,19 @@ public class Community {
     private String community;
     private City city;
 
+    public Community() {
+    }
+
+    
     public String getCommunity() {
         return community;
     }
 
+    public Community(String community, City city) {
+        this.community = community;
+        this.city = city;
+    }
+    
     public void setCommunity(String communityName) {
         this.community = communityName;
     }

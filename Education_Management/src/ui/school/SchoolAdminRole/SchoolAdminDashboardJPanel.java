@@ -87,9 +87,12 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         txtTeacherRole.setEditable(false);
         // set School Code here
         
-        for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
-            dropDownSubjectTeacher.addItem(t.getPersonFirstName());
-        }
+        txtSubjectID.setEditable(false);
+        populateSubjectTable();
+        
+//        for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
+//            dropDownSubjectTeacher.addItem(t.getPersonFirstName());
+//        }
     }
     
     private void setDefaultPhoto() {
@@ -1117,6 +1120,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tblSubjects);
 
         btnAddStudent2.setText("View Subject");
+        btnAddStudent2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudent2ActionPerformed(evt);
+            }
+        });
 
         btnAddStudent3.setText("Add Subject");
         btnAddStudent3.addActionListener(new java.awt.event.ActionListener() {
@@ -1126,8 +1134,18 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         });
 
         btnAddStudent4.setText("Delete Subject");
+        btnAddStudent4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudent4ActionPerformed(evt);
+            }
+        });
 
         btnAddStudent5.setText("Update Subject");
+        btnAddStudent5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddStudent5ActionPerformed(evt);
+            }
+        });
 
         jLabel20.setText("Subject ID:");
 
@@ -1616,6 +1634,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        // manage subjects:
         workAreaPanel.setVisible(false);
         studentsPanel.setVisible(false);
         employeesPanel.setVisible(false);
@@ -1623,6 +1642,22 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         mealSupplyPanel.setVisible(false);
         libraryPanel.setVisible(false);
         btnLogOut.setVisible(false);
+        
+        boolean exists = false;
+        
+        for(int i=0; i< dropDownSubjectTeacher.getItemCount(); i++) {
+            dropDownSubjectTeacher.removeItemAt(i);
+        }
+        
+        for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
+//            for(int i=0; i< dropDownSubjectTeacher.getItemCount() && !exists; i++ ) {
+//                if(!t.getPersonFirstName().equals(dropDownSubjectTeacher.getItemAt(i))) {
+                if(t.getSchoolCode().equals(userLogged.getSchoolCode())){
+                    dropDownSubjectTeacher.addItem(t.getPersonFirstName());
+                }
+//                }
+//            }
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -2229,16 +2264,93 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private void btnAddStudent3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudent3ActionPerformed
         // TODO add your handling code here:
         // ADD SUBJECT
-        txtSubjectID.setEditable(false);
-        int subjectID = subjectCounter;
-        subjectCounter++;
-        String subjectName = txtSubjectName.getText();
-        int std = (int) dropDownSubjectStandard.getSelectedItem();
-        String teacher = dropDownSubjectTeacher.getSelectedItem().toString();
-        
-        Subject s = ecoSystem.getSubjectDirectory().addNewSubject(new Subject(subjectID, subjectName, std, teacher));
-        JOptionPane.showMessageDialog(this, "Subject Record Added.");
+        if(isSubjectDataEnteredValid()){
+            if(!isNotEmptyFieldCheck(txtSubjectName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Subject Name field empty!");
+                return;
+            }
+            txtSubjectID.setEditable(false);
+            int subjectID = subjectCounter;
+            subjectCounter++;
+            String subjectName = txtSubjectName.getText();
+            int std = Integer.parseInt((String) dropDownSubjectStandard.getSelectedItem());
+            String teacher = dropDownSubjectTeacher.getSelectedItem().toString();
+
+            Subject s = ecoSystem.getSubjectDirectory().addNewSubject(new Subject(subjectID, subjectName, std, teacher));
+            JOptionPane.showMessageDialog(this, "Subject Record Added.");
+            populateSubjectTable();
+            clearSubjectForm();
+        } else {
+            JOptionPane.showMessageDialog(this, "Error Adding Subject. Please check DataTypes");
+        }
     }//GEN-LAST:event_btnAddStudent3ActionPerformed
+
+    private void btnAddStudent2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudent2ActionPerformed
+        // TODO add your handling code here:
+        // View subject
+         int selectedRowIndex = tblSubjects.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblSubjects.getModel();
+        Subject s = (Subject)model.getValueAt(selectedRowIndex, 0);
+        
+        txtSubjectID.setText(String.valueOf(s.getSubjectID()));
+        txtSubjectName.setText(s.getSubjectName());
+        dropDownSubjectStandard.setSelectedItem(String.valueOf(s.getStandard()));
+        dropDownSubjectTeacher.setSelectedItem(s.getTeacherName());
+        
+
+    }//GEN-LAST:event_btnAddStudent2ActionPerformed
+
+    private void btnAddStudent5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudent5ActionPerformed
+        // TODO add your handling code here:
+        // update subject
+        if(isSubjectDataEnteredValid()){
+            if(!isNotEmptyFieldCheck(txtSubjectName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Subject Name field empty!");
+                return;
+            }
+            
+            txtSubjectID.setEditable(false);
+            int subjectID = Integer.parseInt(txtSubjectID.getText());
+            String subjectName = txtSubjectName.getText();
+            int standard = (int) dropDownSubjectStandard.getSelectedItem();
+            String teacher = dropDownSubjectTeacher.getSelectedItem().toString();
+            
+            Subject s = ecoSystem.getSubjectDirectory().getSubjectByID((int) subjectID);
+            s.setSubjectName(subjectName);
+            s.setStandard(standard);
+            s.setTeacherName(teacher);
+            JOptionPane.showMessageDialog(this, "Subject Record Updated.");
+            clearSubjectForm();
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error Updating Subject. Please check DataTypes");
+        }
+        
+    }//GEN-LAST:event_btnAddStudent5ActionPerformed
+
+    private void btnAddStudent4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddStudent4ActionPerformed
+        // TODO add your handling code here:
+        // delete subject
+        int selectedRowIndex = tblSubjects.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblSubjects.getModel();
+        Subject s = (Subject)model.getValueAt(selectedRowIndex, 0);
+        
+        ecoSystem.getSubjectDirectory().deleteSubject(s);
+        JOptionPane.showMessageDialog(this, "Student record deleted!");
+        populateStudentsTable();
+        clearStudentForm();
+    }//GEN-LAST:event_btnAddStudent4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2498,6 +2610,25 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             }
         }
     }
+    
+    private void populateSubjectTable() {
+        DefaultTableModel model = (DefaultTableModel) tblSubjects.getModel();
+        model.setRowCount(0);
+        System.out.println(userLogged.getSchoolCode());
+        for(Subject s : ecoSystem.getSubjectDirectory().getSubjectDirectory()) {
+            Teacher t = ecoSystem.getTeacherDirectory().getTeacherByName(s.getTeacherName());
+            System.out.println(t.getPersonFirstName());
+            System.out.println(t.getSchoolCode());
+            if(t.getSchoolCode().equals(userLogged.getSchoolCode())) {
+                Object[] row = new Object[4];
+                row[0] = s;
+                row[1] = s.getSubjectName();
+                row[2] = s.getTeacherName();
+                row[3] = String.valueOf(s.getStandard());
+                model.addRow(row);
+            }
+        }
+    }
 
     private void switchToMainFrame() {
         this.setVisible(false);
@@ -2530,6 +2661,20 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         txtBookName.setText("");
         dropDownBookIssue.setSelectedIndex(-1);
         dropDownBookStudentID.setSelectedIndex(-1);
+    }
+
+    private boolean isSubjectDataEnteredValid() {
+        if(ValidateInputs.isNameValid(txtSubjectName.getText())) {
+            return true;
+        }
+        return false;
+    }
+
+    private void clearSubjectForm() {
+        txtSubjectID.setText("");
+        txtSubjectName.setText("");
+        dropDownSubjectTeacher.setSelectedIndex(-1);
+        dropDownSubjectStandard.setSelectedIndex(-1);
     }
     
 }

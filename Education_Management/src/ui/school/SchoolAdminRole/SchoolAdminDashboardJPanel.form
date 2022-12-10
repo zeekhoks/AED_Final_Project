@@ -1586,6 +1586,9 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="View Subject"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddStudent2ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnAddStudent3">
                           <Properties>
@@ -1599,11 +1602,17 @@
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Delete Subject"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddStudent4ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnAddStudent5">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Update Subject"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddStudent5ActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel20">
                           <Properties>

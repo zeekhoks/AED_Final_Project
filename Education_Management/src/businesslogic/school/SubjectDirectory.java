@@ -56,4 +56,17 @@ public class SubjectDirectory {
         }
         return null;
     }
+
+    public Subject getSubjectByID(int subjectID) {
+        for(Subject s : subjectDirectory) {
+            if(s.getSubjectID() == subjectID) {
+                return s;
+            }
+        }
+        return null;
+    }
+
+    public void deleteSubject(Subject s) {
+        subjectDirectory.remove(s);
+    }
 }

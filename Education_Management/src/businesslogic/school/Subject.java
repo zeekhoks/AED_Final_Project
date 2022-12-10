@@ -55,5 +55,9 @@ public class Subject {
         this.teacherName = teacherName;
     }
     
+    @Override
+    public String toString(){
+        return String.valueOf(subjectID);
+    }
     
 }
