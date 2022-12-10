@@ -4,10 +4,16 @@
  */
 package ui.UniversityManagement;
 
+import businesslogic.UniversityManagement.Course;
+import businesslogic.UniversityManagement.CourseAssignment;
+import businesslogic.UniversityManagement.UniversityAdmin;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +28,7 @@ public class StudentDashboard extends javax.swing.JPanel {
     
     public StudentDashboard() {
         initComponents();
+        populateCoursesTable();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
         profilePanel.setVisible(false);    
@@ -190,21 +197,24 @@ public class StudentDashboard extends javax.swing.JPanel {
         lblManageCourses = new javax.swing.JLabel();
         studentWorkAreaPanel4 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tblTranscripts3 = new javax.swing.JTable();
+        tblCoursesStudent = new javax.swing.JTable();
         txtCourseID = new javax.swing.JTextField();
         txtCourseDescription = new javax.swing.JTextField();
         txtCourseName = new javax.swing.JTextField();
         lblCourseID = new javax.swing.JLabel();
         lblCourseName = new javax.swing.JLabel();
         lblCourseDescription = new javax.swing.JLabel();
-        txtGrade4 = new javax.swing.JTextField();
+        txtStudentMajorCourse = new javax.swing.JTextField();
         lblStudentID6 = new javax.swing.JLabel();
         txtProfessorName = new javax.swing.JTextField();
         lblCurrentSemester3 = new javax.swing.JLabel();
         lblProfessorName = new javax.swing.JLabel();
-        comboSemester3 = new javax.swing.JComboBox<>();
-        btnViewCourse = new javax.swing.JButton();
-        btnCreateCourse = new javax.swing.JButton();
+        comboStudentSemester = new javax.swing.JComboBox<>();
+        btnEnroll = new javax.swing.JButton();
+        lblCreditHours = new javax.swing.JLabel();
+        txtCreditHours = new javax.swing.JTextField();
+        lblCreditHoursStudent = new javax.swing.JLabel();
+        txtStudentIDStudent = new javax.swing.JTextField();
 
         leftPane.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -1404,7 +1414,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         lblManageCourses.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblManageCourses.setForeground(new java.awt.Color(255, 255, 255));
         lblManageCourses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblManageCourses.setText("Manage Courses");
+        lblManageCourses.setText("Register for Courses");
 
         javax.swing.GroupLayout navigateBackPanel4Layout = new javax.swing.GroupLayout(navigateBackPanel4);
         navigateBackPanel4.setLayout(navigateBackPanel4Layout);
@@ -1413,7 +1423,7 @@ public class StudentDashboard extends javax.swing.JPanel {
             .addGroup(navigateBackPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(btnBackTranscript3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
                 .addComponent(lblManageCourses)
                 .addGap(236, 236, 236)
                 .addComponent(btnLogoutTranscript3)
@@ -1434,7 +1444,7 @@ public class StudentDashboard extends javax.swing.JPanel {
 
         studentWorkAreaPanel4.setBackground(new java.awt.Color(37, 150, 190));
 
-        tblTranscripts3.setModel(new javax.swing.table.DefaultTableModel(
+        tblCoursesStudent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -1453,7 +1463,7 @@ public class StudentDashboard extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(tblTranscripts3);
+        jScrollPane5.setViewportView(tblCoursesStudent);
 
         lblCourseID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblCourseID.setText("Course ID");
@@ -1464,9 +1474,9 @@ public class StudentDashboard extends javax.swing.JPanel {
         lblCourseDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblCourseDescription.setText("Course Description");
 
-        txtGrade4.addActionListener(new java.awt.event.ActionListener() {
+        txtStudentMajorCourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGrade4ActionPerformed(evt);
+                txtStudentMajorCourseActionPerformed(evt);
             }
         });
 
@@ -1485,13 +1495,38 @@ public class StudentDashboard extends javax.swing.JPanel {
         lblProfessorName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblProfessorName.setText("Professor Name");
 
-        comboSemester3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Semester", "Fall 2022", "Winter 2022", "Spring 2023", "Summer 2023", "Fall 2023", "Winter 2023", "Spring 2024", "Summer 2024", "Fall 2024", "Winter 2024", " " }));
+        comboStudentSemester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Semester", "Fall 2022", "Winter 2022", "Spring 2023", "Summer 2023", "Fall 2023", "Winter 2023", "Spring 2024", "Summer 2024", "Fall 2024", "Winter 2024", " " }));
+        comboStudentSemester.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboStudentSemesterActionPerformed(evt);
+            }
+        });
 
-        btnViewCourse.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnViewCourse.setText("VIEW");
+        btnEnroll.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnEnroll.setText("ENROLL");
+        btnEnroll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnrollActionPerformed(evt);
+            }
+        });
 
-        btnCreateCourse.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnCreateCourse.setText("ENROLL");
+        lblCreditHours.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCreditHours.setText("Credit Hours");
+
+        txtCreditHours.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCreditHoursActionPerformed(evt);
+            }
+        });
+
+        lblCreditHoursStudent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblCreditHoursStudent.setText("Student ID");
+
+        txtStudentIDStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStudentIDStudentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentWorkAreaPanel4Layout = new javax.swing.GroupLayout(studentWorkAreaPanel4);
         studentWorkAreaPanel4.setLayout(studentWorkAreaPanel4Layout);
@@ -1500,6 +1535,11 @@ public class StudentDashboard extends javax.swing.JPanel {
             .addComponent(jScrollPane5)
             .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
                 .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblCurrentSemester3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48)
+                        .addComponent(comboStudentSemester, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
                         .addGap(233, 233, 233)
                         .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -1517,38 +1557,37 @@ public class StudentDashboard extends javax.swing.JPanel {
                                 .addComponent(txtProfessorName, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, studentWorkAreaPanel4Layout.createSequentialGroup()
                                 .addComponent(lblCourseDescription)
-                                .addGap(6, 6, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtCourseDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, studentWorkAreaPanel4Layout.createSequentialGroup()
                                 .addComponent(lblStudentID6, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtGrade4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(lblCurrentSemester3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(comboSemester3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanel4Layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
-                .addComponent(btnCreateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnViewCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232))
+                                .addComponent(txtStudentMajorCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
+                                .addComponent(lblCreditHours, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(21, 21, 21)
+                                .addComponent(txtCreditHours, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEnroll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, studentWorkAreaPanel4Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(lblCreditHoursStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtStudentIDStudent)))))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         studentWorkAreaPanel4Layout.setVerticalGroup(
             studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboSemester3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboStudentSemester, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCurrentSemester3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStudentID6)
-                    .addComponent(txtGrade4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStudentMajorCourse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCourseID)
@@ -1565,11 +1604,17 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblProfessorName)
                     .addComponent(txtProfessorName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCreditHours)
+                    .addComponent(txtCreditHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(160, Short.MAX_VALUE))
+                    .addComponent(txtStudentIDStudent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCreditHoursStudent))
+                .addGap(36, 36, 36)
+                .addComponent(btnEnroll, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         studentSplitPane4.setRightComponent(studentWorkAreaPanel4);
@@ -1584,7 +1629,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         );
         coursesPanelLayout.setVerticalGroup(
             coursesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(studentSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(studentSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 871, Short.MAX_VALUE)
         );
 
         rightPane.add(coursesPanel, "card3");
@@ -1710,13 +1755,79 @@ public class StudentDashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtJobAssignedActionPerformed
 
-    private void txtGrade4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrade4ActionPerformed
+    private void txtStudentMajorCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentMajorCourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtGrade4ActionPerformed
+    }//GEN-LAST:event_txtStudentMajorCourseActionPerformed
 
     private void txtProfessorNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfessorNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProfessorNameActionPerformed
+
+    private void comboStudentSemesterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStudentSemesterActionPerformed
+        // TODO add your handling code here:
+        
+//        if(comboStudentSemester.getSelectedItem()!=null){
+//            String currentSemester = (String)comboSemester3.getSelectedItem();
+//            if(!currentSemester,equalsIgnoreCase("Select Semester")){
+//                List<Course> courseBySem = UniversityAdmin.courseDirectoryRef.getCourseDirectory().stream().filter.(c -> c.)
+//            }
+//            
+//        }
+//
+//        }
+
+            if(comboStudentSemester.getSelectedItem()!=null){
+                String currentSemester = comboStudentSemester.getSelectedItem().toString();
+                if(!currentSemester.equalsIgnoreCase("Select Semester")){
+                    List<Course> courseBySem = UniversityAdmin.courseDirectoryRef.getCourseDirectory()
+                            .stream().filter(c-> c.getSemester().equalsIgnoreCase(currentSemester)).toList();
+                    
+                    populateCoursesTable();
+                }
+            }
+        
+    }//GEN-LAST:event_comboStudentSemesterActionPerformed
+
+    private void btnEnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnrollActionPerformed
+        // TODO add your handling code here:
+        String studentMajor = txtStudentMajorCourse.getText();
+        int courseID = Integer.parseInt(txtCourseID.getText());
+        String courseName = txtCourseName.getText();
+        String courseDescription = txtCourseDescription.getText();
+        String professorName = txtProfessorName.getText();
+        int creditHours = Integer.parseInt(txtCreditHours.getText());
+        String studentID = txtStudentIDStudent.getText();
+        
+        List<Integer> courseAssignmentList = UniversityAdmin.courseAssignmentRef.getCourseAssignmentDirectory()
+                .stream().map(c -> c.getCourseID()).toList();
+        
+        if(courseAssignmentList.contains(courseID)){
+           JOptionPane.showMessageDialog(this, "Course ID already exists. Please check");
+        } else {
+            CourseAssignment courseAssignment = new CourseAssignment(
+                    studentID, professorName, courseID, 0.00f );
+            
+            UniversityAdmin.courseAssignmentRef.getCourseAssignmentDirectory().add(courseAssignment);
+        }
+                    JOptionPane.showMessageDialog(this, "Course enrolled successfully!");
+
+               txtStudentMajorCourse.setText("");
+               txtCourseID.setText("");
+               txtCourseName.setText("");
+               txtCourseDescription.setText("");
+               txtProfessorName.setText("");
+               txtCreditHours.setText("");
+               txtStudentIDStudent.setText("");
+                    
+    }//GEN-LAST:event_btnEnrollActionPerformed
+
+    private void txtCreditHoursActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreditHoursActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCreditHoursActionPerformed
+
+    private void txtStudentIDStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentIDStudentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtStudentIDStudentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1730,9 +1841,9 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnBackTranscript2;
     private javax.swing.JButton btnBackTranscript3;
     private javax.swing.JButton btnCourseRegistration;
-    private javax.swing.JButton btnCreateCourse;
     private javax.swing.JButton btnDeleteAppointment;
     private javax.swing.JButton btnDorm;
+    private javax.swing.JButton btnEnroll;
     private javax.swing.JButton btnEvent;
     private javax.swing.JRadioButton btnFemale;
     private javax.swing.JButton btnLogOut;
@@ -1754,7 +1865,6 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnView;
     private javax.swing.JButton btnView1;
     private javax.swing.JButton btnViewAppointment;
-    private javax.swing.JButton btnViewCourse;
     private javax.swing.JButton btnViewEvent;
     private javax.swing.JRadioButton btnYes;
     private javax.swing.JComboBox<String> comboJobs;
@@ -1762,8 +1872,8 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboSemester;
     private javax.swing.JComboBox<String> comboSemester1;
     private javax.swing.JComboBox<String> comboSemester2;
-    private javax.swing.JComboBox<String> comboSemester3;
     private javax.swing.JComboBox<String> comboSemesterEvent;
+    private javax.swing.JComboBox<String> comboStudentSemester;
     private javax.swing.JPanel coursesPanel;
     private com.toedter.calendar.JDateChooser dateChooser;
     private com.toedter.calendar.JDateChooser dateChooserAppointment;
@@ -1788,6 +1898,8 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblCourseDescription;
     private javax.swing.JLabel lblCourseID;
     private javax.swing.JLabel lblCourseName;
+    private javax.swing.JLabel lblCreditHours;
+    private javax.swing.JLabel lblCreditHoursStudent;
     private javax.swing.JLabel lblCurrentSemester;
     private javax.swing.JLabel lblCurrentSemester1;
     private javax.swing.JLabel lblCurrentSemester2;
@@ -1848,11 +1960,11 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel studentWorkAreaPanel2;
     private javax.swing.JPanel studentWorkAreaPanel3;
     private javax.swing.JPanel studentWorkAreaPanel4;
+    private javax.swing.JTable tblCoursesStudent;
     private javax.swing.JTable tblStudents;
     private javax.swing.JTable tblTranscripts;
     private javax.swing.JTable tblTranscripts1;
     private javax.swing.JTable tblTranscripts2;
-    private javax.swing.JTable tblTranscripts3;
     private javax.swing.JPanel transcriptPanel;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCity1;
@@ -1861,6 +1973,7 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JTextField txtCourseDescription;
     private javax.swing.JTextField txtCourseID;
     private javax.swing.JTextField txtCourseName;
+    private javax.swing.JTextField txtCreditHours;
     private javax.swing.JTextField txtEmailAddress;
     private javax.swing.JTextField txtEventDescription;
     private javax.swing.JTextField txtEventName;
@@ -1869,7 +1982,6 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JTextField txtGrade1;
     private javax.swing.JTextField txtGrade2;
     private javax.swing.JTextField txtGrade3;
-    private javax.swing.JTextField txtGrade4;
     private javax.swing.JTextField txtInstituteCode;
     private javax.swing.JTextField txtJobAssigned;
     private javax.swing.JTextField txtLastName;
@@ -1880,9 +1992,11 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JTextField txtStudentDegree;
     private javax.swing.JTextField txtStudentDegreeAppointment;
     private javax.swing.JTextField txtStudentID;
+    private javax.swing.JTextField txtStudentIDStudent;
     private javax.swing.JTextField txtStudentIDTranscript;
     private javax.swing.JTextField txtStudentLastNameAppointment;
     private javax.swing.JTextField txtStudentMajor;
+    private javax.swing.JTextField txtStudentMajorCourse;
     private javax.swing.JTextField txtStudentNameAppointment;
     private javax.swing.JTextField txtStudentNameTranscript;
     private javax.swing.JLabel workAreaPane;
@@ -1890,4 +2004,19 @@ public class StudentDashboard extends javax.swing.JPanel {
     private com.toedter.calendar.JYearChooser yearChooser;
     private com.toedter.calendar.JYearChooser yearChooser1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCoursesTable() {
+       
+        DefaultTableModel model = (DefaultTableModel) tblCoursesStudent.getModel();
+        model.setRowCount(0);
+        for(Course course : UniversityAdmin.courseDirectoryRef.getCourseDirectory()){
+            Object[] rowData = new Object[5];
+            rowData[0] = course.getStudentMajor();
+            rowData[1] = course.getSemester();
+            rowData[2] = course.getCourseID();
+            rowData[3] = course.getCourseName();
+            rowData[4] = course.getCourseDescription();
+            rowData[5] = course.getProfessorName();
+        }
+    }
 }

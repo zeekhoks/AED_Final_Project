@@ -8,7 +8,9 @@ import businesslogic.Community;
 import businesslogic.Person;
 import businesslogic.PersonDirectory;
 import businesslogic.CommunityDirectory;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -22,6 +24,8 @@ public class UniversityAdmin extends Person {
     public static AppointmentDirectory appointmentDirectoryRef = new AppointmentDirectory();
     public static PersonDirectory personDirectoryRef = new PersonDirectory();
     public static CommunityDirectory communityDirectoryRef = new CommunityDirectory();
+    public static List<String> semesterList = new ArrayList<String>();
+    public static CourseAssignmentDirectory courseAssignmentRef = new CourseAssignmentDirectory();
         
     public UniversityAdmin(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
@@ -39,6 +43,7 @@ public class UniversityAdmin extends Person {
         
      }
     
+    
     static {
         
         
@@ -50,8 +55,20 @@ public class UniversityAdmin extends Person {
              
         personDirectoryRef.getPersonDirectory().add(new Student("Hinal", "Female", 
         "123457", new Date (1997, 11,21), 12345687L, "hp@gmail.com", new Community("Westland Avenue", 
-                new City("Boston")), "hp123", "12", "U12345", new Degree("Graduate","Information Systems"), 
-                "2024", "Fall 2022", "photo"));
+                new City("Boston")), "hp123", "12", new Degree("Graduate","Information Systems"), 
+                "2024", "photo"));
+        
+        
+                semesterList.add("Select Semester");
+                semesterList.add("Fall 2022");
+                semesterList.add("Winter 2022");
+                semesterList.add("Spring 2023");
+                semesterList.add("Summer 2023");
+                semesterList.add("Fall 2023");
+                semesterList.add("Winter 2023");
+                semesterList.add("Spring 2024");
+                semesterList.add("Summer 2024");
+
     }
     
     

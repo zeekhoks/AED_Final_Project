@@ -13,11 +13,24 @@ public class Course {
     
     private int courseID;
     private String courseName;
-    private String professorID;
+    private String professorName;
     private int creditHours;
     private String courseDescription;
-    private int courseCapacity;
     private String semester;
+    private String studentMajor;
+
+    public Course(int courseID, String courseName, String professorName, 
+            int creditHours, String courseDescription,  String semester, String studentMajor) {
+        this.courseID = courseID;
+        this.courseName = courseName;
+        this.professorName = professorName;
+        this.creditHours = creditHours;
+        this.courseDescription = courseDescription;
+        this.semester = semester;
+        this.studentMajor = studentMajor;
+    }
+    
+    
 
     public int getCourseID() {
         return courseID;
@@ -35,13 +48,15 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getProfessorID() {
-        return professorID;
+    public String getProfessorName() {
+        return professorName;
     }
 
-    public void setProfessorID(String professorID) {
-        this.professorID = professorID;
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
     }
+
+    
 
     public int getCreditHours() {
         return creditHours;
@@ -59,13 +74,7 @@ public class Course {
         this.courseDescription = courseDescription;
     }
 
-    public int getCourseCapacity() {
-        return courseCapacity;
-    }
 
-    public void setCourseCapacity(int courseCapacity) {
-        this.courseCapacity = courseCapacity;
-    }
 
     public String getSemester() {
         return semester;
@@ -73,6 +82,14 @@ public class Course {
 
     public void setSemester(String semester) {
         this.semester = semester;
+    }
+
+    public String getStudentMajor() {
+        return studentMajor;
+    }
+
+    public void setStudentMajor(String studentMajor) {
+        this.studentMajor = studentMajor;
     }
     
     

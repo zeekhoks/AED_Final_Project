@@ -14,17 +14,15 @@ import java.util.Date;
 public class Student extends Person{
     
     private String studentID;
-    private String instituteCode;
     private Degree studentDegree;
     private String graduationYear;
-    private String currentSemester;
     private String photo;
     
     
     public Student(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, String studentID, String instituteCode,
-            Degree studentDegree, String graduationYear,  String currentSemester, String photo) {
+            Community community, String userPassword, String studentID,
+            Degree studentDegree, String graduationYear, String photo) {
             
         this.setPersonName(personName);
         this.setPersonGender(personGender);
@@ -36,10 +34,9 @@ public class Student extends Person{
         this.setUserPassword(userPassword);
         this.setUserRole(UserRole.STUDENT);
         this.setStudentID(studentID);
-        this.setInstituteCode(instituteCode);
         this.setStudentDegree(studentDegree);
         this.setGraduationYear(graduationYear);
-        this.setCurrentSemester(currentSemester);
+      
         this.setPhoto(photo);
     }
     
@@ -51,14 +48,6 @@ public class Student extends Person{
 
     public void setStudentID(String studentID) {
         this.studentID = studentID;
-    }
-
-    public String getInstituteCode() {
-        return instituteCode;
-    }
-
-    public void setInstituteCode(String instituteCode) {
-        this.instituteCode = instituteCode;
     }
 
     public Degree getStudentDegree() {
@@ -77,13 +66,7 @@ public class Student extends Person{
         this.graduationYear = graduationYear;
     }
 
-    public String getCurrentSemester() {
-        return currentSemester;
-    }
 
-    public void setCurrentSemester(String currentSemester) {
-        this.currentSemester = currentSemester;
-    }
 
     public String getPhoto() {
         return photo;

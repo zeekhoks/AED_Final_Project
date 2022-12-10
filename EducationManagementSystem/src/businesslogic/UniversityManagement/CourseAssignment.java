@@ -11,13 +11,13 @@ package businesslogic.UniversityManagement;
 public class CourseAssignment {
     
     private String studentID;
-    private String professorID;
+    private String professorName;
     private int courseID;
     private float grade;
 
-    public CourseAssignment(String studentID, String professorID, int courseID, float grade) {
+    public CourseAssignment(String studentID, String professorName, int courseID, float grade) {
         this.studentID = studentID;
-        this.professorID = professorID;
+        this.professorName = professorName;
         this.courseID = courseID;
         this.grade = grade;
     }
@@ -32,11 +32,11 @@ public class CourseAssignment {
     }
 
     public String getProfessorID() {
-        return professorID;
+        return professorName;
     }
 
     public void setProfessorID(String professorID) {
-        this.professorID = professorID;
+        this.professorName = professorID;
     }
 
     public int getCourseID() {

@@ -14,10 +14,10 @@ public class Professor extends Person {
     
     private String professorID;
     private Date startDate;
-    private String instituteCode;
         public Professor(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, UserRole userRole, String sprofessorID, Date startDate, String instituteCode) {
+            Community community, String userPassword,  String sprofessorID, 
+            Date startDate) {
             
         this.setPersonName(personName);
         this.setPersonGender(personGender);
@@ -27,10 +27,9 @@ public class Professor extends Person {
         this.setPersonEmailAddress(personEmailAddress);
         this.setCommunity(community);
         this.setUserPassword(userPassword);
-        this.setUserRole(userRole);
+        this.setUserRole(UserRole.PROFESSOR);
         this.setProfessorID(professorID);
         this.setStartDate(startDate);
-        this.setInstituteCode(instituteCode);
         }
     public String getProfessorID() {
         return professorID;
@@ -47,15 +46,6 @@ public class Professor extends Person {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
-    public String getInstituteCode() {
-        return instituteCode;
-    }
-
-    public void setInstituteCode(String instituteCode) {
-        this.instituteCode = instituteCode;
-    }
-    
     
     
 }

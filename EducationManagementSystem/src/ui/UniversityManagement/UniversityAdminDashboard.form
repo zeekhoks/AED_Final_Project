@@ -22,7 +22,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="DashboardPanel" min="-2" pref="1049" max="-2" attributes="0"/>
+              <Component id="UniversityDashboardPanel" min="-2" pref="1049" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -31,13 +31,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="DashboardPanel" max="32767" attributes="0"/>
+              <Component id="UniversityDashboardPanel" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JSplitPane" name="DashboardPanel">
+    <Container class="javax.swing.JSplitPane" name="UniversityDashboardPanel">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout"/>
       <SubComponents>
@@ -74,19 +74,19 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
-                      <Component id="btnStudents" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
+                      <Component id="btnStudents" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnFaculty" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnCourses" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnMealOrders" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnReports" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnDormitories" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="287" max="32767" attributes="0"/>
+                      <EmptySpace pref="305" max="32767" attributes="0"/>
                       <Component id="btnLogOut" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
                   </Group>
@@ -98,6 +98,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Faculty"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFacultyActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnStudents">
               <Properties>
@@ -111,6 +114,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Meal Orders"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMealOrdersActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnReports">
               <Properties>
@@ -137,6 +143,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Courses"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCoursesActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -262,6 +271,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Log Out"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblManageStudents">
                           <Properties>
@@ -295,21 +307,19 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="lblGraduationYear" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblFirstName" min="-2" pref="138" max="-2" attributes="0"/>
-                                              <Component id="lblLastName" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblEmailAddress" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblGender" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblSSN" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblDateofBirth" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblCommunity" min="-2" pref="138" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="txtSSN" pref="240" max="32767" attributes="0"/>
                                               <Component id="txtEmailAddress" pref="240" max="32767" attributes="0"/>
-                                              <Component id="txtLastName" pref="240" max="32767" attributes="0"/>
                                               <Component id="txtFirstName" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
                                                   <Component id="btnMale" min="-2" max="-2" attributes="0"/>
@@ -319,45 +329,27 @@
                                                   <Component id="btnNonBinary" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="dateChooser" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtGradYear" alignment="0" pref="240" max="32767" attributes="0"/>
+                                              <Component id="txtCommunity" alignment="0" max="32767" attributes="0"/>
                                           </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="lblPassword" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                                              <Component id="lblDateofBirth1" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" attributes="0">
-                                                              <Component id="lblStudentID1" min="-2" pref="138" max="-2" attributes="0"/>
-                                                              <Component id="lblStudentID" min="-2" pref="138" max="-2" attributes="0"/>
-                                                              <Component id="lblStudentDegreeLevel" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                                                              <Component id="lblCurrentSemester" min="-2" pref="153" max="-2" attributes="0"/>
-                                                              <Component id="lblStudentMajor" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                      </Group>
-                                                  </Group>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="txtPhoneNumber" pref="240" max="32767" attributes="0"/>
-                                                      <Component id="txtStudentID" pref="240" max="32767" attributes="0"/>
-                                                      <Component id="passwordFieldStudent" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="txtInstituteCode" alignment="0" pref="240" max="32767" attributes="0"/>
-                                                      <Component id="txtStudentMajor" alignment="0" pref="240" max="32767" attributes="0"/>
-                                                      <Component id="comboDegreeLevel" alignment="0" max="32767" attributes="0"/>
-                                                  </Group>
+                                              <Component id="lblStudentID" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblStudentDegreeLevel" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblStudentMajor" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblGraduationYear" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblPassword" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblDateofBirth1" min="-2" pref="138" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace pref="21" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtStudentMajor" min="-2" pref="240" max="-2" attributes="0"/>
+                                              <Component id="comboDegreeLevel" min="-2" pref="240" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="txtPhoneNumber" pref="240" max="32767" attributes="0"/>
+                                                  <Component id="txtStudentID" pref="240" max="32767" attributes="0"/>
+                                                  <Component id="passwordFieldStudent" alignment="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="177" max="-2" attributes="0"/>
-                                                  <Component id="comboSemester" min="-2" pref="240" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="txtGradYear" min="-2" pref="240" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
@@ -399,10 +391,10 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtLastName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblLastName" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="passwordFieldStudent" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCommunity" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCommunity" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -417,33 +409,28 @@
                                       <Component id="btnMale" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnFemale" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnNonBinary" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtInstituteCode" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblStudentID1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblStudentDegreeLevel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboDegreeLevel" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txtSSN" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="lblSSN" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblStudentDegreeLevel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="comboDegreeLevel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblStudentMajor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtStudentMajor" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblDateofBirth" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                          <Component id="lblStudentMajor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtStudentMajor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="dateChooser" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblDateofBirth" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="txtGradYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblGraduationYear" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblGraduationYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtGradYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblCurrentSemester" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="comboSemester" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="14" max="32767" attributes="0"/>
+                                  <EmptySpace pref="55" max="32767" attributes="0"/>
                                   <Component id="lblPhoto" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -485,26 +472,20 @@
                             <Component class="javax.swing.JTable" name="tblStudents">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="10" rowCount="4">
+                                  <Table columnCount="9" rowCount="4">
                                     <Column editable="true" title="Student Name" type="java.lang.String"/>
                                     <Column editable="true" title="Student ID" type="java.lang.String"/>
                                     <Column editable="true" title="Email Address" type="java.lang.String"/>
                                     <Column editable="true" title="Gender" type="java.lang.String"/>
+                                    <Column editable="true" title="Community" type="java.lang.String"/>
                                     <Column editable="true" title="Phone Number" type="java.lang.Long"/>
-                                    <Column editable="true" title="Institute Code" type="java.lang.String"/>
                                     <Column editable="true" title="Degree Level" type="java.lang.String"/>
                                     <Column editable="true" title="Major" type="java.lang.String"/>
-                                    <Column editable="true" title="Current Semester" type="java.lang.String"/>
                                     <Column editable="true" title="Graduation Year" type="java.lang.String"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
@@ -556,12 +537,13 @@
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                                 </Property>
                               </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblStudentsMouseClicked"/>
+                              </Events>
                             </Component>
                           </SubComponents>
                         </Container>
                         <Component class="javax.swing.JTextField" name="txtFirstName">
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="txtLastName">
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtEmailAddress">
                         </Component>
@@ -572,15 +554,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="First Name"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblLastName">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Last Name"/>
+                            <Property name="text" type="java.lang.String" value="Name"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblEmailAddress">
@@ -660,9 +634,6 @@
                           </Events>
                         </Component>
                         <Component class="javax.swing.JPasswordField" name="passwordFieldStudent">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-                          </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblPassword">
                           <Properties>
@@ -680,33 +651,12 @@
                             <Property name="text" type="java.lang.String" value="Student ID"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtInstituteCode">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInstituteCodeActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblStudentID1">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Institute Code"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JLabel" name="lblStudentDegreeLevel">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="18" style="0"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Degree Level"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblCurrentSemester">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Current Semester"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblGraduationYear">
@@ -724,29 +674,6 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Student Photo"/>
                           </Properties>
-                        </Component>
-                        <Component class="javax.swing.JComboBox" name="comboSemester">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="12">
-                                <StringItem index="0" value="Select Semester"/>
-                                <StringItem index="1" value="Fall 2022"/>
-                                <StringItem index="2" value="Winter 2022"/>
-                                <StringItem index="3" value="Spring 2023"/>
-                                <StringItem index="4" value="Summer 2023"/>
-                                <StringItem index="5" value="Fall 2023"/>
-                                <StringItem index="6" value="Winter 2023"/>
-                                <StringItem index="7" value="Spring 2024"/>
-                                <StringItem index="8" value="Summer 2024"/>
-                                <StringItem index="9" value="Fall 2024"/>
-                                <StringItem index="10" value="Winter 2024"/>
-                                <StringItem index="11" value=" "/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnCreate">
                           <Properties>
@@ -777,6 +704,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="UPDATE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnDelete">
                           <Properties>
@@ -785,6 +715,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="DELETE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblStudentPhoto">
                           <Properties>
@@ -831,6 +764,16 @@
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblCommunity">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Arial" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Community"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtCommunity">
                         </Component>
                       </SubComponents>
                     </Container>
@@ -952,37 +895,49 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane2" min="-2" pref="877" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="21" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="lblFirstNameProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                      <Component id="lblLastNameProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                      <Component id="lblEmailAddressProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                      <Component id="lblGender1" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                      <Component id="lblSSNProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                      <Component id="lblDobProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtSSNProf" alignment="0" pref="240" max="32767" attributes="0"/>
-                                      <Component id="txtEmailAddressProf" alignment="0" pref="240" max="32767" attributes="0"/>
-                                      <Component id="txtLastNameProf" alignment="0" pref="240" max="32767" attributes="0"/>
-                                      <Component id="txtFirstNameProf" alignment="0" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="btnMale1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="btnFemale1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="btnNonBinary1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="lblFirstNameProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblDobProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtNameProf" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="dateOfBirthProf" alignment="0" pref="240" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Component id="dateOfBirthProf" alignment="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="lblGender1" min="-2" pref="138" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="btnMale1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="btnFemale1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="btnNonBinary1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="lblEmailAddressProf" min="-2" pref="138" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                      <Component id="txtEmailAddressProf" min="-2" pref="240" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lblSSNProf" min="-2" pref="138" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="txtSSNProf" min="-2" pref="240" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace pref="10" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lblPasswordProfessor" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblPhoneNumberProf" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
@@ -993,9 +948,8 @@
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lblProfessorID" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                                              <Component id="lblInstituteCodeProf" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
-                                              <Component id="lblPhotoProfessor" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                               <Component id="lblProfessorStartDate" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <Component id="lblProfessorStartDate1" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
@@ -1004,9 +958,8 @@
                                       <Component id="txtPhoneNumberProf" alignment="0" pref="240" max="32767" attributes="0"/>
                                       <Component id="txtProfessorID" alignment="0" pref="240" max="32767" attributes="0"/>
                                       <Component id="PasswordProfessor" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtInstituteCodeProf" alignment="0" pref="240" max="32767" attributes="0"/>
-                                      <Component id="txtProfessorPhoto" alignment="1" pref="240" max="32767" attributes="0"/>
                                       <Component id="startDateChooser" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="txtProfCommunity" alignment="0" pref="240" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
@@ -1023,62 +976,65 @@
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="257" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtFirstNameProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblFirstNameProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblPhoneNumberProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtPhoneNumberProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtLastNameProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblLastNameProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="PasswordProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblPasswordProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtEmailAddressProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblEmailAddressProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtProfessorID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblProfessorID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblGender1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnMale1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnFemale1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="btnNonBinary1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblProfessorStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jScrollPane2" min="-2" pref="257" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="txtNameProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblFirstNameProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblPhoneNumberProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtPhoneNumberProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="PasswordProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblPasswordProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtEmailAddressProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblEmailAddressProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="txtProfessorID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblProfessorID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblGender1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnMale1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnFemale1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="btnNonBinary1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="lblProfessorStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="txtSSNProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="lblSSNProf" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="startDateChooser" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                                  <Component id="lblDobProf" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="lblProfessorStartDate1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="txtProfCommunity" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
                                       </Group>
-                                      <Component id="startDateChooser" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dateOfBirthProf" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtSSNProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblSSNProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtInstituteCodeProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblInstituteCodeProf" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="dateOfBirthProf" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblDobProf" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtProfessorPhoto" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblPhotoProfessor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace pref="83" max="32767" attributes="0"/>
+                                  <EmptySpace pref="125" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnViewProf" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                       <Component id="btnCreateProf" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -1101,26 +1057,20 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="tblStudents1">
+                            <Component class="javax.swing.JTable" name="tblProfessors">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="7" rowCount="4">
-                                    <Column editable="true" title="First Name" type="java.lang.String"/>
+                                  <Table columnCount="6" rowCount="4">
+                                    <Column editable="true" title="Name" type="java.lang.String"/>
                                     <Column editable="true" title="Email Address" type="java.lang.String"/>
                                     <Column editable="true" title="Gender" type="java.lang.String"/>
                                     <Column editable="true" title="Phone Number" type="java.lang.Long"/>
                                     <Column editable="true" title="Professor ID" type="java.lang.String"/>
-                                    <Column editable="true" title="Institute Code" type="java.lang.String"/>
                                     <Column editable="true" title="Start Date" type="java.lang.String"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                   <TableColumnModel selectionModel="0">
-                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                      <Title/>
-                                      <Editor/>
-                                      <Renderer/>
-                                    </Column>
                                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                       <Title/>
                                       <Editor/>
@@ -1160,9 +1110,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Component class="javax.swing.JTextField" name="txtFirstNameProf">
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="txtLastNameProf">
+                        <Component class="javax.swing.JTextField" name="txtNameProf">
                         </Component>
                         <Component class="javax.swing.JTextField" name="txtEmailAddressProf">
                         </Component>
@@ -1173,15 +1121,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Arial" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="First Name"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblLastNameProf">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Last Name"/>
+                            <Property name="text" type="java.lang.String" value="Name"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblEmailAddressProf">
@@ -1261,9 +1201,9 @@
                           </Events>
                         </Component>
                         <Component class="javax.swing.JPasswordField" name="PasswordProfessor">
-                          <Properties>
-                            <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PasswordProfessorActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblPasswordProfessor">
                           <Properties>
@@ -1281,32 +1221,6 @@
                             <Property name="text" type="java.lang.String" value="Professor ID"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtInstituteCodeProf">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtInstituteCodeProfActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblInstituteCodeProf">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Institute Code"/>
-                          </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="txtProfessorPhoto">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProfessorPhotoActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblPhotoProfessor">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Professor Photo"/>
-                          </Properties>
-                        </Component>
                         <Component class="javax.swing.JButton" name="btnCreateProf">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1314,6 +1228,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="CREATE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateProfActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnViewProf">
                           <Properties>
@@ -1322,6 +1239,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="VIEW"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewProfActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnUpdateProf">
                           <Properties>
@@ -1330,6 +1250,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="UPDATE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateProfActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnDeleteProf">
                           <Properties>
@@ -1338,6 +1261,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="DELETE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteProfActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="com.toedter.calendar.JDateChooser" name="startDateChooser">
                         </Component>
@@ -1348,6 +1274,19 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Start Date"/>
                           </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblProfessorStartDate1">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Arial" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Community"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtProfCommunity">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProfCommunityActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1367,18 +1306,18 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="studentSplitPane1" min="-2" pref="898" max="-2" attributes="0"/>
+                          <Component id="coursesSplitPanel" min="-2" pref="898" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="studentSplitPane1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="coursesSplitPanel" alignment="1" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JSplitPane" name="studentSplitPane1">
+                <Container class="javax.swing.JSplitPane" name="coursesSplitPanel">
                   <Properties>
                     <Property name="orientation" type="int" value="0"/>
                   </Properties>
@@ -1438,6 +1377,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Log Out"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutTranscriptActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblManageCourses">
                           <Properties>
@@ -1469,48 +1411,6 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblCourseID" min="-2" pref="138" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtCourseID" min="-2" pref="240" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblCourseName" min="-2" pref="138" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtCourseName" min="-2" pref="240" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblProfessorIDCourse" min="-2" pref="138" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                                          <Component id="txtProfessorIDCourse" min="-2" pref="240" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblProfessorName" min="-2" pref="138" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtProfessorName" min="-2" pref="240" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="lblCourseDescription" max="32767" attributes="0"/>
-                                              <Component id="lblCurrentSemester1" max="32767" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="31" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="comboSemester1" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                                              <Component id="txtCourseDescription" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblStudentID5" min="-2" pref="138" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtGrade1" min="-2" pref="240" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace pref="182" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -1524,53 +1424,96 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCreditHours" min="-2" pref="138" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblCourseID" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <EmptySpace pref="27" max="32767" attributes="0"/>
+                                              <Component id="txtCourseID" min="-2" pref="240" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblCourseName" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="txtCourseName" min="-2" pref="240" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblStudentID5" min="-2" pref="138" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="txtStudentMajorCourse" min="-2" pref="240" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="lblCourseDescription" max="32767" attributes="0"/>
+                                                      <Component id="lblCurrentSemester1" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="lblProfessorName" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Component id="comboProfName" alignment="1" max="32767" attributes="0"/>
+                                                          <Component id="txtCreditHours" pref="240" max="32767" attributes="0"/>
+                                                          <Component id="txtCourseDescription" alignment="1" max="32767" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                                  <Group type="102" attributes="0">
+                                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                                      <Component id="comboSemester1" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace pref="259" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane4" min="-2" pref="313" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane4" min="-2" pref="284" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblStudentID5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtGrade1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtStudentMajorCourse" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="comboSemester1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblCurrentSemester1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lblCourseID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCourseID" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lblCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lblCourseDescription" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtCourseDescription" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="lblProfessorName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtProfessorName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblProfessorIDCourse" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtProfessorIDCourse" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="comboSemester1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCurrentSemester1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblCourseID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCourseID" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblCourseDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCourseDescription" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblProfessorName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboProfName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="lblCreditHours" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtCreditHours" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace pref="63" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnViewCourse" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                       <Component id="btnCreateCourse" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
@@ -1593,7 +1536,7 @@
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
-                            <Component class="javax.swing.JTable" name="tblTranscripts">
+                            <Component class="javax.swing.JTable" name="tblCourses">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                                   <Table columnCount="7" rowCount="4">
@@ -1602,8 +1545,8 @@
                                     <Column editable="true" title="Course ID" type="java.lang.Integer"/>
                                     <Column editable="true" title="Course Name" type="java.lang.String"/>
                                     <Column editable="true" title="Course Description" type="java.lang.String"/>
-                                    <Column editable="true" title="Professor ID" type="java.lang.String"/>
                                     <Column editable="true" title="Professor Name" type="java.lang.String"/>
+                                    <Column editable="true" title="Credit Hours" type="java.lang.Integer"/>
                                   </Table>
                                 </Property>
                                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1682,18 +1625,7 @@
                             <Property name="text" type="java.lang.String" value="Course Description"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="txtGrade1">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGrade1ActionPerformed"/>
-                          </Events>
-                        </Component>
-                        <Component class="javax.swing.JLabel" name="lblProfessorIDCourse">
-                          <Properties>
-                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Arial" size="18" style="0"/>
-                            </Property>
-                            <Property name="text" type="java.lang.String" value="Professor ID"/>
-                          </Properties>
+                        <Component class="javax.swing.JTextField" name="txtStudentMajorCourse">
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblStudentID5">
                           <Properties>
@@ -1702,11 +1634,6 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="Student Major"/>
                           </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="txtProfessorName">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProfessorNameActionPerformed"/>
-                          </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="lblCurrentSemester1">
                           <Properties>
@@ -1725,24 +1652,6 @@
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JComboBox" name="comboSemester1">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="12">
-                                <StringItem index="0" value="Select Semester"/>
-                                <StringItem index="1" value="Fall 2022"/>
-                                <StringItem index="2" value="Winter 2022"/>
-                                <StringItem index="3" value="Spring 2023"/>
-                                <StringItem index="4" value="Summer 2023"/>
-                                <StringItem index="5" value="Fall 2023"/>
-                                <StringItem index="6" value="Winter 2023"/>
-                                <StringItem index="7" value="Spring 2024"/>
-                                <StringItem index="8" value="Summer 2024"/>
-                                <StringItem index="9" value="Fall 2024"/>
-                                <StringItem index="10" value="Winter 2024"/>
-                                <StringItem index="11" value=" "/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                           </AuxValues>
@@ -1754,13 +1663,8 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="UPDATE"/>
                           </Properties>
-                        </Component>
-                        <Component class="javax.swing.JTextField" name="txtProfessorIDCourse">
-                          <Properties>
-                            <Property name="editable" type="boolean" value="false"/>
-                          </Properties>
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProfessorIDCourseActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateCourseActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnViewCourse">
@@ -1770,6 +1674,9 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="VIEW"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewCourseActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="btnCreateCourse">
                           <Properties>
@@ -1789,6 +1696,31 @@
                             </Property>
                             <Property name="text" type="java.lang.String" value="DELETE"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteCourseActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JComboBox" name="comboProfName">
+                          <Properties>
+                            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                              <StringArray count="1">
+                                <StringItem index="0" value="Select Professor Name"/>
+                              </StringArray>
+                            </Property>
+                          </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblCreditHours">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Arial" size="18" style="0"/>
+                            </Property>
+                            <Property name="text" type="java.lang.String" value="Credit Hours"/>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JTextField" name="txtCreditHours">
                         </Component>
                       </SubComponents>
                     </Container>

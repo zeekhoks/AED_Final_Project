@@ -10,6 +10,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import ui.UniversityManagement.UniversityAdminDashboard;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
@@ -25,6 +26,8 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private static final Logger logger = Logger.getLogger(MainJFrame.class.getName());
+    public static JFrame mainJFrame;
+    public static JPanel universityAdminDashboard;
     
     public MainJFrame() {
         initComponents();
@@ -66,12 +69,6 @@ public class MainJFrame extends javax.swing.JFrame {
         lblPassword.setText("Password:");
 
         lblUsername.setText("Username: ");
-
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.jpeg"))); // NOI18N
 
@@ -123,11 +120,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-//        logger.log(Level.INFO, "Login Button pressed");
-//        JPanel StudentDashboardPanel = new StudentDashboardJPanel();
-//        mainWorkArea.add("StudentDashboardJPanel",StudentDashboardPanel);
-//        CardLayout cd = (CardLayout) mainWorkArea.getLayout();
-//        cd.next(mainWorkArea);
         String userName = txtUsername.getText();
         String userPassword = String.valueOf(txtPassword.getPassword());
         
@@ -142,19 +134,14 @@ public class MainJFrame extends javax.swing.JFrame {
             
             switch(person.getUserRole()){
                 case UNIVERSITY_ADMIN:
-                    JPanel UniversityAdminDashboard = new UniversityAdminDashboard();
-                    mainWorkArea.add("UniversityAdminDashboard", UniversityAdminDashboard);
+                    universityAdminDashboard = new UniversityAdminDashboard();
+                    mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
                     CardLayout cd = (CardLayout) mainWorkArea.getLayout();
                     cd.next(mainWorkArea);
-                    
             }
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
     
     public void changePanel(JPanel panel) {
         removeAll();
@@ -193,10 +180,16 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrame().setVisible(true);
+                if(mainJFrame == null)
+                    mainJFrame = new MainJFrame();
+                mainJFrame.setVisible(true);
                 
             }
         });
+    }
+    
+    public void removeUniversityAdminDashboard() {
+        mainWorkArea.remove(universityAdminDashboard);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

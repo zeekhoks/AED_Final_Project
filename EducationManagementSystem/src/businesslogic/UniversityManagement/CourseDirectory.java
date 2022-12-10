@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class CourseDirectory {
     
-      private ArrayList<Course> courseDirectory;
+    private ArrayList<Course> courseDirectory;
     
     public CourseDirectory(){
         this.courseDirectory = new ArrayList<>();
