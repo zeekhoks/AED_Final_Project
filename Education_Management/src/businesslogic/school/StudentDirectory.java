@@ -4,6 +4,7 @@
  */
 package businesslogic.school;
 
+import businesslogic.Person;
 import java.util.ArrayList;
 
 /**
@@ -50,5 +51,30 @@ public class StudentDirectory {
     
     public void deleteStudent(Student s) {
         studentDirectory.remove(s);
+    }
+
+    public Person authenticateStudent(String userName, String password) {
+        Student user = studentDirectory.stream().filter(
+                l -> l.getPersonEmailAddress().equals(userName) && 
+                    l.getUserPassword().equals(password)).findFirst().orElse(null);
+        return user; 
+    }
+    
+    public String getStudentNameByID(String id) {
+        for(Student s : studentDirectory) {
+            if(s.getPersonId().equals(id)) {
+                return s.getPersonFirstName();
+            }
+        }
+        return null;
+    }
+
+    public String getStudentIDByName(String name) {
+        for(Student s : studentDirectory) {
+            if(s.getPersonFirstName().equals(name)) {
+                return s.getPersonId();
+            }
+        }
+        return null;
     }
 }

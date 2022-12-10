@@ -5,6 +5,7 @@
 package businesslogic;
 
 import businesslogic.DB4OUtil.DB4OUtil;
+import businesslogic.school.BookAppointmentDirectory;
 import businesslogic.school.LibraryBookDirectory;
 import businesslogic.school.ParentDirectory;
 import businesslogic.school.SchoolAdminDirectory;
@@ -27,9 +28,18 @@ public class EcoSystem {
     private SchoolDirectory schoolDirectory = new SchoolDirectory();
     private SchoolAdminDirectory schoolAdminDirectory = new SchoolAdminDirectory();
     private SubjectDirectory subjectDirectory = new SubjectDirectory();
+    private BookAppointmentDirectory bookAppointmentDirectory = new BookAppointmentDirectory();
 
     public SubjectDirectory getSubjectDirectory() {
         return subjectDirectory;
+    }
+
+    public BookAppointmentDirectory getBookAppointmentDirectory() {
+        return bookAppointmentDirectory;
+    }
+
+    public void setBookAppointmentDirectory(BookAppointmentDirectory bookAppointmentDirectory) {
+        this.bookAppointmentDirectory = bookAppointmentDirectory;
     }
 
     public void setSubjectDirectory(SubjectDirectory subjectDirectory) {

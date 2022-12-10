@@ -47,4 +47,13 @@ public class SubjectDirectory {
         }
         return null;
     }
+    
+    public String getTeacherNameByID(int id) {
+        for(Subject s : subjectDirectory) {
+            if(s.getSubjectID() == id) {
+                return s.getTeacherName();
+            }
+        }
+        return null;
+    }
 }

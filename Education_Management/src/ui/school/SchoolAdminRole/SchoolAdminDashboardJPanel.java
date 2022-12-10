@@ -51,7 +51,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private EcoSystem ecoSystem;
     private SchoolAdmin userLogged;
     private ImageIcon iconPic;
-    private String photoPath = "/icons/default.jpg";
+    private String photoPath = "/Users/drashtibhingradiya/Desktop/github-projects/AED_Final_Project/Education_Management/src/icons/default.jpg";
     private static int studentCounter = 01;
     private static int teacherCounter = 01;
     private static int subjectCounter = 01;
@@ -74,12 +74,17 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         populateTeacherTable();
         populateStudentsTable();
         clearStudentForm();
-        setDefaultPhoto();
+//        setDefaultPhoto();
         
         txtStudentID.setEditable(false);
         txtTeacherID.setEditable(false);     
-        txtSchoolCode.setEditable(false);
         txtSchoolCode.setText(userLogged.getSchoolCode());
+//        txtSchoolCode.setEditable(false);
+        
+        txtTeacherSchoolCode.setText(userLogged.getSchoolCode());
+        txtTeacherSchoolCode.setEditable(false);
+        txtTeacherRole.setText("Teacher");
+        txtTeacherRole.setEditable(false);
         // set School Code here
         
         for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
@@ -89,7 +94,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     
     private void setDefaultPhoto() {
         
-        setPhoto("/icons/default.jpg");
+        setPhoto("/Users/drashtibhingradiya/Desktop/github-projects/AED_Final_Project/Education_Management/src/icons/default.jpg");
     }
     
     private void setPhoto(String imagePath) {
@@ -1752,6 +1757,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 //        lblpicpreview.setIcon(setPhoto(photoPath));
 
         ImageIcon icon = new ImageIcon(photoPath);
+        System.out.println(photoPath);
         // Resize image to fit jLabel
         Image image = icon.getImage().getScaledInstance(134,138,4);
         // Set jLabel icon property to image
@@ -1849,7 +1855,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             
 //            txtPassword.setEditable(false);
             txtStudentID.setEditable(false);
-            txtSchoolCode.setEditable(false);
+//            txtSchoolCode.setEditable(false);
             
             String firstName = txtFirstName.getText();
             String lastName = txtLastName.getText();
@@ -1928,7 +1934,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             
 //            txtPassword.setEditable(false);
             txtStudentID.setEditable(false);
-//            txtSchoolCode.setEditable(false);
+//            txtSchoolCode.setEditable();
             String schoolCode = txtSchoolCode.getText();
             String studentID = txtSchoolCode.getText()+(String.valueOf(studentCounter));
             studentCounter++;
@@ -2402,7 +2408,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private void populateStudentsTable() {
         DefaultTableModel model = (DefaultTableModel) tblStudent.getModel();
         model.setRowCount(0);
-        
+//        model.setColumnCount(0);
+
+       
         for(Student s : ecoSystem.getStudentDirectory().getStudentDirectory()) {
             if(s.getSchoolCode().equals(userLogged.getSchoolCode())) {
                 Object[] row = new Object[5];
@@ -2477,7 +2485,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private void populateTeacherTable() {
         DefaultTableModel model = (DefaultTableModel) tblTeacher.getModel();
         model.setRowCount(0);
-        
+//        model.setColumnCount(0);
+
         for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
             if(t.getSchoolCode().equals(userLogged.getSchoolCode())) {
                 Object[] row = new Object[4];
@@ -2503,7 +2512,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private void populateLibraryTable() {
         DefaultTableModel model = (DefaultTableModel) tblLibrary.getModel();
         model.setRowCount(0);
-        
+//        model.setColumnCount(0);
+
         for(Library l : ecoSystem.getLibraryDirectory().getLibraryDirectory()) {
             if(l.getSchoolCode().equals(userLogged.getSchoolCode())) {
                 Object[] row = new Object[3];

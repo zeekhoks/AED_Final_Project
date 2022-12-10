@@ -50,5 +50,23 @@ public class TeacherDirectory {
                     l.getUserPassword().equals(password)).findFirst().orElse(null);
         return user;    
     }
+
+    public String getTeacherIDByName(String name) {
+        for(Teacher t : teacherDirectory) {
+            if(t.getPersonFirstName().equals(name)) {
+                return t.getPersonId();
+            }
+        }
+        return null;
+    }
+    
+    public String getTeacherNameByID(String id) {
+        for(Teacher t : teacherDirectory) {
+            if(t.getPersonId().equals(id)) {
+                return t.getPersonFirstName();
+            }
+        }
+        return null;
+    }
     
 }

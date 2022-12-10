@@ -14,11 +14,13 @@ import businesslogic.Person.UserRole;
 import businesslogic.PersonDirectory;
 import businesslogic.school.SchoolAdmin;
 import businesslogic.school.SchoolDirectory;
+import businesslogic.school.Student;
 import businesslogic.school.StudentDirectory;
 import businesslogic.school.Teacher;
 import businesslogic.school.TeacherDirectory;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -45,47 +47,53 @@ public class MainJFrame extends javax.swing.JFrame {
     JPanel SchoolAdminDashboardJPanel;
     JPanel SystemAdminDashboardJPanel;
     JPanel TeacherDashboardJPanel;
+    JPanel StudentDashboardJPanel;
     
+    private static int flag = 0;
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
     
     public MainJFrame() {
         initComponents();
         setSize(1060, 770);
-        ecoSystem = db4OUtil.retrieveSystem();
-        if(ecoSystem.getCityDirectory() != null) {
-            this.cityDirectory = ecoSystem.getCityDirectory();
-        } else {
-            this.cityDirectory = new CityDirectory();
-        }
+        if(flag == 0){
+            ecoSystem = db4OUtil.retrieveSystem();
         
-        if(ecoSystem.getCommunityDirectory() != null) {
-            this.communityDirectory = ecoSystem.getCommunityDirectory();
-        } else{
-            this.communityDirectory = new CommunityDirectory();
+            if(ecoSystem.getCityDirectory() != null) {
+                this.cityDirectory = ecoSystem.getCityDirectory();
+            } else {
+                this.cityDirectory = new CityDirectory();
+            }
+
+            if(ecoSystem.getCommunityDirectory() != null) {
+                this.communityDirectory = ecoSystem.getCommunityDirectory();
+            } else{
+                this.communityDirectory = new CommunityDirectory();
+            }
+            if(ecoSystem.getPersonDirectory() != null) {
+                this.personDirectory = ecoSystem.getPersonDirectory();
+            } else {
+                this.personDirectory = new PersonDirectory();
+            }
+
+            if(ecoSystem.getSchoolDirectory() != null) {
+                this.schoolDirectory = ecoSystem.getSchoolDirectory();
+            } else {
+                this.schoolDirectory = new SchoolDirectory();
+            }
+
+            if(ecoSystem.getStudentDirectory() != null) {
+                this.studentDirectory = ecoSystem.getStudentDirectory();
+            } else {
+                this.studentDirectory = new StudentDirectory();
+            }
+
+            if(ecoSystem.getTeacherDirectory() != null) {
+                this.teacherDirectory = ecoSystem.getTeacherDirectory();
+            } else {
+                this.teacherDirectory = new TeacherDirectory();
+            }
         }
-        if(ecoSystem.getPersonDirectory() != null) {
-            this.personDirectory = ecoSystem.getPersonDirectory();
-        } else {
-            this.personDirectory = new PersonDirectory();
-        }
-        
-        if(ecoSystem.getSchoolDirectory() != null) {
-            this.schoolDirectory = ecoSystem.getSchoolDirectory();
-        } else {
-            this.schoolDirectory = new SchoolDirectory();
-        }
-        
-        if(ecoSystem.getStudentDirectory() != null) {
-            this.studentDirectory = ecoSystem.getStudentDirectory();
-        } else {
-            this.studentDirectory = new StudentDirectory();
-        }
-        
-        if(ecoSystem.getTeacherDirectory() != null) {
-            this.teacherDirectory = ecoSystem.getTeacherDirectory();
-        } else {
-            this.teacherDirectory = new TeacherDirectory();
-        }
+        flag++;
         
         
 //        personDirectory = new PersonDirectory();
@@ -253,7 +261,24 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             }
         }
-               
+        
+        logger.log(Level.INFO, "Checking credentials in School Student Directory");
+        
+        if(userLogged == null) {
+            if(!ecoSystem.getStudentDirectory().getStudentDirectory().isEmpty()) {
+                userLogged = ecoSystem.getStudentDirectory().authenticateStudent(userName, password);
+                if(userLogged != null) {
+                    clearLoginPanel();
+                    
+                    StudentDashboardJPanel = new StudentDashboardJPanel(ecoSystem, (Student)userLogged);
+                    
+                    mainWorkArea.add("StudentDashboardJPanel",StudentDashboardJPanel);
+                    CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
+                    cd4.next(mainWorkArea);
+                    return;
+                }
+            }
+        }       
         else {
             JOptionPane.showMessageDialog(this, "Please recheck your credentials");
         }
@@ -331,5 +356,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public void removeTeacherDashboardJPanel() {
         mainWorkArea.remove(TeacherDashboardJPanel);
+    }
+    
+    public void removeStudentDashboardJPanel() {
+        mainWorkArea.remove(StudentDashboardJPanel);
     }
 }

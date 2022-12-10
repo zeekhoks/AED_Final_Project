@@ -42,11 +42,11 @@ public class ConfigureASystem {
                 "1234", Person.UserRole.SCHOOL_TEACHER, "s01", "2010-09-09"));
         
         ecoSystem.getTeacherDirectory().getTeacherDirectory().add(new Teacher("Eric", "Rah", "Male", 
-                "school0101", "1980-02-02", 1234567890, "Eric@gmail.com", c, 
+                "school0102", "1980-02-02", 1234567890, "Eric@gmail.com", c, 
                 "1234", Person.UserRole.SCHOOL_TEACHER, "s01", "2010-09-09"));
         
         ecoSystem.getTeacherDirectory().getTeacherDirectory().add(new Teacher("Dough", "Gori", "Male", 
-                "school0101", "1980-02-02", 1234567890, "Dough@gmail.com", c, 
+                "school0103", "1980-02-02", 1234567890, "Dough@gmail.com", c, 
                 "1234", Person.UserRole.SCHOOL_TEACHER, "s01", "2010-09-09"));
         
     // subject
@@ -60,11 +60,15 @@ public class ConfigureASystem {
                     .collect(Collectors.toList());
         ecoSystem.getStudentDirectory().getStudentDirectory().add(new Student("Yesha", "Patel", "Female", "s0101", 
                 "2000-01-01", 1234567890, "yesha@gmail.com", c, "1234", Person.UserRole.STUDENT, 
-                "s01", "Dance", 1, "/icons/default.jpg", standardSub));
+                "s01", "Dance", 1, 
+                "/Users/drashtibhingradiya/Desktop/github-projects/AED_Final_Project/Education_Management/src/icons/default.jpg", 
+                standardSub));
         
         ecoSystem.getStudentDirectory().getStudentDirectory().add(new Student("Yuve", "Su", "Male", "s0102", 
                 "2000-04-03", 1234567890, "yuve@gmail.com", c, "1234", Person.UserRole.STUDENT, 
-                "s01", "Music", 1, "/icons/default.jpg", standardSub));
+                "s01", "Music", 1, 
+                "/Users/drashtibhingradiya/Desktop/github-projects/AED_Final_Project/Education_Management/src/icons/default.jpg", 
+                standardSub));
         
         
         
