@@ -4,6 +4,7 @@
  */
 package ui.UniversityManagement;
 
+import businesslogic.EcoSystem;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -20,7 +21,7 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
      */
    
     
-    public PlacementCoordinatorDashboard() {
+    public PlacementCoordinatorDashboard(EcoSystem ecoSystem) {
         initComponents();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);

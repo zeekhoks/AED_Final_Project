@@ -24,6 +24,9 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import ui.MealPlanManagement.MealPlanDashboard;
+import ui.UniversityManagement.PlacementCoordinatorDashboard;
+import ui.UniversityManagement.ProfessorDashboard;
+import ui.UniversityManagement.StudentDashboard;
 import ui.UniversityManagement.UniversityAdminDashboard;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
@@ -54,6 +57,9 @@ public class MainJFrame extends javax.swing.JFrame {
     public static JFrame mainJFrame;
     public static JPanel universityAdminDashboard;
     public static JPanel mealPlanAdminDashboard;
+    public static JPanel studentDashboard;
+    public static JPanel professorDashboard;
+    public static JPanel placementCoordinatorDashboard;
     
     public MainJFrame() {
         initComponents();
@@ -220,11 +226,32 @@ public class MainJFrame extends javax.swing.JFrame {
                     mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
                     CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
                     cd1.next(mainWorkArea);
+                    break;
                 case MEALPLAN_ADMIN:
                     mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem);
                     mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
                     CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
                     cd2.next(mainWorkArea);
+                    break;
+                case STUDENT:
+                    studentDashboard = new StudentDashboard(ecoSystem);
+                    mainWorkArea.add("studentDashboard", studentDashboard);
+                    CardLayout cd3 = (CardLayout) mainWorkArea.getLayout();
+                    cd3.next(mainWorkArea);
+                    break;
+                case PROFESSOR:
+                    professorDashboard = new ProfessorDashboard(ecoSystem);
+                    mainWorkArea.add("professorDashboard", professorDashboard);
+                    CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
+                    cd4.next(mainWorkArea);
+                    break;
+                case PLACEMENT_COORDINATOR:
+                    placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem);
+                    mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
+                    CardLayout cd5 = (CardLayout) mainWorkArea.getLayout();
+                    cd5.next(mainWorkArea);
+                    break;
+                    
                 
             }
         }
@@ -294,4 +321,8 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    public void removeStudentDashboard() {
+         mainWorkArea.remove(studentDashboard);
+    }
 }

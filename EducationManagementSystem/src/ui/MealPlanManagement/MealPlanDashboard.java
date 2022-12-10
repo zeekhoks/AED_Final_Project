@@ -38,6 +38,7 @@ import ui.MainJFrame;
 public class MealPlanDashboard extends javax.swing.JPanel {
 
 //    public static JPanel universityAdminDashboard;
+    
     /**
      * Creates new form DashboardJPanel
      */
@@ -69,7 +70,7 @@ public class MealPlanDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         genderButtonGroup = new javax.swing.ButtonGroup();
-        UniversityDashboardPanel = new javax.swing.JSplitPane();
+        MealPlanDashboardPanel = new javax.swing.JSplitPane();
         leftPane = new javax.swing.JPanel();
         btnMealOrders = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
@@ -124,8 +125,8 @@ public class MealPlanDashboard extends javax.swing.JPanel {
             .addGroup(leftPaneLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(leftPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                    .addComponent(btnMealOrders, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMealOrders, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         leftPaneLayout.setVerticalGroup(
@@ -138,7 +139,7 @@ public class MealPlanDashboard extends javax.swing.JPanel {
                 .addGap(126, 126, 126))
         );
 
-        UniversityDashboardPanel.setLeftComponent(leftPane);
+        MealPlanDashboardPanel.setLeftComponent(leftPane);
 
         rightPane.setLayout(new java.awt.CardLayout());
 
@@ -155,6 +156,11 @@ public class MealPlanDashboard extends javax.swing.JPanel {
         navigateBackPanel.setBackground(new java.awt.Color(0, 0, 0));
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogout.setText("Log Out");
@@ -199,17 +205,17 @@ public class MealPlanDashboard extends javax.swing.JPanel {
 
         tblMealPlan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Meal Plan ID", "Meal Plan", "Meal Plan Description"
+                "Meal Plan ID", "Meal Plan", "Meal Plan Type", "Meal Plan Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -367,7 +373,7 @@ public class MealPlanDashboard extends javax.swing.JPanel {
 
         rightPane.add(mealPlanPanel, "card3");
 
-        UniversityDashboardPanel.setRightComponent(rightPane);
+        MealPlanDashboardPanel.setRightComponent(rightPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -375,14 +381,14 @@ public class MealPlanDashboard extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(UniversityDashboardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1049, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(MealPlanDashboardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1049, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(UniversityDashboardPanel))
+                .addComponent(MealPlanDashboardPanel))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -401,7 +407,8 @@ public class MealPlanDashboard extends javax.swing.JPanel {
         String mealDescription = txtMealDescription.getText();
         
 
-        List<Integer> mealIdList = ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory().stream().map(x -> x.getMealID()).toList();
+        List<Integer> mealIdList = ecoSystem.getMealPlanDirectoryRef()
+                .getMealPlanDirectory().stream().map(x -> x.getMealID()).toList();
 //        List<String> studentIdList = UniversityAdmin.studentDirectoryRef.getStudentDirectory().stream().map(x -> x.getStudentID()).toList();
 
         if (mealIdList.contains(mealPlanID)) {
@@ -413,8 +420,8 @@ public class MealPlanDashboard extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "New Meal Plan Added Successfully!");
 
             txtMealPlanID.setText("");
-            comboMeal.removeAllItems();
-            comboMealType.removeAllItems();
+            comboMeal.setSelectedIndex(-1);
+            comboMealType.setSelectedIndex(-1);
             txtMealDescription.setText("");
             
             populateMealPlanTable();
@@ -438,14 +445,14 @@ public class MealPlanDashboard extends javax.swing.JPanel {
         txtMealDescription.setText(mealPlan.getMealDescription());
         populateMealPlan();
         populateMealPlanType();
-       
-
 
 
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnMealOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMealOrdersActionPerformed
         // TODO add your handling code here:
+        workAreaPanel.setVisible(false);
+        mealPlanPanel.setVisible(true);
     }//GEN-LAST:event_btnMealOrdersActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -475,15 +482,16 @@ public class MealPlanDashboard extends javax.swing.JPanel {
         mealPlan.setMealPlan(mealPlanName);
         mealPlan.setMealType(mealPlanType);
         mealPlan.setMealDescription(mealDescription);
+        
+        populateMealPlanTable();
 
         JOptionPane.showMessageDialog(this, "Meal plan details updated successfully!");
 
-        txtMealPlanID.setText("");
-        comboMeal.removeAllItems();
-        comboMealType.removeAllItems();
-        txtMealDescription.setText("");
-  
-       populateMealPlanTable();
+    txtMealPlanID.setText("");
+            comboMeal.setSelectedIndex(-1);
+            comboMealType.setSelectedIndex(-1);
+            txtMealDescription.setText("");
+       
 
 
     }//GEN-LAST:event_btnUpdateActionPerformed
@@ -508,10 +516,10 @@ public class MealPlanDashboard extends javax.swing.JPanel {
 
         populateMealPlanTable();
 
-        txtMealPlanID.setText("");
-        comboMeal.removeAllItems();
-        comboMealType.removeAllItems();
-        txtMealDescription.setText("");
+       txtMealPlanID.setText("");
+            comboMeal.setSelectedIndex(-1);
+            comboMealType.setSelectedIndex(-1);
+            txtMealDescription.setText("");
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -521,15 +529,20 @@ public class MealPlanDashboard extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_tblMealPlanMouseClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_btnBackActionPerformed
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeUniversityAdminDashboard();
+        mainFrame.removeMealPlanDashboard();
         mainFrame.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSplitPane UniversityDashboardPanel;
+    private javax.swing.JSplitPane MealPlanDashboardPanel;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
@@ -565,32 +578,32 @@ public class MealPlanDashboard extends javax.swing.JPanel {
     private void populateMealPlanTable() {
         DefaultTableModel model = (DefaultTableModel) tblMealPlan.getModel();
         model.setRowCount(0);
-        for (Student student : ecoSystem.getStudentDirectoryRef().getStudentDirectory()) {
-            Object[] rowData = new Object[9];
-            rowData[0] = student.getPersonName();
-            rowData[1] = student.getStudentID();
-            rowData[2] = student.getPersonEmailAddress();
-            rowData[3] = student.getPersonGender();
-            rowData[4] = student.getPersonPhoneNumber();
-            rowData[5] = student.getCommunity().getCommunity();
-            rowData[6] = student.getStudentDegree().getDegreeLevel();
-            rowData[7] = student.getStudentDegree().getMajor();
-            rowData[8] = student.getGraduationYear();
+        for (MealPlan mp : ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()) {
+            Object[] rowData = new Object[4];
+            rowData[0] = mp.getMealID();
+            rowData[1] = mp.getMealPlan();
+            rowData[2] = mp.getMealType();
+            rowData[3] = mp.getMealDescription();
             model.addRow(rowData);
         }
     }
 
 
     private void populateMealPlan(){
-        comboMeal.removeAllItems();
+        comboMeal.setSelectedIndex(-1);
         ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()
                 .forEach(m -> comboMeal.addItem(m.getMealPlan()));
     }
     
     private void populateMealPlanType(){
-        comboMeal.removeAllItems();
+        comboMealType.setSelectedIndex(-1);
         ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()
                 .forEach(m -> comboMealType.addItem(m.getMealType()));
+    }
+
+    private void switchToWorkAreaPanel() {
+        workAreaPanel.setVisible(true);
+        mealPlanPanel.setVisible(false);
     }
     
 

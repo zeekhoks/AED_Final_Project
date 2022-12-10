@@ -10,6 +10,7 @@ import businesslogic.UniversityManagement.CourseAssignmentDirectory;
 import businesslogic.UniversityManagement.CourseDirectory;
 import businesslogic.UniversityManagement.ProfessorDirectory;
 import businesslogic.UniversityManagement.StudentDirectory;
+import businesslogic.UniversityManagement.StudentMealPlanDirectory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class EcoSystem {
     private CommunityDirectory communityDirectoryRef = new CommunityDirectory();
     private MealPlanDirectory mealPlanDirectoryRef = new MealPlanDirectory();
     private CourseAssignmentDirectory courseAssignment = new CourseAssignmentDirectory();
+    private StudentMealPlanDirectory smp = new StudentMealPlanDirectory();
     
     private EcoSystem(){
     
@@ -120,6 +122,14 @@ public class EcoSystem {
 
     public void setMealPlanDirectoryRef(MealPlanDirectory mealPlanDirectoryRef) {
         this.mealPlanDirectoryRef = mealPlanDirectoryRef;
+    }
+
+    public StudentMealPlanDirectory getSmp() {
+        return smp;
+    }
+
+    public void setSmp(StudentMealPlanDirectory smp) {
+        this.smp = smp;
     }
 
     

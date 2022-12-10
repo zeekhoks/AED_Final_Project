@@ -4,6 +4,7 @@
  */
 package ui.UniversityManagement;
 
+import businesslogic.EcoSystem;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -14,14 +15,14 @@ import javax.swing.JSplitPane;
  *
  * @author drashtibhingradiya
  */
-public class FacultyDashboard extends javax.swing.JPanel {
+public class ProfessorDashboard extends javax.swing.JPanel {
 
     /**
      * Creates new form DashboardJPanel
      */
    
     
-    public FacultyDashboard() {
+    public ProfessorDashboard(EcoSystem ecoSystem) {
         initComponents();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);

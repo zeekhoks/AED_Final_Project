@@ -5,6 +5,7 @@
 package ui.UniversityManagement;
 
 import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlan;
 import businesslogic.UniversityManagement.Course;
 import businesslogic.UniversityManagement.CourseAssignment;
 import businesslogic.UniversityManagement.UniversityAdmin;
@@ -14,7 +15,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import ui.MainJFrame;
 
 /**
  *
@@ -28,10 +31,11 @@ public class StudentDashboard extends javax.swing.JPanel {
    
         private EcoSystem ecoSystem;
 
-    public StudentDashboard() {
+    public StudentDashboard(EcoSystem ecoSystem1) {
         initComponents();
         this.ecoSystem = ecoSystem;
         populateCoursesTable();
+        populateMealPlanTable();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
         profilePanel.setVisible(false);    
@@ -218,6 +222,26 @@ public class StudentDashboard extends javax.swing.JPanel {
         txtCreditHours = new javax.swing.JTextField();
         lblCreditHoursStudent = new javax.swing.JLabel();
         txtStudentIDStudent = new javax.swing.JTextField();
+        mealPlanPanel = new javax.swing.JPanel();
+        mealSplitPane = new javax.swing.JSplitPane();
+        navigateBackPanel5 = new javax.swing.JPanel();
+        btnBack1 = new javax.swing.JButton();
+        btnLogout1 = new javax.swing.JButton();
+        lblManageStudents = new javax.swing.JLabel();
+        studentWorkAreaPanel5 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblMealPlan = new javax.swing.JTable();
+        txtMealPlanID = new javax.swing.JTextField();
+        lblMealID = new javax.swing.JLabel();
+        lblMealDescription = new javax.swing.JLabel();
+        btnChooseMealPlan = new javax.swing.JButton();
+        lblMealPlan = new javax.swing.JLabel();
+        mealPic = new javax.swing.JLabel();
+        comboMeal = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txtMealDescription = new javax.swing.JTextArea();
+        lblMealType = new javax.swing.JLabel();
+        comboMealType = new javax.swing.JComboBox<>();
 
         leftPane.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -1637,6 +1661,193 @@ public class StudentDashboard extends javax.swing.JPanel {
 
         rightPane.add(coursesPanel, "card3");
 
+        mealSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        navigateBackPanel5.setBackground(new java.awt.Color(0, 0, 0));
+
+        btnBack1.setText("Back");
+        btnBack1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBack1ActionPerformed(evt);
+            }
+        });
+
+        btnLogout1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        btnLogout1.setText("Log Out");
+        btnLogout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogout1ActionPerformed(evt);
+            }
+        });
+
+        lblManageStudents.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblManageStudents.setForeground(new java.awt.Color(255, 255, 255));
+        lblManageStudents.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblManageStudents.setText("Choose Meals");
+
+        javax.swing.GroupLayout navigateBackPanel5Layout = new javax.swing.GroupLayout(navigateBackPanel5);
+        navigateBackPanel5.setLayout(navigateBackPanel5Layout);
+        navigateBackPanel5Layout.setHorizontalGroup(
+            navigateBackPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel5Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnBack1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 297, Short.MAX_VALUE)
+                .addComponent(lblManageStudents)
+                .addGap(236, 236, 236)
+                .addComponent(btnLogout1)
+                .addGap(48, 48, 48))
+        );
+        navigateBackPanel5Layout.setVerticalGroup(
+            navigateBackPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navigateBackPanel5Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(navigateBackPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack1)
+                    .addComponent(btnLogout1)
+                    .addComponent(lblManageStudents))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        mealSplitPane.setTopComponent(navigateBackPanel5);
+
+        studentWorkAreaPanel5.setBackground(new java.awt.Color(37, 150, 190));
+
+        tblMealPlan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Meal Plan ID", "Meal Plan", "Meal Plan Type", "Meal Plan Description"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblMealPlan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblMealPlanMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(tblMealPlan);
+
+        lblMealID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblMealID.setText("Meal ID");
+
+        lblMealDescription.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblMealDescription.setText("Meal Description");
+
+        btnChooseMealPlan.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnChooseMealPlan.setText("CHOOSE MEAL PLAN");
+        btnChooseMealPlan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseMealPlanActionPerformed(evt);
+            }
+        });
+
+        lblMealPlan.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblMealPlan.setText("Meal Plan");
+
+        comboMeal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Day Plan", "Month Plan", "Week Plan" }));
+        comboMeal.setSelectedIndex(-1);
+
+        txtMealDescription.setColumns(20);
+        txtMealDescription.setRows(5);
+        jScrollPane7.setViewportView(txtMealDescription);
+
+        lblMealType.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblMealType.setText("Meal Type");
+
+        comboMealType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vegetarian", "Non Vegetarian", "Vegan" }));
+        comboMealType.setSelectedIndex(-1);
+
+        javax.swing.GroupLayout studentWorkAreaPanel5Layout = new javax.swing.GroupLayout(studentWorkAreaPanel5);
+        studentWorkAreaPanel5.setLayout(studentWorkAreaPanel5Layout);
+        studentWorkAreaPanel5Layout.setHorizontalGroup(
+            studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanel5Layout.createSequentialGroup()
+                .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMealID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMealDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMealPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMealType, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMealPlanID)
+                            .addComponent(comboMeal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                            .addComponent(comboMealType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(btnChooseMealPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66)
+                .addComponent(mealPic, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addComponent(jScrollPane6)
+        );
+        studentWorkAreaPanel5Layout.setVerticalGroup(
+            studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                        .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtMealPlanID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMealID))
+                        .addGap(18, 18, 18)
+                        .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMealPlan)
+                            .addComponent(comboMeal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboMealType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMealType))
+                        .addGroup(studentWorkAreaPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(lblMealDescription)))
+                        .addGap(67, 67, 67)
+                        .addComponent(btnChooseMealPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE))
+                    .addGroup(studentWorkAreaPanel5Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(mealPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(36, 36, 36))
+        );
+
+        mealSplitPane.setRightComponent(studentWorkAreaPanel5);
+
+        javax.swing.GroupLayout mealPlanPanelLayout = new javax.swing.GroupLayout(mealPlanPanel);
+        mealPlanPanel.setLayout(mealPlanPanelLayout);
+        mealPlanPanelLayout.setHorizontalGroup(
+            mealPlanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mealPlanPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(mealSplitPane, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        mealPlanPanelLayout.setVerticalGroup(
+            mealPlanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mealSplitPane, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        rightPane.add(mealPlanPanel, "card3");
+
         DashboardPanel.setRightComponent(rightPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1832,6 +2043,45 @@ public class StudentDashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStudentIDStudentActionPerformed
 
+    private void btnBack1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack1ActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_btnBack1ActionPerformed
+
+    private void btnLogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout1ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_btnLogout1ActionPerformed
+
+    private void tblMealPlanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMealPlanMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_tblMealPlanMouseClicked
+
+    private void btnChooseMealPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseMealPlanActionPerformed
+        // TODO add your handling code here:
+        //        CHOOSE MEAL
+              int selected = tblMealPlan.getSelectedRow();
+
+        if (selected < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update!");
+            return;
+        }
+
+        MealPlan mealPlan = ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory().get(selected);
+
+        txtMealPlanID.setText(String.valueOf(mealPlan.getMealID()));
+        txtMealDescription.setText(mealPlan.getMealDescription());
+        populateMealPlan();
+        populateMealPlanType();
+        
+       
+        
+//        StudentMealPlan smp = new StudentMealPlan()
+        
+            
+    }//GEN-LAST:event_btnChooseMealPlanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSplitPane DashboardPanel;
@@ -1839,10 +2089,12 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JButton bntCreateAppointment;
     private javax.swing.JButton btnAppointment;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnBack1;
     private javax.swing.JButton btnBackTranscript;
     private javax.swing.JButton btnBackTranscript1;
     private javax.swing.JButton btnBackTranscript2;
     private javax.swing.JButton btnBackTranscript3;
+    private javax.swing.JButton btnChooseMealPlan;
     private javax.swing.JButton btnCourseRegistration;
     private javax.swing.JButton btnDeleteAppointment;
     private javax.swing.JButton btnDorm;
@@ -1851,6 +2103,7 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JRadioButton btnFemale;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnLogout1;
     private javax.swing.JButton btnLogoutTranscript;
     private javax.swing.JButton btnLogoutTranscript1;
     private javax.swing.JButton btnLogoutTranscript2;
@@ -1871,6 +2124,8 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JButton btnViewEvent;
     private javax.swing.JRadioButton btnYes;
     private javax.swing.JComboBox<String> comboJobs;
+    private javax.swing.JComboBox<String> comboMeal;
+    private javax.swing.JComboBox<String> comboMealType;
     private javax.swing.JComboBox<String> comboPlacementCoordinator;
     private javax.swing.JComboBox<String> comboSemester;
     private javax.swing.JComboBox<String> comboSemester1;
@@ -1890,6 +2145,8 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lblAppointmentDate;
     private javax.swing.JLabel lblAppointmentDate1;
     private javax.swing.JLabel lblAppointmentTime;
@@ -1926,6 +2183,11 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblManageCourses;
     private javax.swing.JLabel lblManageProfile;
+    private javax.swing.JLabel lblManageStudents;
+    private javax.swing.JLabel lblMealDescription;
+    private javax.swing.JLabel lblMealID;
+    private javax.swing.JLabel lblMealPlan;
+    private javax.swing.JLabel lblMealType;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblPlacementCoordinator;
@@ -1946,11 +2208,15 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblTranscriptPanel1;
     private javax.swing.JLabel lblTranscriptPanel2;
     private javax.swing.JPanel leftPane;
+    private javax.swing.JLabel mealPic;
+    private javax.swing.JPanel mealPlanPanel;
+    private javax.swing.JSplitPane mealSplitPane;
     private javax.swing.JPanel navigateBackPanel;
     private javax.swing.JPanel navigateBackPanel1;
     private javax.swing.JPanel navigateBackPanel2;
     private javax.swing.JPanel navigateBackPanel3;
     private javax.swing.JPanel navigateBackPanel4;
+    private javax.swing.JPanel navigateBackPanel5;
     private javax.swing.JPanel profilePanel;
     private javax.swing.JLayeredPane rightPane;
     private javax.swing.JSplitPane studentSplitPane;
@@ -1963,7 +2229,9 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel studentWorkAreaPanel2;
     private javax.swing.JPanel studentWorkAreaPanel3;
     private javax.swing.JPanel studentWorkAreaPanel4;
+    private javax.swing.JPanel studentWorkAreaPanel5;
     private javax.swing.JTable tblCoursesStudent;
+    private javax.swing.JTable tblMealPlan;
     private javax.swing.JTable tblStudents;
     private javax.swing.JTable tblTranscripts;
     private javax.swing.JTable tblTranscripts1;
@@ -1988,6 +2256,8 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JTextField txtInstituteCode;
     private javax.swing.JTextField txtJobAssigned;
     private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextArea txtMealDescription;
+    private javax.swing.JTextField txtMealPlanID;
     private javax.swing.JTextField txtPhoneNumber;
     private javax.swing.JTextField txtPhoto;
     private javax.swing.JTextField txtProfessorName;
@@ -2022,4 +2292,44 @@ public class StudentDashboard extends javax.swing.JPanel {
             rowData[5] = course.getProfessorName();
         }
     }
+    
+    
+   private void populateMealPlanTable() {
+        DefaultTableModel model = (DefaultTableModel) tblMealPlan.getModel();
+        model.setRowCount(0);
+        for (MealPlan mp : ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()) {
+            Object[] rowData = new Object[4];
+            rowData[0] = mp.getMealID();
+            rowData[1] = mp.getMealPlan();
+            rowData[2] = mp.getMealType();
+            rowData[3] = mp.getMealDescription();
+            model.addRow(rowData);
+        }
+    }
+   
+   
+       private void populateMealPlan(){
+        comboMeal.setSelectedIndex(-1);
+        ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()
+                .forEach(m -> comboMeal.addItem(m.getMealPlan()));
+    }
+    
+    private void populateMealPlanType(){
+        comboMealType.setSelectedIndex(-1);
+        ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()
+                .forEach(m -> comboMealType.addItem(m.getMealType()));
+    }
+
+    private void switchToWorkAreaPanel() {
+        workAreaPanel.setVisible(true);
+        mealPlanPanel.setVisible(false);
+    }
+    
+    private void switchToMainFrame() {
+        this.setVisible(false);
+        MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
+        mainFrame.removeStudentDashboard();
+        mainFrame.setVisible(true);
+    }
+
 }

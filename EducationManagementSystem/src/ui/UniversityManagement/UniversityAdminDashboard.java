@@ -54,6 +54,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
         studentPanel.setVisible(false);
+        facultyPanel.setVisible(false);
+        coursesPanel.setVisible(false);
         genderButtonGroup.add(btnMale);
         genderButtonGroup.add(btnFemale);
         genderButtonGroup.add(btnNonBinary);
@@ -568,9 +570,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                     .addComponent(txtStudentMajor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDateofBirth))
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDateofBirth)
                     .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtGradYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblGraduationYear)))
@@ -916,6 +917,11 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         navigateBackPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         btnBackTranscript.setText("Back");
+        btnBackTranscript.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackTranscriptActionPerformed(evt);
+            }
+        });
 
         btnLogoutTranscript.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogoutTranscript.setText("Log Out");
@@ -1429,6 +1435,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         course.setCreditHours(creditHours);
 
         populateCoursesTable();
+        
+        JOptionPane.showMessageDialog(this, "Course plan details updated successfully!");
+
 
         txtStudentMajorCourse.setText("");
         comboSemester1.removeAllItems();
@@ -1734,6 +1743,11 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_comboProfNameActionPerformed
+
+    private void btnBackTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackTranscriptActionPerformed
+        // TODO add your handling code here:
+        switchToWorkAreaPanel();
+    }//GEN-LAST:event_btnBackTranscriptActionPerformed
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
@@ -1914,6 +1928,13 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private void populateSemesterCombo(){
         comboSemester1.removeAllItems();
         UniversityAdmin.semesterList.forEach(s -> comboSemester1.addItem(s));
+    }
+
+    private void switchToWorkAreaPanel() {
+       workAreaPanel.setVisible(true);
+        studentPanel.setVisible(false);
+        facultyPanel.setVisible(false);
+        coursesPanel.setVisible(false);
     }
     
 }

@@ -33,15 +33,15 @@ public class ConfigureASystem {
         
 
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new UniversityAdmin("Zainab",
-                "Female", "123456", new Date(1997, 07, 26), 12345677L,
+                "Female", "123456", null, 12345677L,
                 "zk@gmail.com", new Community("Park Drive", new City("Boston")), "zk123"));
 
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new Student("Hinal", "Female",
-                "123457", new Date(1997, 11, 21), 12345687L, "hp@gmail.com", new Community("Westland Avenue",
+                "123457", null, 12345687L, "hp@gmail.com", new Community("Westland Avenue",
                         new City("Boston")), "hp123", "12", new Degree("Graduate", "Information Systems"),
                 "2024", "photo"));
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new MealPlanAdmin("John Doe", 
-                "Male", "123458", new Date("1998, 12, 11"), 1234322L, "jd@gmail.com", 
+                "Male", "123458", null, 1234322L, "jd@gmail.com", 
                 new Community ("Boylston", new City ("Boson")), "jd123", 13));
         
         return ecoSystem;
