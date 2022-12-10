@@ -11,13 +11,14 @@ import businesslogic.Community;
  */
 public class University {
     
-    private long universityID;
+    private String universityID;
     private String universityName;
     private Community community;
     private String universityAdminEmail;
     private String universityAdminPassword;
 
-    public University(long universityID, String universityName, Community community, String universityAdminEmail, String universityAdminPassword) {
+    public University(String universityID, String universityName, 
+            Community community, String universityAdminEmail, String universityAdminPassword) {
         this.universityID = universityID;
         this.universityName = universityName;
         this.community = community;
@@ -25,11 +26,11 @@ public class University {
         this.universityAdminPassword = universityAdminPassword;
     }
 
-    public long getUniversityID() {
+    public String getUniversityID() {
         return universityID;
     }
 
-    public void setUniversityID(long universityID) {
+    public void setUniversityID(String universityID) {
         this.universityID = universityID;
     }
 

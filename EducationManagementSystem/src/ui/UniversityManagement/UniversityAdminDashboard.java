@@ -1913,7 +1913,6 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     
     private void populateSemesterCombo(){
         comboSemester1.removeAllItems();
-        comboSemester1.addItem("Add Semester");
         UniversityAdmin.semesterList.forEach(s -> comboSemester1.addItem(s));
     }
     

@@ -23,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import ui.MealPlanManagement.MealPlanDashboard;
 import ui.UniversityManagement.UniversityAdminDashboard;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
@@ -52,6 +53,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private static final Logger logger = Logger.getLogger(MainJFrame.class.getName());
     public static JFrame mainJFrame;
     public static JPanel universityAdminDashboard;
+    public static JPanel mealPlanAdminDashboard;
     
     public MainJFrame() {
         initComponents();
@@ -216,8 +218,14 @@ public class MainJFrame extends javax.swing.JFrame {
                 case UNIVERSITY_ADMIN:
                     universityAdminDashboard = new UniversityAdminDashboard(ecoSystem);
                     mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
-                    CardLayout cd = (CardLayout) mainWorkArea.getLayout();
-                    cd.next(mainWorkArea);
+                    CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
+                    cd1.next(mainWorkArea);
+                case MEALPLAN_ADMIN:
+                    mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem);
+                    mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
+                    CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
+                    cd2.next(mainWorkArea);
+                
             }
         }
         
@@ -270,6 +278,10 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public void removeUniversityAdminDashboard() {
         mainWorkArea.remove(universityAdminDashboard);
+    }
+    
+    public void removeMealPlanDashboard(){
+        mainWorkArea.remove(mealPlanAdminDashboard);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

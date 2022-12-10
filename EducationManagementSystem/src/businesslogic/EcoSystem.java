@@ -4,6 +4,7 @@
  */
 package businesslogic;
 
+import businesslogic.MealManagement.MealPlanDirectory;
 import businesslogic.UniversityManagement.AppointmentDirectory;
 import businesslogic.UniversityManagement.CourseAssignmentDirectory;
 import businesslogic.UniversityManagement.CourseDirectory;
@@ -27,17 +28,12 @@ public class EcoSystem {
     private AppointmentDirectory appointmentDirectoryRef = new AppointmentDirectory();
     private PersonUDirectory personDirectoryRef = new PersonUDirectory();
     private CommunityDirectory communityDirectoryRef = new CommunityDirectory();
-//    private static List<String> semesterList = new ArrayList<String>();
-    
-    
-
-//    private List<String> semesterList = new ArrayList<String>();
+    private MealPlanDirectory mealPlanDirectoryRef = new MealPlanDirectory();
     private CourseAssignmentDirectory courseAssignment = new CourseAssignmentDirectory();
     
     private EcoSystem(){
     
-}
-       
+    }
     
     public static EcoSystem getInstance(){
         if(ecoSystem==null){
@@ -110,8 +106,6 @@ public class EcoSystem {
         this.communityDirectoryRef = communityDirectoryRef;
     }
 
-    
-
     public CourseAssignmentDirectory getCourseAssignment() {
         return courseAssignment;
     }
@@ -119,14 +113,14 @@ public class EcoSystem {
     public void setCourseAssignment(CourseAssignmentDirectory courseAssignment) {
         this.courseAssignment = courseAssignment;
     }
-//
-//    public List<String> getSemesterList() {
-//        return semesterList;
-//    }
-//
-//    public void setSemesterList(List<String> semesterList) {
-//        this.semesterList = semesterList;
-//    }
+
+    public MealPlanDirectory getMealPlanDirectoryRef() {
+        return mealPlanDirectoryRef;
+    }
+
+    public void setMealPlanDirectoryRef(MealPlanDirectory mealPlanDirectoryRef) {
+        this.mealPlanDirectoryRef = mealPlanDirectoryRef;
+    }
 
     
     

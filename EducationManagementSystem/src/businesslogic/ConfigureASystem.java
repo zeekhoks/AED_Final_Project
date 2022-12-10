@@ -4,6 +4,8 @@
  */
 package businesslogic;
 
+import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlanAdmin;
 import businesslogic.UniversityManagement.AppointmentDirectory;
 import businesslogic.UniversityManagement.CourseAssignmentDirectory;
 import businesslogic.UniversityManagement.CourseDirectory;
@@ -38,7 +40,9 @@ public class ConfigureASystem {
                 "123457", new Date(1997, 11, 21), 12345687L, "hp@gmail.com", new Community("Westland Avenue",
                         new City("Boston")), "hp123", "12", new Degree("Graduate", "Information Systems"),
                 "2024", "photo"));
-
+        ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new MealPlanAdmin("John Doe", 
+                "Male", "123458", new Date("1998, 12, 11"), 1234322L, "jd@gmail.com", 
+                new Community ("Boylston", new City ("Boson")), "jd123", 13));
         
         return ecoSystem;
 
