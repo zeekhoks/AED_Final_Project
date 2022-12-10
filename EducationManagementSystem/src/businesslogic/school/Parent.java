@@ -5,13 +5,13 @@
 package businesslogic.school;
 
 import businesslogic.Community;
-import businesslogic.Person;
+import businesslogic.PersonU;
 
 /**
  *
  * @author drashtibhingradiya
  */
-public class Parent extends Person{
+public class Parent extends PersonU{
     private int studentID;
 
     public Parent(String firstName, String lastName, int personID, String email, String password, String role, String dob, long mobileNo, String gender, Community community, int studentID) {

@@ -6,6 +6,7 @@ package ui.UniversityManagement;
 
 import businesslogic.City;
 import businesslogic.Community;
+import businesslogic.EcoSystem;
 import businesslogic.UniversityManagement.Course;
 import businesslogic.UniversityManagement.Degree;
 import businesslogic.UniversityManagement.Professor;
@@ -40,9 +41,12 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
      */
     private ImageIcon studentPhoto;
     private String photoPath = "/icons/default.jpg";
+    private EcoSystem ecoSystem;
 
-    public UniversityAdminDashboard() {
+    public UniversityAdminDashboard(EcoSystem ecoSystem) {
+        
         initComponents();
+        this.ecoSystem = ecoSystem;
         UniversityAdmin.semesterList.forEach(sem -> comboSemester1.addItem(sem));
         populateStudentsTable();
         populateCoursesTable();
@@ -53,6 +57,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         genderButtonGroup.add(btnMale);
         genderButtonGroup.add(btnFemale);
         genderButtonGroup.add(btnNonBinary);
+        
     }
 
     private void setPhoto(String imagePath) {
@@ -878,7 +883,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                                     .addComponent(lblProfessorStartDate1)
                                     .addComponent(txtProfCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(dateOfBirthProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                 .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnViewProf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreateProf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1025,6 +1030,11 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         });
 
         comboProfName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Professor Name" }));
+        comboProfName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboProfNameActionPerformed(evt);
+            }
+        });
 
         lblCreditHours.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblCreditHours.setText("Credit Hours");
@@ -1238,7 +1248,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Community community = new Community(studentCommunity, new City("Boston"));
         String photo = photoPath;
 
-        List<String> personIdList = UniversityAdmin.personDirectoryRef.getPersonDirectory().stream().map(x -> x.getPersonId()).toList();
+        List<String> personIdList = ecoSystem.getPersonDirectoryRef().getPersonDirectory().stream().map(x -> x.getPersonId()).toList();
 //        List<String> studentIdList = UniversityAdmin.studentDirectoryRef.getStudentDirectory().stream().map(x -> x.getStudentID()).toList();
 
         if (personIdList.contains(studentSSN)) {
@@ -1249,8 +1259,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                     community, studentPassword, studentID,
                     studentDegree, gradYear, photo);
 
-            UniversityAdmin.personDirectoryRef.getPersonDirectory().add(student);
-            UniversityAdmin.studentDirectoryRef.getStudentDirectory().add(student);
+            ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(student);
+            ecoSystem.getStudentDirectoryRef().getStudentDirectory().add(student);
             JOptionPane.showMessageDialog(this, "New Student Added Successfully!");
 
             txtFirstName.setText("");
@@ -1285,7 +1295,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             return;
         }
 
-        Student student = UniversityAdmin.studentDirectoryRef.getStudentDirectory().get(selected);
+        Student student = ecoSystem.getStudentDirectoryRef().getStudentDirectory().get(selected);
 
         txtFirstName.setText(student.getPersonName());
         txtCommunity.setText(student.getCommunity().getCommunity());
@@ -1344,7 +1354,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         String professorName = comboProfName.getSelectedItem().toString();
         int creditHours = Integer.parseInt(txtCreditHours.getText());
 
-        List<Integer> courseList = UniversityAdmin.courseDirectoryRef.getCourseDirectory()
+        List<Integer> courseList = ecoSystem.getCourseDirectoryRef().getCourseDirectory()
                 .stream().map(x -> x.getCourseID()).toList();
 
         if (courseList.contains(courseID)) {
@@ -1353,7 +1363,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             Course course = new Course(courseID, courseName, professorName, creditHours,
                     courseDescription, currentSemester, studentMajor);
 
-            UniversityAdmin.courseDirectoryRef.getCourseDirectory().add(course);
+            ecoSystem.getCourseDirectoryRef().getCourseDirectory().add(course);
             JOptionPane.showMessageDialog(this, "New Course Added Successfully!");
 
             txtStudentMajorCourse.setText("");
@@ -1380,13 +1390,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             return;
         }
 
-        Course course = UniversityAdmin.courseDirectoryRef.getCourseDirectory().get(selected);
-
-        txtStudentMajorCourse.setText(course.getStudentMajor());
-        
-        String semester = course.getSemester();
-        
-      
+        Course course = ecoSystem.getCourseDirectoryRef().getCourseDirectory().get(selected);
+        txtStudentMajorCourse.setText(course.getStudentMajor());   
+        populateSemesterCombo();
         txtCourseID.setText(String.valueOf(course.getCourseID()));
         txtCourseName.setText(course.getCourseName());
         txtCourseDescription.setText(course.getCourseDescription());
@@ -1412,7 +1418,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         String professorName = comboProfName.getSelectedItem().toString();
         int creditHours = Integer.parseInt(txtCreditHours.getText());
 
-        Course course = UniversityAdmin.courseDirectoryRef.getCourseDirectory().get(selected);
+        Course course = ecoSystem.getCourseDirectoryRef().getCourseDirectory().get(selected);
 
         course.setStudentMajor(studentMajor);
         course.setSemester(currentSemester);
@@ -1445,9 +1451,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             return;
         }
 
-        Course course = UniversityAdmin.courseDirectoryRef.getCourseDirectory().get(selected);
+        Course course = ecoSystem.getCourseDirectoryRef().getCourseDirectory().get(selected);
 
-        UniversityAdmin.courseDirectoryRef.getCourseDirectory().remove(course);
+        ecoSystem.getCourseDirectoryRef().getCourseDirectory().remove(course);
 
         populateCoursesTable();
 
@@ -1524,7 +1530,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Community community = new Community(studentCommunity, new City("Boston"));
         String photo = photoPath;
 
-        Student student = UniversityAdmin.studentDirectoryRef.getStudentDirectory().get(selected);
+        Student student = ecoSystem.getStudentDirectoryRef().getStudentDirectory().get(selected);
 
         student.setPersonName(studentName);
         student.setCommunity(community);
@@ -1569,9 +1575,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             return;
         }
 
-        Student student = UniversityAdmin.studentDirectoryRef.getStudentDirectory().get(selected);
+        Student student = ecoSystem.getStudentDirectoryRef().getStudentDirectory().get(selected);
         
-        UniversityAdmin.studentDirectoryRef.getStudentDirectory().remove(student);
+        ecoSystem.getStudentDirectoryRef().getStudentDirectory().remove(student);
 
         populateStudentsTable();
 
@@ -1619,7 +1625,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Community community = new Community(txtProfCommunity.getText(), new City("Boston"));
         
         
-        List<String> profIDList = UniversityAdmin.professorDirectoryRef.getProfessorDirectory()
+        List<String> profIDList = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()
                 .stream().map(x -> x.getProfessorID()).toList();
         
         if(profIDList.contains(profID)){
@@ -1628,8 +1634,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             
             Professor prof = new Professor(profName, profGender, profSSN, dob, phoneProf, profEmail, community,
             profPassword, profID, startDate);
-            UniversityAdmin.professorDirectoryRef.getProfessorDirectory().add(prof);
-        UniversityAdmin.personDirectoryRef.getPersonDirectory().add(prof);
+            ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().add(prof);
+        ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(prof);
         
         
         txtNameProf.setText("");
@@ -1673,7 +1679,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             return;
         }
           
-          Professor prof = UniversityAdmin.professorDirectoryRef.getProfessorDirectory().get(selected);
+          Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
           
         txtNameProf.setText(prof.getPersonName());
         txtEmailAddressProf.setText(prof.getPersonEmailAddress());
@@ -1715,14 +1721,19 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             return;
         }
         
-        Professor prof = UniversityAdmin.professorDirectoryRef.getProfessorDirectory().get(selected);
+        Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
         
-        UniversityAdmin.professorDirectoryRef.getProfessorDirectory().remove(prof);
-        UniversityAdmin.personDirectoryRef.getPersonDirectory().remove(prof);
+        ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().remove(prof);
+        ecoSystem.getPersonDirectoryRef().getPersonDirectory().remove(prof);
         
         populateProfTable();
         
     }//GEN-LAST:event_btnDeleteProfActionPerformed
+
+    private void comboProfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProfNameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboProfNameActionPerformed
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
@@ -1853,7 +1864,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private void populateStudentsTable() {
         DefaultTableModel model = (DefaultTableModel) tblStudents.getModel();
         model.setRowCount(0);
-        for (Student student : UniversityAdmin.studentDirectoryRef.getStudentDirectory()) {
+        for (Student student : ecoSystem.getStudentDirectoryRef().getStudentDirectory()) {
             Object[] rowData = new Object[9];
             rowData[0] = student.getPersonName();
             rowData[1] = student.getStudentID();
@@ -1871,7 +1882,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private void populateCoursesTable() {
         DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
         model.setRowCount(0);
-        for (Course course : UniversityAdmin.courseDirectoryRef.getCourseDirectory()) {
+        for (Course course : ecoSystem.getCourseDirectoryRef().getCourseDirectory()) {
             Object[] rowData = new Object[6];
             rowData[0] = course.getStudentMajor();
             rowData[1] = course.getSemester();
@@ -1887,7 +1898,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) tblProfessors.getModel();
         model.setRowCount(0);
-        for(Professor prof : UniversityAdmin.professorDirectoryRef.getProfessorDirectory()){
+        for(Professor prof : ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()){
             Object[] rowData = new Object[5];
             rowData[0] = prof.getPersonName();
             rowData[1] = prof.getPersonEmailAddress();
@@ -1898,6 +1909,12 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
 
         }
         
+    }
+    
+    private void populateSemesterCombo(){
+        comboSemester1.removeAllItems();
+        comboSemester1.addItem("Add Semester");
+        UniversityAdmin.semesterList.forEach(s -> comboSemester1.addItem(s));
     }
     
 }

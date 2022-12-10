@@ -4,10 +4,21 @@
  */
 package ui;
 
-import businesslogic.Person;
+import businesslogic.CommunityDirectory;
+import businesslogic.DB4OUtil.DB4OUtil;
+import businesslogic.EcoSystem;
+import businesslogic.PersonU;
+import businesslogic.PersonUDirectory;
+import businesslogic.UniversityManagement.AppointmentDirectory;
+import businesslogic.UniversityManagement.CourseAssignmentDirectory;
+import businesslogic.UniversityManagement.CourseDirectory;
+import businesslogic.UniversityManagement.ProfessorDirectory;
+import businesslogic.UniversityManagement.StudentDirectory;
 import businesslogic.UniversityManagement.UniversityAdmin;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -21,6 +32,19 @@ import ui.school.StudentRole.StudentDashboardJPanel;
  * @author drashtibhingradiya
  */
 public class MainJFrame extends javax.swing.JFrame {
+    
+    private EcoSystem ecoSystem;
+    StudentDirectory studentDirectory;
+    ProfessorDirectory professorDirectory;
+    CourseDirectory courseDirectory;
+    AppointmentDirectory appointmentDirectory;
+    PersonUDirectory personDirectory;
+    CommunityDirectory communityDirectory;
+    CourseAssignmentDirectory courseAssignment;
+    
+    private static int flag = 0;
+    private DB4OUtil db4OUtil = DB4OUtil.getInstance();
+ 
 
     /**
      * Creates new form MainJFrame
@@ -33,6 +57,54 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
 //        MainFrame.getContentPane().setSize(new Dimension(100, 200));
         setSize(1060, 770);
+        
+         if(flag == 0){
+            ecoSystem = db4OUtil.retrieveSystem();
+            
+            if(ecoSystem.getStudentDirectoryRef() != null){
+                this.studentDirectory = ecoSystem.getStudentDirectoryRef();
+            } else {
+                this.studentDirectory = new StudentDirectory();
+            }
+           
+            if(ecoSystem.getCourseDirectoryRef() != null){
+                this.courseDirectory = ecoSystem.getCourseDirectoryRef();
+            } else {
+                this.courseDirectory = new CourseDirectory();
+            }
+            
+            if(ecoSystem.getPersonDirectoryRef()!=null){
+                this.personDirectory = ecoSystem.getPersonDirectoryRef();
+            } else {
+                this.personDirectory = new PersonUDirectory();
+            }
+            
+            if(ecoSystem.getAppointmentDirectoryRef()!=null){
+                this.appointmentDirectory = ecoSystem.getAppointmentDirectoryRef();
+            } else {
+                this.appointmentDirectory = new AppointmentDirectory();
+            }
+            
+            if(ecoSystem.getCommunityDirectoryRef()!=null){
+                this.communityDirectory = ecoSystem.getCommunityDirectoryRef();
+            } else {
+                this.communityDirectory = new CommunityDirectory();
+            }
+            
+            if(ecoSystem.getProfessorDirectoryRef()!=null){
+                this.professorDirectory = ecoSystem.getProfessorDirectoryRef();
+            } else {
+                this.professorDirectory = new ProfessorDirectory();
+            }
+            
+            if(ecoSystem.getCourseAssignment() != null){
+                this.courseAssignment = ecoSystem.getCourseAssignment();
+            } else {
+                this.courseAssignment = new CourseAssignmentDirectory();
+            }
+
+    }
+     flag++;
     }
 
     /**
@@ -51,6 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(98, 189, 234));
@@ -71,6 +144,8 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUsername.setText("Username: ");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.jpeg"))); // NOI18N
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,14 +168,19 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(btnLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(jLabel1)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(213, 213, 213)
+                .addGap(74, 74, 74)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,9 +203,9 @@ public class MainJFrame extends javax.swing.JFrame {
         String userName = txtUsername.getText();
         String userPassword = String.valueOf(txtPassword.getPassword());
         
-        Person person = null;
+        PersonU person = null;
         
-        for(Person p: UniversityAdmin.personDirectoryRef.getPersonDirectory()){
+        for(PersonU p: ecoSystem.getPersonDirectoryRef().getPersonDirectory()){
             if(p.getPersonEmailAddress().equals(userName)&&p.getUserPassword().equals(userPassword))
                 person = p;
         }
@@ -134,7 +214,7 @@ public class MainJFrame extends javax.swing.JFrame {
             
             switch(person.getUserRole()){
                 case UNIVERSITY_ADMIN:
-                    universityAdminDashboard = new UniversityAdminDashboard();
+                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem);
                     mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
                     CardLayout cd = (CardLayout) mainWorkArea.getLayout();
                     cd.next(mainWorkArea);
@@ -195,6 +275,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel mainWorkArea;

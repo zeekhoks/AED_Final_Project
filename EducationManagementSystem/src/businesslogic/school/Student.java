@@ -5,13 +5,13 @@
 package businesslogic.school;
 
 import businesslogic.Community;
-import businesslogic.Person;
+import businesslogic.PersonU;
 
 /**
  *
  * @author drashtibhingradiya
  */
-public class Student extends Person{
+public class Student extends PersonU{
     private int schoolID;
     private String extraCurricular;
     private int standard;

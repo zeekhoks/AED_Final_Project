@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author zainabkhokawala
  */
-public class Person {
+public class PersonU {
     public enum UserRole{
         UNIVERSITY_ADMIN,
         STUDENT,

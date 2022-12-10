@@ -4,14 +4,14 @@
  */
 package businesslogic.UniversityManagement;
 import businesslogic.Community;
-import businesslogic.Person;
+import businesslogic.PersonU;
 import java.util.Date;
 
 /**
  *
  * @author zainabkhokawala
  */
-public class EventCoordinator extends Person {
+public class EventCoordinator extends PersonU {
     
     private String eventCordID;
     private Date startDate;

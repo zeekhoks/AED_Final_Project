@@ -4,14 +4,14 @@
  */
 package businesslogic.UniversityManagement;
 import businesslogic.Community;
-import businesslogic.Person;
+import businesslogic.PersonU;
 import java.util.Date;
 
 /**
  *
  * @author zainabkhokawala
  */
-public class Student extends Person{
+public class Student extends PersonU{
     
     private String studentID;
     private Degree studentDegree;

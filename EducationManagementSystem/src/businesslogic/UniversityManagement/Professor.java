@@ -5,12 +5,12 @@
 package businesslogic.UniversityManagement;
 import businesslogic.Community;
 import java.util.Date;
-import businesslogic.Person;
+import businesslogic.PersonU;
 /**
  *
  * @author zainabkhokawala
  */
-public class Professor extends Person {
+public class Professor extends PersonU {
     
     private String professorID;
     private Date startDate;

@@ -4,6 +4,7 @@
  */
 package ui.UniversityManagement;
 
+import businesslogic.EcoSystem;
 import businesslogic.UniversityManagement.Course;
 import businesslogic.UniversityManagement.CourseAssignment;
 import businesslogic.UniversityManagement.UniversityAdmin;
@@ -25,9 +26,11 @@ public class StudentDashboard extends javax.swing.JPanel {
      * Creates new form DashboardJPanel
      */
    
-    
+        private EcoSystem ecoSystem;
+
     public StudentDashboard() {
         initComponents();
+        this.ecoSystem = ecoSystem;
         populateCoursesTable();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
@@ -1779,7 +1782,7 @@ public class StudentDashboard extends javax.swing.JPanel {
             if(comboStudentSemester.getSelectedItem()!=null){
                 String currentSemester = comboStudentSemester.getSelectedItem().toString();
                 if(!currentSemester.equalsIgnoreCase("Select Semester")){
-                    List<Course> courseBySem = UniversityAdmin.courseDirectoryRef.getCourseDirectory()
+                    List<Course> courseBySem = ecoSystem.getCourseDirectoryRef().getCourseDirectory()
                             .stream().filter(c-> c.getSemester().equalsIgnoreCase(currentSemester)).toList();
                     
                     populateCoursesTable();
@@ -1798,7 +1801,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         int creditHours = Integer.parseInt(txtCreditHours.getText());
         String studentID = txtStudentIDStudent.getText();
         
-        List<Integer> courseAssignmentList = UniversityAdmin.courseAssignmentRef.getCourseAssignmentDirectory()
+        List<Integer> courseAssignmentList = ecoSystem.getCourseAssignmentRef().getCourseAssignmentDirectory()
                 .stream().map(c -> c.getCourseID()).toList();
         
         if(courseAssignmentList.contains(courseID)){
@@ -1807,7 +1810,7 @@ public class StudentDashboard extends javax.swing.JPanel {
             CourseAssignment courseAssignment = new CourseAssignment(
                     studentID, professorName, courseID, 0.00f );
             
-            UniversityAdmin.courseAssignmentRef.getCourseAssignmentDirectory().add(courseAssignment);
+            ecoSystem.getCourseAssignmentRef().getCourseAssignmentDirectory().add(courseAssignment);
         }
                     JOptionPane.showMessageDialog(this, "Course enrolled successfully!");
 
@@ -2009,7 +2012,7 @@ public class StudentDashboard extends javax.swing.JPanel {
        
         DefaultTableModel model = (DefaultTableModel) tblCoursesStudent.getModel();
         model.setRowCount(0);
-        for(Course course : UniversityAdmin.courseDirectoryRef.getCourseDirectory()){
+        for(Course course : ecoSystem.getCourseDirectoryRef().getCourseDirectory()){
             Object[] rowData = new Object[5];
             rowData[0] = course.getStudentMajor();
             rowData[1] = course.getSemester();

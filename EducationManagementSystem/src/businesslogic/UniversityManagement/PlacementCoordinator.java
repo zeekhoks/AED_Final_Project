@@ -4,14 +4,14 @@
  */
 package businesslogic.UniversityManagement;
 import businesslogic.Community;
-import businesslogic.Person;
+import businesslogic.PersonU;
 import java.util.Date;
 
 /**
  *
  * @author zainabkhokawala
  */
-public class PlacementCoordinator extends Person{
+public class PlacementCoordinator extends PersonU{
     
     private String placementCordID;
     private Date startDate;

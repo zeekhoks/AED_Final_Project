@@ -12,9 +12,18 @@ import businesslogic.Community;
 public class University {
     
     private long universityID;
-    private String instituteCode;
     private String universityName;
     private Community community;
+    private String universityAdminEmail;
+    private String universityAdminPassword;
+
+    public University(long universityID, String universityName, Community community, String universityAdminEmail, String universityAdminPassword) {
+        this.universityID = universityID;
+        this.universityName = universityName;
+        this.community = community;
+        this.universityAdminEmail = universityAdminEmail;
+        this.universityAdminPassword = universityAdminPassword;
+    }
 
     public long getUniversityID() {
         return universityID;
@@ -22,14 +31,6 @@ public class University {
 
     public void setUniversityID(long universityID) {
         this.universityID = universityID;
-    }
-
-    public String getInstituteCode() {
-        return instituteCode;
-    }
-
-    public void setInstituteCode(String instituteCode) {
-        this.instituteCode = instituteCode;
     }
 
     public String getUniversityName() {
@@ -47,6 +48,27 @@ public class University {
     public void setCommunity(Community community) {
         this.community = community;
     }
+
+    public String getUniversityAdminEmail() {
+        return universityAdminEmail;
+    }
+
+    public void setUniversityAdminEmail(String universityAdminEmail) {
+        this.universityAdminEmail = universityAdminEmail;
+    }
+
+    public String getUniversityAdminPassword() {
+        return universityAdminPassword;
+    }
+
+    public void setUniversityAdminPassword(String universityAdminPassword) {
+        this.universityAdminPassword = universityAdminPassword;
+    }
+    
+    
+    
+    
+
     
     
     
