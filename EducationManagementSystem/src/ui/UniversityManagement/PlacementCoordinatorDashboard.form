@@ -70,9 +70,9 @@
                       <Component id="btnProfile" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAppointment" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="478" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                       <Component id="btnLogOut" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                      <EmptySpace pref="425" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -889,12 +889,11 @@
                                                           <Component id="lblRolePreference" pref="152" max="32767" attributes="0"/>
                                                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                                                       </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="lblJobs" min="-2" pref="196" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="0" attributes="0">
-                                                          <Component id="lblAppointmentID" min="-2" pref="186" max="-2" attributes="0"/>
+                                                      <Group type="102" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="lblJobs" alignment="0" min="-2" pref="196" max="-2" attributes="0"/>
+                                                              <Component id="lblAppointmentID" alignment="0" min="-2" pref="186" max="-2" attributes="0"/>
+                                                          </Group>
                                                           <EmptySpace max="32767" attributes="0"/>
                                                       </Group>
                                                   </Group>

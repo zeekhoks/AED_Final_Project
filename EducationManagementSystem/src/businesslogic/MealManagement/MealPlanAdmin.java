@@ -14,11 +14,11 @@ import java.util.Date;
  */
 public class MealPlanAdmin extends PersonU{
     
-    private long mealPlanAdminID;
+    private String mealPlanAdminID;
     
     public MealPlanAdmin(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword, long mealPlanAdminID){
+            Community community, String userPassword, String mealPlanAdminID){
         
         this.setPersonName(personName);
         this.setPersonGender(personGender);
@@ -34,11 +34,11 @@ public class MealPlanAdmin extends PersonU{
         
     }
 
-    public long getMealPlanAdminID() {
+    public String getMealPlanAdminID() {
         return mealPlanAdminID;
     }
 
-    public void setMealPlanAdminID(long mealPlanAdminID) {
+    public void setMealPlanAdminID(String mealPlanAdminID) {
         this.mealPlanAdminID = mealPlanAdminID;
     }
     

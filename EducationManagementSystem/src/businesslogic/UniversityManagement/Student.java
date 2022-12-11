@@ -17,12 +17,13 @@ public class Student extends PersonU{
     private Degree studentDegree;
     private String graduationYear;
     private String photo;
+    private String universityID;
     
     
     public Student(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
             Community community, String userPassword, String studentID,
-            Degree studentDegree, String graduationYear, String photo) {
+            Degree studentDegree, String graduationYear, String photo, String universityID) {
             
         this.setPersonName(personName);
         this.setPersonGender(personGender);
@@ -36,8 +37,9 @@ public class Student extends PersonU{
         this.setStudentID(studentID);
         this.setStudentDegree(studentDegree);
         this.setGraduationYear(graduationYear);
-      
         this.setPhoto(photo);
+        this.setUniversityID(universityID);
+        
     }
     
     
@@ -66,7 +68,15 @@ public class Student extends PersonU{
         this.graduationYear = graduationYear;
     }
 
+    public String getUniversityID() {
+        return universityID;
+    }
 
+    public void setUniversityID(String universityID) {
+        this.universityID = universityID;
+    }
+
+    
 
     public String getPhoto() {
         return photo;

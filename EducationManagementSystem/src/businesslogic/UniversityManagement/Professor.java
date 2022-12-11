@@ -13,11 +13,11 @@ import businesslogic.PersonU;
 public class Professor extends PersonU {
     
     private String professorID;
-    private Date startDate;
+    private String universityID;
         public Professor(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword,  String sprofessorID, 
-            Date startDate) {
+            Community community, String userPassword,  String professorID, 
+            String universityID) {
             
         this.setPersonName(personName);
         this.setPersonGender(personGender);
@@ -29,7 +29,7 @@ public class Professor extends PersonU {
         this.setUserPassword(userPassword);
         this.setUserRole(UserRole.PROFESSOR);
         this.setProfessorID(professorID);
-        this.setStartDate(startDate);
+        this.setUniversityID(universityID);
         }
     public String getProfessorID() {
         return professorID;
@@ -39,13 +39,15 @@ public class Professor extends PersonU {
         this.professorID = professorID;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getUniversityID() {
+        return universityID;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setUniversityID(String universityID) {
+        this.universityID = universityID;
     }
+
+    
     
     
 }

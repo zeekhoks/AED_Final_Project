@@ -5,6 +5,8 @@
 package ui.UniversityManagement;
 
 import businesslogic.EcoSystem;
+import businesslogic.PersonU;
+import businesslogic.UniversityManagement.PlacementCoordinator;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -19,10 +21,13 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
     /**
      * Creates new form DashboardJPanel
      */
-   
+    private EcoSystem ecoSystem;
+    private PlacementCoordinator person;
     
-    public PlacementCoordinatorDashboard(EcoSystem ecoSystem) {
+    public PlacementCoordinatorDashboard(EcoSystem ecoSystem, PlacementCoordinator person) {
         initComponents();
+        this.ecoSystem = ecoSystem;
+        this.person = person;
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
         profilePanel.setVisible(false);    
@@ -153,9 +158,9 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                 .addComponent(btnProfile)
                 .addGap(18, 18, 18)
                 .addComponent(btnAppointment)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 478, Short.MAX_VALUE)
+                .addGap(179, 179, 179)
                 .addComponent(btnLogOut)
-                .addGap(126, 126, 126))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
 
         DashboardPanel.setLeftComponent(leftPane);
@@ -688,10 +693,9 @@ public class PlacementCoordinatorDashboard extends javax.swing.JPanel {
                                         .addComponent(lblRolePreference, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                                         .addGap(69, 69, 69))
                                     .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblJobs, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtAppointmentID, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)

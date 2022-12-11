@@ -7,6 +7,7 @@ package ui.UniversityManagement;
 import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
+import businesslogic.PersonU;
 import businesslogic.UniversityManagement.Course;
 import businesslogic.UniversityManagement.Degree;
 import businesslogic.UniversityManagement.Professor;
@@ -42,11 +43,14 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private ImageIcon studentPhoto;
     private String photoPath = "/icons/default.jpg";
     private EcoSystem ecoSystem;
+    private UniversityAdmin person;
+    private static int studentCounter = 01;
 
-    public UniversityAdminDashboard(EcoSystem ecoSystem) {
-        
+    public UniversityAdminDashboard(EcoSystem ecoSystem, UniversityAdmin person) {
+
         initComponents();
         this.ecoSystem = ecoSystem;
+        this.person = person;
         UniversityAdmin.semesterList.forEach(sem -> comboSemester1.addItem(sem));
         populateStudentsTable();
         populateCoursesTable();
@@ -59,7 +63,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         genderButtonGroup.add(btnMale);
         genderButtonGroup.add(btnFemale);
         genderButtonGroup.add(btnNonBinary);
-        
+
     }
 
     private void setPhoto(String imagePath) {
@@ -133,6 +137,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         comboDegreeLevel = new javax.swing.JComboBox<>();
         lblCommunity = new javax.swing.JLabel();
         txtCommunity = new javax.swing.JTextField();
+        txtUniversityID = new javax.swing.JTextField();
+        lblUniversityID = new javax.swing.JLabel();
         facultyPanel = new javax.swing.JPanel();
         facultySplitPane = new javax.swing.JSplitPane();
         navigateBackPanelFaculty = new javax.swing.JPanel();
@@ -164,10 +170,10 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         btnViewProf = new javax.swing.JButton();
         btnUpdateProf = new javax.swing.JButton();
         btnDeleteProf = new javax.swing.JButton();
-        startDateChooser = new com.toedter.calendar.JDateChooser();
-        lblProfessorStartDate = new javax.swing.JLabel();
+        lblUniversityIDProf = new javax.swing.JLabel();
         lblProfessorStartDate1 = new javax.swing.JLabel();
         txtProfCommunity = new javax.swing.JTextField();
+        txtUniversityProf = new javax.swing.JTextField();
         coursesPanel = new javax.swing.JPanel();
         coursesSplitPanel = new javax.swing.JSplitPane();
         navigateBackPanel1 = new javax.swing.JPanel();
@@ -464,9 +470,17 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         });
 
         comboDegreeLevel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Level", "Undergraduate", "Graduate" }));
+        comboDegreeLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDegreeLevelActionPerformed(evt);
+            }
+        });
 
         lblCommunity.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblCommunity.setText("Community");
+
+        lblUniversityID.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblUniversityID.setText("University ID");
 
         javax.swing.GroupLayout studentWorkAreaPanelLayout = new javax.swing.GroupLayout(studentWorkAreaPanel);
         studentWorkAreaPanel.setLayout(studentWorkAreaPanelLayout);
@@ -530,6 +544,12 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                             .addComponent(lblStudentPhoto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))))
                 .addGap(61, 61, 61))
             .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblUniversityID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(txtUniversityID, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(258, 258, 258))
         );
         studentWorkAreaPanelLayout.setVerticalGroup(
             studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -575,7 +595,11 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                     .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtGradYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblGraduationYear)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUniversityID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUniversityID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(lblPhoto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(studentWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -664,7 +688,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Name", "Email Address", "Gender", "Phone Number", "Professor ID", "Start Date"
+                "Name", "Email Address", "Gender", "Phone Number", "Professor ID", "University ID"
             }
         ) {
             Class[] types = new Class [] {
@@ -760,8 +784,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             }
         });
 
-        lblProfessorStartDate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblProfessorStartDate.setText("Start Date");
+        lblUniversityIDProf.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        lblUniversityIDProf.setText("University ID");
 
         lblProfessorStartDate1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblProfessorStartDate1.setText("Community");
@@ -769,6 +793,12 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         txtProfCommunity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtProfCommunityActionPerformed(evt);
+            }
+        });
+
+        txtUniversityProf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUniversityProfActionPerformed(evt);
             }
         });
 
@@ -818,15 +848,15 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblProfessorID, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblProfessorStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblUniversityIDProf, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblProfessorStartDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtPhoneNumberProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addComponent(txtProfessorID, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                     .addComponent(PasswordProfessor)
-                    .addComponent(startDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtProfCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                    .addComponent(txtProfCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addComponent(txtUniversityProf, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
             .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
@@ -868,12 +898,11 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                             .addComponent(btnFemale1)
                             .addComponent(btnNonBinary1))
                         .addGap(18, 18, 18)
-                        .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblProfessorStartDate)
-                                .addComponent(txtSSNProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblSSNProf))
-                            .addComponent(startDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUniversityIDProf)
+                            .addComponent(txtSSNProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSSNProf)
+                            .addComponent(txtUniversityProf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(professorWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(professorWorkAreaPanelLayout.createSequentialGroup()
                                 .addGap(23, 23, 23)
@@ -1245,7 +1274,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         String gradYear = txtGradYear.getText();
         long studentPhone = Long.parseLong(txtPhoneNumber.getText());
         String studentPassword = String.valueOf(passwordFieldStudent.getPassword());
-        String studentID = txtStudentID.getText();
+        String studentID = txtStudentID.getText() + (String.valueOf(studentCounter));
+        studentCounter++;
         String degreeLevel = comboDegreeLevel.getSelectedItem().toString();
         String major = txtStudentMajor.getText();
         String studentCommunity = txtCommunity.getText();
@@ -1253,8 +1283,10 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Degree studentDegree = new Degree(degreeLevel, major);
         Community community = new Community(studentCommunity, new City("Boston"));
         String photo = photoPath;
+        String universityID = txtUniversityID.getText();
 
-        List<String> personIdList = ecoSystem.getPersonDirectoryRef().getPersonDirectory().stream().map(x -> x.getPersonId()).toList();
+        List<String> personIdList = ecoSystem.getPersonDirectoryRef().getPersonDirectory()
+                .stream().map(x -> x.getPersonId()).toList();
 //        List<String> studentIdList = UniversityAdmin.studentDirectoryRef.getStudentDirectory().stream().map(x -> x.getStudentID()).toList();
 
         if (personIdList.contains(studentSSN)) {
@@ -1263,7 +1295,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             Student student = new Student(studentName, studentGender,
                     studentSSN, dob, studentPhone, studentEmail,
                     community, studentPassword, studentID,
-                    studentDegree, gradYear, photo);
+                    studentDegree, gradYear, photo, universityID);
 
             ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(student);
             ecoSystem.getStudentDirectoryRef().getStudentDirectory().add(student);
@@ -1281,6 +1313,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             txtStudentID.setText("");
             comboDegreeLevel.removeAllItems();
             txtStudentMajor.setText("");
+            txtUniversityID.setText("");
 //            lblStudentPhoto
             populateStudentsTable();
 
@@ -1320,23 +1353,20 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             btnFemale.setSelected(false);
         }
         txtSSN.setText(student.getPersonId());
-        
+
         dateChooser.setDate(student.getDateOfBirth());
         txtGradYear.setText(student.getGraduationYear());
         txtPhoneNumber.setText(String.valueOf(student.getPersonPhoneNumber()));
         passwordFieldStudent.setText(String.valueOf(student.getUserPassword()));
         txtStudentID.setText(student.getStudentID());
-//        comboDegreeLevel.set
+//        comboDegreeLevel
+
+        comboDegreeLevel.addItem("Undergraduate");
+        comboDegreeLevel.addItem("Graduate");
 
         String degreeLevel = student.getStudentDegree().getDegreeLevel();
-        System.out.println(degreeLevel);
-        for(int i=0; i<comboDegreeLevel.getItemCount(); i++){
-            if(comboDegreeLevel.getItemAt(i).toString().equalsIgnoreCase(degreeLevel)){
-                comboDegreeLevel.setSelectedIndex(i);
-            }
-        }
-        
-        comboDegreeLevel.setSelectedItem(student.getStudentDegree().getDegreeLevel());
+        comboDegreeLevel.setSelectedItem(degreeLevel);
+//        comboDegreeLevel.setSelectedItem(student.getStudentDegree().getDegreeLevel());
         txtStudentMajor.setText(student.getStudentDegree().getMajor());
 
 //        Community community = new Community("Westland", new City("Boston"));
@@ -1346,6 +1376,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Image image = icon.getImage().getScaledInstance(134, 138, 4);
         // Set jLabel icon property to image
         lblStudentPhoto.setIcon(new ImageIcon(image));
+        txtUniversityID.setText(student.getUniversityID());
 
     }//GEN-LAST:event_btnViewActionPerformed
 
@@ -1397,7 +1428,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         }
 
         Course course = ecoSystem.getCourseDirectoryRef().getCourseDirectory().get(selected);
-        txtStudentMajorCourse.setText(course.getStudentMajor());   
+        txtStudentMajorCourse.setText(course.getStudentMajor());
         populateSemesterCombo();
         txtCourseID.setText(String.valueOf(course.getCourseID()));
         txtCourseName.setText(course.getCourseName());
@@ -1435,9 +1466,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         course.setCreditHours(creditHours);
 
         populateCoursesTable();
-        
-        JOptionPane.showMessageDialog(this, "Course plan details updated successfully!");
 
+        JOptionPane.showMessageDialog(this, "Course plan details updated successfully!");
 
         txtStudentMajorCourse.setText("");
         comboSemester1.removeAllItems();
@@ -1538,6 +1568,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Degree studentDegree = new Degree(degreeLevel, major);
         Community community = new Community(studentCommunity, new City("Boston"));
         String photo = photoPath;
+        String universityID = txtUniversityID.getText();
 
         Student student = ecoSystem.getStudentDirectoryRef().getStudentDirectory().get(selected);
 
@@ -1552,6 +1583,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         student.setUserPassword(studentPassword);
         student.setStudentID(studentID);
         student.setStudentDegree(studentDegree);
+        student.setUniversityID(universityID);
         student.setPhoto(photo);
 
         JOptionPane.showMessageDialog(this, "Student details updated successfully!");
@@ -1569,6 +1601,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         comboDegreeLevel.removeAllItems();
         txtStudentMajor.setText("");
 //            lblStudentPhoto
+        txtUniversityID.setText("");
         populateStudentsTable();
 
 
@@ -1585,7 +1618,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         }
 
         Student student = ecoSystem.getStudentDirectoryRef().getStudentDirectory().get(selected);
-        
+
         ecoSystem.getStudentDirectoryRef().getStudentDirectory().remove(student);
 
         populateStudentsTable();
@@ -1602,14 +1635,15 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         txtStudentID.setText("");
         comboDegreeLevel.removeAllItems();
         txtStudentMajor.setText("");
+        txtUniversityID.setText("");
 
 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void tblStudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentsMouseClicked
         // TODO add your handling code here:
-        
-        
+
+
     }//GEN-LAST:event_tblStudentsMouseClicked
 
     private void btnCreateProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateProfActionPerformed
@@ -1624,45 +1658,44 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         } else {
             profGender = "Non Binary";
         }
-        
+
         String profSSN = txtSSNProf.getText();
         Date dob = dateOfBirthProf.getDate();
         long phoneProf = Long.parseLong(txtPhoneNumberProf.getText());
         String profPassword = String.valueOf(PasswordProfessor.getPassword());
         String profID = txtProfessorID.getText();
-        Date startDate = startDateChooser.getDate();
+        String universityID = txtUniversityProf.getText();
         Community community = new Community(txtProfCommunity.getText(), new City("Boston"));
-        
-        
+
         List<String> profIDList = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()
                 .stream().map(x -> x.getProfessorID()).toList();
-        
-        if(profIDList.contains(profID)){
+
+        if (profIDList.contains(profID)) {
             JOptionPane.showMessageDialog(this, "Prof ID already exists, please check.");
         } else {
-            
+
             Professor prof = new Professor(profName, profGender, profSSN, dob, phoneProf, profEmail, community,
-            profPassword, profID, startDate);
+                    profPassword, profID, universityID);
             ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().add(prof);
-        ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(prof);
-        
-        
-        txtNameProf.setText("");
-        txtEmailAddressProf.setText("");
-        genderButtonGroup.clearSelection();
-        txtPhoneNumberProf.setText("");
-        PasswordProfessor.setText("");
-        txtSSNProf.setText("");
-        dateOfBirthProf.setCalendar(null);
-        txtProfCommunity.setText("");
-        
-        populateProfTable();
-        
+            ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(prof);
+
+            txtNameProf.setText("");
+            txtEmailAddressProf.setText("");
+            genderButtonGroup.clearSelection();
+            txtPhoneNumberProf.setText("");
+            PasswordProfessor.setText("");
+            txtSSNProf.setText("");
+            dateOfBirthProf.setCalendar(null);
+            txtProfCommunity.setText("");
+            txtUniversityProf.setText("");
+
+            JOptionPane.showMessageDialog(this, "Professor details added successfully!");
+
+            populateProfTable();
+
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_btnCreateProfActionPerformed
 
     private void PasswordProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordProfessorActionPerformed
@@ -1675,28 +1708,65 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
 
     private void btnUpdateProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateProfActionPerformed
         // TODO add your handling code here:
-        
+        int selected = tblProfessors.getSelectedRow();
+
+        if (selected < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update!");
+            return;
+        }
+
+        String profSSN = txtSSNProf.getText();
+        Date dob = dateOfBirthProf.getDate();
+        long phoneProf = Long.parseLong(txtPhoneNumberProf.getText());
+        String profPassword = String.valueOf(PasswordProfessor.getPassword());
+        String profID = txtProfessorID.getText();
+        String universityID = txtUniversityProf.getText();
+        Community community = new Community(txtProfCommunity.getText(), new City("Boston"));
+
+        Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
+
+        prof.setPersonId(profSSN);
+        prof.setDateOfBirth(dob);
+        prof.setPersonPhoneNumber(phoneProf);
+        prof.setUserPassword(profPassword);
+        prof.setProfessorID(profID);
+        prof.setUniversityID(universityID);
+        prof.setCommunity(community);
+
+        JOptionPane.showMessageDialog(this, "Professor details updated successfully!");
+
+        txtNameProf.setText("");
+        txtEmailAddressProf.setText("");
+        genderButtonGroup.clearSelection();
+        txtPhoneNumberProf.setText("");
+        PasswordProfessor.setText("");
+        txtSSNProf.setText("");
+        dateOfBirthProf.setCalendar(null);
+        txtProfCommunity.setText("");
+        txtUniversityProf.setText("");
+        populateProfTable();
+
+
     }//GEN-LAST:event_btnUpdateProfActionPerformed
 
     private void btnViewProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProfActionPerformed
         // TODO add your handling code here:
 //        VIEW PROFESSOR
         int selected = tblProfessors.getSelectedRow();
-        
-          if (selected < 0) {
+
+        if (selected < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to view!");
             return;
         }
-          
-          Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
-          
+
+        Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
+
         txtNameProf.setText(prof.getPersonName());
         txtEmailAddressProf.setText(prof.getPersonEmailAddress());
         PasswordProfessor.setText(prof.getUserPassword());
-       
-      
+
         txtProfCommunity.setText(prof.getCommunity().getCommunity());
-         if (prof.getPersonGender().equals("Female")) {
+        if (prof.getPersonGender().equals("Female")) {
             btnFemale.setSelected(true);
             btnMale.setSelected(false);
             btnNonBinary.setSelected(false);
@@ -1710,44 +1780,50 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             btnFemale.setSelected(false);
         }
         txtSSNProf.setText(prof.getPersonId());
-       startDateChooser.getDate().toString();
-       txtPhoneNumberProf.setText(String.valueOf(prof.getPersonPhoneNumber()));
-       dateOfBirthProf.setDate(prof.getDateOfBirth());
-       PasswordProfessor.setText(String.valueOf(prof.getUserPassword()));
-       
-       
-       
-          
+        txtUniversityProf.setText("");
+        txtPhoneNumberProf.setText(String.valueOf(prof.getPersonPhoneNumber()));
+        dateOfBirthProf.setDate(prof.getDateOfBirth());
+        PasswordProfessor.setText(String.valueOf(prof.getUserPassword()));
+
+
     }//GEN-LAST:event_btnViewProfActionPerformed
 
     private void btnDeleteProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteProfActionPerformed
         // TODO add your handling code here:
-        
+
         int selected = tblProfessors.getSelectedRow();
-        
+
         if (selected < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete!");
             return;
         }
-        
+
         Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
-        
+
         ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().remove(prof);
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().remove(prof);
-        
+
         populateProfTable();
-        
+
     }//GEN-LAST:event_btnDeleteProfActionPerformed
 
     private void comboProfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProfNameActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_comboProfNameActionPerformed
 
     private void btnBackTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackTranscriptActionPerformed
         // TODO add your handling code here:
         switchToWorkAreaPanel();
     }//GEN-LAST:event_btnBackTranscriptActionPerformed
+
+    private void comboDegreeLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDegreeLevelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDegreeLevelActionPerformed
+
+    private void txtUniversityProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUniversityProfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUniversityProfActionPerformed
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
@@ -1828,7 +1904,6 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblProfessorID;
     private javax.swing.JLabel lblProfessorName;
-    private javax.swing.JLabel lblProfessorStartDate;
     private javax.swing.JLabel lblProfessorStartDate1;
     private javax.swing.JLabel lblSSN;
     private javax.swing.JLabel lblSSNProf;
@@ -1837,6 +1912,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblStudentID5;
     private javax.swing.JLabel lblStudentMajor;
     private javax.swing.JLabel lblStudentPhoto;
+    private javax.swing.JLabel lblUniversityID;
+    private javax.swing.JLabel lblUniversityIDProf;
     private javax.swing.JPanel leftPane;
     private javax.swing.JPanel navigateBackPanel;
     private javax.swing.JPanel navigateBackPanel1;
@@ -1844,7 +1921,6 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JPasswordField passwordFieldStudent;
     private javax.swing.JPanel professorWorkAreaPanel;
     private javax.swing.JLayeredPane rightPane;
-    private com.toedter.calendar.JDateChooser startDateChooser;
     private javax.swing.JPanel studentPanel;
     private javax.swing.JSplitPane studentSplitPane;
     private javax.swing.JPanel studentWorkAreaPanel;
@@ -1871,6 +1947,8 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JTextField txtStudentID;
     private javax.swing.JTextField txtStudentMajor;
     private javax.swing.JTextField txtStudentMajorCourse;
+    private javax.swing.JTextField txtUniversityID;
+    private javax.swing.JTextField txtUniversityProf;
     private javax.swing.JLabel workAreaPane;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
@@ -1879,17 +1957,21 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblStudents.getModel();
         model.setRowCount(0);
         for (Student student : ecoSystem.getStudentDirectoryRef().getStudentDirectory()) {
-            Object[] rowData = new Object[9];
-            rowData[0] = student.getPersonName();
-            rowData[1] = student.getStudentID();
-            rowData[2] = student.getPersonEmailAddress();
-            rowData[3] = student.getPersonGender();
-            rowData[4] = student.getPersonPhoneNumber();
-            rowData[5] = student.getCommunity().getCommunity();
-            rowData[6] = student.getStudentDegree().getDegreeLevel();
-            rowData[7] = student.getStudentDegree().getMajor();
-            rowData[8] = student.getGraduationYear();
-            model.addRow(rowData);
+            if (student.getUniversityID().equals(person.getUniversityID())) {
+                Object[] rowData = new Object[9];
+                rowData[0] = student.getPersonName();
+                rowData[1] = student.getStudentID();
+                rowData[2] = student.getPersonEmailAddress();
+                rowData[3] = student.getPersonGender();
+                rowData[4] = student.getPersonPhoneNumber();
+                rowData[5] = student.getCommunity().getCommunity();
+                rowData[6] = student.getStudentDegree().getDegreeLevel();
+                rowData[7] = student.getStudentDegree().getMajor();
+                rowData[8] = student.getGraduationYear();
+                model.addRow(rowData);
+
+            }
+
         }
     }
 
@@ -1909,32 +1991,34 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     }
 
     private void populateProfTable() {
-        
+
         DefaultTableModel model = (DefaultTableModel) tblProfessors.getModel();
         model.setRowCount(0);
-        for(Professor prof : ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()){
-            Object[] rowData = new Object[5];
-            rowData[0] = prof.getPersonName();
-            rowData[1] = prof.getPersonEmailAddress();
-            rowData[2] = prof.getPersonGender();
-            rowData[3] = prof.getProfessorID();
-            rowData[4] = prof.getStartDate();
-            model.addRow(rowData);
+        for (Professor prof : ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()) {
+            if (prof.getUniversityID().equals(person.getUniversityID())) {
+                Object[] rowData = new Object[5];
+                rowData[0] = prof.getPersonName();
+                rowData[1] = prof.getPersonEmailAddress();
+                rowData[2] = prof.getPersonGender();
+                rowData[3] = prof.getProfessorID();
+                rowData[4] = prof.getUniversityID();
+                model.addRow(rowData);
+            }
 
         }
-        
+
     }
-    
-    private void populateSemesterCombo(){
+
+    private void populateSemesterCombo() {
         comboSemester1.removeAllItems();
         UniversityAdmin.semesterList.forEach(s -> comboSemester1.addItem(s));
     }
 
     private void switchToWorkAreaPanel() {
-       workAreaPanel.setVisible(true);
+        workAreaPanel.setVisible(true);
         studentPanel.setVisible(false);
         facultyPanel.setVisible(false);
         coursesPanel.setVisible(false);
     }
-    
+
 }

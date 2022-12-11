@@ -7,12 +7,16 @@ package ui;
 import businesslogic.CommunityDirectory;
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlanAdmin;
 import businesslogic.PersonU;
 import businesslogic.PersonUDirectory;
 import businesslogic.UniversityManagement.AppointmentDirectory;
 import businesslogic.UniversityManagement.CourseAssignmentDirectory;
 import businesslogic.UniversityManagement.CourseDirectory;
+import businesslogic.UniversityManagement.PlacementCoordinator;
+import businesslogic.UniversityManagement.Professor;
 import businesslogic.UniversityManagement.ProfessorDirectory;
+import businesslogic.UniversityManagement.Student;
 import businesslogic.UniversityManagement.StudentDirectory;
 import businesslogic.UniversityManagement.UniversityAdmin;
 import java.awt.CardLayout;
@@ -22,6 +26,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.MealPlanManagement.MealPlanDashboard;
 import ui.UniversityManagement.PlacementCoordinatorDashboard;
@@ -42,9 +47,11 @@ public class MainJFrame extends javax.swing.JFrame {
     ProfessorDirectory professorDirectory;
     CourseDirectory courseDirectory;
     AppointmentDirectory appointmentDirectory;
-    PersonUDirectory personDirectory;
+    PersonUDirectory personUDirectory;
     CommunityDirectory communityDirectory;
     CourseAssignmentDirectory courseAssignment;
+    
+    
     
     private static int flag = 0;
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
@@ -63,6 +70,13 @@ public class MainJFrame extends javax.swing.JFrame {
     
     public MainJFrame() {
         initComponents();
+        this.studentDirectory = studentDirectory;
+        this.professorDirectory = professorDirectory;
+        this.courseDirectory = courseDirectory;
+        this.appointmentDirectory = appointmentDirectory;
+        this.communityDirectory = communityDirectory;
+        this.personUDirectory = personUDirectory;
+        this.courseAssignment = courseAssignment;
 //        MainFrame.getContentPane().setSize(new Dimension(100, 200));
         setSize(1060, 770);
         
@@ -82,9 +96,9 @@ public class MainJFrame extends javax.swing.JFrame {
             }
             
             if(ecoSystem.getPersonDirectoryRef()!=null){
-                this.personDirectory = ecoSystem.getPersonDirectoryRef();
+                this.personUDirectory = ecoSystem.getPersonDirectoryRef();
             } else {
-                this.personDirectory = new PersonUDirectory();
+                this.personUDirectory = new PersonUDirectory();
             }
             
             if(ecoSystem.getAppointmentDirectoryRef()!=null){
@@ -131,7 +145,6 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(98, 189, 234));
@@ -152,8 +165,6 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUsername.setText("Username: ");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.jpeg"))); // NOI18N
-
-        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,19 +187,14 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(btnLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(175, Short.MAX_VALUE))
+                        .addComponent(jLabel1)))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGap(213, 213, 213)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -215,46 +221,53 @@ public class MainJFrame extends javax.swing.JFrame {
         
         for(PersonU p: ecoSystem.getPersonDirectoryRef().getPersonDirectory()){
             if(p.getPersonEmailAddress().equals(userName)&&p.getUserPassword().equals(userPassword))
-                person = p;
-        }
+               person = p;
+       }
         
         if(person!=null){
             
             switch(person.getUserRole()){
-                case UNIVERSITY_ADMIN:
-                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem);
+               case UNIVERSITY_ADMIN:
+                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem, (UniversityAdmin)person);
                     mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
                     CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
                     cd1.next(mainWorkArea);
                     break;
-                case MEALPLAN_ADMIN:
-                    mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem);
-                    mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
+               case MEALPLAN_ADMIN:
+                    mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem, (MealPlanAdmin) person);
+                   mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
                     CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
                     cd2.next(mainWorkArea);
                     break;
-                case STUDENT:
-                    studentDashboard = new StudentDashboard(ecoSystem);
+               case STUDENT:
+                    studentDashboard = new StudentDashboard(ecoSystem, (Student) person);
                     mainWorkArea.add("studentDashboard", studentDashboard);
                     CardLayout cd3 = (CardLayout) mainWorkArea.getLayout();
-                    cd3.next(mainWorkArea);
-                    break;
-                case PROFESSOR:
-                    professorDashboard = new ProfessorDashboard(ecoSystem);
+                   cd3.next(mainWorkArea);
+                   break;
+               case PROFESSOR:
+                    professorDashboard = new ProfessorDashboard(ecoSystem, (Professor) person);
                     mainWorkArea.add("professorDashboard", professorDashboard);
-                    CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
+                   CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
                     cd4.next(mainWorkArea);
-                    break;
-                case PLACEMENT_COORDINATOR:
-                    placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem);
-                    mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
+                   break;
+               case PLACEMENT_COORDINATOR:
+                   placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem, (PlacementCoordinator)person);
+                   mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
                     CardLayout cd5 = (CardLayout) mainWorkArea.getLayout();
-                    cd5.next(mainWorkArea);
-                    break;
-                    
-                
-            }
-        }
+                   cd5.next(mainWorkArea);
+                   break;
+                   
+               
+           } 
+
+       
+        } else {
+                    JOptionPane.showMessageDialog(this, "User does not exist!");
+           }
+        
+            
+  
         
     }//GEN-LAST:event_btnLoginActionPerformed
     
@@ -314,7 +327,6 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel mainWorkArea;
@@ -324,5 +336,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public void removeStudentDashboard() {
          mainWorkArea.remove(studentDashboard);
+    }
+
+    public void removeProfessorDashboard() {
+        mainWorkArea.remove(professorDashboard);
     }
 }

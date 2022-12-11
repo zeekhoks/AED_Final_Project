@@ -23,7 +23,18 @@ public class PersonUDirectory {
     public void setPersonDirectory(ArrayList<PersonU> personDirectory) {
         this.personDirectory = personDirectory;
     }
-
+    
+    
+    public PersonU authenticateAdmin(String userName, String userPassword){
+           if(!getPersonDirectory().isEmpty()) {
+            for(PersonU p : personDirectory) {
+                if(p.getPersonEmailAddress().equals(userName) && p.getUserPassword().equals(userPassword)) {
+                    return p;
+                }
+            }
+        }
+        return null;
+    }
 
     
     

@@ -6,8 +6,10 @@ package ui.UniversityManagement;
 
 import businesslogic.EcoSystem;
 import businesslogic.MealManagement.MealPlan;
+import businesslogic.PersonU;
 import businesslogic.UniversityManagement.Course;
 import businesslogic.UniversityManagement.CourseAssignment;
+import businesslogic.UniversityManagement.Student;
 import businesslogic.UniversityManagement.UniversityAdmin;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
@@ -30,11 +32,12 @@ public class StudentDashboard extends javax.swing.JPanel {
      */
    
         private EcoSystem ecoSystem;
+        private Student person;
 
-    public StudentDashboard(EcoSystem ecoSystem1) {
+    public StudentDashboard(EcoSystem ecoSystem1, Student person) {
         initComponents();
         this.ecoSystem = ecoSystem;
-        populateCoursesTable();
+        this.person = person;
         populateMealPlanTable();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
@@ -146,10 +149,8 @@ public class StudentDashboard extends javax.swing.JPanel {
         studentWorkAreaPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblTranscripts1 = new javax.swing.JTable();
-        txtStudentLastNameAppointment = new javax.swing.JTextField();
         lblStudentName = new javax.swing.JLabel();
         txtStudentDegreeAppointment = new javax.swing.JTextField();
-        lblStudentLastName = new javax.swing.JLabel();
         lblPlacementCoordinator = new javax.swing.JLabel();
         lblAppointmentDate = new javax.swing.JLabel();
         txtStudentNameAppointment = new javax.swing.JTextField();
@@ -960,14 +961,8 @@ public class StudentDashboard extends javax.swing.JPanel {
             tblTranscripts1.getColumnModel().getColumn(8).setHeaderValue("Role Preference");
         }
 
-        txtStudentLastNameAppointment.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStudentLastNameAppointmentActionPerformed(evt);
-            }
-        });
-
         lblStudentName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblStudentName.setText("Student First Name");
+        lblStudentName.setText("Student Name");
 
         txtStudentDegreeAppointment.setEditable(false);
         txtStudentDegreeAppointment.addActionListener(new java.awt.event.ActionListener() {
@@ -975,9 +970,6 @@ public class StudentDashboard extends javax.swing.JPanel {
                 txtStudentDegreeAppointmentActionPerformed(evt);
             }
         });
-
-        lblStudentLastName.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        lblStudentLastName.setText("Student Last Name");
 
         lblPlacementCoordinator.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         lblPlacementCoordinator.setText("Placement Coordinator");
@@ -1066,29 +1058,18 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
                         .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPlacementCoordinator, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAppointmentTime, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, studentWorkAreaPanel2Layout.createSequentialGroup()
-                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblStudentName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblStudentLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtStudentLastNameAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtStudentNameAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(3, 3, 3))
-                                    .addGroup(studentWorkAreaPanel2Layout.createSequentialGroup()
-                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblAppointmentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblPlacementCoordinator, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(comboPlacementCoordinator, 0, 243, Short.MAX_VALUE)
-                                            .addComponent(dateChooserAppointment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(formattedTime, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboPlacementCoordinator, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtStudentNameAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateChooserAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(formattedTime, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentWorkAreaPanel2Layout.createSequentialGroup()
                         .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1140,27 +1121,23 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStudentName)
                     .addComponent(txtStudentNameAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStudentLastName)
-                    .addComponent(txtStudentLastNameAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPlacementCoordinator)
-                    .addComponent(comboPlacementCoordinator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboPlacementCoordinator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPlacementCoordinator))
                 .addGap(18, 18, 18)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblAppointmentDate)
-                    .addComponent(dateChooserAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(dateChooserAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAppointmentDate))
+                .addGap(27, 27, 27)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAppointmentTime)
-                    .addComponent(formattedTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(formattedTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAppointmentTime))
+                .addGap(28, 28, 28)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCity))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboJobs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRolePreference))
@@ -1176,7 +1153,7 @@ public class StudentDashboard extends javax.swing.JPanel {
                 .addGroup(studentWorkAreaPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdateAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteAppointment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
 
         studentSplitPane2.setRightComponent(studentWorkAreaPanel2);
@@ -1656,7 +1633,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         );
         coursesPanelLayout.setVerticalGroup(
             coursesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(studentSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 871, Short.MAX_VALUE)
+            .addComponent(studentSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         rightPane.add(coursesPanel, "card3");
@@ -1875,6 +1852,7 @@ public class StudentDashboard extends javax.swing.JPanel {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
+        switchToMainFrame();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void txtPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneNumberActionPerformed
@@ -1920,10 +1898,6 @@ public class StudentDashboard extends javax.swing.JPanel {
     private void txtStudentNameTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentNameTranscriptActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtStudentNameTranscriptActionPerformed
-
-    private void txtStudentLastNameAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentLastNameAppointmentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStudentLastNameAppointmentActionPerformed
 
     private void txtStudentDegreeAppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStudentDegreeAppointmentActionPerformed
         // TODO add your handling code here:
@@ -1996,7 +1970,7 @@ public class StudentDashboard extends javax.swing.JPanel {
                     List<Course> courseBySem = ecoSystem.getCourseDirectoryRef().getCourseDirectory()
                             .stream().filter(c-> c.getSemester().equalsIgnoreCase(currentSemester)).toList();
                     
-                    populateCoursesTable();
+                    populateCoursesTable(courseBySem);
                 }
             }
         
@@ -2010,7 +1984,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         String courseDescription = txtCourseDescription.getText();
         String professorName = txtProfessorName.getText();
         int creditHours = Integer.parseInt(txtCreditHours.getText());
-        String studentID = txtStudentIDStudent.getText();
+        String studentID = person.getStudentID();
         
         List<Integer> courseAssignmentList = ecoSystem.getCourseAssignmentRef().getCourseAssignmentDirectory()
                 .stream().map(c -> c.getCourseID()).toList();
@@ -2201,7 +2175,6 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JLabel lblStudentID6;
     private javax.swing.JLabel lblStudentID7;
     private javax.swing.JLabel lblStudentIDTranscript;
-    private javax.swing.JLabel lblStudentLastName;
     private javax.swing.JLabel lblStudentName;
     private javax.swing.JLabel lblStudentNameTranscript;
     private javax.swing.JLabel lblTranscriptPanel;
@@ -2267,7 +2240,6 @@ public class StudentDashboard extends javax.swing.JPanel {
     private javax.swing.JTextField txtStudentID;
     private javax.swing.JTextField txtStudentIDStudent;
     private javax.swing.JTextField txtStudentIDTranscript;
-    private javax.swing.JTextField txtStudentLastNameAppointment;
     private javax.swing.JTextField txtStudentMajor;
     private javax.swing.JTextField txtStudentMajorCourse;
     private javax.swing.JTextField txtStudentNameAppointment;
@@ -2278,11 +2250,11 @@ public class StudentDashboard extends javax.swing.JPanel {
     private com.toedter.calendar.JYearChooser yearChooser1;
     // End of variables declaration//GEN-END:variables
 
-    private void populateCoursesTable() {
+    private void populateCoursesTable(List<Course> courses) {
        
         DefaultTableModel model = (DefaultTableModel) tblCoursesStudent.getModel();
         model.setRowCount(0);
-        for(Course course : ecoSystem.getCourseDirectoryRef().getCourseDirectory()){
+        for(Course course : courses){
             Object[] rowData = new Object[5];
             rowData[0] = course.getStudentMajor();
             rowData[1] = course.getSemester();

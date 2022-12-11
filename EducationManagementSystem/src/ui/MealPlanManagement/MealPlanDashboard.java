@@ -9,6 +9,7 @@ import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
 import businesslogic.MealManagement.MealPlan;
+import businesslogic.PersonU;
 import businesslogic.UniversityManagement.Course;
 import businesslogic.UniversityManagement.Degree;
 import businesslogic.UniversityManagement.Professor;
@@ -46,7 +47,7 @@ public class MealPlanDashboard extends javax.swing.JPanel {
     private String photoPath = "/icons/default.jpg";
     private EcoSystem ecoSystem;
 
-    public MealPlanDashboard(EcoSystem ecoSystem) {
+    public MealPlanDashboard(EcoSystem ecoSystem, PersonU person) {
         
         initComponents();
         this.ecoSystem = ecoSystem;

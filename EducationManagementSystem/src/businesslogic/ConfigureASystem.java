@@ -10,6 +10,7 @@ import businesslogic.UniversityManagement.AppointmentDirectory;
 import businesslogic.UniversityManagement.CourseAssignmentDirectory;
 import businesslogic.UniversityManagement.CourseDirectory;
 import businesslogic.UniversityManagement.Degree;
+import businesslogic.UniversityManagement.Professor;
 import businesslogic.UniversityManagement.ProfessorDirectory;
 import businesslogic.UniversityManagement.Student;
 import businesslogic.UniversityManagement.StudentDirectory;
@@ -34,15 +35,23 @@ public class ConfigureASystem {
 
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new UniversityAdmin("Zainab",
                 "Female", "123456", null, 12345677L,
-                "zk@gmail.com", new Community("Park Drive", new City("Boston")), "zk123"));
+                "zk@gmail.com", 
+                new Community("Park Drive", new City("Boston")), "zk123", "U01"));
 
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new Student("Hinal", "Female",
                 "123457", null, 12345687L, "hp@gmail.com", new Community("Westland Avenue",
                         new City("Boston")), "hp123", "12", new Degree("Graduate", "Information Systems"),
-                "2024", "photo"));
+                "2024", "photo", "U01"));
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new MealPlanAdmin("John Doe", 
                 "Male", "123458", null, 1234322L, "jd@gmail.com", 
-                new Community ("Boylston", new City ("Boson")), "jd123", 13));
+                new Community ("Boylston", new City ("Boson")), "jd123", "13"));
+        
+       ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().add(new Professor("Rachel Ross", "Female", 
+               "123459",null, 1234222L, "rr@gmail.com", 
+               new Community ("Boylston", new City ("Boson")), 
+       "rr123", "U010101", "U01"));
+       
+       
         
         return ecoSystem;
 
