@@ -7,11 +7,14 @@ package ui.school.SchoolAdminRole;
 import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlan;
 import businesslogic.Person;
 import businesslogic.Person.UserRole;
+import businesslogic.PersonU;
 import businesslogic.helper.ValidateInputs;
 import businesslogic.school.Library;
 import businesslogic.school.SchoolAdmin;
+import businesslogic.school.SchoolStudentMealPlan;
 import businesslogic.school.Student;
 import businesslogic.school.Subject;
 import businesslogic.school.Teacher;
@@ -93,6 +96,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 //        for(Teacher t : ecoSystem.getTeacherDirectory().getTeacherDirectory()) {
 //            dropDownSubjectTeacher.addItem(t.getPersonFirstName());
 //        }
+        populateMealPlanTable();
+        populateMealSupplierTable();
+        populateStudentMealPlanTable();
     }
     
     private void setDefaultPhoto() {
@@ -122,7 +128,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -267,6 +272,12 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         jButton15 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         studentWorkAreaPanel4 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblMealPlan = new javax.swing.JTable();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblMealSupplier = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblStudentMeal = new javax.swing.JTable();
 
         jLabel39.setText("jLabel39");
 
@@ -293,13 +304,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Manage Library");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jButton5.setText("Manage Meal Supply");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -323,7 +327,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -340,10 +343,8 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addGap(196, 196, 196)
+                .addGap(237, 237, 237)
                 .addComponent(btnLogOut)
                 .addContainerGap(197, Short.MAX_VALUE))
         );
@@ -355,8 +356,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         workAreaPanel.setBackground(new java.awt.Color(255, 255, 255));
         workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("school details");
-        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("WELCOME SCHOOL ADMIN");
+        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
         workAreaPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 840));
@@ -1515,11 +1519,11 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(navigateBackPanel4Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jButton14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 241, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                 .addComponent(jLabel8)
-                .addGap(236, 236, 236)
+                .addGap(215, 215, 215)
                 .addComponent(jButton15)
-                .addGap(48, 48, 48))
+                .addGap(91, 91, 91))
         );
         navigateBackPanel4Layout.setVerticalGroup(
             navigateBackPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1536,15 +1540,71 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
         studentWorkAreaPanel4.setBackground(new java.awt.Color(37, 150, 190));
 
+        tblMealPlan.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Meal ID", "Meal Plan", "Meal Type", "Description"
+            }
+        ));
+        jScrollPane5.setViewportView(tblMealPlan);
+
+        tblMealSupplier.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Supplier ID", "Supplier Name", "Community", "City"
+            }
+        ));
+        jScrollPane6.setViewportView(tblMealSupplier);
+
+        tblStudentMeal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Student ID", "Student Name", "Standard", "Meal ID", "Meal Plan"
+            }
+        ));
+        jScrollPane7.setViewportView(tblStudentMeal);
+
         javax.swing.GroupLayout studentWorkAreaPanel4Layout = new javax.swing.GroupLayout(studentWorkAreaPanel4);
         studentWorkAreaPanel4.setLayout(studentWorkAreaPanel4Layout);
         studentWorkAreaPanel4Layout.setHorizontalGroup(
             studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 898, Short.MAX_VALUE)
+            .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
+                .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         studentWorkAreaPanel4Layout.setVerticalGroup(
             studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
+            .addGroup(studentWorkAreaPanel4Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(studentWorkAreaPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(247, Short.MAX_VALUE))
         );
 
         jSplitPane6.setRightComponent(studentWorkAreaPanel4);
@@ -1660,17 +1720,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        workAreaPanel.setVisible(false);
-        studentsPanel.setVisible(false);
-        employeesPanel.setVisible(false);
-        subjectsPanel.setVisible(false);
-        mealSupplyPanel.setVisible(false);
-        libraryPanel.setVisible(true);
-        btnLogOut.setVisible(false);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         workAreaPanel.setVisible(false);
@@ -1680,6 +1729,10 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         mealSupplyPanel.setVisible(true);
         libraryPanel.setVisible(false);
         btnLogOut.setVisible(false);
+        
+        populateMealPlanTable();
+        populateMealSupplierTable();
+        populateStudentMealPlanTable();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -2400,7 +2453,6 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -2455,6 +2507,9 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
@@ -2476,7 +2531,10 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel studentsPanel;
     private javax.swing.JPanel subjectsPanel;
     private javax.swing.JTable tblLibrary;
+    private javax.swing.JTable tblMealPlan;
+    private javax.swing.JTable tblMealSupplier;
     private javax.swing.JTable tblStudent;
+    private javax.swing.JTable tblStudentMeal;
     private javax.swing.JTable tblSubjects;
     private javax.swing.JTable tblTeacher;
     private javax.swing.JTextField txtBookID;
@@ -2675,6 +2733,61 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         txtSubjectName.setText("");
         dropDownSubjectTeacher.setSelectedIndex(-1);
         dropDownSubjectStandard.setSelectedIndex(-1);
+    }
+
+    private void populateMealPlanTable() {
+        DefaultTableModel model = (DefaultTableModel) tblMealPlan.getModel();
+        model.setRowCount(0);
+        for (MealPlan mp : ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory()) {
+            Object[] rowData = new Object[4];
+            rowData[0] = mp;
+            rowData[1] = mp.getMealPlan();
+            rowData[2] = mp.getMealType();
+            rowData[3] = mp.getMealDescription();
+            model.addRow(rowData);
+        }
+    }
+
+    private void populateMealSupplierTable() {
+        DefaultTableModel model = (DefaultTableModel) tblMealSupplier.getModel();
+        model.setRowCount(0);
+        
+        for(PersonU m : ecoSystem.getPersonDirectoryRef().getPersonDirectory()) {
+            PersonU.UserRole u = m.getUserRole();
+            if(String.valueOf(u).equals("MEALPLAN_ADMIN")) {
+                Object[] row = new Object[4];
+                row[0] = m;
+                row[1] = m.getPersonName();
+                row[2] = m.getCommunity().getCommunity();
+                row[3] = m.getCommunity().getCity().getCity();
+                model.addRow(row);
+            }
+        }
+    }
+
+    private void populateStudentMealPlanTable() {
+        DefaultTableModel model = (DefaultTableModel) tblStudentMeal.getModel();
+        model.setRowCount(0);
+        
+        for(SchoolStudentMealPlan s : ecoSystem.getSchoolStudentMealPlanDirectory().getStudentMealPlanDirectory()) {
+            
+            String studentID = s.getStudentID();
+            Student student = ecoSystem.getStudentDirectory().getStudentByID(studentID);
+            String studentName = student.getPersonFirstName();
+            int standard = student.getStandard();
+            
+            int mealID = s.getMealID();
+            MealPlan meal = ecoSystem.getMealPlanDirectoryRef().getPlanByCode(mealID);
+            String mealPlan = meal.getMealPlan();
+            
+            Object[] row = new Object[5];
+            row[0] = studentID;
+            row[1] = studentName;
+            row[2] = String.valueOf(standard);
+            row[3] = String.valueOf(mealID);
+            row[4] = mealPlan;
+            model.addRow(row);
+        }
     }
     
 }

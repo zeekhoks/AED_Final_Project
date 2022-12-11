@@ -66,11 +66,8 @@ public class University {
         this.universityAdminPassword = universityAdminPassword;
     }
     
-    
-    
-    
-
-    
-    
-    
+    @Override
+    public String toString(){
+        return universityID;
+    }
 }

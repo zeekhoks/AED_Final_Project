@@ -7,8 +7,10 @@ package ui.systemAdmin;
 import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlanAdmin;
 import businesslogic.Person;
 import businesslogic.PersonU;
+import businesslogic.PersonU.UserRole;
 import businesslogic.UniversityManagement.University;
 import businesslogic.UniversityManagement.UniversityAdmin;
 import businesslogic.helper.ValidateInputs;
@@ -35,6 +37,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private Person userLogged;
     private static int schoolCounter = 01;
     private static int universityCounter = 01;
+    private static int mealCounter = 01;
     
     public SystemAdminDashboardJPanel(EcoSystem ecoSystem, Person userLogged) {
         initComponents();
@@ -46,6 +49,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         SchoolPanel.setVisible(false);
         UniversityPanel.setVisible(false);
         DormitoryPanel.setVisible(false);
+        mealPlanPanel.setVisible(false);
         btnLogOut.setVisible(true);
         
         populateSchoolTable();
@@ -53,6 +57,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         
         populateUniversityTable();
         clearUniversityForm();
+        
+        populateMealTable();
+        clearMealForm();
         
         txtSchoolCode.setEditable(false);
         txtUniversityCode.setEditable(false);
@@ -76,7 +83,34 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        mealPlanPanel = new javax.swing.JPanel();
+        jSplitPane4 = new javax.swing.JSplitPane();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblMeal = new javax.swing.JTable();
+        btnViewMeal = new javax.swing.JButton();
+        btnUpdateMeal = new javax.swing.JButton();
+        btnDeleteMeal = new javax.swing.JButton();
+        btnAddMeal = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        txtMealCode = new javax.swing.JTextField();
+        txtMealName = new javax.swing.JTextField();
+        txtMealCommunity = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        txtMealCity = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        txtMealAdminEmail = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        txtMealAdminPassword = new javax.swing.JTextField();
+        btnMealClearSelection = new javax.swing.JButton();
         WorkAreaPanel = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         SchoolPanel = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
@@ -155,6 +189,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         jButton3.setText("Manage Dormitory");
 
         jButton4.setText("Manage Food Supply");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         btnLogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         btnLogOut.setText("Log Out");
@@ -189,33 +228,249 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                .addGap(231, 231, 231)
                 .addComponent(btnLogOut)
-                .addGap(182, 182, 182))
+                .addContainerGap(379, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(controlPanel);
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("Welcome Admin!");
+        jSplitPane4.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        javax.swing.GroupLayout WorkAreaPanelLayout = new javax.swing.GroupLayout(WorkAreaPanel);
-        WorkAreaPanel.setLayout(WorkAreaPanelLayout);
-        WorkAreaPanelLayout.setHorizontalGroup(
-            WorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WorkAreaPanelLayout.createSequentialGroup()
-                .addGap(307, 307, 307)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(512, Short.MAX_VALUE))
+        jPanel5.setBackground(new java.awt.Color(0, 0, 0));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("MANAGE MEAL SUPPLIERS");
+
+        jButton15.setText("Back");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
+        jButton16.setText("Log Out");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jButton15)
+                .addGap(282, 282, 282)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addComponent(jButton16)
+                .addGap(79, 79, 79))
         );
-        WorkAreaPanelLayout.setVerticalGroup(
-            WorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(WorkAreaPanelLayout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(608, Short.MAX_VALUE))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton16)
+                    .addComponent(jButton15))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+
+        jSplitPane4.setTopComponent(jPanel5);
+
+        jPanel6.setBackground(new java.awt.Color(255, 204, 204));
+
+        tblMeal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Supplier ID", "Supplier Name", "Community", "City"
+            }
+        ));
+        jScrollPane3.setViewportView(tblMeal);
+
+        btnViewMeal.setText("View Supplier");
+        btnViewMeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewMealActionPerformed(evt);
+            }
+        });
+
+        btnUpdateMeal.setText("Update Supplier");
+        btnUpdateMeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateMealActionPerformed(evt);
+            }
+        });
+
+        btnDeleteMeal.setText("Delete Supplier");
+        btnDeleteMeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteMealActionPerformed(evt);
+            }
+        });
+
+        btnAddMeal.setText("Add Supplier");
+        btnAddMeal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddMealActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Supplier ID:");
+
+        jLabel19.setText("Supplier Name:");
+
+        jLabel20.setText("Community:");
+
+        txtMealCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMealCodeActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("City:");
+
+        txtMealCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMealCityActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Set Admin Email:");
+
+        jLabel23.setText("Set Admin Password:");
+
+        btnMealClearSelection.setText("Clear Selection");
+        btnMealClearSelection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMealClearSelectionActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(btnViewMeal)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnUpdateMeal)
+                                    .addComponent(jLabel18))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteMeal)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAddMeal))
+                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtMealCode, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(jLabel23)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtMealAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel19)
+                                            .addComponent(jLabel20)
+                                            .addComponent(jLabel21)
+                                            .addComponent(jLabel22))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtMealAdminEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                            .addComponent(txtMealCity)
+                                            .addComponent(txtMealCommunity)
+                                            .addComponent(txtMealName)))))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(412, 412, 412)
+                        .addComponent(btnMealClearSelection))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(181, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewMeal)
+                    .addComponent(btnUpdateMeal)
+                    .addComponent(btnDeleteMeal)
+                    .addComponent(btnAddMeal))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(txtMealCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(txtMealName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(txtMealCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(txtMealCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(txtMealAdminEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23)
+                    .addComponent(txtMealAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnMealClearSelection)
+                .addContainerGap(442, Short.MAX_VALUE))
+        );
+
+        jSplitPane4.setRightComponent(jPanel6);
+
+        javax.swing.GroupLayout mealPlanPanelLayout = new javax.swing.GroupLayout(mealPlanPanel);
+        mealPlanPanel.setLayout(mealPlanPanelLayout);
+        mealPlanPanelLayout.setHorizontalGroup(
+            mealPlanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane4)
+        );
+        mealPlanPanelLayout.setVerticalGroup(
+            mealPlanPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane4, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+
+        jLayeredPane1.add(mealPlanPanel, "card6");
+
+        WorkAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel24.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("WELCOME ADMIN");
+        WorkAreaPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pink.jpg"))); // NOI18N
+        WorkAreaPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -210, 982, 1220));
 
         jLayeredPane1.add(WorkAreaPanel, "card2");
 
@@ -253,9 +508,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(281, 281, 281)
+                .addGap(182, 182, 182)
                 .addComponent(jButton6)
-                .addGap(18, 18, 18))
+                .addGap(117, 117, 117))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -453,7 +708,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(txtSchoolAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(jButton12)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel2);
@@ -501,11 +756,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButton13)
-                .addGap(282, 282, 282)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
+                .addGap(233, 233, 233)
                 .addComponent(jButton14)
-                .addGap(18, 18, 18))
+                .addGap(93, 93, 93))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -677,7 +932,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     .addComponent(txtUniversityAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnUniversityClearSelection)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(442, Short.MAX_VALUE))
         );
 
         jSplitPane3.setRightComponent(jPanel4);
@@ -703,7 +958,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         );
         DormitoryPanelLayout.setVerticalGroup(
             DormitoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 770, Short.MAX_VALUE)
+            .addGap(0, 1010, Short.MAX_VALUE)
         );
 
         jLayeredPane1.add(DormitoryPanel, "card5");
@@ -834,6 +1089,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         SchoolPanel.setVisible(true);
         UniversityPanel.setVisible(false);
         DormitoryPanel.setVisible(false);
+        mealPlanPanel.setVisible(false);
         btnLogOut.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1003,7 +1259,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             University u = ecoSystem.getUniversityDirectory().addNewUniversity(new University( universityName, universityCode, com, 
                     universityAdminEmail, universityAdminPassword));
             
-            ecoSystem.getUniversityAdminDirectory().getUniversityAdminDirectory().add(new UniversityAdmin(null, null, null, null, 1234567890,
+            ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new UniversityAdmin(null, null, null, null, 1234567890,
                universityAdminEmail, com, universityAdminPassword));
             
             JOptionPane.showMessageDialog(this, "University Record Added.");
@@ -1027,10 +1283,10 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) tblUniversity.getModel();
         University s = (University)model.getValueAt(selectedRowIndex, 0);
-        PersonU p = ecoSystem.getPersonUDirectory().getPersonByEmail(s.getUniversityAdminEmail());
+        PersonU p = ecoSystem.getPersonDirectoryRef().getPersonByEmail(s.getUniversityAdminEmail());
         
         ecoSystem.getUniversityDirectory().deleteUniversity(s);
-        ecoSystem.getPersonUDirectory().deletePerson(p);
+        ecoSystem.getPersonDirectoryRef().deletePerson(p);
         
         JOptionPane.showMessageDialog(this, "University record deleted!");
         populateUniversityTable();
@@ -1077,7 +1333,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             
             University u = ecoSystem.getUniversityDirectory().getUniversityByCode(universityCode);
             UniversityAdmin p = ecoSystem.getUniversityAdminDirectory().getUniversityAdminByEmail(universityAdminEmail);
-            if(p.getUserRole().equals("UNIVERSITY_ADMIN")) {             
+                       
                 u.setUniversityName(universityName);
                 u.setUniversityAdminEmail(universityAdminEmail);
                 u.setUniversityAdminPassword(universityAdminPassword);
@@ -1091,11 +1347,6 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "University Record Updated.");
                 clearSchoolForm();
                 populateUniversityTable();
-            
-            } else {
-                JOptionPane.showMessageDialog(this,"No such University Admin Exists!");
-                return;
-            }
             
             }  else {
             JOptionPane.showMessageDialog(this, "Error Updating University. Please check DataTypes");
@@ -1140,8 +1391,207 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         SchoolPanel.setVisible(false);
         UniversityPanel.setVisible(true);
         DormitoryPanel.setVisible(false);
+        mealPlanPanel.setVisible(false);
         btnLogOut.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here
+        // BACK
+        switchToWorkAreaPanel();
+        
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        switchToMainFrame();
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void btnViewMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMealActionPerformed
+        // TODO add your handling code here:
+        // view supplier
+        int selectedRowIndex = tblMeal.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblMeal.getModel();
+        MealPlanAdmin m = (MealPlanAdmin)model.getValueAt(selectedRowIndex, 0);
+        
+        txtMealCode.setText(m.getPersonId());
+        txtMealName.setText(m.getPersonName());
+        txtMealCommunity.setText(m.getCommunity().getCommunity());
+        txtMealCity.setText(m.getCommunity().getCity().getCity());
+        txtMealAdminEmail.setText(m.getPersonEmailAddress());
+        txtMealAdminPassword.setText(m.getUserPassword());
+    }//GEN-LAST:event_btnViewMealActionPerformed
+
+    private void btnUpdateMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMealActionPerformed
+        // TODO add your handling code here:
+        // update supplier
+        if(isMealDataEnteredValid()) {
+            if(!isNoEmptyFieldCheck(txtMealCode)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Supplier ID Name field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Supplier Name field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealCommunity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Community field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealCity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave City field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealAdminEmail)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Supplier Admin Email field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealAdminPassword)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Supplier Admin Password field empty!");
+                return;
+            }
+            
+            txtMealCode.setEditable(false);
+            txtMealAdminEmail.setEditable(false);
+            String mealCode = txtMealCode.getText();
+            String mealName = txtMealName.getText();
+            String mealCommunity = txtMealCommunity.getText();
+            String mealCity = txtMealCity.getText();
+            String mealAdminEmail = txtMealAdminEmail.getText();
+            String mealAdminPassword = txtMealAdminPassword.getText();
+            
+            MealPlanAdmin m = ecoSystem.getMealPlanAdminDirectory().getMealPlanAdminByEmail(mealAdminEmail);
+            
+//            UniversityAdmin p = ecoSystem.getUniversityAdminDirectory().getUniversityAdminByEmail(universityAdminEmail);
+            
+                m.setPersonName(mealName);
+                m.setPersonEmailAddress(mealAdminEmail);
+                m.setUserPassword(mealAdminPassword);
+       
+                Community com;
+                if(!m.getCommunity().getCommunity().equals(mealCommunity)){
+                    com = ecoSystem.getCommunityDirectory().addNewCommunity();
+                    com.setCommunity(mealCommunity);
+                    com.setCity(new City(mealCity));
+                    m.setCommunity(com);
+                }
+                JOptionPane.showMessageDialog(this, "Meal Plan Admin Record Updated.");
+                clearMealForm();
+                populateMealTable();
+            
+            
+            
+            }  else {
+            JOptionPane.showMessageDialog(this, "Error Updating Meal Plan Admin. Please check DataTypes");
+        }
+        
+    }//GEN-LAST:event_btnUpdateMealActionPerformed
+
+    private void btnDeleteMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteMealActionPerformed
+        // TODO add your handling code here:
+        // delete meal plan supplier
+        int selectedRowIndex = tblMeal.getSelectedRow();
+        if(selectedRowIndex < 0){
+            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) tblMeal.getModel();
+        MealPlanAdmin m = (MealPlanAdmin)model.getValueAt(selectedRowIndex, 0);
+        
+        ecoSystem.getPersonDirectoryRef().deletePerson(m);
+        
+        JOptionPane.showMessageDialog(this, "Meal Plan Admin record deleted!");
+        populateMealTable();
+        clearMealForm();
+    }//GEN-LAST:event_btnDeleteMealActionPerformed
+
+    private void btnAddMealActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMealActionPerformed
+        // TODO add your handling code here:
+        // add supplier
+        if(isMealDataEnteredValid()){
+            if(!isNoEmptyFieldCheck(txtMealName)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Meal Plan Admin Name field empty!");
+                return;
+            }           
+            if(!isNoEmptyFieldCheck(txtMealCommunity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Community field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealCity)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave City field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealAdminEmail)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Meal Plan Admin Email field empty!");
+                return;
+            }
+            if(!isNoEmptyFieldCheck(txtMealAdminPassword)) {
+                JOptionPane.showMessageDialog(this,"Please do not leave Meal Plan Admin Password field empty!");
+                return;
+            }
+            
+            txtMealCode.setEditable(false);
+            String mealCode = String.valueOf(mealCounter);
+            mealCounter++;
+            String mealName = txtMealName.getText();
+            String mealCommunity = txtMealCommunity.getText();
+            String mealCity = txtMealCity.getText();
+            String mealAdminEmail = txtMealAdminEmail.getText();
+            String mealAdminPassword = txtMealAdminPassword.getText();
+            
+            Community com;
+            if(!ecoSystem.getCommunityDirectory().getCommunityDirectory().equals(mealCommunity)){
+                com = ecoSystem.getCommunityDirectory().addNewCommunity();
+                com.setCommunity(mealCommunity);
+                com.setCity(new City(mealCity));
+//                s.setCommunity(c);
+            } else{
+                com = ecoSystem.getCommunityDirectory().getCommunityByName(mealCommunity);
+            }
+            boolean a = ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new MealPlanAdmin(mealName, null, 
+                    mealCode,null, 1234567890, mealAdminEmail, com, 
+                    mealAdminPassword, mealCode ));
+            
+            System.out.println(a);
+            JOptionPane.showMessageDialog(this, "Meal Plan Record Record Added.");
+            populateMealTable();
+            clearMealForm();
+            
+            
+        } else{
+            JOptionPane.showMessageDialog(this, "Error Adding Meal Plan Admin. Please check DataTypes");
+        }
+    }//GEN-LAST:event_btnAddMealActionPerformed
+
+    private void txtMealCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMealCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMealCodeActionPerformed
+
+    private void txtMealCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMealCityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMealCityActionPerformed
+
+    private void btnMealClearSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMealClearSelectionActionPerformed
+        // TODO add your handling code here:
+        clearMealForm();
+    }//GEN-LAST:event_btnMealClearSelectionActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        //
+        WorkAreaPanel.setVisible(false);
+        SchoolPanel.setVisible(false);
+        UniversityPanel.setVisible(false);
+        DormitoryPanel.setVisible(false);
+        btnLogOut.setVisible(false);
+        mealPlanPanel.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1149,11 +1599,16 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel SchoolPanel;
     private javax.swing.JPanel UniversityPanel;
     private javax.swing.JPanel WorkAreaPanel;
+    private javax.swing.JButton btnAddMeal;
     private javax.swing.JButton btnAddUniversity;
+    private javax.swing.JButton btnDeleteMeal;
     private javax.swing.JButton btnDeleteUniversity;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnMealClearSelection;
     private javax.swing.JButton btnUniversityClearSelection;
+    private javax.swing.JButton btnUpdateMeal;
     private javax.swing.JButton btnUpdateUniversity;
+    private javax.swing.JButton btnViewMeal;
     private javax.swing.JButton btnViewUniversity;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JButton jButton1;
@@ -1162,6 +1617,8 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1176,9 +1633,17 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1191,13 +1656,25 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JSplitPane jSplitPane4;
+    private javax.swing.JPanel mealPlanPanel;
+    private javax.swing.JTable tblMeal;
     private javax.swing.JTable tblSchool;
     private javax.swing.JTable tblUniversity;
+    private javax.swing.JTextField txtMealAdminEmail;
+    private javax.swing.JTextField txtMealAdminPassword;
+    private javax.swing.JTextField txtMealCity;
+    private javax.swing.JTextField txtMealCode;
+    private javax.swing.JTextField txtMealCommunity;
+    private javax.swing.JTextField txtMealName;
     private javax.swing.JTextField txtSchoolAdminEmail;
     private javax.swing.JTextField txtSchoolAdminPassword;
     private javax.swing.JTextField txtSchoolCity;
@@ -1218,6 +1695,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         SchoolPanel.setVisible(false);
         UniversityPanel.setVisible(false);
         DormitoryPanel.setVisible(false);
+        mealPlanPanel.setVisible(false);
         btnLogOut.setVisible(true);
     }
 
@@ -1260,6 +1738,23 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         }
     }
     
+    private void populateMealTable() {
+        DefaultTableModel model = (DefaultTableModel) tblMeal.getModel();
+        model.setRowCount(0);
+        
+        for(PersonU m : ecoSystem.getPersonDirectoryRef().getPersonDirectory()) {
+            UserRole u = m.getUserRole();
+            if(String.valueOf(u).equals("MEALPLAN_ADMIN")) {
+                Object[] row = new Object[4];
+                row[0] = m;
+                row[1] = m.getPersonName();
+                row[2] = m.getCommunity().getCommunity();
+                row[3] = m.getCommunity().getCity().getCity();
+                model.addRow(row);
+            }
+        }
+    }
+    
     private boolean isSchoolDataEnteredValid() {
         if(ValidateInputs.isNameValid(txtSchoolName.getText()) && ValidateInputs.isEmailValid(txtSchoolAdminEmail.getText()) 
                 && ValidateInputs.isPasswordValid(txtSchoolAdminPassword.getText()) 
@@ -1299,6 +1794,24 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         }
         return false;
 
+    }
+
+    private void clearMealForm() {
+        txtMealCode.setText("");
+        txtMealName.setText("");
+        txtMealCity.setText("");
+        txtMealCommunity.setText("");
+        txtMealAdminEmail.setText("");
+        txtMealAdminPassword.setText("");
+    }
+
+    private boolean isMealDataEnteredValid() {
+        if(ValidateInputs.isNameValid(txtMealName.getText()) && ValidateInputs.isEmailValid(txtMealAdminEmail.getText()) 
+                && ValidateInputs.isPasswordValid(txtMealAdminPassword.getText()) 
+            ) {
+            return true;
+        }
+        return false;
     }
 
    

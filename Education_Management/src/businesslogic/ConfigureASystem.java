@@ -2,6 +2,8 @@ package businesslogic;
 
 
 import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlan;
+import businesslogic.MealManagement.MealPlanAdmin;
 import businesslogic.school.SchoolAdmin;
 import businesslogic.school.Student;
 import businesslogic.school.Subject;
@@ -70,8 +72,15 @@ public class ConfigureASystem {
                 "/Users/drashtibhingradiya/Desktop/github-projects/AED_Final_Project/Education_Management/src/icons/default.jpg", 
                 standardSub));
         
+    //meal plan admin
+        ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new MealPlanAdmin("John Doe", 
+                "Male", "123458", null, 1234322L, "john@gmail.com", 
+                new Community ("Boylston", new City ("Boson")), "1234", "12"));
         
-        
+    //meal plan    
+        ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory().add(new MealPlan(10, "Day Plan", "Vegan", "Salad Bowl"));
+        ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory().add(new MealPlan(11, "Week Plan", "Vegeterian", "Curry"));
+
         return ecoSystem;
     }
 }

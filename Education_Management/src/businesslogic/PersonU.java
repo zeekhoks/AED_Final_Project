@@ -18,7 +18,8 @@ public class PersonU {
         PLACEMENT_COORDINATOR,
         EVENT_COORDINATOR,
         ACCOUNTS_ADMIN,
-        DEPARTMENT_ADMIN
+        DEPARTMENT_ADMIN,
+        MEALPLAN_ADMIN
     }
     
     private String personName;

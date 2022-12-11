@@ -68,7 +68,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         appointmentsPanel = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
@@ -104,6 +104,8 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGrade = new javax.swing.JTable();
         dropDownSubject = new javax.swing.JComboBox<>();
+
+        controlArea.setBackground(new java.awt.Color(0, 153, 153));
 
         btnGradeStudent.setText("Grade Students");
         btnGradeStudent.addActionListener(new java.awt.event.ActionListener() {
@@ -160,8 +162,11 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         workAreaPanel.setBackground(new java.awt.Color(255, 255, 255));
         workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("teacher details");
-        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("WELCOME TEACHER");
+        workAreaPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
         workAreaPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 840));
@@ -695,13 +700,13 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

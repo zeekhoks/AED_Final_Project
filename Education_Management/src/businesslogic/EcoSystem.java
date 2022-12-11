@@ -5,6 +5,8 @@
 package businesslogic;
 
 import businesslogic.DB4OUtil.DB4OUtil;
+import businesslogic.MealManagement.MealPlanAdminDirectory;
+import businesslogic.MealManagement.MealPlanDirectory;
 import businesslogic.UniversityManagement.UniversityAdminDirectory;
 import businesslogic.UniversityManagement.UniversityDirectory;
 import businesslogic.school.BookAppointmentDirectory;
@@ -13,6 +15,7 @@ import businesslogic.school.ParentDirectory;
 import businesslogic.school.SchoolAdminDirectory;
 import businesslogic.school.SchoolDirectory;
 import businesslogic.school.StudentDirectory;
+import businesslogic.school.SchoolStudentMealPlanDirectory;
 import businesslogic.school.SubjectDirectory;
 import businesslogic.school.TeacherDirectory;
 
@@ -31,10 +34,17 @@ public class EcoSystem {
     private SchoolAdminDirectory schoolAdminDirectory = new SchoolAdminDirectory();
     private SubjectDirectory subjectDirectory = new SubjectDirectory();
     private BookAppointmentDirectory bookAppointmentDirectory = new BookAppointmentDirectory();
+    private StudentDirectory studentDirectory = new StudentDirectory();
+    private ParentDirectory parentDirectory = new ParentDirectory();
+    private TeacherDirectory teacherDirectory = new TeacherDirectory();
+    private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
+    private SchoolStudentMealPlanDirectory schoolStudentMealPlanDirectory = new SchoolStudentMealPlanDirectory();
     
-    private PersonUDirectory personUDirectory = new PersonUDirectory();
+    private PersonUDirectory personDirectoryRef = new PersonUDirectory();
     private UniversityDirectory universityDirectory = new UniversityDirectory();
     private UniversityAdminDirectory universityAdminDirectory = new UniversityAdminDirectory();
+    private MealPlanDirectory mealPlanDirectoryRef = new MealPlanDirectory();
+    private MealPlanAdminDirectory MealPlanAdminDirectory = new MealPlanAdminDirectory();
 
     private EcoSystem() {
         
@@ -62,10 +72,6 @@ public class EcoSystem {
     public void setSubjectDirectory(SubjectDirectory subjectDirectory) {
         this.subjectDirectory = subjectDirectory;
     }
-    private StudentDirectory studentDirectory = new StudentDirectory();
-    private ParentDirectory parentDirectory = new ParentDirectory();
-    private TeacherDirectory teacherDirectory = new TeacherDirectory();
-    private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
     
     public static EcoSystem getEcoSystem() {
         return ecoSystem;
@@ -163,13 +169,38 @@ public class EcoSystem {
         this.universityAdminDirectory = universityAdminDirectory;
     }
 
-    public PersonUDirectory getPersonUDirectory() {
-        return personUDirectory;
+    public SchoolStudentMealPlanDirectory getSchoolStudentMealPlanDirectory() {
+        return schoolStudentMealPlanDirectory;
     }
 
-    public void setPersonUDirectory(PersonUDirectory personUDirectory) {
-        this.personUDirectory = personUDirectory;
+    public void setSchoolStudentMealPlanDirectory(SchoolStudentMealPlanDirectory schoolStudentMealPlanDirectory) {
+        this.schoolStudentMealPlanDirectory = schoolStudentMealPlanDirectory;
     }
+    
+    public MealPlanDirectory getMealPlanDirectoryRef() {
+        return mealPlanDirectoryRef;
+    }
+
+    public void setMealPlanDirectoryRef(MealPlanDirectory mealPlanDirectoryRef) {
+        this.mealPlanDirectoryRef = mealPlanDirectoryRef;
+    }
+
+    public MealPlanAdminDirectory getMealPlanAdminDirectory() {
+        return MealPlanAdminDirectory;
+    }
+
+    public void setMealPlanAdminDirectory(MealPlanAdminDirectory MealPlanAdminDirectory) {
+        this.MealPlanAdminDirectory = MealPlanAdminDirectory;
+    }
+
+    public PersonUDirectory getPersonDirectoryRef() {
+        return personDirectoryRef;
+    }
+
+    public void setPersonDirectoryRef(PersonUDirectory personDirectoryRef) {
+        this.personDirectoryRef = personDirectoryRef;
+    }
+    
     
 
 }

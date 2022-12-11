@@ -12,6 +12,8 @@ import businesslogic.EcoSystem;
 import businesslogic.Person;
 import businesslogic.Person.UserRole;
 import businesslogic.PersonDirectory;
+import businesslogic.PersonU;
+import businesslogic.PersonUDirectory;
 import businesslogic.school.SchoolAdmin;
 import businesslogic.school.SchoolDirectory;
 import businesslogic.school.Student;
@@ -25,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import ui.MealPlanManagement.MealPlanDashboard;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
 import ui.school.TeacherRole.TeacherDashboardJPanel;
@@ -44,10 +47,13 @@ public class MainJFrame extends javax.swing.JFrame {
     SchoolDirectory schoolDirectory;
     StudentDirectory studentDirectory;
     TeacherDirectory teacherDirectory;
+    
+    PersonUDirectory personUDirectory;
     JPanel SchoolAdminDashboardJPanel;
     JPanel SystemAdminDashboardJPanel;
     JPanel TeacherDashboardJPanel;
     JPanel StudentDashboardJPanel;
+    JPanel mealPlanAdminDashboard;
     
     private static int flag = 0;
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
@@ -92,6 +98,13 @@ public class MainJFrame extends javax.swing.JFrame {
             } else {
                 this.teacherDirectory = new TeacherDirectory();
             }
+            
+            if(ecoSystem.getPersonDirectoryRef()!=null){
+                this.personUDirectory = ecoSystem.getPersonDirectoryRef();
+            } else {
+                this.personUDirectory = new PersonUDirectory();
+            }
+           
         }
         flag++;
         
@@ -123,12 +136,12 @@ public class MainJFrame extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(98, 189, 234));
+        setBackground(new java.awt.Color(52, 84, 87));
 
-        mainWorkArea.setBackground(new java.awt.Color(98, 189, 234));
+        mainWorkArea.setBackground(new java.awt.Color(52, 84, 87));
         mainWorkArea.setLayout(new java.awt.CardLayout());
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login.png"))); // NOI18N
@@ -143,7 +156,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblUsername.setText("Username: ");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.jpeg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logomain.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,6 +165,9 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(442, 442, 442)
+                        .addComponent(btnLogin))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(375, 375, 375)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -162,12 +178,9 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addComponent(txtUsername)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(442, 442, 442)
-                        .addComponent(btnLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(jLabel1)))
-                .addContainerGap(196, Short.MAX_VALUE))
+                        .addGap(248, 248, 248)
+                        .addComponent(jLabel2)))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,9 +196,9 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(lblPassword))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel1)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,6 +240,33 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             } 
         } 
+        logger.log(Level.INFO, "Checking credentials in PersonU Directory");
+        PersonU person = null;
+        
+        for(PersonU p: ecoSystem.getPersonDirectoryRef().getPersonDirectory()){
+            if(p.getPersonEmailAddress().equals(userName)&&p.getUserPassword().equals(password))
+                person = p;
+        }
+        
+        if(person!=null){
+            
+            switch(person.getUserRole()){
+                case UNIVERSITY_ADMIN:
+//                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem);
+//                    mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
+//                    CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
+//                    cd1.next(mainWorkArea);
+                    break;
+                case MEALPLAN_ADMIN:
+                    mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem);
+                    mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
+                    CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
+                    cd2.next(mainWorkArea);
+                    clearLoginPanel();
+                    break;
+                
+            }
+        }
         
         logger.log(Level.INFO, "Checking credentials in School Admin Directory");
         
@@ -278,10 +318,10 @@ public class MainJFrame extends javax.swing.JFrame {
                     return;
                 }
             }
-        }       
-        else {
-            JOptionPane.showMessageDialog(this, "Please recheck your credentials");
-        }
+        } 
+        
+        
+        
     }//GEN-LAST:event_btnLoginActionPerformed
     
 //    public void changePanel(JPanel panel) {
@@ -334,10 +374,14 @@ public class MainJFrame extends javax.swing.JFrame {
     public void removeSystemAdminDashboardJPanel() {
         mainWorkArea.remove(SystemAdminDashboardJPanel);
     }
+    
+    public void removeMealPlanDashboard() {
+        mainWorkArea.remove(mealPlanAdminDashboard);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel mainWorkArea;
