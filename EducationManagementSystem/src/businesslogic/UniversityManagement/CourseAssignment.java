@@ -12,10 +12,11 @@ public class CourseAssignment {
     
     private String studentID;
     private String professorName;
+ 
     private int courseID;
     private float grade;
 
-    public CourseAssignment(String studentID, String professorName, int courseID, float grade) {
+    public CourseAssignment(String studentID, String professorName,  int courseID, float grade) {
         this.studentID = studentID;
         this.professorName = professorName;
         this.courseID = courseID;
@@ -31,14 +32,8 @@ public class CourseAssignment {
         this.studentID = studentID;
     }
 
-    public String getProfessorID() {
-        return professorName;
-    }
-
-    public void setProfessorID(String professorID) {
-        this.professorName = professorID;
-    }
-
+ 
+    
     public int getCourseID() {
         return courseID;
     }
@@ -53,6 +48,14 @@ public class CourseAssignment {
 
     public void setGrade(float grade) {
         this.grade = grade;
+    }
+
+    public String getProfessorName() {
+        return professorName;
+    }
+
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
     }
     
     

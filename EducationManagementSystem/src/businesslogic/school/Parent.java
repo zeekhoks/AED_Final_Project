@@ -15,7 +15,7 @@ public class Parent extends PersonU{
     private int studentID;
 
     public Parent(String firstName, String lastName, int personID, String email, String password, String role, String dob, long mobileNo, String gender, Community community, int studentID) {
-        super(firstName, lastName, personID, email, password, role, dob, mobileNo, gender, community);
+//        super(firstName, lastName, personID, email, password, role, dob, mobileNo, gender, community);
         this.studentID = studentID;
     }
 

@@ -19,7 +19,7 @@ public class Student extends PersonU{
     public Student(String firstName, String lastName, int personID, 
             String email, String password, String role, String dob, 
             long mobileNo, String gender, Community community, int schoolID, String extraCurricular, int standard) {
-        super(firstName, lastName, personID, email, password, role="Student", dob, mobileNo, gender, community);
+//        super(firstName, lastName, personID, email, password, role="Student", dob, mobileNo, gender, community);
         this.schoolID = schoolID;
         this.extraCurricular = extraCurricular;
         this.standard = standard;

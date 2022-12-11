@@ -6,6 +6,7 @@ package ui.UniversityManagement;
 
 import businesslogic.City;
 import businesslogic.Community;
+import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.PersonU;
 import businesslogic.UniversityManagement.Course;
@@ -29,6 +30,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import ui.MainJFrame;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -55,6 +57,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         populateStudentsTable();
         populateCoursesTable();
         populateProfTable();
+        populateProfessorCombo();
         setSize(1060, 770);
         workAreaPanel.setVisible(true);
         studentPanel.setVisible(false);
@@ -63,6 +66,10 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         genderButtonGroup.add(btnMale);
         genderButtonGroup.add(btnFemale);
         genderButtonGroup.add(btnNonBinary);
+        genderButtonProf.add(btnMale1);
+        genderButtonProf.add(btnFemale1);
+        genderButtonProf.add(btnNonBinary1);
+
 
     }
 
@@ -83,6 +90,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         genderButtonGroup = new javax.swing.ButtonGroup();
+        genderButtonProf = new javax.swing.ButtonGroup();
         UniversityDashboardPanel = new javax.swing.JSplitPane();
         leftPane = new javax.swing.JPanel();
         btnFaculty = new javax.swing.JButton();
@@ -1651,9 +1659,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         String profName = txtNameProf.getText();
         String profEmail = txtEmailAddressProf.getText();
         String profGender = "";
-        if (btnMale.isSelected()) {
+        if (btnMale1.isSelected()) {
             profGender = "Male";
-        } else if (btnFemale.isSelected()) {
+        } else if (btnFemale1.isSelected()) {
             profGender = "Female";
         } else {
             profGender = "Non Binary";
@@ -1678,16 +1686,18 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
                     profPassword, profID, universityID);
             ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().add(prof);
             ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(prof);
+            DB4OUtil.getInstance().storeSystem(ecoSystem);
 
             txtNameProf.setText("");
             txtEmailAddressProf.setText("");
-            genderButtonGroup.clearSelection();
+            genderButtonProf.clearSelection();
             txtPhoneNumberProf.setText("");
             PasswordProfessor.setText("");
             txtSSNProf.setText("");
             dateOfBirthProf.setCalendar(null);
             txtProfCommunity.setText("");
             txtUniversityProf.setText("");
+            txtProfessorID.setText("");
 
             JOptionPane.showMessageDialog(this, "Professor details added successfully!");
 
@@ -1714,7 +1724,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row to update!");
             return;
         }
-
+        
+        String profName = txtNameProf.getText();
+        String profEmail = txtEmailAddressProf.getText();
         String profSSN = txtSSNProf.getText();
         Date dob = dateOfBirthProf.getDate();
         long phoneProf = Long.parseLong(txtPhoneNumberProf.getText());
@@ -1724,7 +1736,9 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Community community = new Community(txtProfCommunity.getText(), new City("Boston"));
 
         Professor prof = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().get(selected);
-
+        
+        prof.setPersonName(profName);
+        prof.setPersonEmailAddress(profEmail);
         prof.setPersonId(profSSN);
         prof.setDateOfBirth(dob);
         prof.setPersonPhoneNumber(phoneProf);
@@ -1734,17 +1748,22 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         prof.setCommunity(community);
 
         JOptionPane.showMessageDialog(this, "Professor details updated successfully!");
+        
+        populateProfTable();
+                    DB4OUtil.getInstance().storeSystem(ecoSystem);
+
 
         txtNameProf.setText("");
+        txtProfessorID.setText("");
         txtEmailAddressProf.setText("");
-        genderButtonGroup.clearSelection();
+        genderButtonProf.clearSelection();
         txtPhoneNumberProf.setText("");
         PasswordProfessor.setText("");
         txtSSNProf.setText("");
         dateOfBirthProf.setCalendar(null);
         txtProfCommunity.setText("");
         txtUniversityProf.setText("");
-        populateProfTable();
+        
 
 
     }//GEN-LAST:event_btnUpdateProfActionPerformed
@@ -1767,22 +1786,31 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
 
         txtProfCommunity.setText(prof.getCommunity().getCommunity());
         if (prof.getPersonGender().equals("Female")) {
-            btnFemale.setSelected(true);
-            btnMale.setSelected(false);
-            btnNonBinary.setSelected(false);
+            btnFemale1.setSelected(true);
+            btnMale1.setSelected(false);
+            btnNonBinary1.setSelected(false);
         } else if (prof.getPersonGender().equals("Male")) {
-            btnMale.setSelected(true);
-            btnFemale.setSelected(false);
-            btnNonBinary.setSelected(false);
+            btnMale1.setSelected(true);
+            btnFemale1.setSelected(false);
+            btnNonBinary1.setSelected(false);
         } else {
-            btnNonBinary.setSelected(true);
-            btnMale.setSelected(false);
-            btnFemale.setSelected(false);
+            btnNonBinary1.setSelected(true);
+            btnMale1.setSelected(false);
+            btnFemale1.setSelected(false);
+        }
+        
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try  {
+            dateOfBirthProf.setDate(simpleDateFormat.parse(prof.getDateOfBirth().toString()));
+        }
+        catch(Exception e) {
+            System.out.println("Date parse error" + e);
         }
         txtSSNProf.setText(prof.getPersonId());
-        txtUniversityProf.setText("");
+        txtUniversityProf.setText(prof.getUniversityID());
         txtPhoneNumberProf.setText(String.valueOf(prof.getPersonPhoneNumber()));
-        dateOfBirthProf.setDate(prof.getDateOfBirth());
+        txtProfessorID.setText(prof.getProfessorID());
         PasswordProfessor.setText(String.valueOf(prof.getUserPassword()));
 
 
@@ -1802,13 +1830,33 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
 
         ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().remove(prof);
         ecoSystem.getPersonDirectoryRef().getPersonDirectory().remove(prof);
+                    DB4OUtil.getInstance().storeSystem(ecoSystem);
 
+        
+        txtNameProf.setText("");
+        txtEmailAddressProf.setText("");
+        genderButtonProf.clearSelection();
+        txtPhoneNumberProf.setText("");
+        PasswordProfessor.setText("");
+        txtSSNProf.setText("");
+        dateOfBirthProf.setCalendar(null);
+        txtProfCommunity.setText("");
+        txtUniversityProf.setText("");
         populateProfTable();
 
     }//GEN-LAST:event_btnDeleteProfActionPerformed
 
     private void comboProfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboProfNameActionPerformed
-        // TODO add your handling code here:
+        
+// TODO add your handling code here:
+        if(comboProfName.getSelectedIndex()==-1){
+            populateProfessorCombo();                  
+        }
+//        populateProfessorCombo();
+
+        
+//        
+        
 
     }//GEN-LAST:event_comboProfNameActionPerformed
 
@@ -1876,6 +1924,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private javax.swing.JPanel facultyPanel;
     private javax.swing.JSplitPane facultySplitPane;
     private javax.swing.ButtonGroup genderButtonGroup;
+    private javax.swing.ButtonGroup genderButtonProf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1979,13 +2028,14 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblCourses.getModel();
         model.setRowCount(0);
         for (Course course : ecoSystem.getCourseDirectoryRef().getCourseDirectory()) {
-            Object[] rowData = new Object[6];
+            Object[] rowData = new Object[7];
             rowData[0] = course.getStudentMajor();
             rowData[1] = course.getSemester();
             rowData[2] = course.getCourseID();
             rowData[3] = course.getCourseName();
             rowData[4] = course.getCourseDescription();
-            rowData[5] = course.getCreditHours();
+            rowData[5] = course.getProfessorName();
+            rowData[6] = course.getCreditHours();
             model.addRow(rowData);
         }
     }
@@ -1996,12 +2046,13 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Professor prof : ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()) {
             if (prof.getUniversityID().equals(person.getUniversityID())) {
-                Object[] rowData = new Object[5];
+                Object[] rowData = new Object[6];
                 rowData[0] = prof.getPersonName();
                 rowData[1] = prof.getPersonEmailAddress();
                 rowData[2] = prof.getPersonGender();
-                rowData[3] = prof.getProfessorID();
-                rowData[4] = prof.getUniversityID();
+                rowData[3] = prof.getPersonPhoneNumber();
+                rowData[4] = prof.getProfessorID();
+                rowData[5] = prof.getUniversityID();
                 model.addRow(rowData);
             }
 
@@ -2012,6 +2063,15 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private void populateSemesterCombo() {
         comboSemester1.removeAllItems();
         UniversityAdmin.semesterList.forEach(s -> comboSemester1.addItem(s));
+    }
+    
+    private void populateProfessorCombo(){
+        comboProfName.removeAllItems();
+         List<Professor> professors = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory();
+         professors.forEach(professor -> {
+             System.out.println(professor.getPersonName());
+             comboProfName.addItem(professor.getPersonName());
+         });
     }
 
     private void switchToWorkAreaPanel() {

@@ -8,6 +8,7 @@ import businesslogic.CommunityDirectory;
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
 import businesslogic.MealManagement.MealPlanAdmin;
+import businesslogic.MealManagement.MealPlanDirectory;
 import businesslogic.PersonU;
 import businesslogic.PersonUDirectory;
 import businesslogic.UniversityManagement.AppointmentDirectory;
@@ -41,7 +42,7 @@ import ui.school.StudentRole.StudentDashboardJPanel;
  * @author drashtibhingradiya
  */
 public class MainJFrame extends javax.swing.JFrame {
-    
+
     private EcoSystem ecoSystem;
     StudentDirectory studentDirectory;
     ProfessorDirectory professorDirectory;
@@ -50,12 +51,10 @@ public class MainJFrame extends javax.swing.JFrame {
     PersonUDirectory personUDirectory;
     CommunityDirectory communityDirectory;
     CourseAssignmentDirectory courseAssignment;
-    
-    
-    
+    MealPlanDirectory mealPlanDirectoryRef;
+
     private static int flag = 0;
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
- 
 
     /**
      * Creates new form MainJFrame
@@ -67,7 +66,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public static JPanel studentDashboard;
     public static JPanel professorDashboard;
     public static JPanel placementCoordinatorDashboard;
-    
+
     public MainJFrame() {
         initComponents();
         this.studentDirectory = studentDirectory;
@@ -77,56 +76,62 @@ public class MainJFrame extends javax.swing.JFrame {
         this.communityDirectory = communityDirectory;
         this.personUDirectory = personUDirectory;
         this.courseAssignment = courseAssignment;
+        this.mealPlanDirectoryRef = mealPlanDirectoryRef;
 //        MainFrame.getContentPane().setSize(new Dimension(100, 200));
         setSize(1060, 770);
-        
-         if(flag == 0){
+
+        if (flag == 0) {
             ecoSystem = db4OUtil.retrieveSystem();
-            
-            if(ecoSystem.getStudentDirectoryRef() != null){
+
+            if (ecoSystem.getStudentDirectoryRef() != null) {
                 this.studentDirectory = ecoSystem.getStudentDirectoryRef();
             } else {
                 this.studentDirectory = new StudentDirectory();
             }
-           
-            if(ecoSystem.getCourseDirectoryRef() != null){
+
+            if (ecoSystem.getCourseDirectoryRef() != null) {
                 this.courseDirectory = ecoSystem.getCourseDirectoryRef();
             } else {
                 this.courseDirectory = new CourseDirectory();
             }
-            
-            if(ecoSystem.getPersonDirectoryRef()!=null){
+
+            if (ecoSystem.getPersonDirectoryRef() != null) {
                 this.personUDirectory = ecoSystem.getPersonDirectoryRef();
             } else {
                 this.personUDirectory = new PersonUDirectory();
             }
-            
-            if(ecoSystem.getAppointmentDirectoryRef()!=null){
+
+            if (ecoSystem.getAppointmentDirectoryRef() != null) {
                 this.appointmentDirectory = ecoSystem.getAppointmentDirectoryRef();
             } else {
                 this.appointmentDirectory = new AppointmentDirectory();
             }
-            
-            if(ecoSystem.getCommunityDirectoryRef()!=null){
+
+            if (ecoSystem.getCommunityDirectoryRef() != null) {
                 this.communityDirectory = ecoSystem.getCommunityDirectoryRef();
             } else {
                 this.communityDirectory = new CommunityDirectory();
             }
-            
-            if(ecoSystem.getProfessorDirectoryRef()!=null){
+
+            if (ecoSystem.getProfessorDirectoryRef() != null) {
                 this.professorDirectory = ecoSystem.getProfessorDirectoryRef();
             } else {
                 this.professorDirectory = new ProfessorDirectory();
             }
-            
-            if(ecoSystem.getCourseAssignment() != null){
+
+            if (ecoSystem.getCourseAssignment() != null) {
                 this.courseAssignment = ecoSystem.getCourseAssignment();
             } else {
                 this.courseAssignment = new CourseAssignmentDirectory();
             }
 
-    }
-     flag++;
+            if (ecoSystem.getMealPlanDirectoryRef() != null) {
+                this.mealPlanDirectoryRef = ecoSystem.getMealPlanDirectoryRef();
+            } else {
+                this.mealPlanDirectoryRef = new MealPlanDirectory();
+            }
+        }
+        flag++;
     }
 
     /**
@@ -216,68 +221,65 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String userName = txtUsername.getText();
         String userPassword = String.valueOf(txtPassword.getPassword());
-        
+
         PersonU person = null;
-        
-        for(PersonU p: ecoSystem.getPersonDirectoryRef().getPersonDirectory()){
-            if(p.getPersonEmailAddress().equals(userName)&&p.getUserPassword().equals(userPassword))
-               person = p;
-       }
-        
-        if(person!=null){
-            
-            switch(person.getUserRole()){
-               case UNIVERSITY_ADMIN:
-                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem, (UniversityAdmin)person);
+
+        for (PersonU p : ecoSystem.getPersonDirectoryRef().getPersonDirectory()) {
+            if (p.getPersonEmailAddress().equals(userName) && p.getUserPassword().equals(userPassword)) {
+                person = p;
+            }
+        }
+
+        if (person != null) {
+
+            switch (person.getUserRole()) {
+                case UNIVERSITY_ADMIN:
+                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem, (UniversityAdmin) person);
                     mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
                     CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
                     cd1.next(mainWorkArea);
                     break;
-               case MEALPLAN_ADMIN:
+                case MEALPLAN_ADMIN:
                     mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem, (MealPlanAdmin) person);
-                   mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
+                    mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
                     CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
                     cd2.next(mainWorkArea);
                     break;
-               case STUDENT:
+                case STUDENT:
                     studentDashboard = new StudentDashboard(ecoSystem, (Student) person);
                     mainWorkArea.add("studentDashboard", studentDashboard);
                     CardLayout cd3 = (CardLayout) mainWorkArea.getLayout();
-                   cd3.next(mainWorkArea);
-                   break;
-               case PROFESSOR:
+                    cd3.next(mainWorkArea);
+                    break;
+                case PROFESSOR:
                     professorDashboard = new ProfessorDashboard(ecoSystem, (Professor) person);
                     mainWorkArea.add("professorDashboard", professorDashboard);
-                   CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
+                    CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
                     cd4.next(mainWorkArea);
-                   break;
-               case PLACEMENT_COORDINATOR:
-                   placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem, (PlacementCoordinator)person);
-                   mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
+                    break;
+                case PLACEMENT_COORDINATOR:
+                    placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem, (PlacementCoordinator) person);
+                    mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
                     CardLayout cd5 = (CardLayout) mainWorkArea.getLayout();
-                   cd5.next(mainWorkArea);
-                   break;
-                   
-               
-           } 
+                    cd5.next(mainWorkArea);
+                    break;
 
-       
+            }
+
         } else {
-                    JOptionPane.showMessageDialog(this, "User does not exist!");
-           }
-        
-            
-  
-        
+            JOptionPane.showMessageDialog(this, "User does not exist!");
+        }
+
+
     }//GEN-LAST:event_btnLoginActionPerformed
-    
+
     public void changePanel(JPanel panel) {
         removeAll();
         add(panel);
         revalidate();
         repaint();
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -308,19 +310,20 @@ public class MainJFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                if(mainJFrame == null)
+                if (mainJFrame == null) {
                     mainJFrame = new MainJFrame();
+                }
                 mainJFrame.setVisible(true);
-                
+
             }
         });
     }
-    
+
     public void removeUniversityAdminDashboard() {
         mainWorkArea.remove(universityAdminDashboard);
     }
-    
-    public void removeMealPlanDashboard(){
+
+    public void removeMealPlanDashboard() {
         mainWorkArea.remove(mealPlanAdminDashboard);
     }
 
@@ -335,7 +338,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void removeStudentDashboard() {
-         mainWorkArea.remove(studentDashboard);
+        mainWorkArea.remove(studentDashboard);
     }
 
     public void removeProfessorDashboard() {
