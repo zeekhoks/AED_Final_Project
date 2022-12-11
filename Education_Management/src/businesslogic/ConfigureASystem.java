@@ -4,11 +4,16 @@ package businesslogic;
 import businesslogic.EcoSystem;
 import businesslogic.MealManagement.MealPlan;
 import businesslogic.MealManagement.MealPlanAdmin;
+import businesslogic.UniversityManagement.Degree;
+import businesslogic.UniversityManagement.Professor;
+import businesslogic.UniversityManagement.StudentU;
+import businesslogic.UniversityManagement.UniversityAdmin;
 import businesslogic.school.SchoolAdmin;
 import businesslogic.school.Student;
 import businesslogic.school.Subject;
 import businesslogic.school.Teacher;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 /*
@@ -34,7 +39,8 @@ public class ConfigureASystem {
         ecoSystem.getPersonDirectory().getPersonDirectory().add(new Person(null,null,null, null,
                 null,1234567890,"systemAdmin@gmail.com",c,
                 "1234", Person.UserRole.SYSTEM_ADMIN));
-    // School Admin
+    
+// School Admin
         ecoSystem.getSchoolAdminDirectory().getSchoolAdminDirectory().add(new SchoolAdmin(null,null,null, null,
                 null,1234567890,"schoolAdmin@gmail.com",c,"1234", Person.UserRole.SCHOOL_ADMIN, "s01"));
         
@@ -81,6 +87,31 @@ public class ConfigureASystem {
         ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory().add(new MealPlan(10, "Day Plan", "Vegan", "Salad Bowl"));
         ecoSystem.getMealPlanDirectoryRef().getMealPlanDirectory().add(new MealPlan(11, "Week Plan", "Vegeterian", "Curry"));
 
+        
+    // Dormitory system Admin
+     ecoSystem.getLoginDetails().addAdminkeyValue("hinal","0000" );
+     
+     
+    // university
+    ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new UniversityAdmin("Zainab",
+                "Female", "123456", null, 12345677L, "zk@gmail.com", new Community("Park Drive", new City("Boston")), "zk123", "U01"));
+
+        ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new StudentU("Hinal", "Female",
+                "123457", null, 12345687L, "hp@gmail.com",
+                new Community("Westland Avenue",
+                        new City("Boston")), "hp123", 
+                "U0101", new Degree("Graduate", "Information Systems"),
+                "2024", "photo", "U01"));
+//        ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new MealPlanAdmin("John Doe", 
+//                "Male", "123458", null, 1234322L, "jd@gmail.com", 
+//                new Community ("Boylston", new City ("Boson")), "jd123", "13"));
+        
+       ecoSystem.getProfessorDirectoryRef().getProfessorDirectory().add(new Professor("Rachel Ross", "Female", 
+               "123459",new Date(1997, 07, 26), 1234222L, "rr@gmail.com", 
+               new Community ("Boylston", new City ("Boson")), 
+       "rr123", "U010101", "U01"));
+        
+  
         return ecoSystem;
     }
 }

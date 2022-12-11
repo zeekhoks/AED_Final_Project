@@ -307,6 +307,12 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
 
         jLabel12.setText("School Code:");
 
+        txtSchoolCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSchoolCodeActionPerformed(evt);
+            }
+        });
+
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
 
         javax.swing.GroupLayout workAreaPanelLayout = new javax.swing.GroupLayout(workAreaPanel);
@@ -1084,6 +1090,10 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Meal Plan Added Successfully!");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void txtSchoolCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSchoolCodeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSchoolCodeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel appointmentPanel;
@@ -1189,7 +1199,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeStudentDashboardJPanel();
+        mainFrame.removeSchoolStudentDashboardJPanel();
         mainFrame.setVisible(true);
     }
 

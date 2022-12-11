@@ -444,6 +444,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtSchoolCode">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSchoolCodeActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel27">
                   <Properties>

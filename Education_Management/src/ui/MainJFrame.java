@@ -9,11 +9,22 @@ import businesslogic.CityDirectory;
 import businesslogic.CommunityDirectory;
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.EcoSystem;
+import businesslogic.MealManagement.MealPlanAdmin;
+import businesslogic.MealManagement.MealPlanDirectory;
 import businesslogic.Person;
 import businesslogic.Person.UserRole;
 import businesslogic.PersonDirectory;
 import businesslogic.PersonU;
 import businesslogic.PersonUDirectory;
+import businesslogic.UniversityManagement.AppointmentDirectory;
+import businesslogic.UniversityManagement.CourseAssignmentDirectory;
+import businesslogic.UniversityManagement.CourseDirectory;
+import businesslogic.UniversityManagement.PlacementCoordinator;
+import businesslogic.UniversityManagement.Professor;
+import businesslogic.UniversityManagement.ProfessorDirectory;
+import businesslogic.UniversityManagement.StudentU;
+import businesslogic.UniversityManagement.StudentUDirectory;
+import businesslogic.UniversityManagement.UniversityAdmin;
 import businesslogic.school.SchoolAdmin;
 import businesslogic.school.SchoolDirectory;
 import businesslogic.school.Student;
@@ -28,6 +39,10 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.MealPlanManagement.MealPlanDashboard;
+import ui.UniversityManagement.PlacementCoordinatorDashboard;
+import ui.UniversityManagement.ProfessorDashboard;
+import ui.UniversityManagement.StudentDashboard;
+import ui.UniversityManagement.UniversityAdminDashboard;
 import ui.school.SchoolAdminRole.SchoolAdminDashboardJPanel;
 import ui.school.StudentRole.StudentDashboardJPanel;
 import ui.school.TeacherRole.TeacherDashboardJPanel;
@@ -41,6 +56,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private static final Logger logger = Logger.getLogger(MainJFrame.class.getName());
     private EcoSystem ecoSystem;
+    
     PersonDirectory personDirectory;
     CityDirectory cityDirectory;
     CommunityDirectory communityDirectory;
@@ -48,12 +64,29 @@ public class MainJFrame extends javax.swing.JFrame {
     StudentDirectory studentDirectory;
     TeacherDirectory teacherDirectory;
     
+    StudentUDirectory studentUDirectory;
+    ProfessorDirectory professorDirectory;
+    CourseDirectory courseDirectory;
+    AppointmentDirectory appointmentDirectory;
     PersonUDirectory personUDirectory;
+//    CommunityDirectory communityDirectory;
+    CourseAssignmentDirectory courseAssignment;
+    MealPlanDirectory mealPlanDirectoryRef;
+    
+    
     JPanel SchoolAdminDashboardJPanel;
     JPanel SystemAdminDashboardJPanel;
     JPanel TeacherDashboardJPanel;
     JPanel StudentDashboardJPanel;
     JPanel mealPlanAdminDashboard;
+    
+    public static JPanel universityAdminDashboard;
+//    public static JPanel mealPlanAdminDashboard;
+    public static JPanel studentDashboard;
+    public static JPanel professorDashboard;
+    public static JPanel placementCoordinatorDashboard;
+    
+    
     
     private static int flag = 0;
     private DB4OUtil db4OUtil = DB4OUtil.getInstance();
@@ -103,6 +136,54 @@ public class MainJFrame extends javax.swing.JFrame {
                 this.personUDirectory = ecoSystem.getPersonDirectoryRef();
             } else {
                 this.personUDirectory = new PersonUDirectory();
+            }
+            
+            if (ecoSystem.getStudentDirectoryRef() != null) {
+                this.studentUDirectory = ecoSystem.getStudentDirectoryRef();
+            } else {
+                this.studentUDirectory = new StudentUDirectory();
+            }
+
+            if (ecoSystem.getCourseDirectoryRef() != null) {
+                this.courseDirectory = ecoSystem.getCourseDirectoryRef();
+            } else {
+                this.courseDirectory = new CourseDirectory();
+            }
+
+//            if (ecoSystem.getPersonDirectoryRef() != null) {
+//                this.personUDirectory = ecoSystem.getPersonDirectoryRef();
+//            } else {
+//                this.personUDirectory = new PersonUDirectory();
+//            }
+
+            if (ecoSystem.getAppointmentDirectoryRef() != null) {
+                this.appointmentDirectory = ecoSystem.getAppointmentDirectoryRef();
+            } else {
+                this.appointmentDirectory = new AppointmentDirectory();
+            }
+
+            if (ecoSystem.getCommunityDirectoryRef() != null) {
+                this.communityDirectory = ecoSystem.getCommunityDirectoryRef();
+            } else {
+                this.communityDirectory = new CommunityDirectory();
+            }
+
+            if (ecoSystem.getProfessorDirectoryRef() != null) {
+                this.professorDirectory = ecoSystem.getProfessorDirectoryRef();
+            } else {
+                this.professorDirectory = new ProfessorDirectory();
+            }
+
+            if (ecoSystem.getCourseAssignment() != null) {
+                this.courseAssignment = ecoSystem.getCourseAssignment();
+            } else {
+                this.courseAssignment = new CourseAssignmentDirectory();
+            }
+
+            if (ecoSystem.getMealPlanDirectoryRef() != null) {
+                this.mealPlanDirectoryRef = ecoSystem.getMealPlanDirectoryRef();
+            } else {
+                this.mealPlanDirectoryRef = new MealPlanDirectory();
             }
            
         }
@@ -250,21 +331,38 @@ public class MainJFrame extends javax.swing.JFrame {
         
         if(person!=null){
             
-            switch(person.getUserRole()){
+            switch (person.getUserRole()) {
                 case UNIVERSITY_ADMIN:
-//                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem);
-//                    mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
-//                    CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
-//                    cd1.next(mainWorkArea);
+                    universityAdminDashboard = new UniversityAdminDashboard(ecoSystem, (UniversityAdmin) person);
+                    mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
+                    CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
+                    cd1.next(mainWorkArea);
                     break;
                 case MEALPLAN_ADMIN:
                     mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem);
                     mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
                     CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
                     cd2.next(mainWorkArea);
-                    clearLoginPanel();
                     break;
-                
+                case STUDENT:
+                    studentDashboard = new StudentDashboard(ecoSystem, (StudentU) person);
+                    mainWorkArea.add("studentDashboard", studentDashboard);
+                    CardLayout cd3 = (CardLayout) mainWorkArea.getLayout();
+                    cd3.next(mainWorkArea);
+                    break;
+                case PROFESSOR:
+                    professorDashboard = new ProfessorDashboard(ecoSystem, (Professor) person);
+                    mainWorkArea.add("professorDashboard", professorDashboard);
+                    CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
+                    cd4.next(mainWorkArea);
+                    break;
+                case PLACEMENT_COORDINATOR:
+                    placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem, (PlacementCoordinator) person);
+                    mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
+                    CardLayout cd5 = (CardLayout) mainWorkArea.getLayout();
+                    cd5.next(mainWorkArea);
+                    break;
+
             }
         }
         
@@ -320,6 +418,9 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         } 
         
+        if(userLogged == null && person == null) {
+            JOptionPane.showMessageDialog(this, "User does not exist!");
+        }
         
         
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -378,6 +479,11 @@ public class MainJFrame extends javax.swing.JFrame {
     public void removeMealPlanDashboard() {
         mainWorkArea.remove(mealPlanAdminDashboard);
     }
+    
+    public void removeUniversityAdminDashboard() {
+        mainWorkArea.remove(universityAdminDashboard);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
@@ -402,7 +508,15 @@ public class MainJFrame extends javax.swing.JFrame {
         mainWorkArea.remove(TeacherDashboardJPanel);
     }
     
-    public void removeStudentDashboardJPanel() {
+    public void removeSchoolStudentDashboardJPanel() {
         mainWorkArea.remove(StudentDashboardJPanel);
+    }
+    
+    public void removeStudentDashboard() {
+        mainWorkArea.remove(studentDashboard);
+    }
+
+    public void removeProfessorDashboard() {
+        mainWorkArea.remove(professorDashboard);
     }
 }

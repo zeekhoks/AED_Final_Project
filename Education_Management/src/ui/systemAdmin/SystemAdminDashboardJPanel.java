@@ -4,6 +4,9 @@
  */
 package ui.systemAdmin;
 
+import ui.dormitory.EmpLoginPage;
+import ui.dormitory.StudentInitialPage;
+import ui.dormitory.SystemAdminLoginPage;
 import businesslogic.City;
 import businesslogic.Community;
 import businesslogic.EcoSystem;
@@ -13,6 +16,14 @@ import businesslogic.PersonU;
 import businesslogic.PersonU.UserRole;
 import businesslogic.UniversityManagement.University;
 import businesslogic.UniversityManagement.UniversityAdmin;
+import businesslogic.dormitory.FeesPaymentHistory;
+import static businesslogic.dormitory.FeesPaymentHistory.history;
+import businesslogic.dormitory.LoginDetails;
+import static businesslogic.dormitory.LoginDetails.EmployeeDetails;
+import businesslogic.dormitory.RoomBookingHistory;
+import static businesslogic.dormitory.RoomBookingHistory.historyroom;
+import businesslogic.dormitory.SalaryPaymentHistory;
+import static businesslogic.dormitory.SalaryPaymentHistory.historysal;
 import businesslogic.helper.ValidateInputs;
 import businesslogic.school.School;
 import businesslogic.school.SchoolAdmin;
@@ -39,6 +50,19 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private static int universityCounter = 01;
     private static int mealCounter = 01;
     
+    LoginDetails StudentDetailsinMain;
+    LoginDetails AdminDetailsMain;
+    LoginDetails EmployeeDetails;
+    LoginDetails HospitalAdminDetails;
+    LoginDetails CommunityAdminDetails;
+    FeesPaymentHistory history;
+    SalaryPaymentHistory historysal;
+    RoomBookingHistory historyroom;
+    FeesPaymentHistory feesPaymentHistory;
+    RoomBookingHistory roomBookingHistory;
+    SalaryPaymentHistory salaryPaymentHistory;
+    LoginDetails loginDetails;
+    
     public SystemAdminDashboardJPanel(EcoSystem ecoSystem, Person userLogged) {
         initComponents();
         setSize(1060, 770);
@@ -51,6 +75,10 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         DormitoryPanel.setVisible(false);
         mealPlanPanel.setVisible(false);
         btnLogOut.setVisible(true);
+        btnStudent.setVisible(false);
+        btnSystemAdmin.setVisible(false);
+        btnEmployee.setVisible(false);
+        btnDromBack.setVisible(false);
         
         populateSchoolTable();
         clearSchoolForm();
@@ -63,6 +91,15 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         
         txtSchoolCode.setEditable(false);
         txtUniversityCode.setEditable(false);
+        
+        StudentDetailsinMain = new LoginDetails();
+        AdminDetailsMain = new LoginDetails();
+        EmployeeDetails = new LoginDetails();
+        HospitalAdminDetails = new LoginDetails();
+        CommunityAdminDetails = new LoginDetails();
+        history = new FeesPaymentHistory();
+        historysal = new SalaryPaymentHistory();
+        historyroom = new RoomBookingHistory();
     }
 
     /**
@@ -82,6 +119,10 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        btnEmployee = new javax.swing.JButton();
+        btnStudent = new javax.swing.JButton();
+        btnSystemAdmin = new javax.swing.JButton();
+        btnDromBack = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         mealPlanPanel = new javax.swing.JPanel();
         jSplitPane4 = new javax.swing.JSplitPane();
@@ -167,6 +208,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         txtUniversityAdminPassword = new javax.swing.JTextField();
         btnUniversityClearSelection = new javax.swing.JButton();
         DormitoryPanel = new javax.swing.JPanel();
+        MainSplitPane = new javax.swing.JSplitPane();
+        RoleSelectionPane = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
 
         jButton7.setText("jButton7");
 
@@ -187,6 +231,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Manage Dormitory");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Manage Food Supply");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -203,32 +252,77 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnEmployee.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEmployee.setText("Employee Login");
+        btnEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmployeeActionPerformed(evt);
+            }
+        });
+
+        btnStudent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnStudent.setText("Student Login");
+        btnStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStudentActionPerformed(evt);
+            }
+        });
+
+        btnSystemAdmin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSystemAdmin.setText("System Admin");
+        btnSystemAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSystemAdminActionPerformed(evt);
+            }
+        });
+
+        btnDromBack.setText("Back");
+        btnDromBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDromBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnDromBack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnStudent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSystemAdmin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                    .addComponent(btnEmployee))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGap(231, 231, 231)
+                .addGap(196, 196, 196)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(231, 231, 231)
+                .addComponent(btnSystemAdmin)
+                .addGap(18, 18, 18)
+                .addComponent(btnStudent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEmployee)
+                .addGap(114, 114, 114)
+                .addComponent(btnDromBack)
+                .addGap(18, 18, 18)
                 .addComponent(btnLogOut)
                 .addContainerGap(379, Short.MAX_VALUE))
         );
@@ -269,9 +363,9 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton15)
                 .addGap(282, 282, 282)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                 .addComponent(jButton16)
-                .addGap(79, 79, 79))
+                .addGap(128, 128, 128))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,7 +498,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,11 +600,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(182, 182, 182)
+                .addGap(147, 147, 147)
                 .addComponent(jButton6)
-                .addGap(117, 117, 117))
+                .addGap(152, 152, 152))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -665,7 +759,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(401, 401, 401)
                         .addComponent(jButton12)))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,11 +850,11 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButton13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 261, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 267, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addGap(233, 233, 233)
+                .addGap(196, 196, 196)
                 .addComponent(jButton14)
-                .addGap(93, 93, 93))
+                .addGap(130, 130, 130))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -893,7 +987,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -950,15 +1044,45 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
         jLayeredPane1.add(UniversityPanel, "card4");
 
+        RoleSelectionPane.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout RoleSelectionPaneLayout = new javax.swing.GroupLayout(RoleSelectionPane);
+        RoleSelectionPane.setLayout(RoleSelectionPaneLayout);
+        RoleSelectionPaneLayout.setHorizontalGroup(
+            RoleSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 15, Short.MAX_VALUE)
+        );
+        RoleSelectionPaneLayout.setVerticalGroup(
+            RoleSelectionPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+
+        MainSplitPane.setLeftComponent(RoleSelectionPane);
+
+        jPanel7.setBackground(new java.awt.Color(204, 255, 204));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 968, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+
+        MainSplitPane.setRightComponent(jPanel7);
+
         javax.swing.GroupLayout DormitoryPanelLayout = new javax.swing.GroupLayout(DormitoryPanel);
         DormitoryPanel.setLayout(DormitoryPanelLayout);
         DormitoryPanelLayout.setHorizontalGroup(
             DormitoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 982, Short.MAX_VALUE)
+            .addComponent(MainSplitPane)
         );
         DormitoryPanelLayout.setVerticalGroup(
             DormitoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1010, Short.MAX_VALUE)
+            .addComponent(MainSplitPane)
         );
 
         jLayeredPane1.add(DormitoryPanel, "card5");
@@ -1260,7 +1384,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                     universityAdminEmail, universityAdminPassword));
             
             ecoSystem.getPersonDirectoryRef().getPersonDirectory().add(new UniversityAdmin(null, null, null, null, 1234567890,
-               universityAdminEmail, com, universityAdminPassword));
+               universityAdminEmail, com, universityAdminPassword,universityCode));
             
             JOptionPane.showMessageDialog(this, "University Record Added.");
             populateUniversityTable();
@@ -1593,9 +1717,60 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
         mealPlanPanel.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btnSystemAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemAdminActionPerformed
+        // TODO add your handling code here:AdminDetailsMain
+        SystemAdminLoginPage AdminLogin = new SystemAdminLoginPage(AdminDetailsMain,EmployeeDetails,HospitalAdminDetails,CommunityAdminDetails,history,StudentDetailsinMain,historysal, historyroom);
+        MainSplitPane.setRightComponent(AdminLogin);
+    }//GEN-LAST:event_btnSystemAdminActionPerformed
+
+    private void btnEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmployeeActionPerformed
+        // TODO add your handling code here:
+        EmpLoginPage EmployeeFirstPage = new EmpLoginPage(EmployeeDetails,history,StudentDetailsinMain,historysal,historyroom);
+        MainSplitPane.setRightComponent(EmployeeFirstPage);
+    }//GEN-LAST:event_btnEmployeeActionPerformed
+
+    private void btnStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStudentActionPerformed
+        // TODO add your handling code here:
+        StudentInitialPage StudentFirstPage = new StudentInitialPage(this.StudentDetailsinMain,history);
+        MainSplitPane.setRightComponent(StudentFirstPage);
+    }//GEN-LAST:event_btnStudentActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jButton1.setVisible(false);
+        jButton2.setVisible(false);
+        jButton4.setVisible(false);
+        btnDromBack.setVisible(true);
+        
+        WorkAreaPanel.setVisible(false);
+        SchoolPanel.setVisible(false);
+        UniversityPanel.setVisible(false);
+        DormitoryPanel.setVisible(true);
+        mealPlanPanel.setVisible(false);
+        btnLogOut.setVisible(true);
+        btnStudent.setVisible(true);
+        btnSystemAdmin.setVisible(true);
+        btnEmployee.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnDromBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDromBackActionPerformed
+        // TODO add your handling code here:
+        // dorm back button
+        switchToWorkAreaPanel();
+        jButton1.setVisible(true);
+        jButton2.setVisible(true);
+        jButton4.setVisible(true);
+        
+        btnStudent.setVisible(false);
+        btnSystemAdmin.setVisible(false);
+        btnEmployee.setVisible(false);
+    }//GEN-LAST:event_btnDromBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel DormitoryPanel;
+    private javax.swing.JSplitPane MainSplitPane;
+    private javax.swing.JPanel RoleSelectionPane;
     private javax.swing.JPanel SchoolPanel;
     private javax.swing.JPanel UniversityPanel;
     private javax.swing.JPanel WorkAreaPanel;
@@ -1603,8 +1778,12 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnAddUniversity;
     private javax.swing.JButton btnDeleteMeal;
     private javax.swing.JButton btnDeleteUniversity;
+    private javax.swing.JButton btnDromBack;
+    private javax.swing.JButton btnEmployee;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnMealClearSelection;
+    private javax.swing.JButton btnStudent;
+    private javax.swing.JButton btnSystemAdmin;
     private javax.swing.JButton btnUniversityClearSelection;
     private javax.swing.JButton btnUpdateMeal;
     private javax.swing.JButton btnUpdateUniversity;
@@ -1658,6 +1837,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

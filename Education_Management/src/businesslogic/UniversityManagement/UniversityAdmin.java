@@ -18,11 +18,12 @@ import java.util.List;
  */
 public class UniversityAdmin extends PersonU {
     
+    private String universityID;
     public static List<String> semesterList = new ArrayList<String>();
         
     public UniversityAdmin(String personName, String personGender, 
             String personId, Date dateOfBirth, long personPhoneNumber, String personEmailAddress, 
-            Community community, String userPassword) {
+            Community community, String userPassword,  String universityID) {
             
         this.setPersonName(personName);
         this.setPersonGender(personGender);
@@ -33,6 +34,7 @@ public class UniversityAdmin extends PersonU {
         this.setCommunity(community);
         this.setUserPassword(userPassword);
         this.setUserRole(UserRole.UNIVERSITY_ADMIN);
+        this.setUniversityID(universityID);
         
      }
     static{
@@ -47,6 +49,22 @@ public class UniversityAdmin extends PersonU {
         semesterList.add("Spring 2024");
         semesterList.add("Summer 2024");
 
+    }
+    
+    public String getUniversityID() {
+        return universityID;
+    }
+
+    public void setUniversityID(String universityID) {
+        this.universityID = universityID;
+    }
+
+    public static List<String> getSemesterList() {
+        return semesterList;
+    }
+
+    public static void setSemesterList(List<String> semesterList) {
+        UniversityAdmin.semesterList = semesterList;
     }
     
     

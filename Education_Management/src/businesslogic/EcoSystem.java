@@ -7,8 +7,18 @@ package businesslogic;
 import businesslogic.DB4OUtil.DB4OUtil;
 import businesslogic.MealManagement.MealPlanAdminDirectory;
 import businesslogic.MealManagement.MealPlanDirectory;
+import businesslogic.UniversityManagement.AppointmentDirectory;
+import businesslogic.UniversityManagement.CourseAssignmentDirectory;
+import businesslogic.UniversityManagement.CourseDirectory;
+import businesslogic.UniversityManagement.ProfessorDirectory;
+import businesslogic.UniversityManagement.StudentMealPlanDirectory;
+import businesslogic.UniversityManagement.StudentUDirectory;
 import businesslogic.UniversityManagement.UniversityAdminDirectory;
 import businesslogic.UniversityManagement.UniversityDirectory;
+import businesslogic.dormitory.FeesPaymentHistory;
+import businesslogic.dormitory.LoginDetails;
+import businesslogic.dormitory.RoomBookingHistory;
+import businesslogic.dormitory.SalaryPaymentHistory;
 import businesslogic.school.BookAppointmentDirectory;
 import businesslogic.school.LibraryBookDirectory;
 import businesslogic.school.ParentDirectory;
@@ -40,11 +50,28 @@ public class EcoSystem {
     private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
     private SchoolStudentMealPlanDirectory schoolStudentMealPlanDirectory = new SchoolStudentMealPlanDirectory();
     
+    // university
     private PersonUDirectory personDirectoryRef = new PersonUDirectory();
     private UniversityDirectory universityDirectory = new UniversityDirectory();
     private UniversityAdminDirectory universityAdminDirectory = new UniversityAdminDirectory();
     private MealPlanDirectory mealPlanDirectoryRef = new MealPlanDirectory();
     private MealPlanAdminDirectory MealPlanAdminDirectory = new MealPlanAdminDirectory();
+    
+    private StudentUDirectory studentDirectoryRef = new StudentUDirectory();
+    private ProfessorDirectory professorDirectoryRef = new ProfessorDirectory();
+    private CourseDirectory courseDirectoryRef = new CourseDirectory();
+    private CourseAssignmentDirectory courseAssignmentRef = new CourseAssignmentDirectory();
+    private AppointmentDirectory appointmentDirectoryRef = new AppointmentDirectory();
+    private CommunityDirectory communityDirectoryRef = new CommunityDirectory();
+    private CourseAssignmentDirectory courseAssignment = new CourseAssignmentDirectory();
+    private StudentMealPlanDirectory smp = new StudentMealPlanDirectory();
+    
+    
+    // dormitory
+    private FeesPaymentHistory feesPaymentHistory = new FeesPaymentHistory();
+    private RoomBookingHistory roomBookingHistory = new RoomBookingHistory();
+    private SalaryPaymentHistory salaryPaymentHistory = new SalaryPaymentHistory();
+    private LoginDetails loginDetails = new LoginDetails();
 
     private EcoSystem() {
         
@@ -200,6 +227,103 @@ public class EcoSystem {
     public void setPersonDirectoryRef(PersonUDirectory personDirectoryRef) {
         this.personDirectoryRef = personDirectoryRef;
     }
+
+    public FeesPaymentHistory getFeesPaymentHistory() {
+        return feesPaymentHistory;
+    }
+
+    public void setFeesPaymentHistory(FeesPaymentHistory feesPaymentHistory) {
+        this.feesPaymentHistory = feesPaymentHistory;
+    }
+
+    public RoomBookingHistory getRoomBookingHistory() {
+        return roomBookingHistory;
+    }
+
+    public void setRoomBookingHistory(RoomBookingHistory roomBookingHistory) {
+        this.roomBookingHistory = roomBookingHistory;
+    }
+
+    public SalaryPaymentHistory getSalaryPaymentHistory() {
+        return salaryPaymentHistory;
+    }
+
+    public void setSalaryPaymentHistory(SalaryPaymentHistory salaryPaymentHistory) {
+        this.salaryPaymentHistory = salaryPaymentHistory;
+    }
+
+    public LoginDetails getLoginDetails() {
+        return loginDetails;
+    }
+
+    public void setLoginDetails(LoginDetails loginDetails) {
+        this.loginDetails = loginDetails;
+    }
+
+    public StudentUDirectory getStudentDirectoryRef() {
+        return studentDirectoryRef;
+    }
+
+    public void setStudentDirectoryRef(StudentUDirectory studentDirectoryRef) {
+        this.studentDirectoryRef = studentDirectoryRef;
+    }
+
+    public ProfessorDirectory getProfessorDirectoryRef() {
+        return professorDirectoryRef;
+    }
+
+    public void setProfessorDirectoryRef(ProfessorDirectory professorDirectoryRef) {
+        this.professorDirectoryRef = professorDirectoryRef;
+    }
+
+    public CourseDirectory getCourseDirectoryRef() {
+        return courseDirectoryRef;
+    }
+
+    public void setCourseDirectoryRef(CourseDirectory courseDirectoryRef) {
+        this.courseDirectoryRef = courseDirectoryRef;
+    }
+
+    public CourseAssignmentDirectory getCourseAssignmentRef() {
+        return courseAssignmentRef;
+    }
+
+    public void setCourseAssignmentRef(CourseAssignmentDirectory courseAssignmentRef) {
+        this.courseAssignmentRef = courseAssignmentRef;
+    }
+
+    public AppointmentDirectory getAppointmentDirectoryRef() {
+        return appointmentDirectoryRef;
+    }
+
+    public void setAppointmentDirectoryRef(AppointmentDirectory appointmentDirectoryRef) {
+        this.appointmentDirectoryRef = appointmentDirectoryRef;
+    }
+
+    public CommunityDirectory getCommunityDirectoryRef() {
+        return communityDirectoryRef;
+    }
+
+    public void setCommunityDirectoryRef(CommunityDirectory communityDirectoryRef) {
+        this.communityDirectoryRef = communityDirectoryRef;
+    }
+
+    public CourseAssignmentDirectory getCourseAssignment() {
+        return courseAssignment;
+    }
+
+    public void setCourseAssignment(CourseAssignmentDirectory courseAssignment) {
+        this.courseAssignment = courseAssignment;
+    }
+
+    public StudentMealPlanDirectory getSmp() {
+        return smp;
+    }
+
+    public void setSmp(StudentMealPlanDirectory smp) {
+        this.smp = smp;
+    }
+    
     
     
 

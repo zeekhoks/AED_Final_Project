@@ -42,6 +42,21 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         gradeStudentPanel.setVisible(false); 
         appointmentsPanel.setVisible(false);
         
+        txtTeacherFirstName.setText(userLogged.getPersonFirstName());
+        txtTeacherLastName.setText(userLogged.getPersonLastName());
+        txtTeacherSchoolCode.setText(userLogged.getSchoolCode());
+        txtTeacherID.setText(userLogged.getPersonId());
+        Date date;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(userLogged.getDateOfJoining());
+            dateTeacherDOJ.setDate(date);
+        } catch (ParseException ex) {
+            java.util.logging.Logger.getLogger(SchoolAdminDashboardJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        populateTeacherSubjectTable();
+        setEditableFalse();
+        
         for(Subject s : ecoSystem.getSubjectDirectory().getSubjectDirectory()) {
             if(s.getTeacherName().equals(userLogged.getPersonFirstName())) {
                 dropDownSubject.addItem(s.getSubjectName());
@@ -50,6 +65,8 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         
         populateGradesTable();
         populateAppointmentTable();
+        
+        
     }
 
     /**
@@ -68,7 +85,20 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         workAreaPanel = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        txtTeacherLastName = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        txtTeacherFirstName = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        dateTeacherDOJ = new com.toedter.calendar.JDateChooser();
+        jLabel27 = new javax.swing.JLabel();
+        txtTeacherSchoolCode = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        txtTeacherID = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblTeacherSubjects = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         appointmentsPanel = new javax.swing.JPanel();
         jSplitPane3 = new javax.swing.JSplitPane();
@@ -134,14 +164,11 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         controlAreaLayout.setHorizontalGroup(
             controlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlAreaLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(btnLogOut)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(controlAreaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(controlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGradeStudent, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                    .addComponent(btnGradeStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         controlAreaLayout.setVerticalGroup(
             controlAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,9 +177,9 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(btnGradeStudent)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                .addGap(175, 175, 175)
                 .addComponent(btnLogOut)
-                .addGap(226, 226, 226))
+                .addContainerGap(476, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(controlArea);
@@ -162,11 +189,49 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         workAreaPanel.setBackground(new java.awt.Color(255, 255, 255));
         workAreaPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel24.setText("First Name:");
+        workAreaPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
+
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("WELCOME TEACHER");
         workAreaPanel.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 800, -1));
+        workAreaPanel.add(txtTeacherLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 180, -1));
+
+        jLabel25.setText("Last Name:");
+        workAreaPanel.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, -1, -1));
+        workAreaPanel.add(txtTeacherFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 180, -1));
+
+        jLabel26.setText("Date Of Joining:");
+        workAreaPanel.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 227, -1, 20));
+        workAreaPanel.add(dateTeacherDOJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 180, -1));
+
+        jLabel27.setText("School Code:");
+        workAreaPanel.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, 30));
+        workAreaPanel.add(txtTeacherSchoolCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 180, -1));
+
+        jLabel28.setText("ID:");
+        workAreaPanel.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+        workAreaPanel.add(txtTeacherID, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 180, -1));
+
+        tblTeacherSubjects.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Subject Code", "Subject Name", "Standard"
+            }
+        ));
+        jScrollPane4.setViewportView(tblTeacherSubjects);
+
+        workAreaPanel.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, 240));
+
+        jLabel2.setText("My Subjects");
+        workAreaPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, -1));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/blue.jpeg"))); // NOI18N
         workAreaPanel.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 840));
@@ -198,12 +263,12 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(btnGradesBack1)
                 .addGap(269, 269, 269)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(617, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGradesBack1)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -300,7 +365,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, appointmetsWorkAreaPanelLayout.createSequentialGroup()
                                     .addComponent(jBookDate, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(70, 70, 70))))))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(495, Short.MAX_VALUE))
         );
         appointmetsWorkAreaPanelLayout.setVerticalGroup(
             appointmetsWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,7 +391,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                 .addGroup(appointmetsWorkAreaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         jSplitPane3.setRightComponent(appointmetsWorkAreaPanel);
@@ -369,7 +434,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(btnGradesBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 304, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 586, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(348, 348, 348))
         );
@@ -456,7 +521,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                             .addComponent(dropDownSubject, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(248, Short.MAX_VALUE)
+                .addContainerGap(530, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(212, 212, 212))
         );
@@ -483,7 +548,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                 .addComponent(jButton1)
                 .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(372, Short.MAX_VALUE))
+                .addContainerGap(521, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel2);
@@ -690,6 +755,7 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnUpdateAppointment;
     private javax.swing.JButton btnViewAppointment;
     private javax.swing.JPanel controlArea;
+    private com.toedter.calendar.JDateChooser dateTeacherDOJ;
     private javax.swing.JComboBox<String> dropDownStudent;
     private javax.swing.JComboBox<String> dropDownSubject;
     private javax.swing.JPanel gradeStudentPanel;
@@ -700,6 +766,12 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -714,13 +786,19 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTable tblAppointment;
     private javax.swing.JTable tblGrade;
+    private javax.swing.JTable tblTeacherSubjects;
     private javax.swing.JTextField txtAppointmentStudent;
     private javax.swing.JTextField txtGrade;
+    private javax.swing.JTextField txtTeacherFirstName;
+    private javax.swing.JTextField txtTeacherID;
+    private javax.swing.JTextField txtTeacherLastName;
+    private javax.swing.JTextField txtTeacherSchoolCode;
     private javax.swing.JTextArea txtTopic;
     private javax.swing.JPanel workAreaPanel;
     // End of variables declaration//GEN-END:variables
@@ -736,6 +814,20 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
                 String studentName = ecoSystem.getStudentDirectory().getStudentNameByID(ba.getStudentID());
                 row[1] = studentName;
                 row[2] = ba.getTopic();
+                model.addRow(row);
+            }
+        }
+    }
+    
+    private void populateTeacherSubjectTable() {
+        DefaultTableModel model = (DefaultTableModel) tblTeacherSubjects.getModel();
+        model.setRowCount(0);
+        for(Subject s : ecoSystem.getSubjectDirectory().getSubjectDirectory()) {
+            if(s.getTeacherName().equals(userLogged.getPersonFirstName())) {
+                Object[] row = new Object[3];
+                row[0] = s;
+                row[1] = s.getSubjectName();
+                row[2] = String.valueOf(s.getStandard());
                 model.addRow(row);
             }
         }
@@ -765,4 +857,14 @@ public class TeacherDashboardJPanel extends javax.swing.JPanel {
         txtAppointmentStudent.setText("");
         txtTopic.setText("");
     }
+
+    private void setEditableFalse() {
+        txtTeacherFirstName.setEditable(false);
+        txtTeacherLastName.setEditable(false);
+        txtTeacherSchoolCode.setEditable(false);
+        txtTeacherID.setEditable(false);
+//        dateTeacherDOJ.setEditable(false);
+    }
+
+    
 }
