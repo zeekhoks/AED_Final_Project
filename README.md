@@ -15,6 +15,7 @@ Go to https://github.com/zeekhoks/AED_Final_Project/tree/main and take a pull of
 
 Please find the classes below -
 
+![class diagram](https://user-images.githubusercontent.com/113055786/206953645-b7bd4494-76f6-4b68-8df5-9c9b1c8b633a.png)
 
 
 
@@ -23,6 +24,7 @@ Please find the classes below -
 
 Please find the object/component diagram below -
 
+![Object Diagram](https://user-images.githubusercontent.com/113055786/206953621-de524abc-10f5-4cdc-be43-f68e5c9f066a.png)
 
 
 ## Configuration 
