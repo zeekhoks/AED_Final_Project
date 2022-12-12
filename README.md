@@ -34,6 +34,12 @@ There is no configuration required for these modules as they don't have any conf
 
 Packages -
 
+### DB4OUtil.java - <br>
+
+contains the database configuration file <br>
+Ecosystem.java - contains the ecosystem definition which contains the entire system <br>
+ConfigureASystem.java - contains all the directories which can help in configuring the enterprises <br>
+
 ### SchoolManagement
 
 businesslogic -
@@ -72,7 +78,8 @@ CourseDirectory.java - Contains an arrayList of all courses taken by the student
 StudentMealPlan.java - Contains the student meal plan constructor. <br>
 
 
-ui -
+ui - <br>
+
 UniversityAdminDashboard.java - Contains various panels used by the university admin for crud operations. <br>
 StudentDashboard.java - Contains various paenls used by the student for crud operations.<br>
 ProfessorDashboard.java - Contains various panels used by the professor for crud operations. <br>
