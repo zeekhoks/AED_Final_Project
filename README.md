@@ -1,4 +1,4 @@
-# AED_Final_Project
+# AED Final Project
 ## Know More - Grow More
 An entire education management system that manages the overall growth of students in the city by managing schools, universities, dormitories, food supply, and the general administration. This system is designed to contribute to the education growth of the city and make a simpler method of managing students in the city.
 
@@ -135,6 +135,6 @@ Hospital.java - contains the attributes related to hospitals such as hospital na
 For troubleshooting, contact on this email - khokawala.z@northeastern.edu
 
 ## Credits
-Name - Zainab Khokawala NUID - 002750435
-Name - Drashti Bhingradiya - 002774273
-Name - Hinal Patel - 002738956
+Name - Zainab Khokawala NUID - 002750435 <br>
+Name - Drashti Bhingradiya - 002774273 <br>
+Name - Hinal Patel - 002738956 <br>
