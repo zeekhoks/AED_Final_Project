@@ -75,7 +75,7 @@ public class EmpLoginPage extends javax.swing.JPanel {
         EmployeeSplitPane.setDividerSize(0);
         EmployeeSplitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -196,7 +196,7 @@ public class EmpLoginPage extends javax.swing.JPanel {
 
         EmployeeSplitPane.setTopComponent(jPanel1);
 
-        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

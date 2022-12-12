@@ -46,7 +46,7 @@ public class AddRoom extends javax.swing.JPanel {
         txtRoomActive = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setText("Room Number:");
 

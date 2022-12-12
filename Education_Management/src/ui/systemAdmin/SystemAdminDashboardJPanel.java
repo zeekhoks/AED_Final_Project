@@ -1044,7 +1044,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
         jLayeredPane1.add(UniversityPanel, "card4");
 
-        RoleSelectionPane.setBackground(new java.awt.Color(204, 255, 204));
+        RoleSelectionPane.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout RoleSelectionPaneLayout = new javax.swing.GroupLayout(RoleSelectionPane);
         RoleSelectionPane.setLayout(RoleSelectionPaneLayout);
@@ -1059,7 +1059,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
 
         MainSplitPane.setLeftComponent(RoleSelectionPane);
 
-        jPanel7.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel7.setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1142,7 +1142,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
             
             School s = ecoSystem.getSchoolDirectory().getSchoolByCode(schoolCode);
             SchoolAdmin p = ecoSystem.getSchoolAdminDirectory().getSchoolAdminByEmail(schoolAdminEmail);
-            if(p.getUserRole().equals("SCHOOL_ADMIN")) {             
+            if(p.getUserRole().toString().equals("SCHOOL_ADMIN")) {             
                 s.setSchoolName(schoolName);
                 s.setPhoneNo(Long.parseLong(schoolPhone));
                 s.setSchoolAdminEmail(schoolAdminEmail);
@@ -1953,7 +1953,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
     
     private void switchToMainFrame() {
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeSystemAdminDashboardJPanel();
+        mainFrame.removeSystemAdminDashboardJPanel(ecoSystem);
         mainFrame.setVisible(true);
     }
 

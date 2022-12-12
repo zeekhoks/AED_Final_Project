@@ -54,7 +54,7 @@ public class StudentPDView extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         txtRoomNumber = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel1.setText("Personal Details:");

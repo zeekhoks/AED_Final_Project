@@ -12,21 +12,21 @@ import java.util.ArrayList;
  */
 public class CityDirectory {
 
-    private static ArrayList<City> cityDirectory;
+    private ArrayList<City> cityDirectory;
     
     public CityDirectory() {
         cityDirectory = new ArrayList<City>();
     }
 
-    public static ArrayList<City> getCityDirectory() {
+    public ArrayList<City> getCityDirectory() {
         return cityDirectory;
     }
 
-    public static void setCityDirectory(ArrayList<City> cityDirectory) {
-        CityDirectory.cityDirectory = cityDirectory;
+    public void setCityDirectory(ArrayList<City> cityDir) {
+        cityDirectory = cityDir;
     }
 
-    public static void addCity(City city) {
+    public void addCity(City city) {
         cityDirectory.add(city);
     }
 

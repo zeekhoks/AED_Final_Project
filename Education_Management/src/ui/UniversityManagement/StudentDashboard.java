@@ -15,6 +15,7 @@ import businesslogic.UniversityManagement.UniversityAdmin;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -1648,7 +1649,7 @@ public class StudentDashboard extends javax.swing.JPanel {
                 if(!currentSemester.equalsIgnoreCase("Select Semester")){
                     System.out.println("Populaating courses");
                     List<Course> courseBySem = ecoSystem.getCourseDirectoryRef().getCourseDirectory()
-                            .stream().filter(c-> c.getSemester().equalsIgnoreCase(currentSemester)).toList();
+                            .stream().filter(c-> c.getSemester().equalsIgnoreCase(currentSemester)).collect(Collectors.toList());
                     courseBySem.forEach(course -> System.out.println(course.getCourseName()));
                     populateCoursesTable(courseBySem);
                 }
@@ -1673,7 +1674,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         String studentID = person.getStudentID();
         
         List<Integer> courseIDList = ecoSystem.getCourseAssignmentRef().getCourseAssignmentDirectory()
-                .stream().filter(c ->c.getStudentID().equals(person.getStudentID())).map(c -> c.getCourseID()).toList();
+                .stream().filter(c ->c.getStudentID().equals(person.getStudentID())).map(c -> c.getCourseID()).collect(Collectors.toList());
         
         if(courseIDList.contains(courseID)){
            JOptionPane.showMessageDialog(this, "Course ID already exists. Please check");
@@ -1956,7 +1957,7 @@ public class StudentDashboard extends javax.swing.JPanel {
         List<CourseAssignment> courseAssignments = ecoSystem.getCourseAssignmentRef().getCourseAssignmentDirectory()
                                                     .stream()
                                                     .filter(ca -> ca.getStudentID().equals(person.getStudentID()))
-                                                    .toList();
+                                                    .collect(Collectors.toList());
        
         DefaultTableModel model = (DefaultTableModel) tblCourseAssignment.getModel();
         model.setRowCount(0);
@@ -2004,7 +2005,7 @@ public class StudentDashboard extends javax.swing.JPanel {
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeStudentDashboard();
+        mainFrame.removeStudentDashboard(ecoSystem);
         mainFrame.setVisible(true);
     }
 

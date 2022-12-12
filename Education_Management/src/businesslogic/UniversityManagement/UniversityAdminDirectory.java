@@ -12,18 +12,18 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class UniversityAdminDirectory {
-    private static ArrayList<UniversityAdmin> universityAdminDirectory;
+    private ArrayList<UniversityAdmin> universityAdminDirectory;
 
     public UniversityAdminDirectory() {
         universityAdminDirectory = new ArrayList<UniversityAdmin>();
     }
 
-    public static ArrayList<UniversityAdmin> getUniversityAdminDirectory() {
+    public ArrayList<UniversityAdmin> getUniversityAdminDirectory() {
         return universityAdminDirectory;
     }
 
-    public static void setUniversityAdminDirectory(ArrayList<UniversityAdmin> universityAdminDirectory) {
-        UniversityAdminDirectory.universityAdminDirectory = universityAdminDirectory;
+    public void setUniversityAdminDirectory(ArrayList<UniversityAdmin> universityAdminDir) {
+        universityAdminDirectory = universityAdminDir;
     }
 
     public UniversityAdmin getUniversityAdminByEmail(String universityAdminEmail) {

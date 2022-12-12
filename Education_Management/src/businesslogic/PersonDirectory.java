@@ -11,21 +11,21 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class PersonDirectory {
-    private static ArrayList<Person> personDirectory;
+    private ArrayList<Person> personDirectory;
     
     public PersonDirectory(){
         personDirectory = new ArrayList<Person>();
     }
 
-    public static ArrayList<Person> getPersonDirectory() {
+    public ArrayList<Person> getPersonDirectory() {
         return personDirectory;
     }
 
-    public static void setPersonDirectory(ArrayList<Person> personDirectory) {
-        PersonDirectory.personDirectory = personDirectory;
+    public void setPersonDirectory(ArrayList<Person> personDir) {
+        personDirectory = personDir;
     }
     
-    public static void addPerson(Person p) {
+    public void addPerson(Person p) {
         personDirectory.add(p);
     }
     

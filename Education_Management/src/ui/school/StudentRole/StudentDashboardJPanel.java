@@ -921,7 +921,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
         }
         Double score = totalMarks;
         String grade = null;
-        switch((int) (score/10)) {
+        switch((int) (score/30)) {
         // for >= 90
             case 10:
             case 9:
@@ -1199,7 +1199,7 @@ public class StudentDashboardJPanel extends javax.swing.JPanel {
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeSchoolStudentDashboardJPanel();
+        mainFrame.removeSchoolStudentDashboardJPanel(ecoSystem);
         mainFrame.setVisible(true);
     }
 

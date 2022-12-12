@@ -45,7 +45,7 @@ public class CreateEmp extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 204, 204));
 
         txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

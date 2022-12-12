@@ -12,18 +12,18 @@ import java.util.ArrayList;
  */
 public class SchoolDirectory {
 
-    private static ArrayList<School> schoolDirectory;
+    private ArrayList<School> schoolDirectory;
     
     public SchoolDirectory(){
         schoolDirectory = new ArrayList<School>();
     }
 
-    public static ArrayList<School> getSchoolDirectory() {
+    public ArrayList<School> getSchoolDirectory() {
         return schoolDirectory;
     }
 
-    public static void setSchoolDirectory(ArrayList<School> schoolDirectory) {
-        SchoolDirectory.schoolDirectory = schoolDirectory;
+    public void setSchoolDirectory(ArrayList<School> schoolDir) {
+        schoolDirectory = schoolDir;
     }
 
     public School getSchoolByCode(String schoolCode) {
@@ -39,7 +39,7 @@ public class SchoolDirectory {
         schoolDirectory.remove(s);
     }
     
-    public static School addNewSchool(School s){
+    public School addNewSchool(School s){
         schoolDirectory.add(s);
         return s;
     }

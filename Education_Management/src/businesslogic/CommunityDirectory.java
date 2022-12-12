@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class CommunityDirectory {
-        private static ArrayList<Community> communityDirectory;
+        private ArrayList<Community> communityDirectory;
 
-    public static void deleteCommunity(Community c) {
+    public void deleteCommunity(Community c) {
         communityDirectory.remove(c);
     }
     
@@ -22,12 +22,12 @@ public class CommunityDirectory {
         communityDirectory = new ArrayList<Community>();
     }
     
-    public static ArrayList<Community> getCommunityDirectory() {
+    public ArrayList<Community> getCommunityDirectory() {
         return communityDirectory;
     }
 
-    public static void setCommunityDirectory(ArrayList<Community> communityDirectory) {
-        CommunityDirectory.communityDirectory = communityDirectory;
+    public void setCommunityDirectory(ArrayList<Community> communityDir) {
+        communityDirectory = communityDir;
     }
     
     public Community addNewCommunity() {
@@ -44,7 +44,7 @@ public class CommunityDirectory {
         return c;
     }
     
-    public static Community getCommunityByName(String community) {
+    public Community getCommunityByName(String community) {
         for(Community c : communityDirectory) {
             if(c.getCommunity().equals(community)){
                 return c;

@@ -5,7 +5,6 @@
 package businesslogic.school;
 
 import businesslogic.Person;
-import static businesslogic.PersonDirectory.getPersonDirectory;
 import java.util.ArrayList;
 
 /**
@@ -13,21 +12,21 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class SchoolAdminDirectory {
-    private static ArrayList<SchoolAdmin> schoolAdminDirectory;
+    private ArrayList<SchoolAdmin> schoolAdminDirectory;
 
     public SchoolAdminDirectory() {
         schoolAdminDirectory = new ArrayList<SchoolAdmin>();
     }
 
-    public static ArrayList<SchoolAdmin> getSchoolAdminDirectory() {
+    public ArrayList<SchoolAdmin> getSchoolAdminDirectory() {
         return schoolAdminDirectory;
     }
 
-    public static void setSchoolAdminDirectory(ArrayList<SchoolAdmin> schoolAdminDirectory) {
-        SchoolAdminDirectory.schoolAdminDirectory = schoolAdminDirectory;
+    public void setSchoolAdminDirectory(ArrayList<SchoolAdmin> schoolAdminDir) {
+        schoolAdminDirectory = schoolAdminDir;
     }
     
-    public static String getSchoolCodeByAdminEmail(String email) {
+    public String getSchoolCodeByAdminEmail(String email) {
         for(SchoolAdmin sa : schoolAdminDirectory){
             if(sa.getPersonEmailAddress().equals(email) && sa.getUserRole().equals("SCHOOL_ADMIN")) {
                 return sa.getSchoolCode();

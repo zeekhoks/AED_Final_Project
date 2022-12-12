@@ -11,28 +11,29 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class BookAppointmentDirectory {
-    private static ArrayList<BookAppointment> bookAppointmentDirectory;
-    
+
+    private ArrayList<BookAppointment> bookAppointmentDirectory;
+
     public BookAppointmentDirectory() {
         bookAppointmentDirectory = new ArrayList<BookAppointment>();
     }
 
-    public static ArrayList<BookAppointment> getBookAppointmentDirectory() {
+    public ArrayList<BookAppointment> getBookAppointmentDirectory() {
         return bookAppointmentDirectory;
     }
 
-    public static void setBookAppointmentDirectory(ArrayList<BookAppointment> bookAppointmentDirectory) {
-        BookAppointmentDirectory.bookAppointmentDirectory = bookAppointmentDirectory;
+    public void setBookAppointmentDirectory(ArrayList<BookAppointment> bookAppointmentDir) {
+        bookAppointmentDirectory = bookAppointmentDir;
     }
-    
+
     public BookAppointment addNewAppointment(BookAppointment ba) {
         bookAppointmentDirectory.add(ba);
         return ba;
     }
 
     public BookAppointment getAppointmentbyStudentID(String studentID) {
-        for(BookAppointment ba : bookAppointmentDirectory) {
-            if(ba.getStudentID().equals(studentID)) {
+        for (BookAppointment ba : bookAppointmentDirectory) {
+            if (ba.getStudentID().equals(studentID)) {
                 return ba;
             }
         }
@@ -42,5 +43,5 @@ public class BookAppointmentDirectory {
     public void deleteAppointment(BookAppointment ba) {
         bookAppointmentDirectory.remove(ba);
     }
-    
+
 }

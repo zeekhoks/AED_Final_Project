@@ -33,6 +33,7 @@ import businesslogic.school.Teacher;
 import businesslogic.school.TeacherDirectory;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -97,94 +98,88 @@ public class MainJFrame extends javax.swing.JFrame {
         if(flag == 0){
             ecoSystem = db4OUtil.retrieveSystem();
         
-            if(ecoSystem.getCityDirectory() != null) {
-                this.cityDirectory = ecoSystem.getCityDirectory();
-            } else {
-                this.cityDirectory = new CityDirectory();
-            }
-
-            if(ecoSystem.getCommunityDirectory() != null) {
-                this.communityDirectory = ecoSystem.getCommunityDirectory();
-            } else{
-                this.communityDirectory = new CommunityDirectory();
-            }
-            if(ecoSystem.getPersonDirectory() != null) {
-                this.personDirectory = ecoSystem.getPersonDirectory();
-            } else {
-                this.personDirectory = new PersonDirectory();
-            }
-
-            if(ecoSystem.getSchoolDirectory() != null) {
-                this.schoolDirectory = ecoSystem.getSchoolDirectory();
-            } else {
-                this.schoolDirectory = new SchoolDirectory();
-            }
-
-            if(ecoSystem.getStudentDirectory() != null) {
-                this.studentDirectory = ecoSystem.getStudentDirectory();
-            } else {
-                this.studentDirectory = new StudentDirectory();
-            }
-
-            if(ecoSystem.getTeacherDirectory() != null) {
-                this.teacherDirectory = ecoSystem.getTeacherDirectory();
-            } else {
-                this.teacherDirectory = new TeacherDirectory();
-            }
-            
-            if(ecoSystem.getPersonDirectoryRef()!=null){
-                this.personUDirectory = ecoSystem.getPersonDirectoryRef();
-            } else {
-                this.personUDirectory = new PersonUDirectory();
-            }
-            
-            if (ecoSystem.getStudentDirectoryRef() != null) {
-                this.studentUDirectory = ecoSystem.getStudentDirectoryRef();
-            } else {
-                this.studentUDirectory = new StudentUDirectory();
-            }
-
-            if (ecoSystem.getCourseDirectoryRef() != null) {
-                this.courseDirectory = ecoSystem.getCourseDirectoryRef();
-            } else {
-                this.courseDirectory = new CourseDirectory();
-            }
-
-//            if (ecoSystem.getPersonDirectoryRef() != null) {
+//            if(ecoSystem.getCityDirectory() != null) {
+//                this.cityDirectory = ecoSystem.getCityDirectory();
+//            } else {
+//                this.cityDirectory = new CityDirectory();
+//            }
+//
+//            if(ecoSystem.getCommunityDirectory() != null) {
+//                this.communityDirectory = ecoSystem.getCommunityDirectory();
+//            } else{
+//                this.communityDirectory = new CommunityDirectory();
+//            }
+//            if(ecoSystem.getPersonDirectory() != null) {
+//                this.personDirectory = ecoSystem.getPersonDirectory();
+//            } else {
+//                this.personDirectory = new PersonDirectory();
+//            }
+//
+//            if(ecoSystem.getSchoolDirectory() != null) {
+//                this.schoolDirectory = ecoSystem.getSchoolDirectory();
+//            } else {
+//                this.schoolDirectory = new SchoolDirectory();
+//            }
+//
+//            if(ecoSystem.getStudentDirectory() != null) {
+//                this.studentDirectory = ecoSystem.getStudentDirectory();
+//            } else {
+//                this.studentDirectory = new StudentDirectory();
+//            }
+//
+//            if(ecoSystem.getTeacherDirectory() != null) {
+//                this.teacherDirectory = ecoSystem.getTeacherDirectory();
+//            } else {
+//                this.teacherDirectory = new TeacherDirectory();
+//            }
+//            
+//            if(ecoSystem.getPersonDirectoryRef()!=null){
 //                this.personUDirectory = ecoSystem.getPersonDirectoryRef();
 //            } else {
 //                this.personUDirectory = new PersonUDirectory();
 //            }
-
-            if (ecoSystem.getAppointmentDirectoryRef() != null) {
-                this.appointmentDirectory = ecoSystem.getAppointmentDirectoryRef();
-            } else {
-                this.appointmentDirectory = new AppointmentDirectory();
-            }
-
-            if (ecoSystem.getCommunityDirectoryRef() != null) {
-                this.communityDirectory = ecoSystem.getCommunityDirectoryRef();
-            } else {
-                this.communityDirectory = new CommunityDirectory();
-            }
-
-            if (ecoSystem.getProfessorDirectoryRef() != null) {
-                this.professorDirectory = ecoSystem.getProfessorDirectoryRef();
-            } else {
-                this.professorDirectory = new ProfessorDirectory();
-            }
-
-            if (ecoSystem.getCourseAssignment() != null) {
-                this.courseAssignment = ecoSystem.getCourseAssignment();
-            } else {
-                this.courseAssignment = new CourseAssignmentDirectory();
-            }
-
-            if (ecoSystem.getMealPlanDirectoryRef() != null) {
-                this.mealPlanDirectoryRef = ecoSystem.getMealPlanDirectoryRef();
-            } else {
-                this.mealPlanDirectoryRef = new MealPlanDirectory();
-            }
+//            
+//            if (ecoSystem.getStudentDirectoryRef() != null) {
+//                this.studentUDirectory = ecoSystem.getStudentDirectoryRef();
+//            } else {
+//                this.studentUDirectory = new StudentUDirectory();
+//            }
+//
+//            if (ecoSystem.getCourseDirectoryRef() != null) {
+//                this.courseDirectory = ecoSystem.getCourseDirectoryRef();
+//            } else {
+//                this.courseDirectory = new CourseDirectory();
+//            }
+//            
+//            if (ecoSystem.getAppointmentDirectoryRef() != null) {
+//                this.appointmentDirectory = ecoSystem.getAppointmentDirectoryRef();
+//            } else {
+//                this.appointmentDirectory = new AppointmentDirectory();
+//            }
+//
+//            if (ecoSystem.getCommunityDirectoryRef() != null) {
+//                this.communityDirectory = ecoSystem.getCommunityDirectoryRef();
+//            } else {
+//                this.communityDirectory = new CommunityDirectory();
+//            }
+//
+//            if (ecoSystem.getProfessorDirectoryRef() != null) {
+//                this.professorDirectory = ecoSystem.getProfessorDirectoryRef();
+//            } else {
+//                this.professorDirectory = new ProfessorDirectory();
+//            }
+//
+//            if (ecoSystem.getCourseAssignment() != null) {
+//                this.courseAssignment = ecoSystem.getCourseAssignment();
+//            } else {
+//                this.courseAssignment = new CourseAssignmentDirectory();
+//            }
+//
+//            if (ecoSystem.getMealPlanDirectoryRef() != null) {
+//                this.mealPlanDirectoryRef = ecoSystem.getMealPlanDirectoryRef();
+//            } else {
+//                this.mealPlanDirectoryRef = new MealPlanDirectory();
+//            }
            
         }
         flag++;
@@ -218,6 +213,8 @@ public class MainJFrame extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(52, 84, 87));
@@ -237,37 +234,61 @@ public class MainJFrame extends javax.swing.JFrame {
 
         lblUsername.setText("Username: ");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logomain.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logo.jpeg"))); // NOI18N
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Kannada MN", 2, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel1.setText("Know more, Grow more");
+
+        jLabel3.setFont(new java.awt.Font("Zapf Dingbats", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 255));
+        jLabel3.setText("Education Management System");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 156, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(442, 442, 442)
-                        .addComponent(btnLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(375, 375, 375)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(153, 153, 153))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblUsername)
                             .addComponent(lblPassword))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUsername)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnLogin)))
+                        .addGap(358, 358, 358))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(jLabel2)))
-                .addContainerGap(261, Short.MAX_VALUE))
+                        .addGap(284, 284, 284)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(jLabel3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(mainWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(213, 213, 213)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel1)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsername)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -277,9 +298,7 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addComponent(lblPassword))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
         pack();
@@ -333,30 +352,35 @@ public class MainJFrame extends javax.swing.JFrame {
             
             switch (person.getUserRole()) {
                 case UNIVERSITY_ADMIN:
+                    clearLoginPanel();
                     universityAdminDashboard = new UniversityAdminDashboard(ecoSystem, (UniversityAdmin) person);
                     mainWorkArea.add("universityAdminDashboard", universityAdminDashboard);
                     CardLayout cd1 = (CardLayout) mainWorkArea.getLayout();
                     cd1.next(mainWorkArea);
                     break;
                 case MEALPLAN_ADMIN:
+                    clearLoginPanel();
                     mealPlanAdminDashboard = new MealPlanDashboard(ecoSystem);
                     mainWorkArea.add("mealPlanAdminDashboard", mealPlanAdminDashboard);
                     CardLayout cd2 = (CardLayout) mainWorkArea.getLayout();
                     cd2.next(mainWorkArea);
                     break;
                 case STUDENT:
+                    clearLoginPanel();
                     studentDashboard = new StudentDashboard(ecoSystem, (StudentU) person);
                     mainWorkArea.add("studentDashboard", studentDashboard);
                     CardLayout cd3 = (CardLayout) mainWorkArea.getLayout();
                     cd3.next(mainWorkArea);
                     break;
                 case PROFESSOR:
+                    clearLoginPanel();
                     professorDashboard = new ProfessorDashboard(ecoSystem, (Professor) person);
                     mainWorkArea.add("professorDashboard", professorDashboard);
                     CardLayout cd4 = (CardLayout) mainWorkArea.getLayout();
                     cd4.next(mainWorkArea);
                     break;
                 case PLACEMENT_COORDINATOR:
+                    clearLoginPanel();
                     placementCoordinatorDashboard = new PlacementCoordinatorDashboard(ecoSystem, (PlacementCoordinator) person);
                     mainWorkArea.add("placementCoordinatorDashboard", placementCoordinatorDashboard);
                     CardLayout cd5 = (CardLayout) mainWorkArea.getLayout();
@@ -468,26 +492,32 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     
-    public void removeSchoolAdminDashboardJPanel() {
+    public void removeSchoolAdminDashboardJPanel(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(SchoolAdminDashboardJPanel);
     }
     
-    public void removeSystemAdminDashboardJPanel() {
+    public void removeSystemAdminDashboardJPanel(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(SystemAdminDashboardJPanel);
     }
     
-    public void removeMealPlanDashboard() {
+    public void removeMealPlanDashboard(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(mealPlanAdminDashboard);
     }
     
-    public void removeUniversityAdminDashboard() {
+    public void removeUniversityAdminDashboard(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(universityAdminDashboard);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel mainWorkArea;
@@ -504,19 +534,23 @@ public class MainJFrame extends javax.swing.JFrame {
 
     }
 
-    public void removeTeacherDashboardJPanel() {
+    public void removeTeacherDashboardJPanel(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(TeacherDashboardJPanel);
     }
     
-    public void removeSchoolStudentDashboardJPanel() {
+    public void removeSchoolStudentDashboardJPanel(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(StudentDashboardJPanel);
     }
     
-    public void removeStudentDashboard() {
+    public void removeStudentDashboard(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(studentDashboard);
     }
 
-    public void removeProfessorDashboard() {
+    public void removeProfessorDashboard(EcoSystem ecoSystem) {
+        db4OUtil.storeSystem(ecoSystem);
         mainWorkArea.remove(professorDashboard);
     }
 }

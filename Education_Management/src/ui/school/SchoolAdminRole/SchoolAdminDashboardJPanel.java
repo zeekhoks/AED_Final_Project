@@ -12,7 +12,6 @@ import businesslogic.Person;
 import businesslogic.Person.UserRole;
 import businesslogic.PersonU;
 import businesslogic.helper.ValidateInputs;
-import businesslogic.school.Library;
 import businesslogic.school.SchoolAdmin;
 import businesslogic.school.SchoolStudentMealPlan;
 import businesslogic.school.Student;
@@ -21,7 +20,6 @@ import businesslogic.school.Teacher;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.io.File;
-import java.lang.System.Logger;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -2283,15 +2281,14 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
         // TODO add your handling code here:
-        // view library
-        int selectedRowIndex = tblLibrary.getSelectedRow();
-        if(selectedRowIndex < 0){
-            JOptionPane.showMessageDialog(this, "Please select a row to View!");
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) tblLibrary.getModel();
-        Library l = (Library)model.getValueAt(selectedRowIndex, 0);
+//        // view library
+//        int selectedRowIndex = tblLibrary.getSelectedRow();
+//        if(selectedRowIndex < 0){
+//            JOptionPane.showMessageDialog(this, "Please select a row to View!");
+//            return;
+//        }
+//        
+//        DefaultTableModel model = (DefaultTableModel) tblLibrary.getModel();
         
         
         
@@ -2640,6 +2637,7 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
         txtTeacherPassword.setText("");
         txtTeacherSchoolCode.setText("");
         txtTeacherRole.setText("");
+        txtTeacherID.setText("");
     }
 
     private boolean isEmployeeDataEnteredValid() {
@@ -2694,25 +2692,10 @@ public class SchoolAdminDashboardJPanel extends javax.swing.JPanel {
 //        mainFrame.setVisible(true);
 
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeSchoolAdminDashboardJPanel();
+        mainFrame.removeSchoolAdminDashboardJPanel(ecoSystem);
         mainFrame.setVisible(true);
     }
-    
-    private void populateLibraryTable() {
-        DefaultTableModel model = (DefaultTableModel) tblLibrary.getModel();
-        model.setRowCount(0);
-//        model.setColumnCount(0);
-
-        for(Library l : ecoSystem.getLibraryDirectory().getLibraryDirectory()) {
-            if(l.getSchoolCode().equals(userLogged.getSchoolCode())) {
-                Object[] row = new Object[3];
-                row[0] = l;
-                row[1] = l.getBookName();
-                row[2] = l.isIsIssued();
-                model.addRow(row);
-            }
-        }
-    }
+   
     
     private void clearLibraryForm() {
         txtBookID.setText("");

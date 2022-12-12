@@ -20,8 +20,8 @@ import businesslogic.dormitory.LoginDetails;
 import businesslogic.dormitory.RoomBookingHistory;
 import businesslogic.dormitory.SalaryPaymentHistory;
 import businesslogic.school.BookAppointmentDirectory;
-import businesslogic.school.LibraryBookDirectory;
-import businesslogic.school.ParentDirectory;
+//import businesslogic.school.LibraryBookDirectory;
+//import businesslogic.school.ParentDirectory;
 import businesslogic.school.SchoolAdminDirectory;
 import businesslogic.school.SchoolDirectory;
 import businesslogic.school.StudentDirectory;
@@ -45,9 +45,9 @@ public class EcoSystem {
     private SubjectDirectory subjectDirectory = new SubjectDirectory();
     private BookAppointmentDirectory bookAppointmentDirectory = new BookAppointmentDirectory();
     private StudentDirectory studentDirectory = new StudentDirectory();
-    private ParentDirectory parentDirectory = new ParentDirectory();
+//    private ParentDirectory parentDirectory = new ParentDirectory();
     private TeacherDirectory teacherDirectory = new TeacherDirectory();
-    private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
+//    private LibraryBookDirectory libraryDirectory = new LibraryBookDirectory();
     private SchoolStudentMealPlanDirectory schoolStudentMealPlanDirectory = new SchoolStudentMealPlanDirectory();
     
     // university
@@ -68,10 +68,10 @@ public class EcoSystem {
     
     
     // dormitory
-    private FeesPaymentHistory feesPaymentHistory = new FeesPaymentHistory();
-    private RoomBookingHistory roomBookingHistory = new RoomBookingHistory();
-    private SalaryPaymentHistory salaryPaymentHistory = new SalaryPaymentHistory();
-    private LoginDetails loginDetails = new LoginDetails();
+//    private FeesPaymentHistory feesPaymentHistory = new FeesPaymentHistory();
+//    private RoomBookingHistory roomBookingHistory = new RoomBookingHistory();
+//    private SalaryPaymentHistory salaryPaymentHistory = new SalaryPaymentHistory();
+//    private LoginDetails loginDetails = new LoginDetails();
 
     private EcoSystem() {
         
@@ -148,13 +148,13 @@ public class EcoSystem {
         this.studentDirectory = studentDirectory;
     }
 
-    public ParentDirectory getParentDirectory() {
-        return parentDirectory;
-    }
-
-    public void setParentDirectory(ParentDirectory parentDirectory) {
-        this.parentDirectory = parentDirectory;
-    }
+//    public ParentDirectory getParentDirectory() {
+//        return parentDirectory;
+//    }
+//
+//    public void setParentDirectory(ParentDirectory parentDirectory) {
+//        this.parentDirectory = parentDirectory;
+//    }
 
     public TeacherDirectory getTeacherDirectory() {
         return teacherDirectory;
@@ -164,13 +164,13 @@ public class EcoSystem {
         this.teacherDirectory = teacherDirectory;
     }
    
-    public LibraryBookDirectory getLibraryDirectory() {
-        return libraryDirectory;
-    }
-
-    public void setLibraryDirectory(LibraryBookDirectory libraryDirectory) {
-        this.libraryDirectory = libraryDirectory;
-    }
+//    public LibraryBookDirectory getLibraryDirectory() {
+//        return libraryDirectory;
+//    }
+//
+//    public void setLibraryDirectory(LibraryBookDirectory libraryDirectory) {
+//        this.libraryDirectory = libraryDirectory;
+//    }
 
     public SchoolAdminDirectory getSchoolAdminDirectory() {
         return schoolAdminDirectory;
@@ -228,37 +228,37 @@ public class EcoSystem {
         this.personDirectoryRef = personDirectoryRef;
     }
 
-    public FeesPaymentHistory getFeesPaymentHistory() {
-        return feesPaymentHistory;
-    }
-
-    public void setFeesPaymentHistory(FeesPaymentHistory feesPaymentHistory) {
-        this.feesPaymentHistory = feesPaymentHistory;
-    }
-
-    public RoomBookingHistory getRoomBookingHistory() {
-        return roomBookingHistory;
-    }
-
-    public void setRoomBookingHistory(RoomBookingHistory roomBookingHistory) {
-        this.roomBookingHistory = roomBookingHistory;
-    }
-
-    public SalaryPaymentHistory getSalaryPaymentHistory() {
-        return salaryPaymentHistory;
-    }
-
-    public void setSalaryPaymentHistory(SalaryPaymentHistory salaryPaymentHistory) {
-        this.salaryPaymentHistory = salaryPaymentHistory;
-    }
-
-    public LoginDetails getLoginDetails() {
-        return loginDetails;
-    }
-
-    public void setLoginDetails(LoginDetails loginDetails) {
-        this.loginDetails = loginDetails;
-    }
+//    public FeesPaymentHistory getFeesPaymentHistory() {
+//        return feesPaymentHistory;
+//    }
+//
+//    public void setFeesPaymentHistory(FeesPaymentHistory feesPaymentHistory) {
+//        this.feesPaymentHistory = feesPaymentHistory;
+//    }
+//
+//    public RoomBookingHistory getRoomBookingHistory() {
+//        return roomBookingHistory;
+//    }
+//
+//    public void setRoomBookingHistory(RoomBookingHistory roomBookingHistory) {
+//        this.roomBookingHistory = roomBookingHistory;
+//    }
+//
+//    public SalaryPaymentHistory getSalaryPaymentHistory() {
+//        return salaryPaymentHistory;
+//    }
+//
+//    public void setSalaryPaymentHistory(SalaryPaymentHistory salaryPaymentHistory) {
+//        this.salaryPaymentHistory = salaryPaymentHistory;
+//    }
+//
+//    public LoginDetails getLoginDetails() {
+//        return loginDetails;
+//    }
+//
+//    public void setLoginDetails(LoginDetails loginDetails) {
+//        this.loginDetails = loginDetails;
+//    }
 
     public StudentUDirectory getStudentDirectoryRef() {
         return studentDirectoryRef;

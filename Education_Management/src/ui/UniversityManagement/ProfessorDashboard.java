@@ -14,6 +14,8 @@ import businesslogic.UniversityManagement.StudentU;
 import ui.school.SchoolAdminRole.*;
 import java.awt.CardLayout;
 import java.util.List;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -810,12 +812,12 @@ public class ProfessorDashboard extends javax.swing.JPanel {
         if(comboSemester1.getSelectedItem()!=null){
                 String currentSemester = comboSemester1.getSelectedItem().toString();
                 if(!currentSemester.equalsIgnoreCase("Select Semester")){
-                    List<Course> courseBySem = ecoSystem.getCourseDirectoryRef().getCourseDirectory()
+                    List<Course> courseBySem = (List<Course>) ecoSystem.getCourseDirectoryRef().getCourseDirectory()
                             .stream().filter(c-> c.getSemester().equalsIgnoreCase(currentSemester)
-                                    &&(c.getProfessorName().equalsIgnoreCase(person.getPersonName()))).toList();
+                                    &&(c.getProfessorName().equalsIgnoreCase(person.getPersonName()))).collect(Collectors.toList());
                     Course course = courseBySem.get(0);
                     List<CourseAssignment> courseAssignments = ecoSystem.getCourseAssignmentRef().getCourseAssignmentDirectory()
-                        .stream().filter(ca -> ca.getCourseID() == course.getCourseID()).toList();
+                        .stream().filter(ca -> ca.getCourseID() == course.getCourseID()).collect(Collectors.toList());
                 populateCourseAssignmentsTable(courseAssignments);
                     
                 }
@@ -907,7 +909,7 @@ public class ProfessorDashboard extends javax.swing.JPanel {
        private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeProfessorDashboard();
+        mainFrame.removeProfessorDashboard(ecoSystem);
         mainFrame.setVisible(true);
     }
 

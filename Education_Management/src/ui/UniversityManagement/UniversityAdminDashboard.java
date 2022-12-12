@@ -31,6 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import ui.MainJFrame;
 import java.text.SimpleDateFormat;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -1240,7 +1241,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         String universityID = txtUniversityID.getText();
 
         List<String> personIdList = ecoSystem.getPersonDirectoryRef().getPersonDirectory()
-                .stream().map(x -> x.getPersonId()).toList();
+                .stream().map(x -> x.getPersonId()).collect(Collectors.toList());
 //        List<String> studentIdList = UniversityAdmin.studentDirectoryRef.getStudentDirectory().stream().map(x -> x.getStudentID()).toList();
 
         if (personIdList.contains(studentSSN)) {
@@ -1346,7 +1347,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         int creditHours = Integer.parseInt(txtCreditHours.getText());
 
         List<Integer> courseList = ecoSystem.getCourseDirectoryRef().getCourseDirectory()
-                .stream().map(x -> x.getCourseID()).toList();
+                .stream().map(x -> x.getCourseID()).collect(Collectors.toList());
 
         if (courseList.contains(courseID)) {
             JOptionPane.showMessageDialog(this, "Course ID already exists. Please check");
@@ -1622,7 +1623,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
         Community community = new Community(txtProfCommunity.getText(), new City("Boston"));
 
         List<String> profIDList = ecoSystem.getProfessorDirectoryRef().getProfessorDirectory()
-                .stream().map(x -> x.getProfessorID()).toList();
+                .stream().map(x -> x.getProfessorID()).collect(Collectors.toList());
 
         if (profIDList.contains(profID)) {
             JOptionPane.showMessageDialog(this, "Prof ID already exists, please check.");
@@ -1821,7 +1822,7 @@ public class UniversityAdminDashboard extends javax.swing.JPanel {
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeUniversityAdminDashboard();
+        mainFrame.removeUniversityAdminDashboard(ecoSystem);
         mainFrame.setVisible(true);
     }
 

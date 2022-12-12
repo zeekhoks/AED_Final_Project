@@ -44,7 +44,7 @@ public class PayStudFees extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 204, 204));
 
         lblBloodPressure.setText("Fees Amount:");
 

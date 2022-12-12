@@ -11,18 +11,18 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class SubjectDirectory {
-    private static ArrayList<Subject> subjectDirectory;
+    private ArrayList<Subject> subjectDirectory;
     
     public SubjectDirectory() {
         subjectDirectory = new ArrayList<Subject>();
     }
 
-    public static ArrayList<Subject> getSubjectDirectory() {
+    public ArrayList<Subject> getSubjectDirectory() {
         return subjectDirectory;
     }
 
-    public static void setSubjectDirectory(ArrayList<Subject> subjectDirectory) {
-        SubjectDirectory.subjectDirectory = subjectDirectory;
+    public void setSubjectDirectory(ArrayList<Subject> subjectDir) {
+        subjectDirectory = subjectDir;
     }
 
     public Subject addNewSubject(Subject subject) {

@@ -56,7 +56,7 @@ public class DeletePanel extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
 
-        setBackground(new java.awt.Color(204, 255, 204));
+        setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Search Details:");

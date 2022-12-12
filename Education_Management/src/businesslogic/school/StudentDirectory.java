@@ -12,21 +12,21 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class StudentDirectory {
-    private static ArrayList<Student> studentDirectory;
+    private ArrayList<Student> studentDirectory;
     
     public StudentDirectory(){
         studentDirectory = new ArrayList<Student>();
     }
 
-    public static ArrayList<Student> getStudentDirectory() {
+    public ArrayList<Student> getStudentDirectory() {
         return studentDirectory;
     }
 
-    public static void setStudentDirectory(ArrayList<Student> studentDirectory) {
-        StudentDirectory.studentDirectory = studentDirectory;
+    public void setStudentDirectory(ArrayList<Student> studentDir) {
+        studentDirectory = studentDir;
     }
     
-    public static Student getStudentByID(String studentID) {
+    public Student getStudentByID(String studentID) {
         for(Student s : studentDirectory) {
             if(s.getPersonId().equals(studentID)){
                 return s;
@@ -35,7 +35,7 @@ public class StudentDirectory {
         return null;
     }
     
-    public static Student getStudentByName(String name) {
+    public Student getStudentByName(String name) {
         for(Student s : studentDirectory) {
             if(s.getPersonFirstName().equals(name)){
                 return s;
@@ -44,7 +44,7 @@ public class StudentDirectory {
         return null;
     }
     
-    public static Student addNewStudent(Student s){
+    public Student addNewStudent(Student s){
         studentDirectory.add(s);
         return s;
     }

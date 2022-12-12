@@ -19,6 +19,7 @@ import java.awt.Image;
 import java.util.List;
 import java.io.File;
 import java.util.Date;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -405,7 +406,7 @@ public class MealPlanDashboard extends javax.swing.JPanel {
         
         
         List<Integer> mealIdList = ecoSystem.getMealPlanDirectoryRef()
-                .getMealPlanDirectory().stream().map(x -> x.getMealID()).toList();
+                .getMealPlanDirectory().stream().map(x -> x.getMealID()).collect(Collectors.toList());
 //        List<String> studentIdList = UniversityAdmin.studentDirectoryRef.getStudentDirectory().stream().map(x -> x.getStudentID()).toList();
 
         if (mealIdList.contains(mealPlanID)) {
@@ -535,7 +536,7 @@ public class MealPlanDashboard extends javax.swing.JPanel {
     private void switchToMainFrame() {
         this.setVisible(false);
         MainJFrame mainFrame = (MainJFrame) SwingUtilities.getRoot(this);
-        mainFrame.removeMealPlanDashboard();
+        mainFrame.removeMealPlanDashboard(ecoSystem);
         mainFrame.setVisible(true);
     }
 

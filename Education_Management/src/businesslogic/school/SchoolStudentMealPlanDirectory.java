@@ -11,18 +11,18 @@ import java.util.ArrayList;
  * @author drashtibhingradiya
  */
 public class SchoolStudentMealPlanDirectory {
-        private static ArrayList<SchoolStudentMealPlan> studentMealPlanDirectory;
+        private ArrayList<SchoolStudentMealPlan> studentMealPlanDirectory;
 
     public SchoolStudentMealPlanDirectory() {
         studentMealPlanDirectory = new ArrayList<SchoolStudentMealPlan>();
     }      
 
-    public static ArrayList<SchoolStudentMealPlan> getStudentMealPlanDirectory() {
+    public ArrayList<SchoolStudentMealPlan> getStudentMealPlanDirectory() {
         return studentMealPlanDirectory;
     }
 
-    public static void setStudentMealPlanDirectory(ArrayList<SchoolStudentMealPlan> studentMealPlanDirectory) {
-        SchoolStudentMealPlanDirectory.studentMealPlanDirectory = studentMealPlanDirectory;
+    public void setStudentMealPlanDirectory(ArrayList<SchoolStudentMealPlan> studentMealPlanDir) {
+        studentMealPlanDirectory = studentMealPlanDir;
     }
 
     public SchoolStudentMealPlan addNewMealPlan(SchoolStudentMealPlan schoolStudentMealPlan) {
