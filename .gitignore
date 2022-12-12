@@ -27,3 +27,4 @@ git rm --cached .DS_Store
 hs_err_pid*
 /Education_Management/nbproject/private/
 /Education_Management/build/
+
