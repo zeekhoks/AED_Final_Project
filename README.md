@@ -34,9 +34,8 @@ There is no configuration required for these modules as they don't have any conf
 
 Packages -
 
-### DB4OUtil.java - <br>
+### DB4OUtil.java - contains the database configuration file <br>
 
-contains the database configuration file <br>
 Ecosystem.java - contains the ecosystem definition which contains the entire system <br>
 ConfigureASystem.java - contains all the directories which can help in configuring the enterprises <br>
 
