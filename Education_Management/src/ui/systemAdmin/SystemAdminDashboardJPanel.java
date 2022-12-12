@@ -879,7 +879,7 @@ public class SystemAdminDashboardJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "University ID", "University Name", "Community", "City"
+                "University Name", "University ID", "Community", "City"
             }
         ));
         jScrollPane2.setViewportView(tblUniversity);
