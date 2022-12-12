@@ -90,6 +90,11 @@ SalaryPayment.java - Contains the salary payment to employees module. <br>
 SalaryPaymentHistory.java - Contains the salary payment history module. <br>
 StuDetails.java - Contains the student details. <br>
 
+ui - 
+SystemAdminLoginPage.java - Contains various panels native to the dormitory System Admin containing all CRUD operations <br>
+EmpLoginPage.java - Contains various panels native to the dormitory Employee containing adding room, creating student, viewing Dormitory Fees, Employee Salary and Booked Rooms Details functionalities <br>
+StudentInitialPage.java - Contains various panels native to the dormitory Student containing signing up and viewing Personal Details and Dormitory Fees Details functionalities <br>
+
 ### MealManagement
 
 businesslogic -
